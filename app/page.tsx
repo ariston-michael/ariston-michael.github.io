@@ -3,6 +3,7 @@ import { Starfield } from "@/components/Starfield";
 import { Hero } from "@/components/Hero";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { About } from "@/components/About";
+import { Experience } from "@/components/Experience";
 import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <FeaturedProjects />
         <About />
+        <Experience />
         <Skills />
         <Contact />
       </main>

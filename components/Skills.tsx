@@ -8,7 +8,7 @@ export function Skills() {
     >
       <div className="section-heading">
         <div>
-          <p className="eyebrow">03 / THE TOOLKIT</p>
+          <p className="eyebrow">04 / THE TOOLKIT</p>
           <h2 id="skills-title">
             Tools for <span>the journey.</span>
           </h2>

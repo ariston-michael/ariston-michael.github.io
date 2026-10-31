@@ -1,10 +1,11 @@
-export function SiteHeader() {
+export function SiteHeader({ home = true }: { home?: boolean }) {
+  const prefix = home ? "" : "/";
   return (
     <header className="site-header shell">
       <a
         className="wordmark"
-        href="#top"
-        aria-label="Ariston Michael, back to top"
+        href={`${prefix}#top`}
+        aria-label="AM. — Ariston Michael, back to top"
       >
         <span className="brand-orbit" aria-hidden="true">
           ✦
@@ -13,11 +14,13 @@ export function SiteHeader() {
       </a>
       <nav aria-label="Main navigation">
         <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          {["About", "Projects", "Skills", "Contact"].map((label) => (
-            <li key={label}>
-              <a href={`#${label.toLowerCase()}`}>{label}</a>
-            </li>
-          ))}
+          {["About", "Projects", "Experience", "Skills", "Contact"].map(
+            (label) => (
+              <li key={label}>
+                <a href={`${prefix}#${label.toLowerCase()}`}>{label}</a>
+              </li>
+            ),
+          )}
         </ul>
       </nav>
     </header>

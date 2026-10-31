@@ -7,7 +7,7 @@ export function Contact() {
       aria-labelledby="contact-title"
     >
       <div className="contact-panel">
-        <p className="eyebrow">04 / NEXT TRANSMISSION</p>
+        <p className="eyebrow">05 / NEXT TRANSMISSION</p>
         <h2 id="contact-title">
           Let’s build
           <br />
@@ -23,13 +23,13 @@ export function Contact() {
         </a>
         <div className="contact-pending">
           <p>
-            Email <span>TODO · professional address pending</span>
+            Email <span>Address not yet available</span>
           </p>
           <p>
-            Resume <span>TODO · PDF pending</span>
+            Resume <span>PDF not yet available</span>
           </p>
           <p>
-            LinkedIn <span>TODO · profile URL pending</span>
+            LinkedIn <span>Profile awaiting verification</span>
           </p>
         </div>
       </div>

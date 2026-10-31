@@ -1,3 +1,4 @@
+import { ProjectVisual } from "./ProjectVisual";
 import type { Project } from "@/lib/content";
 export function ProjectCard({
   project,
@@ -17,9 +18,7 @@ export function ProjectCard({
         </span>
         <span className="project-category">{project.category}</span>
       </div>
-      <div className="project-glyph" aria-hidden="true">
-        {["⌁", "⌘", "△", "✳"][index]}
-      </div>
+      <ProjectVisual id={project.id} />
       <div className="project-body">
         <p className="project-distinction">{project.distinction}</p>
         <h3 id={`project-${project.id}`}>{project.name}</h3>
@@ -32,7 +31,14 @@ export function ProjectCard({
             <li key={tech}>{tech}</li>
           ))}
         </ul>
-        <p className="project-todo">{project.todo}</p>
+        {project.study ? (
+          <a className="project-link" href={`/projects/${project.id}/`}>
+            Explore {project.name} <span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          <p className="project-pending">More details awaiting verification</p>
+        )}
+        <p className="project-todo">Project links awaiting verification.</p>
       </div>
     </article>
   );

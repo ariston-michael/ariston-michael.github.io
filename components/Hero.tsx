@@ -35,7 +35,7 @@ export function Hero() {
             Let’s connect <span aria-hidden="true">↗</span>
           </a>
           <span>
-            Resume <span className="todo-inline">TODO · PDF pending</span>
+            Resume <span className="todo-inline">PDF not yet available</span>
           </span>
         </div>
       </div>
