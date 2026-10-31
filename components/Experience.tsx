@@ -38,7 +38,7 @@ export function Experience() {
         </div>
         <div>
           <h3 className="small-heading">Hackathon achievements</h3>
-          <ul className="achievement-list">
+          <ul className="achievement-list" id="achievements">
             {achievements.map((item) => (
               <li key={item.context}>
                 <a href={item.href}>

@@ -12,6 +12,8 @@ export function CosmicMotion() {
     if (!field) return;
     const hero = document.querySelector<HTMLElement>(".hero");
     const planet = hero?.querySelector<HTMLElement>(".planet-approach");
+    const stage = hero?.querySelector<HTMLElement>(".hero-stage");
+    const pinned = matchMedia("(min-width: 1024px) and (min-height: 700px)");
     const layers = Array.from(
       field.querySelectorAll<HTMLElement>(".star-layer"),
     );
@@ -40,6 +42,7 @@ export function CosmicMotion() {
       fieldHeight = 1;
     let heroTop = 0,
       heroHeight = 1;
+    let scrollRange = 1;
     let targetX = innerWidth / 2,
       targetY = innerHeight / 2;
     let cursorX = targetX,
@@ -49,23 +52,38 @@ export function CosmicMotion() {
       proximity = 0;
     let progress = 0,
       targetProgress = 0;
-    let scaleLimit = 0.065,
-      shiftLimit = 12;
+    let scaleLimit = 2.6,
+      shiftLimit = 90;
     let scrollY = window.scrollY;
 
     function measure() {
       const rect = field!.getBoundingClientRect();
       fieldLeft = rect.left;
-      fieldTop = rect.top + window.scrollY;
+      fieldTop = rect.top;
       fieldWidth = rect.width;
       fieldHeight = rect.height;
       if (hero) {
         const bounds = hero.getBoundingClientRect();
-        heroTop = bounds.top + window.scrollY;
+        heroTop =
+          bounds.top +
+          window.scrollY -
+          (pinned.matches && stage
+            ? parseFloat(getComputedStyle(stage).top) || 0
+            : 0);
         heroHeight = Math.max(1, bounds.height);
       }
-      scaleLimit = narrow.matches ? 0.025 : innerWidth < 1024 ? 0.04 : 0.065;
-      shiftLimit = narrow.matches ? 4 : innerWidth < 1024 ? 7 : 12;
+      scrollRange =
+        pinned.matches && stage
+          ? Math.max(1, heroHeight - stage.offsetHeight)
+          : heroHeight * 0.85;
+      scaleLimit = pinned.matches
+        ? innerWidth >= 1920
+          ? 2.3
+          : 2.6
+        : narrow.matches
+          ? 0.55
+          : 0.95;
+      shiftLimit = pinned.matches ? 85 : narrow.matches ? 12 : 28;
       scrollY = window.scrollY;
       updateScroll();
     }
@@ -76,7 +94,7 @@ export function CosmicMotion() {
     function updateScroll() {
       scrollY = window.scrollY;
       // Progress depends only on the measured hero, never document length.
-      targetProgress = clamp((scrollY - heroTop) / (heroHeight * 0.85));
+      targetProgress = clamp((scrollY - heroTop) / scrollRange);
       schedule();
     }
     function render() {
@@ -95,15 +113,25 @@ export function CosmicMotion() {
       progress += (targetProgress - progress) * 0.14;
       layers.forEach((layer, index) => {
         const depth = (index + 1) / 3;
-        layer.style.transform = `translate3d(${(offsetX * depth).toFixed(3)}px,${(offsetY * depth).toFixed(3)}px,0)`;
+        layer.style.transform = `translate3d(${(offsetX * depth).toFixed(3)}px,${(offsetY * depth - progress * depth * 18).toFixed(3)}px,0) scale(${(1 + progress * depth * 0.12).toFixed(5)})`;
       });
       if (pointerEnabled || proximity > 0.001) {
         for (const star of stars) {
           const dx =
-            cursorX - (fieldLeft + star.x * fieldWidth + offsetX * star.depth);
+            cursorX -
+            (fieldLeft +
+              fieldWidth / 2 +
+              (star.x - 0.5) * fieldWidth * (1 + progress * star.depth * 0.12) +
+              offsetX * star.depth);
           const dy =
             cursorY -
-            (fieldTop - scrollY + star.y * fieldHeight + offsetY * star.depth);
+            (fieldTop +
+              fieldHeight / 2 +
+              (star.y - 0.5) *
+                fieldHeight *
+                (1 + progress * star.depth * 0.12) +
+              offsetY * star.depth -
+              progress * star.depth * 18);
           const distance = dx * dx + dy * dy;
           const glow =
             distance < 19600 ? (1 - distance / 19600) * proximity : 0;
@@ -118,7 +146,9 @@ export function CosmicMotion() {
       if (planet) {
         planet.style.setProperty(
           "--saturn-scale",
-          (1 + progress * scaleLimit).toFixed(5),
+          (1 + progress * progress * (3 - 2 * progress) * scaleLimit).toFixed(
+            5,
+          ),
         );
         planet.style.setProperty(
           "--saturn-y",
@@ -126,9 +156,10 @@ export function CosmicMotion() {
         );
         planet.style.setProperty(
           "--saturn-opacity",
-          (1 - progress * 0.04).toFixed(4),
+          (1 - progress * 0.12).toFixed(4),
         );
       }
+      if (hero) hero.style.setProperty("--scene-progress", progress.toFixed(5));
       const unsettled =
         Math.abs(targetX - cursorX) + Math.abs(targetY - cursorY) > 0.2 ||
         Math.abs(desiredX - offsetX) + Math.abs(desiredY - offsetY) > 0.02 ||
@@ -160,6 +191,7 @@ export function CosmicMotion() {
       planet?.style.removeProperty("--saturn-scale");
       planet?.style.removeProperty("--saturn-y");
       planet?.style.removeProperty("--saturn-opacity");
+      hero?.style.removeProperty("--scene-progress");
     }
     function configure() {
       reset();
@@ -195,6 +227,7 @@ export function CosmicMotion() {
     reduced.addEventListener("change", configure);
     pointer.addEventListener("change", configure);
     narrow.addEventListener("change", configure);
+    pinned.addEventListener("change", configure);
     window.addEventListener(MOTION_CHANGE_EVENT, configure);
     document.addEventListener("visibilitychange", visibility);
     configure();
@@ -205,6 +238,7 @@ export function CosmicMotion() {
       reduced.removeEventListener("change", configure);
       pointer.removeEventListener("change", configure);
       narrow.removeEventListener("change", configure);
+      pinned.removeEventListener("change", configure);
       window.removeEventListener(MOTION_CHANGE_EVENT, configure);
       document.removeEventListener("visibilitychange", visibility);
       window.removeEventListener("pointermove", move);

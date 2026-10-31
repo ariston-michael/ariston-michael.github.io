@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/SiteHeader";
 import { Starfield } from "@/components/Starfield";
+import { SolarSystem } from "@/components/SolarSystem";
 import { Hero } from "@/components/Hero";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { About } from "@/components/About";
@@ -14,6 +15,7 @@ export default function Home() {
       <SiteHeader />
       <main id="main" tabIndex={-1}>
         <Hero />
+        <SolarSystem />
         <FeaturedProjects />
         <About />
         <Experience />

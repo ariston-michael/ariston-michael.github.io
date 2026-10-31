@@ -23,7 +23,7 @@ export function About() {
           development.
         </p>
       </div>
-      <div className="education-panel">
+      <div className="education-panel" id="education">
         <span className="panel-icon" aria-hidden="true">
           ✦
         </span>

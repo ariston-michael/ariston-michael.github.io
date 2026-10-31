@@ -21,7 +21,8 @@ export function PlanetIllustration() {
               </radialGradient>
               <radialGradient id="surface" cx=".3" cy=".22" r=".85">
                 <stop stopColor="#b4ddf4" />
-                <stop offset=".25" stopColor="#7478ba" />
+                <stop offset=".15" stopColor="#a5bfd3" />
+                <stop offset=".32" stopColor="#7b7fa9" />
                 <stop offset=".6" stopColor="#393465" />
                 <stop offset="1" stopColor="#0c1026" />
               </radialGradient>
@@ -30,6 +31,11 @@ export function PlanetIllustration() {
                 <stop offset=".35" stopColor="#b1a0e4" stopOpacity=".75" />
                 <stop offset=".7" stopColor="#80b8d5" stopOpacity=".4" />
                 <stop offset="1" stopColor="#aaa3e9" stopOpacity=".12" />
+              </linearGradient>
+              <linearGradient id="cloud-bands" x1="0" y1="0" x2="0" y2="1">
+                <stop stopColor="#e8d7d0" stopOpacity=".32" />
+                <stop offset=".45" stopColor="#94b9df" stopOpacity=".05" />
+                <stop offset="1" stopColor="#8574b8" stopOpacity=".22" />
               </linearGradient>
               <clipPath id="planet-clip">
                 <circle cx="320" cy="267" r="132" />
@@ -61,6 +67,17 @@ export function PlanetIllustration() {
               transform="rotate(-26 320 267)"
             >
               <path d="M150 200Q320 240 480 200M150 230Q320 270 480 230M150 290Q320 330 480 290M150 325Q320 365 480 325" />
+            </g>
+            <g
+              clipPath="url(#planet-clip)"
+              transform="rotate(-26 320 267)"
+              fill="none"
+              stroke="url(#cloud-bands)"
+            >
+              <path
+                d="M170 173Q320 218 470 173M170 192Q320 237 470 192M170 249Q320 294 470 249M170 272Q320 317 470 272M170 340Q320 385 470 340"
+                strokeWidth="5"
+              />
             </g>
             <g transform="rotate(-26 320 267)" fill="none" stroke="url(#rings)">
               <path d="M42 267a278 75 0 0 0 556 0" strokeWidth="22" />

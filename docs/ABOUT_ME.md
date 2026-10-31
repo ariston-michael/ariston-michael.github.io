@@ -52,3 +52,6 @@ C++, Python, C#, TypeScript, React, ASP.NET Core, AWS/cloud, SQL/SQLite, Git. Ve
 
 ## Missing assets
 Exact resume PDF source, project repository/demo URLs, screenshots, portrait (optional). Spindle Strategy details and expanded FireGuard XR capabilities await that source.
+
+## Cinematic continuation — source status (2026-10-31)
+The exact `public/resume/Ariston_Michael.pdf` is still unavailable in this workspace. The latest request names expected resume topics (Spindle Strategy Software Developer Intern details, FireGuard XR integrations/simulation/stack, and skill corrections), but requires reading the actual PDF first. Those details have not been promoted to verified portfolio facts without the source. Existing verified content and contact details remain unchanged; no substitute PDF or separate phone link is used.

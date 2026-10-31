@@ -35,7 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <noscript>
-          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .motion-toggle { display: none !important; }`}</style>
+          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .motion-toggle { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; }`}</style>
         </noscript>
         <a href="#main" className="skip-link">
           Skip to content

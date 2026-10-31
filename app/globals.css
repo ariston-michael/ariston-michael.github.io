@@ -1260,3 +1260,517 @@ html[data-motion="paused"] .planet-approach {
     opacity: 1 !important;
   }
 }
+
+/* Cinematic approach: a bounded, full-bleed stage; copy remains on its own scrim. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  height: 100svh;
+  mask-image: linear-gradient(#000 75%, #0008);
+}
+.hero {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+}
+.hero-stage {
+  position: relative;
+  width: 100%;
+  overflow: clip;
+  isolation: isolate;
+}
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #070b16f5 0%,
+    #070b16e8 31%,
+    #070b1666 53%,
+    transparent 76%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-stage-inner {
+  position: relative;
+  min-height: 760px;
+  display: flex;
+  align-items: center;
+  padding-block: 50px 100px;
+}
+.hero-copy {
+  width: 47%;
+  max-width: 580px;
+  padding: 0;
+  z-index: 3;
+}
+.hero h1 {
+  font-size: clamp(68px, 7vw, 112px);
+}
+.hero .planet-scene {
+  position: absolute;
+  width: min(66vw, 1050px);
+  right: -3vw;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  z-index: 1;
+}
+.hero .planet-window {
+  overflow: visible;
+}
+.hero .planet-approach {
+  transform-origin: 53% 48%;
+}
+.hero .planet-scene figcaption {
+  opacity: calc(1 - var(--scene-progress, 0));
+  margin: 0;
+}
+.hero-bottom {
+  left: 0;
+  bottom: 20px;
+  width: 100%;
+  padding: 12px 0 0;
+  border: 0;
+  z-index: 4;
+  gap: 20px;
+  justify-content: flex-start;
+}
+.hero-bottom .motion-toggle {
+  font: 10px var(--font-sans);
+  letter-spacing: 0;
+}
+.skip-cinema {
+  font-size: 10px;
+  color: #c1e4ef;
+  letter-spacing: 0.6px;
+}
+.scene-progress {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 8px;
+}
+.scene-progress > span {
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #b5e7f5 calc(var(--scene-progress, 0) * 100%),
+    #7c94b43d 0
+  );
+}
+@media (min-width: 1024px) and (min-height: 700px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+    min-height: 88px;
+    z-index: 20;
+    background: #070b16f5;
+  }
+  .hero {
+    height: calc(180svh - 88px);
+  }
+  .hero-stage {
+    position: sticky;
+    top: 88px;
+    height: calc(100svh - 88px);
+  }
+  .hero-stage-inner {
+    height: 100%;
+    min-height: 0;
+    padding-block: 30px 95px;
+  }
+  .hero h1 {
+    font-size: clamp(70px, 7vw, 104px);
+  }
+}
+@media (min-width: 1024px) and (max-height: 799px) {
+  .hero h1 {
+    font-size: 68px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow {
+    margin-bottom: 16px;
+  }
+  .hero-role {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .hero-description {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .hero-links {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 1023px) {
+  .hero-stage-inner {
+    min-height: 700px;
+  }
+  .hero-copy {
+    width: 52%;
+  }
+  .hero .planet-scene {
+    width: 62vw;
+    right: -8vw;
+  }
+  .hero h1 {
+    font-size: clamp(58px, 8vw, 80px);
+  }
+  .scene-progress {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .hero-stage-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 36px;
+    padding-bottom: 100px;
+    min-height: 0;
+  }
+  .hero-stage::after {
+    display: none;
+  }
+  .hero-copy {
+    width: 100%;
+    max-width: 540px;
+  }
+  .hero h1 {
+    font-size: clamp(58px, 13vw, 92px);
+  }
+  .hero .planet-scene {
+    position: relative;
+    width: min(460px, 100%);
+    inset: auto;
+    transform: none;
+    margin: 40px auto 20px;
+  }
+  .hero-bottom {
+    position: absolute;
+    bottom: 16px;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+  }
+  .hero-bottom > a {
+    max-width: none;
+  }
+  .hero .planet-scene figcaption {
+    font-size: 7px;
+    letter-spacing: 1.1px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: auto;
+  }
+  .hero-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+  }
+  .hero-stage-inner {
+    min-height: 700px;
+  }
+}
+html[data-motion="paused"] .scene-progress > span {
+  background: #7c94b43d;
+}
+
+/* Nine original worlds, with portfolio mappings explicitly labeled. */
+.solar-instructions {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.solar-map {
+  position: relative;
+  height: 370px;
+  border: 1px solid #a4b6e126;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 12% 50%, #c76b1919, transparent 40%),
+    linear-gradient(150deg, #111b2d90, #080d1890);
+}
+.solar-orbits {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.world {
+  position: absolute;
+  left: var(--world-x);
+  top: var(--world-y);
+  transform: translate(-50%, -50%);
+  width: 98px;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: #e1e9f7;
+}
+.world:hover,
+.world[aria-pressed="true"] {
+  background: #afcaed08;
+  border-color: #b8d8ef55;
+}
+.world:focus-visible {
+  outline-offset: 2px;
+}
+.world-name {
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+.world-section {
+  font-size: 9px;
+  color: #b0c5de;
+}
+.world-surface {
+  position: relative;
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-block: auto;
+  box-shadow:
+    inset -9px -5px 13px #03060fc4,
+    0 0 14px #9fbbef09;
+}
+.surface-sun {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #fff1b4,
+    #f5ba56 45%,
+    #d06e32 80%
+  );
+  box-shadow:
+    0 0 32px #e7ad5d33,
+    0 0 65px #e07c2622;
+}
+.surface-mercury {
+  width: 26px;
+  height: 26px;
+  background:
+    radial-gradient(circle at 27% 37%, #544f50 0 12%, transparent 13%),
+    radial-gradient(circle at 60% 65%, #6e6265 0 13%, transparent 14%),
+    linear-gradient(140deg, #c2bbb3, #6b6266);
+}
+.surface-venus {
+  background: repeating-linear-gradient(
+    165deg,
+    #cfa870 0 5px,
+    #dbb882 8px,
+    #a77650 13px
+  );
+}
+.surface-earth {
+  width: 46px;
+  height: 46px;
+  background:
+    radial-gradient(ellipse at 30% 35%, #7aab8b 0 15%, transparent 17%),
+    radial-gradient(ellipse at 60% 65%, #5b997c 0 18%, transparent 20%),
+    linear-gradient(140deg, #c2deed, #346dba 40%, #143f77);
+  box-shadow:
+    inset -10px -4px 15px #071525c9,
+    0 0 12px #87cce740;
+}
+.surface-mars {
+  width: 33px;
+  height: 33px;
+  background:
+    radial-gradient(circle at 60% 35%, #773d35 0 12%, transparent 14%),
+    linear-gradient(140deg, #e0a185, #a55240 65%, #703c39);
+}
+.surface-jupiter {
+  width: 72px;
+  height: 72px;
+  background:
+    radial-gradient(ellipse at 30% 65%, #ad685c 0 9%, transparent 12%),
+    repeating-linear-gradient(
+      175deg,
+      #d9baa2 0 8px,
+      #a8877f 11px,
+      #eee0c0 16px,
+      #b59283 22px
+    );
+}
+.surface-saturn {
+  width: 59px;
+  height: 59px;
+  background: repeating-linear-gradient(
+    175deg,
+    #c7c6d9 0 6px,
+    #9595b8 9px,
+    #cac3d5 13px
+  );
+}
+.surface-saturn::after {
+  content: "";
+  position: absolute;
+  inset: 14px -18px;
+  border: 7px solid #b8b7ce99;
+  border-left-color: #cecbd6bb;
+  border-radius: 50%;
+  transform: rotate(-27deg);
+}
+.surface-uranus {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(120deg, #c6eced, #73bcc9 55%, #397780);
+}
+.surface-uranus::after {
+  content: "";
+  position: absolute;
+  inset: -6px 10px;
+  border: 1px solid #aac6d680;
+  border-radius: 50%;
+  transform: rotate(25deg);
+}
+.surface-neptune {
+  width: 43px;
+  height: 43px;
+  background: repeating-linear-gradient(
+    160deg,
+    #7398df,
+    #2e56a1 12px,
+    #456cc5 18px
+  );
+}
+.solar-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 36px;
+  padding: 28px 32px;
+  margin-top: 16px;
+  min-height: 210px;
+  border: 1px solid #a4b6e126;
+  border-radius: 12px;
+  background: #111a2a80;
+}
+.solar-panel > div {
+  min-width: 0;
+  max-width: 760px;
+}
+.solar-panel .eyebrow {
+  margin-bottom: 12px;
+}
+.solar-panel p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.solar-panel .button {
+  flex-shrink: 0;
+}
+.solar-direct {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  padding-top: 16px;
+}
+.solar-direct > p {
+  color: var(--muted);
+  font-size: 11px;
+}
+.solar-direct ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+.solar-direct a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 11px;
+  color: #bed4ed;
+}
+.solar-direct a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 1023px) {
+  .solar-map {
+    height: 400px;
+  }
+  .world {
+    width: 80px;
+  }
+  .world-surface {
+    transform: scale(0.85);
+  }
+  .solar-panel {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 260px;
+  }
+}
+@media (max-width: 767px) {
+  .solar-map {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    height: auto;
+    gap: 6px;
+    padding: 12px;
+  }
+  .solar-orbits {
+    display: none;
+  }
+  .world {
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: 100%;
+    min-height: 145px;
+    padding: 12px 2px;
+  }
+  .world-surface {
+    transform: scale(0.8);
+  }
+  .world-name {
+    font-size: 11px;
+  }
+  .world-section {
+    font-size: 8px;
+  }
+  .solar-panel {
+    padding: 24px;
+    min-height: 300px;
+  }
+  .solar-panel .button {
+    flex-shrink: 1;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .world {
+    width: 88px;
+  }
+}
+@media (min-width: 1024px) and (min-height: 700px) {
+  html {
+    scroll-padding-top: 112px;
+  }
+}
