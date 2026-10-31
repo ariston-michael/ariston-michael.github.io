@@ -17,7 +17,8 @@
 - [x] Build navigation, content sections, and footer.
 
 ## Phase 3 — Real content
-- [ ] Verify contact/social/resume links.
+- [x] Add owner-verified GitHub, LinkedIn, and email links.
+- [ ] Review and add exact resume PDF after source availability.
 - [x] Build four factual project cards and three verified-scope project-note pages.
 - [ ] Expand FireGuard XR and deeper case-study claims after owner verification.
 - [x] Add lightweight original SVG concept illustrations for each project.
@@ -51,3 +52,17 @@ Implemented the remaining feasible sections and static features: verified experi
 A repeatable Playwright/axe suite now covers all 13 requested widths, short/tall viewports, project pages, keyboard/touch, reduced motion, zoom-equivalent reflow, no-JavaScript content, local links and static metadata. Execution results, performance measurements, and the Firefox host limitation are recorded in `docs/VALIDATION.md`. No workflow, production configuration, merge, or deployment is part of this pass.
 
 Final executable browser suite: **92 passed** across Chrome and WebKit. Lighthouse mobile homepage and energy project-note page each scored **100 performance / 100 accessibility / 100 best practices / 100 SEO**, with CLS 0. Firefox could not launch on this host; actual zoom, assistive-technology, real-device, and deployment checks remain pending. Full evidence and scope are in `docs/VALIDATION.md`.
+
+## Contact and cinematic motion continuation (2026-10-31)
+
+- [x] Record owner-verified contact details and public/resume name policy in `ABOUT_ME.md`.
+- [x] Add accessible LinkedIn, GitHub, and mailto contact actions.
+- [x] Record the owner-identified Spindle Strategy internship without inventing a role title, dates, or responsibilities.
+- [ ] Review `Ariston_Michael.pdf`, copy its bytes unchanged into `public/resume/`, and enable the shared Resume link. Exact source is currently unavailable.
+- [ ] Expand Spindle Strategy and FireGuard XR content using the actual resume’s verified facts and attribution.
+- [x] Extend deterministic stars with three depth layers, damped desktop pointer parallax/proximity, and an idle-stopping RAF scheduler.
+- [x] Add bounded, reversible hero-relative Saturn approach with smaller mobile/tablet limits.
+- [x] Integrate live reduced-motion, existing pause/resume, touch, and no-JavaScript behavior.
+- Browser and Lighthouse results for this continuation are recorded in `VALIDATION.md`; publishing remains out of scope.
+
+Latest continuation validation: **136 passed** across Chrome/WebKit; lint, strict TypeScript and static build passed. Lighthouse homepage mobile and desktop each scored **100/100/100/100**, with CLS 0 and TBT 0 ms. The resume source is still missing; its download/content tasks remain unchecked above. Detailed evidence and limitations are in `VALIDATION.md`.

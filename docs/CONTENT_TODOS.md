@@ -1,6 +1,6 @@
 # Content verification and missing assets
 
-`docs/ABOUT_ME.md` is the sole personal-fact source. No additional research or third-party profiles were used to expand personal claims. The GitHub profile URL is derived from repository ownership, as authorized.
+`docs/ABOUT_ME.md` is the sole personal-fact source. No additional research or third-party profiles were used to expand personal claims. The owner directly verified GitHub, LinkedIn, and email in the 2026-10-31 contact/motion request.
 
 ## Implemented project notes
 
@@ -15,7 +15,10 @@ The abstract project artwork and social image are original illustrations. They d
 
 ## Owner information needed before publication
 
-- TODO: Resume PDF, professional email, LinkedIn URL.
+- Verified contact: https://github.com/ariston-michael, https://www.linkedin.com/in/ariston-michael/, ariston.pmichael@gmail.com.
+- TODO: Exact `Ariston_Michael.pdf` source is not yet in the workspace. Copy it unchanged to `public/resume/Ariston_Michael.pdf` only after availability and content review; keep public branding as Ariston Michael and retain Ariston Philip Michael inside the PDF.
+- TODO: Extract the Spindle Strategy internship’s actual role, dates, responsibilities, and attribution from that source. The owner has verified the internship’s existence; only a minimal internship entry is currently displayed.
+- Do not separately display or create a `tel:` link for a phone number. The owner acknowledges that the eventual original resume may itself include a number.
 - TODO: Project repositories, live demos / Roblox game URL, and permission to use project screenshots.
 - TODO: Seneca project’s final public name and individual contributions.
 - TODO: FireGuard XR’s actual functionality and implementation detail.
@@ -24,4 +27,4 @@ The abstract project artwork and social image are original illustrations. They d
 - TODO: Confirm proficiency wording and skill categories; no ratings or expertise levels are displayed.
 - TODO: Confirm final typography, palette, hero copy, portrait preference, and resume/contact assets.
 
-The interface uses honest availability messages instead of broken or fabricated links. Experience entries list only supplied roles, organizations, and verified dates. Achievements repeat the documented hackathon results without additional metrics.
+The interface uses honest availability messages instead of broken or fabricated links. Experience entries list only supplied roles, organizations, and verified dates. No resume-derived claims have been added while the exact source is missing. Achievements repeat the documented hackathon results without additional metrics.

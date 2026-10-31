@@ -49,12 +49,14 @@ Firefox is configured and its browser downloaded, but this host reports “Could
 - `index.html`: Unchanged legacy production page; Next.js builds from `app/`.
 - `docs/`: Project guidance, architecture, decisions, roadmap, validation, and content TODOs. Read `AGENTS.md` before making changes.
 
-The starfield is deterministic and built statically: 72 stars on larger screens, 36 visible on phones. CSS animates opacity/transforms; reduced motion disables animation and smooth scrolling. A small client control pauses ambient movement. There are no external font requests, unlicensed imagery, heavy 3D dependencies, or fabricated project screenshots.
+The starfield is deterministic and built statically: 72 seeded stars in three layers on larger screens, 36 visible on phones. A small idle-stopping RAF controller adds desktop pointer parallax/proximity and bounded hero-relative Saturn approach; CSS supplies ambient twinkle/float. Reduced motion, the pause control, and no-JavaScript mode disable nonessential movement. There are no external font requests, unlicensed imagery, heavy 3D dependencies, or fabricated project screenshots.
 
 ## Content and publication status
 
-Personal facts come only from `docs/ABOUT_ME.md`. The GitHub profile is derived from the repository owner. Missing resume, professional email, LinkedIn, project URLs, and deeper implementation claims remain documented in [docs/CONTENT_TODOS.md](docs/CONTENT_TODOS.md). FireGuard XR’s case study is withheld until its features are verified.
+Personal facts come only from `docs/ABOUT_ME.md`. The owner has verified GitHub, LinkedIn, and email; functional contact links are available. The exact `Ariston_Michael.pdf` source, project URLs, and deeper implementation claims remain pending and documented in [docs/CONTENT_TODOS.md](docs/CONTENT_TODOS.md). FireGuard XR’s case study is withheld until its features are verified.
 
 Target: https://ariston-michael.github.io. Static export uses root assets, trailing slashes, and unoptimized images. **No deployment workflow or production Pages setting was added or changed.** Work stays on `development`; this pass makes no changes to `main` or legacy `index.html`. A separate GitHub merge of the previous milestone was observed on remote `main`; see the validation report. A future approved release must publish the contents of `out/`, including `_next/`, rather than the repository root. See `docs/ARCHITECTURE.md`.
 
 Runtime dependencies audit clean. The full audit has 16 moderate findings in the lint-tool dependency chain. ESLint 9 remains necessary for plugin peer compatibility; incompatible automatic downgrades/force upgrades were not applied.
+
+Resume source: place the exact `Ariston_Michael.pdf` in the workspace for review. Once supplied, preserve its contents/full name, copy it to `public/resume/Ariston_Michael.pdf`, and enable `resumeUrl` in `lib/content.ts`. No download URL is exposed before the asset exists. Spindle Strategy role details and expanded FireGuard XR content await that source. No separate phone number is displayed.

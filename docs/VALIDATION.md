@@ -1,5 +1,7 @@
 # Validation report — 2026-10-31
 
+The latest contact/motion continuation is recorded at the end. Earlier sections preserve the previous completion-pass baseline.
+
 ## Environment and checks
 
 macOS arm64; Node.js 24.14.0; npm 11.9.0. Checks run against the production static export, not just a development server.
@@ -15,7 +17,7 @@ macOS arm64; Node.js 24.14.0; npm 11.9.0. Checks run against the production stat
 
 Exported routes: `/`, `/projects/aircontrol/`, `/projects/energy/`, `/projects/chicken/`, `/robots.txt`, `/sitemap.xml`, original favicon, and custom not-found output. No runtime server, APIs, server actions, or deployment workflow are required/introduced.
 
-## Final executable browser result
+## Previous completion-pass browser result
 
 ```sh
 PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit
@@ -102,3 +104,45 @@ No workflow, Pages setting, repository permission, deployment, publishing action
 ## Remaining publication checks
 
 Resolve the content/asset items in `docs/CONTENT_TODOS.md`; perform Firefox, real-device, assistive-technology, actual browser zoom/text enlargement, and production caching/compression checks. Merging, Pages setup, and publication remain explicitly out of scope until authorized.
+
+## Contact and interactive motion continuation — latest results
+
+Started clean on `development` at `f5aadde48ca6c481dc6d75bb27a2e65d2609fdd5`; safe pull reported `Already up to date.` Local main remained `b571ccce0832dc6727dc6558fe93826f71f52c1d`, and read-only remote main inspection remained at the separately created `3c1e928a80432e1fc54cfdeda5907b66546ec27a`. No production source, workflow, Pages setting, or dependency manifest/lockfile was changed in this pass.
+
+Owner-provided GitHub, LinkedIn and email are now functional links. Spindle Strategy is listed only as an internship explicitly identified by the owner. The exact `Ariston_Michael.pdf` was not available in the workspace when checked initially and before finalization. No different PDF was substituted. Download behavior, resume byte preservation, expanded internship details, and additional FireGuard XR claims therefore remain unexecuted/blocked on source availability. There is no `tel:` link or separately published phone number.
+
+| Check | Actual latest result |
+| --- | --- |
+| `npm run lint` | Exit 0, zero errors/warnings |
+| `npm run typecheck` | Exit 0, route types generated and strict TypeScript passed |
+| `npm run build` | Exit 0, compiled successfully, 9/9 static entries generated |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **136 passed (1.7m)**, exit 0 |
+| Tested engines | Installed Chrome and Playwright WebKit, 68 tests each |
+| Additional dependencies | None |
+
+All 13 previous widths (320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560px) continue to pass the baseline tall/short layout and navigation checks in both engines. New tests exercise hero-relative scroll approach and reversal at all 13 widths at 900px viewport height. Tests verify bounded scale (1.025 phone / 1.04 tablet / 1.065 desktop), containment of decorative artwork, separation from copy and project content, and no horizontal overflow.
+
+Desktop proximity brightness and damped layer movement are tested at 1024, 1280, 1440, 1920, and 2560px in both engines. Tests inspect actual opacity/halo and transform values, and confirm the field cannot capture pointer input. Shared control tests cover pause/resume, live reduced-motion changes in both directions, touch-only scrolling with no proximity/parallax, 36 visible phone stars, and a finite RAF settling interval with no continuing idle frame loop. Existing keyboard, no-JavaScript, contact/URL, static metadata, custom 404, and automated WCAG checks remain passing. The known approved mailto and LinkedIn destinations were added to the link test allowlist; no external email or message was sent.
+
+Desktop scrolling-hero and contact screenshots and a full-page phone screenshot were captured outside the repository and visually inspected. No obstructing illustration, clipped essential text, or contact overflow was observed. Tests/reports/screenshots remain ignored by Git. Real-device low-power frame pacing, actual browser-toolbar zoom, screen-reader testing, and Firefox are not newly verified in this continuation; Firefox’s prior host launch limitation remains documented above.
+
+### Latest Lighthouse mobile and desktop
+
+Lighthouse 13.6.0 ran sequentially against the corrected static homepage with installed Chrome and `--chrome-flags='--headless'`, JSON output in `/tmp/`. Mobile used the default simulated profile; desktop used `--preset=desktop`. Both exited 0.
+
+| Metric | Mobile | Desktop |
+| --- | --- | --- |
+| Performance | 100 | 100 |
+| Accessibility | 100 | 100 |
+| Best practices | 100 | 100 |
+| SEO | 100 | 100 |
+| Largest contentful paint | 1.4 s | 0.3 s |
+| Total blocking time | 0 ms | 0 ms |
+| Cumulative layout shift | 0 | 0 |
+| Speed index | 1.4 s | 0.3 s |
+| Transferred size (local, uncompressed) | 593 KiB | 593 KiB |
+| Explicit label-in-name audit | Passed | Passed |
+
+These are simulated local lab measurements, not field guarantees or low-powered hardware benchmarks. The preview retains its intentional no-store/no-compression behavior. Existing production dependencies and the previously documented development lint advisories were not changed.
+
+Implementation commit for this continuation: `67fe999a5073578c298cf38f2fd48b09e74fa95d` (`feat: add verified contacts and interactive cosmic motion`). The following test/documentation commit records the expanded regression suite and these measurements. No PDF is included because the exact source is unavailable.

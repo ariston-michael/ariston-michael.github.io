@@ -50,3 +50,15 @@
 ## 2026-10-31 — Static discovery and sharing
 **Decision:** Export sitemap/robots metadata and a static original PNG social image with editable SVG source. Add per-project canonical and sharing metadata and a custom 404.
 **Rationale:** Recruiters can share project pages and recover from missing URLs without a runtime image service, external fonts, or API. These are source/export features only; production Pages settings remain untouched.
+
+## 2026-10-31 — Verified contacts, exact resume source
+**Decision:** Use the owner-supplied LinkedIn, GitHub, and email directly. Keep the Resume link unavailable until `Ariston_Michael.pdf` is present; do not substitute a differently named or older PDF. Preserve original PDF bytes/full name and do not separately publish its phone number.
+**Rationale:** Contact details are now explicitly verified. Resume-dependent internship and FireGuard XR detail cannot be inferred from a filename or project name. The minimal Spindle Strategy internship entry reflects only what the owner directly identified.
+
+## 2026-10-31 — One bounded motion controller
+**Decision:** Retain deterministic server-rendered stars and the original SVG. Add three depth layers and a null-rendering imperative client controller using one damped RAF scheduler, cached geometry, quantized glow updates, passive input listeners, and complete cleanup.
+**Rationale:** Pointer events need no React state or per-star listeners. Settled/hidden pages stop frame work; touch and narrow viewports skip pointer effects. The existing pause event and live reduced-motion preferences disable all nonessential motion.
+
+## 2026-10-31 — Hero-relative Saturn approach
+**Decision:** Derive reversible progress from hero position/height, with a clipped transform wrapper capped at 6.5% desktop, 4% tablet, and 2.5% phone scale growth.
+**Rationale:** The effect remains cinematic without changing layout, obscuring content, tying motion to unrelated document length, or intercepting scrolling. The caption stays outside the moving wrapper. Tests check zoom bounds, reversal, clipping boundaries, and reduced-motion/paused neutral states.

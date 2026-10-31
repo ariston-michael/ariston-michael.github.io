@@ -63,7 +63,7 @@ for (const width of widths) {
         "AristonMichael.",
       );
       await expect(page.locator("#projects article")).toHaveCount(4);
-      await expect(page.locator("#experience li")).toHaveCount(5);
+      await expect(page.locator("#experience li")).toHaveCount(6);
       await expectNoOverflow(page);
       const separated = await page.evaluate(() => {
         const copy = document
@@ -188,9 +188,14 @@ test("every local link resolves and no placeholder hrefs exist", async ({
     for (const href of hrefs) {
       expect(href).toBeTruthy();
       expect(href).not.toBe("#");
-      expect(href).not.toMatch(/example\.com|javascript:|mailto:/);
+      expect(href).not.toMatch(/example\.com|javascript:|tel:/);
       if (href!.startsWith("https:")) {
-        expect(href).toBe("https://github.com/ariston-michael");
+        expect([
+          "https://github.com/ariston-michael",
+          "https://www.linkedin.com/in/ariston-michael/",
+        ]).toContain(href);
+      } else if (href!.startsWith("mailto:")) {
+        expect(href).toBe("mailto:ariston.pmichael@gmail.com");
       } else {
         const url = new URL(href!, `http://127.0.0.1:3100${path}`);
         expect((await request.get(url.pathname)).status()).toBe(200);
