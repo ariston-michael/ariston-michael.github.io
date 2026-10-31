@@ -13,11 +13,18 @@ const scale = (page: Page) =>
 async function heroGeometry(page: Page) {
   return page.locator(".hero").evaluate((element) => {
     const rect = element.getBoundingClientRect();
-    return { top: rect.top + scrollY, height: rect.height };
+    const stage = element.querySelector<HTMLElement>(".hero-stage")!;
+    const pinned = getComputedStyle(stage).position === "sticky";
+    return {
+      top:
+        rect.top +
+        scrollY -
+        (pinned ? parseFloat(getComputedStyle(stage).top) : 0),
+      height: pinned ? (rect.height - stage.offsetHeight) / 0.85 : rect.height,
+    };
   });
 }
 async function jump(page: Page, y: number) {
-  // Native scrolling remains under user control; disable smooth anchor behavior for deterministic input.
   await page.evaluate(
     (y) => window.scrollTo({ top: y, behavior: "instant" }),
     y,
@@ -26,31 +33,19 @@ async function jump(page: Page, y: number) {
 async function assertBounded(page: Page) {
   const safe = await page.evaluate(() => {
     const copy = document.querySelector(".hero-copy")!.getBoundingClientRect();
-    const window = document
-      .querySelector(".planet-window")!
-      .getBoundingClientRect();
-    const hero = document.querySelector(".hero")!.getBoundingClientRect();
-    const projects = document
-      .querySelector("#projects")!
-      .getBoundingClientRect();
-    return {
-      horizontal: document.documentElement.scrollWidth <= innerWidth,
-      separated: copy.right <= window.left + 1 || copy.bottom <= window.top + 1,
-      inside:
-        window.left >= hero.left - 1 &&
-        window.right <= hero.right + 1 &&
-        window.bottom <= projects.top,
-      clipped:
-        getComputedStyle(document.querySelector(".planet-window")!)
-          .overflowX === "clip",
-    };
+    const stage = document.querySelector(".hero-stage")!;
+    return (
+      document.documentElement.scrollWidth <= innerWidth &&
+      copy.left >= 0 &&
+      copy.right <= innerWidth &&
+      getComputedStyle(stage).overflowX === "clip" &&
+      Number(getComputedStyle(document.querySelector(".hero-copy")!).zIndex) >
+        Number(
+          getComputedStyle(document.querySelector(".planet-scene")!).zIndex,
+        )
+    );
   });
-  expect(safe).toEqual({
-    horizontal: true,
-    separated: true,
-    inside: true,
-    clipped: true,
-  });
+  expect(safe).toBe(true);
 }
 
 for (const width of widths) {
@@ -62,9 +57,16 @@ for (const width of widths) {
     await expect.poll(() => scale(page)).toBe(1);
     const hero = await heroGeometry(page);
     await jump(page, hero.top + hero.height * 0.5);
-    await expect.poll(() => scale(page)).toBeGreaterThan(1.008);
+    await expect.poll(() => scale(page)).toBeGreaterThan(1.08);
     const zoomed = await scale(page);
-    const limit = width < 768 ? 1.026 : width < 1024 ? 1.041 : 1.066;
+    const limit =
+      width < 768
+        ? 1.551
+        : width < 1024
+          ? 1.951
+          : width >= 1920
+            ? 3.301
+            : 3.601;
     expect(zoomed).toBeLessThanOrEqual(limit);
     await assertBounded(page);
     await jump(page, hero.top + hero.height);
@@ -145,7 +147,10 @@ for (const width of [1024, 1280, 1440, 1920, 2560]) {
         .locator(".starfield")
         .evaluate((element) => getComputedStyle(element).pointerEvents),
     ).toBe("none");
-    await page.getByRole("link", { name: "Projects", exact: true }).click();
+    await page
+      .getByRole("navigation", { name: "Main navigation" })
+      .getByRole("link", { name: "Projects", exact: true })
+      .click();
     await expect(page).toHaveURL(/#projects$/);
   });
 }
@@ -159,8 +164,8 @@ test("pause, resume and live reduced-motion changes stop both controllers", asyn
   await page.mouse.move(100, 300);
   await jump(page, hero.top + hero.height * 0.5);
   await expect.poll(() => scale(page)).toBeGreaterThan(1.02);
-  await page.locator(".motion-toggle").click();
-  await expect(page.locator(".motion-toggle")).toHaveAttribute(
+  await page.locator(".motion-toggle").first().click();
+  await expect(page.locator(".motion-toggle").first()).toHaveAttribute(
     "aria-pressed",
     "true",
   );
@@ -183,7 +188,7 @@ test("pause, resume and live reduced-motion changes stop both controllers", asyn
         ),
       ),
   ).toBe(true);
-  await page.locator(".motion-toggle").click();
+  await page.locator(".motion-toggle").first().click();
   await jump(page, hero.top + hero.height * 0.5);
   await expect.poll(() => scale(page)).toBeGreaterThan(1.02);
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -225,8 +230,8 @@ test("touch uses restrained scroll motion without pointer effects", async ({
   });
   const hero = await heroGeometry(page);
   await jump(page, hero.top + hero.height * 0.5);
-  await expect.poll(() => scale(page)).toBeGreaterThan(1.008);
-  expect(await scale(page)).toBeLessThanOrEqual(1.026);
+  await expect.poll(() => scale(page)).toBeGreaterThan(1.08);
+  expect(await scale(page)).toBeLessThanOrEqual(1.551);
   expect(
     await page
       .locator(".star-layer")
@@ -247,7 +252,10 @@ test("touch uses restrained scroll motion without pointer effects", async ({
       ),
   ).toBe(true);
   await assertBounded(page);
-  await page.getByRole("link", { name: "Contact", exact: true }).tap();
+  await page
+    .getByRole("navigation", { name: "Main navigation" })
+    .getByRole("link", { name: "Contact", exact: true })
+    .tap();
   await expect(page).toHaveURL(/#contact$/);
   await context.close();
 });
@@ -286,7 +294,9 @@ test("verified contact links and honest resume state", async ({ page }) => {
     page.locator('#contact a[href="mailto:ariston.pmichael@gmail.com"]'),
   ).toHaveCount(2);
   await expect(
-    page.getByRole("link", { name: "LinkedIn", exact: true }),
+    page
+      .locator("#contact")
+      .getByRole("link", { name: "LinkedIn", exact: true }),
   ).toHaveAttribute("href", "https://www.linkedin.com/in/ariston-michael/");
   await expect(page.locator('a[href^="tel:"]')).toHaveCount(0);
   await expect(

@@ -1,6 +1,6 @@
 # Stellar Portfolio
 
-An original, space-themed software engineering portfolio for Ariston Michael, built with Next.js App Router, strict TypeScript, and Tailwind CSS. The site includes four featured projects, three verified-scope project-note pages, education, experience, achievements, skills, and honest states for unavailable links.
+An original, space-themed software engineering portfolio for Ariston Michael, built with Next.js App Router, strict TypeScript, and Tailwind CSS. The site includes an original scroll-controlled Saturn hero, an optional Sun/eight-planet portfolio explorer, four featured projects, three verified-scope project-note pages, education, experience, achievements, skills, and honest states for unavailable links.
 
 ## Preview locally
 
@@ -49,7 +49,7 @@ Firefox is configured and its browser downloaded, but this host reports “Could
 - `index.html`: Unchanged legacy production page; Next.js builds from `app/`.
 - `docs/`: Project guidance, architecture, decisions, roadmap, validation, and content TODOs. Read `AGENTS.md` before making changes.
 
-The starfield is deterministic and built statically: 72 seeded stars in three layers on larger screens, 36 visible on phones. A small idle-stopping RAF controller adds desktop pointer parallax/proximity and bounded hero-relative Saturn approach; CSS supplies ambient twinkle/float. Reduced motion, the pause control, and no-JavaScript mode disable nonessential movement. There are no external font requests, unlicensed imagery, heavy 3D dependencies, or fabricated project screenshots.
+The starfield is deterministic and built statically: 72 seeded stars in three layers on larger screens, 36 visible on phones. A small idle-stopping RAF controller adds desktop pointer parallax/proximity and a clearly visible, bounded hero-relative Saturn approach (up to 3.6× on tall desktops, with smaller unpinned alternatives); CSS supplies ambient twinkle/float. Reduced motion, the pause control, and no-JavaScript mode disable nonessential movement. The cinematic scene has a visible skip link, and the solar explorer always offers ordinary destination links. There are no external font requests, unlicensed imagery, heavy 3D dependencies, or fabricated project screenshots.
 
 ## Content and publication status
 

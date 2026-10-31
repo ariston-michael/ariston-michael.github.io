@@ -66,3 +66,16 @@ Final executable browser suite: **92 passed** across Chrome and WebKit. Lighthou
 - Browser and Lighthouse results for this continuation are recorded in `VALIDATION.md`; publishing remains out of scope.
 
 Latest continuation validation: **136 passed** across Chrome/WebKit; lint, strict TypeScript and static build passed. Lighthouse homepage mobile and desktop each scored **100/100/100/100**, with CLS 0 and TBT 0 ms. The resume source is still missing; its download/content tasks remain unchecked above. Detailed evidence and limitations are in `VALIDATION.md`.
+
+## Cinematic solar-system continuation (2026-10-31)
+
+- [x] Upgrade the original Saturn surface and replace imperceptible micro-zoom with a visibly immersive bounded approach.
+- [x] Preserve readable foreground copy, ordinary navigation, shared pause controls and a visible cinematic skip link.
+- [x] Add original Sun/eight-planet explorer, explicit portfolio mappings, keyboard/touch interaction and permanent direct-link fallback.
+- [x] Preserve deterministic three-layer stars; add viewport-fixed camera depth without an idle JS animation loop.
+- [x] Provide unpinned phone/tablet/short-screen alternatives, reduced-motion/static mode and no-JavaScript fallbacks.
+- [ ] Read the exact resume, verify detailed content, preserve its bytes and enable download/view links. Source still missing; no substitute used.
+- Validation results and performance comparison for this pass are recorded in `VALIDATION.md` after execution.
+- No production workflow, Pages setting, main-branch modification, merge or deployment is included.
+
+Final cinematic validation: **168 passed** in Chrome/WebKit; npm ci, lint, strict TypeScript and static export passed. Measured desktop entry/mid/end scales are **1 / 2.29964 / 3.6**. Lighthouse mobile/desktop remain **100/100/100/100**, with CLS/TBT 0. Mobile LCP measured 1.5s versus prior 1.4s; transfer increased 25 KiB locally. Resume-dependent tasks remain blocked on the exact PDF. See `VALIDATION.md` for evidence and limitations.

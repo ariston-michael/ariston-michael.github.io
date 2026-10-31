@@ -62,3 +62,15 @@
 ## 2026-10-31 — Hero-relative Saturn approach
 **Decision:** Derive reversible progress from hero position/height, with a clipped transform wrapper capped at 6.5% desktop, 4% tablet, and 2.5% phone scale growth.
 **Rationale:** The effect remains cinematic without changing layout, obscuring content, tying motion to unrelated document length, or intercepting scrolling. The caption stays outside the moving wrapper. Tests check zoom bounds, reversal, clipping boundaries, and reduced-motion/paused neutral states.
+
+## 2026-10-31 — Perceptible bounded cinema replaces micro-zoom
+**Decision:** Supersede the earlier 1.065 maximum with a smoothstep 3.6× desktop approach (3.3× ultrawide), keeping a bounded 80svh pin only on tall desktop screens. Use 1.95× unpinned tablet/short-screen and 1.55× phone treatments.
+**Rationale:** The owner found the previous effect imperceptible. Original artwork now visibly approaches and exits the viewport, while a foreground scrim, persistent desktop navigation, immediate project/social/contact links, shared pause control and explicit skip link preserve recruiter access. Reduced motion/no-JavaScript collapse the pinned range. Pause neutralizes effects while keeping page geometry stable to avoid a scroll jump.
+
+## 2026-10-31 — An optional solar navigation map
+**Decision:** Map the Sun and eight original CSS planets to existing verified sections and projects, with native button selection, a labeled preview region, and an always-available direct-link menu.
+**Rationale:** This adds an exploratory route without inventing projects, implying astronomical scale, replacing ordinary navigation or requiring hover/animation. Mobile uses a labeled grid; no-JavaScript hides inactive buttons and retains destination links. No graphics library, remote artwork, or running orbit animation is needed.
+
+## 2026-10-31 — Preserve the resume evidence boundary
+**Decision:** Keep the missing PDF unavailable and preserve prior content until the exact source is present and read.
+**Rationale:** The latest request still conditions detailed resume updates on source verification. Inferring dates, metrics, integration details or role attribution from anticipated topics would violate the project’s factual-content policy. The approved contact links continue to work, and no phone number is separately published.

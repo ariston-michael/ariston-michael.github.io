@@ -1,6 +1,6 @@
 # Validation report — 2026-10-31
 
-The latest contact/motion continuation is recorded at the end. Earlier sections preserve the previous completion-pass baseline.
+The latest cinematic solar-system validation is recorded at the end. Earlier sections preserve historical completion and contact/motion baselines.
 
 ## Environment and checks
 
@@ -146,3 +146,45 @@ Lighthouse 13.6.0 ran sequentially against the corrected static homepage with in
 These are simulated local lab measurements, not field guarantees or low-powered hardware benchmarks. The preview retains its intentional no-store/no-compression behavior. Existing production dependencies and the previously documented development lint advisories were not changed.
 
 Implementation commit for this continuation: `67fe999a5073578c298cf38f2fd48b09e74fa95d` (`feat: add verified contacts and interactive cosmic motion`). The following test/documentation commit records the expanded regression suite and these measurements. No PDF is included because the exact source is unavailable.
+
+## Cinematic solar-system continuation — latest results
+
+Started clean on `development` at `f70d4cbbe12e5d23c14eedcade70c5e46e18335e`; `git pull --ff-only origin development` reported `Already up to date.` No source PDF was found at `public/resume/Ariston_Michael.pdf` or workspace-root `Ariston_Michael.pdf`, initially or at final recheck. No resume bytes, downloadable link, job dates/technologies/metrics, FireGuard XR expansion or skill corrections are claimed without reading that source. Verified contacts and the minimal owner-identified internship entry remain intact. No separate phone link was introduced.
+
+| Executed command | Result |
+| --- | --- |
+| `npm ci` | Exit 0; locked installation completed, 369 packages added; existing 16 moderate development audit findings remain |
+| `npm run lint` | Exit 0; zero errors/warnings |
+| `npm run typecheck` | Exit 0; generated route types and strict TypeScript passed |
+| `npm run build` | Exit 0; compiled successfully, 9/9 static generation entries completed |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **168 passed (1.8m)**, exit 0; no retries |
+
+The 84 tests per engine cover every established width (320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560px), tall/short layout heights, landscape touch and 200% zoom-equivalent reflow. Existing static routes, links, metadata, keyboard skip, pause state, idle RAF convergence, reduced motion, no-JavaScript content and automated WCAG tests remain passing. The PDF-absent state is tested; PDF download/view and preservation checks cannot execute until the exact asset is supplied.
+
+New tests activate all nine worlds at all 13 widths in both engines, inspect selection state/content/link mapping and target bounds, and run axe on the explorer. Keyboard selection, touch navigation, permanent direct-link fallback and no-JavaScript map hiding are tested. Reduced motion removes the desktop pin and leaves solar selection functional. Cinema tests verify the full approach, reversal, star-camera depth, clipping only of decoration, and an unobstructed clickable project CTA at maximum zoom. Native skip links reach visible portfolio content. Tall desktop headers remain accessible; anchor clearance accounts for their sticky height.
+
+Actual 1440×900 screenshot capture measured scale **1 at entry, 2.29964 midway, and 3.6 at maximum**. Entry/mid/maximum, solar explorer, projects, a full-page phone view, phone explorer, and tablet entry screenshots were captured outside the repository and inspected. The desktop rings visibly cross the viewport boundary while foreground copy and actions remain readable. Tablet/phone views use the documented unpinned alternatives. A fixed-element artifact in a cropped element screenshot was checked in an actual mobile viewport: the unfocused skip link remains offscreen (top -60px, bottom -12px), and still appears correctly on keyboard focus.
+
+Initial validation caught stale micro-zoom assertions and ambiguous selectors after direct navigation links were added; the tests now assert the actual cinematic specification and scope links to their intended navigation region. A real tablet Saturn-ring overflow was corrected by widening the planet hit area. Desktop anchor clearance was increased for sticky navigation. These were followed by the complete passing 168-test run; application accessibility rules were not disabled.
+
+### Lighthouse and baseline comparison
+
+Lighthouse 13.6.0 ran sequentially on the static homepage with installed Chrome, `--chrome-flags='--headless'`, JSON reports outside the repository, default simulated mobile and `--preset=desktop`. Both exited 0.
+
+| Metric | Current mobile | Previous mobile | Current desktop | Previous desktop |
+| --- | --- | --- | --- | --- |
+| Performance | 100 | 100 | 100 | 100 |
+| Accessibility | 100 | 100 | 100 | 100 |
+| Best practices | 100 | 100 | 100 | 100 |
+| SEO | 100 | 100 | 100 | 100 |
+| LCP | 1.5 s | 1.4 s | 0.3 s | 0.3 s |
+| Total blocking time | 0 ms | 0 ms | 0 ms | 0 ms |
+| Cumulative layout shift | 0 | 0 | 0 | 0 |
+| Speed index | 1.5 s | 1.4 s | 0.3 s | 0.3 s |
+| Local uncompressed transfer | 618 KiB | 593 KiB | 618 KiB | 593 KiB |
+
+The expanded explorer/cinema adds approximately 25 KiB of local uncompressed transfer. The measured mobile LCP is 0.1s higher in this run; scores, desktop LCP, CLS and TBT remain unchanged. These are local simulated measurements with normal run-to-run variance, not field guarantees. The local preview’s existing no-store/no-compression diagnostics remain. No large dependency or remote graphics/font request was introduced.
+
+Physical devices, assistive technology, actual toolbar zoom and low-power frame pacing remain unverified. Firefox was not required/rerun in this continuation; its prior host launch limitation remains documented above. No deployment, production workflow/Pages change, main modification, merge, permission change or paid service was performed.
+
+Implementation commit for the cinematic pass: `b3a67737faaaf67d7fa85db78429c3e5ee9a1b5d` (`feat: build cinematic Saturn hero and solar portfolio explorer`). The following test/documentation commit records the final evidence. The exact resume source remains absent at finalization.

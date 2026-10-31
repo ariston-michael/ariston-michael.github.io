@@ -65,16 +65,16 @@ for (const width of widths) {
       await expect(page.locator("#projects article")).toHaveCount(4);
       await expect(page.locator("#experience li")).toHaveCount(6);
       await expectNoOverflow(page);
-      const separated = await page.evaluate(() => {
-        const copy = document
-          .querySelector(".hero-copy")!
-          .getBoundingClientRect();
-        const planet = document
-          .querySelector(".planet")!
-          .getBoundingClientRect();
-        return copy.right <= planet.left || copy.bottom <= planet.top;
-      });
-      expect(separated).toBe(true);
+      expect(
+        await page
+          .locator(".hero-stage")
+          .evaluate((element) => getComputedStyle(element).overflowX),
+      ).toBe("clip");
+      expect(
+        await page
+          .locator(".hero-copy")
+          .evaluate((element) => Number(getComputedStyle(element).zIndex)),
+      ).toBeGreaterThan(1);
       for (const link of await page
         .locator('nav[aria-label="Main navigation"] a')
         .all()) {
@@ -141,7 +141,7 @@ test("keyboard navigation, focus and motion controls", async ({
   await expect(page.getByText("Skip to content")).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.locator("main")).toBeFocused();
-  const toggle = page.locator(".motion-toggle");
+  const toggle = page.locator(".motion-toggle").first();
   await toggle.focus();
   await page.keyboard.press("Space");
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
@@ -273,7 +273,10 @@ test("phone landscape and touch navigation", async ({ browser }) => {
   const page = await context.newPage();
   await page.goto("/");
   await expectNoOverflow(page);
-  await page.getByRole("link", { name: "Contact", exact: true }).tap();
+  await page
+    .getByRole("navigation", { name: "Main navigation" })
+    .getByRole("link", { name: "Contact", exact: true })
+    .tap();
   await expect(page).toHaveURL(/#contact$/);
   await context.close();
 });
@@ -286,7 +289,7 @@ test("content remains usable without JavaScript", async ({ browser }) => {
   const page = await context.newPage();
   await page.goto("/");
   await expect(page.locator("#projects article")).toHaveCount(4);
-  await expect(page.locator(".motion-toggle")).toBeHidden();
+  await expect(page.locator(".motion-toggle").first()).toBeHidden();
   expect(
     await page
       .locator(".planet")
@@ -303,13 +306,15 @@ test("paused motion stays consistent after client return from project notes", as
   page,
 }) => {
   await page.goto("/projects/aircontrol/");
-  await page.locator(".motion-toggle").click();
+  await page.locator(".motion-toggle").first().click();
   await page.getByRole("link", { name: "All projects" }).click();
-  await expect(page.locator(".motion-toggle")).toHaveAttribute(
+  await expect(page.locator(".motion-toggle").first()).toHaveAttribute(
     "aria-pressed",
     "true",
   );
-  await expect(page.locator(".motion-toggle")).toHaveText("Motion paused");
+  await expect(page.locator(".motion-toggle").first()).toHaveText(
+    "Motion paused",
+  );
   expect(
     await page
       .locator(".planet")

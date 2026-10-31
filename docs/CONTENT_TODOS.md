@@ -28,3 +28,9 @@ The abstract project artwork and social image are original illustrations. They d
 - TODO: Confirm final typography, palette, hero copy, portrait preference, and resume/contact assets.
 
 The interface uses honest availability messages instead of broken or fabricated links. Experience entries list only supplied roles, organizations, and verified dates. No resume-derived claims have been added while the exact source is missing. Achievements repeat the documented hackathon results without additional metrics.
+
+## Current resume blocker — cinematic continuation
+
+Rechecked expected source locations `public/resume/Ariston_Michael.pdf` and workspace-root `Ariston_Michael.pdf`: absent. No alternative PDF was substituted. Pending work requires the exact source: read its contents; preserve its bytes/full name unchanged; enable accessible download/view links; verify the internship’s title/dates/stack/contributions; expand FireGuard XR and correct skills with precise attribution. The request’s list of anticipated technologies is not a substitute for resume evidence.
+
+The owner acknowledges that the original PDF includes a phone number and that placing it in public assets makes it publicly accessible once deployed. That authorization does not extend to adding a separate phone contact link. No deployment is performed in this task.
