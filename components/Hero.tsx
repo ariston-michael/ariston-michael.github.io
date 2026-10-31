@@ -1,4 +1,5 @@
 import { githubUrl } from "@/lib/content";
+import { ResumeLink } from "./ResumeLink";
 import { PlanetIllustration } from "./PlanetIllustration";
 export function Hero() {
   return (
@@ -34,9 +35,7 @@ export function Hero() {
           <a href="#contact">
             Let’s connect <span aria-hidden="true">↗</span>
           </a>
-          <span>
-            Resume <span className="todo-inline">PDF not yet available</span>
-          </span>
+          <ResumeLink />
         </div>
       </div>
       <PlanetIllustration />

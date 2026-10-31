@@ -9,6 +9,15 @@
 - Expected graduation: April 2028.
 - Seeking Summer 2027 software engineering internships.
 
+## Verified contact (owner supplied, 2026-10-31)
+- Public site name: Ariston Michael.
+- Resume name: Ariston Philip Michael; retain the supplied PDF unchanged.
+- LinkedIn: https://www.linkedin.com/in/ariston-michael/
+- GitHub: https://github.com/ariston-michael
+- Email: ariston.pmichael@gmail.com
+- Resume source expected: `Ariston_Michael.pdf`. TODO: exact source is not yet available in the workspace; do not substitute another PDF.
+- Do not separately publish a phone number on the site. The eventual unchanged resume may itself contain a phone number, as acknowledged by the owner.
+
 ## Projects
 ### AirControl
 - BearHacks 2026 Top 10.
@@ -32,6 +41,7 @@
 - Cooperative mode status and public link: TODO verify before publishing.
 
 ## Experience and community
+- Spindle Strategy internship: identified by the owner in the 2026-10-31 request. Exact role, dates, responsibilities, and attribution: TODO verify from the supplied resume before expanding.
 - Peer Mentor at Sheridan College.
 - Tennis Canada Court Control Lead (2025 and 2026).
 - Involved in GDG Sheridan tech team.
@@ -41,4 +51,4 @@
 C++, Python, C#, TypeScript, React, ASP.NET Core, AWS/cloud, SQL/SQLite, Git. Verify proficiency claims and organize by actual experience.
 
 ## Missing assets
-Resume PDF, professional email, LinkedIn and GitHub links, project repository/demo URLs, screenshots, portrait (optional).
+Exact resume PDF source, project repository/demo URLs, screenshots, portrait (optional). Spindle Strategy details and expanded FireGuard XR capabilities await that source.

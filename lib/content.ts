@@ -1,5 +1,9 @@
 // Personal claims come exclusively from docs/ABOUT_ME.md.
 export const githubUrl = "https://github.com/ariston-michael";
+export const linkedInUrl = "https://www.linkedin.com/in/ariston-michael/";
+export const email = "ariston.pmichael@gmail.com";
+// Enable only after the exact supplied source has been reviewed and copied unchanged.
+export const resumeUrl: string | null = null;
 export type Project = {
   id: string;
   name: string;
@@ -133,6 +137,7 @@ export const skills = [
 ] as const;
 
 export const experience = [
+  { organization: "Spindle Strategy", role: "Internship", date: null },
   { organization: "Sheridan College", role: "Peer Mentor", date: null },
   {
     organization: "Tennis Canada",

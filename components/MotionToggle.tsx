@@ -1,7 +1,8 @@
 "use client";
 import { useSyncExternalStore } from "react";
 
-const eventName = "portfolio-motion-change";
+import { MOTION_CHANGE_EVENT } from "@/lib/motion";
+const eventName = MOTION_CHANGE_EVENT;
 function subscribe(callback: () => void) {
   window.addEventListener(eventName, callback);
   return () => window.removeEventListener(eventName, callback);
