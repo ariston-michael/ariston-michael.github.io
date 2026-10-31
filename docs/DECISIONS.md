@@ -34,3 +34,19 @@
 ## 2026-10-31 — Peer-compatible lint toolchain
 **Decision:** Use ESLint 9 with the current Next.js lint configuration; retain the locked compatible dependency graph and document 16 moderate development-only audit findings.
 **Rationale:** React/import/accessibility plugins do not yet declare ESLint 10 support. Audit proposes incompatible framework/tool downgrades; avoid force upgrades or cross-major transitive overrides. Production dependencies report zero vulnerabilities. Revisit compatible upstream patches before launch.
+
+## 2026-10-31 — Verified-scope project notes
+**Decision:** Export three project detail routes using typed local records, with explicit boundaries around unverified technical detail. Keep FireGuard XR’s expanded view pending.
+**Rationale:** Existing verified facts support useful scope summaries, not invented implementation narratives or metrics. Original SVG concept diagrams are labeled as illustrations rather than screenshots or architecture claims. A separate content TODO register preserves the missing evidence.
+
+## 2026-10-31 — Visible responsive navigation
+**Decision:** Keep five section links visible in a dedicated mobile row, with 44px minimum targets, rather than introducing a collapsing menu.
+**Rationale:** The links fit at 320px and remain usable without JavaScript. Bounded grid tracks, fluid headings, wrapping, and safe-area gutters handle narrow, zoom-equivalent, and ultrawide layouts. Phones render fewer visible stars and skip scroll-reveal motion.
+
+## 2026-10-31 — Repeatable exported-site QA
+**Decision:** Add development-only Playwright/axe dependencies and a small Node static preview utility; preserve a server-free production artifact.
+**Rationale:** Automated checks cover actual exported routes/assets rather than only a development server. The initial Python preview server reset concurrent requests, so a concurrent Node HTTP server replaces it. Browser report artifacts are ignored by both Git and ESLint. Firefox launch failures are documented as a host limitation, not excluded silently or counted as passes.
+
+## 2026-10-31 — Static discovery and sharing
+**Decision:** Export sitemap/robots metadata and a static original PNG social image with editable SVG source. Add per-project canonical and sharing metadata and a custom 404.
+**Rationale:** Recruiters can share project pages and recover from missing URLs without a runtime image service, external fonts, or API. These are source/export features only; production Pages settings remain untouched.

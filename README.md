@@ -1,45 +1,60 @@
 # Stellar Portfolio
 
-Ariston Michael’s original, space-themed software engineering portfolio. Milestone 1 implements the static application, cosmic visual identity, and factual one-page content on `development`.
+An original, space-themed software engineering portfolio for Ariston Michael, built with Next.js App Router, strict TypeScript, and Tailwind CSS. The site includes four featured projects, three verified-scope project-note pages, education, experience, achievements, skills, and honest states for unavailable links.
 
-## Local development
+## Preview locally
 
-Use Node.js 22.13+ (Node 24 LTS recommended) and npm. The lockfile pins the dependency graph.
+Use Node.js 22.13+ (verified on Node 24.14.0) and npm:
 
 ```sh
+cd /Users/aristonmichael/stellar-portfolio
 npm ci
-npm run dev
+npm run build
+npm run preview
 ```
 
-Open http://localhost:3000. The app uses system fonts and original SVG/CSS artwork; it does not need remote fonts, credentials, environment files, or a backend.
+Open **http://127.0.0.1:3000**. This serves the actual static export in `out/`, including project routes, sitemap, robots, sharing image, and custom 404 page. Stop with Ctrl+C. No Python, credentials, environment files, or application server are required. The Node server is a local preview utility, not a production dependency.
 
-## Checks and static preview
+For editing, run `npm run dev` and open http://localhost:3000. Do not use `next start` for this static export.
+
+## Validation
 
 ```sh
 npm run lint
 npm run typecheck
 npm run build
-npm run preview
+npx playwright install chromium firefox webkit
+npm test
 ```
 
-Lint treats warnings as failures. Type checking generates Next.js route types before strict `tsc --noEmit`, so it works before a build. The production build exports `out/`. Preview serves that exported directory at http://127.0.0.1:3000 using Python 3; stop with Ctrl+C. Build before previewing. Do not use `next start` for this static export.
+Tests start and stop their own loopback static server on port 3100; build first. They cover 13 widths from 320 to 2560px at tall and short viewport heights, three project routes, mobile touch, keyboard navigation, reduced motion, motion controls, no-JavaScript content, all local links, static SEO resources, custom 404, zoom-equivalent reflow, and automated WCAG checks. Reports and screenshots are ignored by Git. View a report with `npx playwright show-report`.
 
-## Structure
+To use an already installed Google Chrome and run the two browser engines executable on this task host:
 
-- `app/`: App Router page, layout, metadata, favicon, and responsive styles.
-- `components/`: Header, starfield, planet illustration, hero, project cards, about, skills, contact, footer, and ambient motion control.
-- `lib/content.ts`: Typed project data and the GitHub profile derived from the repository owner. Personal claims come from `docs/ABOUT_ME.md`.
-- `index.html`: Preserved legacy page; Next.js builds from `app/`, not this file.
-- `docs/`: Project brief, design, factual content, architecture, roadmap, and decisions. Read `AGENTS.md` before making changes.
+```sh
+PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit
+```
 
-The starfield is deterministic, rendered at build time, and animated with CSS. Only the pause control needs custom client interaction. Reduced-motion preferences disable movement and smooth scrolling. Unverified contact, resume, social, and project URLs remain explicit non-interactive TODOs.
+Firefox is configured and its browser downloaded, but this host reports “Could not find profile folder” before launching. Its tests remain unverified here; do not treat an engine launch failure as a passing check. See [docs/VALIDATION.md](docs/VALIDATION.md) for actual results and limits.
 
-## Hosting status
+## Source guide
 
-Target: https://ariston-michael.github.io. Static export uses root-relative assets, trailing slashes, and unoptimized images. No Pages workflow, publishing action, or production configuration has been added or changed. The current production page is preserved. A future approved deployment must publish the **contents of `out/`**, including `_next/`, rather than the repository root; see `docs/ARCHITECTURE.md`.
+- `app/`: Home, statically generated project pages, 404, metadata, sitemap, robots, and responsive styles.
+- `components/`: Semantic reusable sections, original SVG artwork, and ambient motion control.
+- `lib/content.ts`: Typed projects, verified-scope notes, experience, achievements, and skills.
+- `lib/site.ts`: Canonical user-site URL and sharing asset metadata.
+- `public/social-card.svg` / `.png`: Original editable sharing artwork and its 1200×630 raster export.
+- `tests/portfolio.spec.ts`: Repeatable browser and accessibility regression tests.
+- `scripts/preview.mjs`: Concurrent, loopback-only static preview server.
+- `index.html`: Unchanged legacy production page; Next.js builds from `app/`.
+- `docs/`: Project guidance, architecture, decisions, roadmap, validation, and content TODOs. Read `AGENTS.md` before making changes.
 
-## Verification
+The starfield is deterministic and built statically: 72 stars on larger screens, 36 visible on phones. CSS animates opacity/transforms; reduced motion disables animation and smooth scrolling. A small client control pauses ambient movement. There are no external font requests, unlicensed imagery, heavy 3D dependencies, or fabricated project screenshots.
 
-On 2026-10-31, lint, strict type checking, and production static export passed on Node 24.14.0 / npm 11.9.0. See `docs/ROADMAP.md` for browser validation and remaining launch checks.
+## Content and publication status
 
-`npm audit --omit=dev` reports zero vulnerabilities. The full audit reports 16 moderate findings through lint-tool dependencies using older `minimatch`; upstream compatible fixes are pending. ESLint 9 is retained because the Next.js React, import, and accessibility plugins do not yet declare ESLint 10 compatibility. Do not apply npm’s suggested incompatible framework downgrades or force upgrades blindly.
+Personal facts come only from `docs/ABOUT_ME.md`. The GitHub profile is derived from the repository owner. Missing resume, professional email, LinkedIn, project URLs, and deeper implementation claims remain documented in [docs/CONTENT_TODOS.md](docs/CONTENT_TODOS.md). FireGuard XR’s case study is withheld until its features are verified.
+
+Target: https://ariston-michael.github.io. Static export uses root assets, trailing slashes, and unoptimized images. **No deployment workflow or production Pages setting was added or changed.** Work stays on `development`; this pass makes no changes to `main` or legacy `index.html`. A separate GitHub merge of the previous milestone was observed on remote `main`; see the validation report. A future approved release must publish the contents of `out/`, including `_next/`, rather than the repository root. See `docs/ARCHITECTURE.md`.
+
+Runtime dependencies audit clean. The full audit has 16 moderate findings in the lint-tool dependency chain. ESLint 9 remains necessary for plugin peer compatibility; incompatible automatic downgrades/force upgrades were not applied.
