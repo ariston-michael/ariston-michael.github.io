@@ -30,6 +30,7 @@ export function About() {
         <p className="eyebrow">EDUCATION & DIRECTION</p>
         <h3>Sheridan College</h3>
         <p>Honours Bachelor of Computer Science</p>
+        <p>Trafalgar Campus · Oakville, ON</p>
         <dl>
           <div>
             <dt>Specialization</dt>

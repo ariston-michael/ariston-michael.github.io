@@ -74,3 +74,15 @@
 ## 2026-10-31 — Preserve the resume evidence boundary
 **Decision:** Keep the missing PDF unavailable and preserve prior content until the exact source is present and read.
 **Rationale:** The latest request still conditions detailed resume updates on source verification. Inferring dates, metrics, integration details or role attribution from anticipated topics would violate the project’s factual-content policy. The approved contact links continue to work, and no phone number is separately published.
+
+## 2026-11-01 — External Drive resume and source-supported content
+**Decision:** Replace the absent local-PDF plan with the actual owner-designated Drive viewer, verified by metadata/text and a fresh signed-out Chrome context. All Resume CTAs use a descriptive new-tab link with noopener/noreferrer. Keep no redundant PDF.
+**Rationale:** The public one-page source resolves the previous evidence blocker. Spindle Strategy, FireGuard XR, skills and gesture/ranking details can now be expanded accurately. Three repository URLs are sourced from actual PDF annotations and confirmed public. Source-reported metrics remain attributed, unverified live demos stay absent, and no phone contact link is added.
+
+## 2026-11-01 — Validation now, deployment only after exact approval
+**Decision:** Add a read-only development/PR workflow and a separate manual-only main release workflow with explicit approval and exact SHA guards, official pinned actions, full build/browser validation and least-privilege deploy permissions.
+**Rationale:** Production currently uses legacy main/root; a main merge can trigger that source, so the Pages switch and merge are explicitly part of the later approval. Prepared release code must neither change platform settings nor publish automatically. Guard tests reject unsupported events, development, absent approval, malformed or mismatched commits. Failure stops deployment; diagnostics are preserved.
+
+## 2026-11-01 — Reconcile history without rewriting it
+**Decision:** Merge the already-inspected origin/main history into development normally, checking that the tree remains identical, and use a draft PR for release review. Never force push or modify local/remote main during preparation.
+**Rationale:** Main’s historical merge contributes no new source relative to the shared ancestor. Recording it on development gives a clean review base while preserving all existing work. Launch/rollback remain separate explicitly authorized production actions documented in RELEASE.md.

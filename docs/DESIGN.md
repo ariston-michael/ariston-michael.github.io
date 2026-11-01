@@ -25,7 +25,7 @@ A premium, immersive space observatory aesthetic, inspired by the clarity of geo
 Favor a single readable column on phones, progressively enhanced grids on tablets/desktops. Interactive graphics must never overlap navigation or main content.
 
 ## To verify
-Final brand font, exact accent colors, hero copy, portrait preference, project imagery, and the exact resume PDF. GitHub, LinkedIn and email are now owner-verified.
+Final brand font, exact accent colors, hero copy, optional portrait and actual project imagery. GitHub, LinkedIn and email are owner-verified; the Drive resume viewer was verified signed-out on 2026-11-01. No PDF is hosted locally.
 
 ## Cinematic hero and camera — current implementation
 

@@ -1,62 +1,66 @@
 # Stellar Portfolio
 
-An original, space-themed software engineering portfolio for Ariston Michael, built with Next.js App Router, strict TypeScript, and Tailwind CSS. The site includes an original scroll-controlled Saturn hero, an optional Sun/eight-planet portfolio explorer, four featured projects, three verified-scope project-note pages, education, experience, achievements, skills, and honest states for unavailable links.
+Ariston Michael’s original static software engineering portfolio: cinematic Saturn hero, optional Sun/eight-planet navigation, deterministic interactive stars, four featured projects and four project-note pages, verified experience, education, skills and contact links.
 
-## Preview locally
+## Local preview
 
-Use Node.js 22.13+ (verified on Node 24.14.0) and npm:
+Node.js 22.13+ (verified on 24.14.0) and npm:
 
 ```sh
 cd /Users/aristonmichael/stellar-portfolio
 npm ci
 npm run build
+npm run check:export
 npm run preview
 ```
 
-Open **http://127.0.0.1:3000**. This serves the actual static export in `out/`, including project routes, sitemap, robots, sharing image, and custom 404 page. Stop with Ctrl+C. No Python, credentials, environment files, or application server are required. The Node server is a local preview utility, not a production dependency.
+Open **http://127.0.0.1:3000**. Stop with Ctrl+C. This previews the production `out/` export, not the legacy root `index.html`. For editing, use `npm run dev` and http://localhost:3000. No secrets, environment files, backend, external fonts or graphics service are required. Do not use `next start` for the export.
 
-For editing, run `npm run dev` and open http://localhost:3000. Do not use `next start` for this static export.
+## Resume and content
 
-## Validation
+Resume: [Ariston_Michael.pdf on Google Drive](https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view). The correct one-page file was verified in a fresh signed-out Chrome context on 2026-11-01; connected metadata also reports anyone/reader. Resume CTAs open this viewer in a new tab with noopener/noreferrer. **No PDF is stored or served by this repository.** Access/content can change on Drive; recheck before release.
+
+`docs/ABOUT_ME.md` records verified resume/owner facts and provenance. Content includes Spindle Strategy’s Software Developer Intern role, FireGuard XR’s technical scope, resume-aligned skills and three verified public repository links. Public branding stays Ariston Michael. The external resume retains its original full name/content; no separate phone link is published. Remaining screenshots, live demos and Chicken Shooter details are listed in `docs/CONTENT_TODOS.md`.
+
+## Checks
 
 ```sh
 npm run lint
 npm run typecheck
+npm run test:release
 npm run build
+npm run check:export
 npx playwright install chromium firefox webkit
 npm test
 ```
 
-Tests start and stop their own loopback static server on port 3100; build first. They cover 13 widths from 320 to 2560px at tall and short viewport heights, three project routes, mobile touch, keyboard navigation, reduced motion, motion controls, no-JavaScript content, all local links, static SEO resources, custom 404, zoom-equivalent reflow, and automated WCAG checks. Reports and screenshots are ignored by Git. View a report with `npx playwright show-report`.
+Browser tests serve exported HTML on loopback port 3100 and cover 320–2560px widths, tall/short layouts, mouse/keyboard/touch, cinematic entry/maximum/reversal/skip, all nine solar destinations, reduced motion, pause/resume, idle frame settling, no-JavaScript links, project pages, SEO, external resume attributes/new-tab behavior and automated accessibility.
 
-To use an already installed Google Chrome and run the two browser engines executable on this task host:
+Installed-Chrome/WebKit host command:
 
 ```sh
 PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit
 ```
 
-Firefox is configured and its browser downloaded, but this host reports “Could not find profile folder” before launching. Its tests remain unverified here; do not treat an engine launch failure as a passing check. See [docs/VALIDATION.md](docs/VALIDATION.md) for actual results and limits.
+Firefox is configured but this Mac has reported `Could not find profile folder` before launch. CI attempts all three browsers on Ubuntu. See `docs/VALIDATION.md` for actual local/remote evidence and limits; do not treat unavailable checks as passes. Reports/screenshots/build output are ignored. Use `npx playwright show-report` to inspect diagnostics.
 
-## Source guide
+## Structure
 
-- `app/`: Home, statically generated project pages, 404, metadata, sitemap, robots, and responsive styles.
-- `components/`: Semantic reusable sections, original SVG artwork, and ambient motion control.
-- `lib/content.ts`: Typed projects, verified-scope notes, experience, achievements, and skills.
-- `lib/site.ts`: Canonical user-site URL and sharing asset metadata.
-- `public/social-card.svg` / `.png`: Original editable sharing artwork and its 1200×630 raster export.
-- `tests/portfolio.spec.ts`: Repeatable browser and accessibility regression tests.
-- `scripts/preview.mjs`: Concurrent, loopback-only static preview server.
-- `index.html`: Unchanged legacy production page; Next.js builds from `app/`.
-- `docs/`: Project guidance, architecture, decisions, roadmap, validation, and content TODOs. Read `AGENTS.md` before making changes.
+- `app/`: Home, static project routes, metadata, sitemap, robots, 404 and styles.
+- `components/`: Semantic portfolio sections, original SVG/CSS artwork, optional solar explorer and shared motion controls.
+- `lib/content.ts`, `lib/solar.ts`, `lib/site.ts`: Verified typed content, navigation mapping and canonical metadata.
+- `scripts/preview.mjs`, `check-export.mjs`: Loopback preview and deployable-artifact checks.
+- `scripts/release-policy.mjs`, `scripts/tests/`: Exact-commit release guard and negative-case tests.
+- `.github/workflows/validate.yml`: Read-only, non-production validation on development/PRs.
+- `.github/workflows/release-pages.yml`: Prepared manual-only main release; approval and exact SHA required.
+- `index.html`: Unchanged legacy welcome page, retained for the current production source/rollback.
 
-The starfield is deterministic and built statically: 72 seeded stars in three layers on larger screens, 36 visible on phones. A small idle-stopping RAF controller adds desktop pointer parallax/proximity and a clearly visible, bounded hero-relative Saturn approach (up to 3.6× on tall desktops, with smaller unpinned alternatives); CSS supplies ambient twinkle/float. Reduced motion, the pause control, and no-JavaScript mode disable nonessential movement. The cinematic scene has a visible skip link, and the solar explorer always offers ordinary destination links. There are no external font requests, unlicensed imagery, heavy 3D dependencies, or fabricated project screenshots.
+Read `AGENTS.md` before editing. Architecture, design, decisions, roadmap, evidence and content TODOs live in `docs/`.
 
-## Content and publication status
+## Release boundary
 
-Personal facts come only from `docs/ABOUT_ME.md`. The owner has verified GitHub, LinkedIn, and email; functional contact links are available. The exact `Ariston_Michael.pdf` source, project URLs, and deeper implementation claims remain pending and documented in [docs/CONTENT_TODOS.md](docs/CONTENT_TODOS.md). FireGuard XR’s case study is withheld until its features are verified.
+Current production https://ariston-michael.github.io still uses legacy Pages from main/root. Preparation does not authorize merging, changing Pages settings or publishing. Development CI cannot deploy. The manual release workflow refuses development, automatic events, missing approval, SHA mismatch or legacy Pages mode.
 
-Target: https://ariston-michael.github.io. Static export uses root assets, trailing slashes, and unoptimized images. **No deployment workflow or production Pages setting was added or changed.** Work stays on `development`; this pass makes no changes to `main` or legacy `index.html`. A separate GitHub merge of the previous milestone was observed on remote `main`; see the validation report. A future approved release must publish the contents of `out/`, including `_next/`, rather than the repository root. See `docs/ARCHITECTURE.md`.
+**Review [docs/RELEASE.md](docs/RELEASE.md) for the exact approval, branch reconciliation, Pages source switch, launch and rollback procedure.** Do not merge before approval: the existing legacy source can build automatically on main changes. Runtime remains Next.js static export with root-domain assets and trailing slashes; no deployment was performed during preparation.
 
-Runtime dependencies audit clean. The full audit has 16 moderate findings in the lint-tool dependency chain. ESLint 9 remains necessary for plugin peer compatibility; incompatible automatic downgrades/force upgrades were not applied.
-
-Resume source: place the exact `Ariston_Michael.pdf` in the workspace for review. Once supplied, preserve its contents/full name, copy it to `public/resume/Ariston_Michael.pdf`, and enable `resumeUrl` in `lib/content.ts`. No download URL is exposed before the asset exists. Spindle Strategy role details and expanded FireGuard XR content await that source. No separate phone number is displayed.
+The existing full development audit has 16 moderate lint-chain findings; dependency versions were preserved rather than forcing incompatible tool/framework changes.

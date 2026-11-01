@@ -12,13 +12,13 @@
 
 There are 72 deterministic stars generated using a seeded integer hash at build time; only 36 are visible on small screens. CSS animates opacity only; the original SVG planet floats with a transform. No particle components hydrate or attach per-star event listeners. MotionToggle changes a document data attribute to pause/resume animation; CosmicMotion is the null-rendering client controller for visual effects; SolarSystem is a small client component whose selection state changes only on activation. A `useSyncExternalStore` subscription keeps the button’s state accurate across client navigation. A no-JavaScript fallback disables movement and hides the inactive pause control. The system reduced-motion preference always takes precedence. Scroll reveals use progressive CSS view timelines with fully opaque content and a static fallback. There is no hidden content awaiting JavaScript.
 
-System fonts avoid external requests and font-build network dependencies. The illustration has an SVG title/description; decorative stars and project glyphs are hidden from assistive technology. The layout includes a skip link, logical headings, semantic landmarks, visible focus, and usable anchor navigation without JavaScript. Owner-verified GitHub, LinkedIn, and mailto links are functional. Resume remains unavailable text until the exact PDF source is supplied.
+System fonts avoid external requests and font-build network dependencies. The illustration has an SVG title/description; decorative stars and project glyphs are hidden from assistive technology. The layout includes a skip link, logical headings, semantic landmarks, visible focus, and usable anchor navigation without JavaScript. Owner-verified GitHub, LinkedIn, and mailto links are functional. Resume uses the anonymously verified Google Drive viewer in a new tab, with no hosted PDF.
 
 ## Static export and future deployment
 - `next.config.ts`: `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true`.
 - User-site root URL: `https://ariston-michael.github.io`; no repository basePath or assetPrefix.
 - Production output is `out/`; no server runtime, SSR, server actions, request handlers, or environment variables are required.
-- Metadata includes title, description, canonical URL, Open Graph, Twitter summary, theme color, original favicon, and a 1200×630 original PNG sharing card. Static `robots.txt` and `sitemap.xml` cover the homepage and all three project-note routes.
+- Metadata includes title, description, canonical URL, Open Graph, Twitter summary, theme color, original favicon, and a 1200×630 original PNG sharing card. Static `robots.txt` and `sitemap.xml` cover the homepage and all four project-note routes.
 - The root `index.html` remains byte-for-byte unchanged as the legacy production source. It is not an input to the Next.js application.
 - No workflow or production Pages setting is modified in this milestone.
 
@@ -36,7 +36,7 @@ Generated `.next/`, `out/`, browser reports/screenshots, dependencies, TypeScrip
 
 ## Project pages and illustration
 
-`app/projects/[slug]/page.tsx` uses `generateStaticParams` and `dynamicParams: false` for AirControl, the energy platform, and Chicken Shooter. Each page has unique metadata/canonical URL, verified scope, stack, project-status boundaries, and related links. No request-time server feature is used. FireGuard XR remains a card because the source does not yet verify its capabilities. `ProjectVisual` contains lightweight original inline SVG concept art, explicitly distinguished from screenshots and actual architecture. The social card’s editable SVG source and PNG export are tracked together.
+`app/projects/[slug]/page.tsx` uses `generateStaticParams` and `dynamicParams: false` for AirControl, Seneca Energy, FireGuard XR and Chicken Shooter. Each page has unique metadata/canonical URL, verified scope, stack, project-status boundaries, and related links. No request-time server feature is used. FireGuard XR now has a resume-supported case study; its Three.js/React Three Fiber stack is described as project content, not imported into this static portfolio. `ProjectVisual` contains lightweight original inline SVG concept art, explicitly distinguished from screenshots and actual architecture. The social card’s editable SVG source and PNG export are tracked together.
 
 ## Responsive and test strategy
 
@@ -46,7 +46,7 @@ Intrinsic grid tracks use `minmax(0, …)`, headings use bounded fluid sizes, co
 
 ## Contact and interactive motion continuation
 
-Verified contact constants live in `lib/content.ts`; `ResumeLink` is reused in hero/contact. `resumeUrl` stays null until the exact supplied PDF is copied unchanged into `public/resume/`. Public branding remains Ariston Michael; the original PDF’s full name/content must be retained. The Spindle Strategy internship entry uses only the existence explicitly identified by the owner; role details and expanded FireGuard XR facts remain blocked on the named source.
+Verified contact constants live in `lib/content.ts`; `ResumeLink` is reused in hero/contact and project evidence sections. The owner-designated Drive file was verified by connector metadata/text and a fresh signed-out browser on 2026-11-01. `resumeUrl` points directly to the standard file viewer; target/rel attributes open a secure new tab. No PDF is copied into the repository/artifact. Public name remains Ariston Michael. Resume-supported Spindle Strategy, FireGuard XR, skills and project counts are recorded in `ABOUT_ME.md`. Three repository URLs were extracted from actual PDF annotations and verified public before use.
 
 `Starfield` still renders all seeded positions on the server. Points are grouped into three static layers; no particle component state or library is introduced. `CosmicMotion` mounts once per page, caches normalized point coordinates and the field/hero geometry, and owns one damped RAF scheduler shared by pointer and scroll effects. Pointer events only update numeric targets. Frame work uses cached geometry and quantized proximity changes; no bounding-box reads occur in the animation loop. ResizeObserver refreshes layout measurements outside that loop. The scheduler stops after convergence and cancels while the document is hidden. All observers/listeners/frames are cleaned up on unmount.
 
@@ -63,3 +63,11 @@ The hero has a full-width `.hero-stage` and foreground copy with a separate visu
 A permanent nine-link navigation list remains available independently of the map. Education/achievement anchors are added to existing content. A noscript style hides inactive map buttons; all destination anchors and portfolio content still work without JavaScript. Reduced-motion users also receive an unpinned hero with static art. Shared pause/resume continues to control both hero and footer controls without breaking solar selection.
 
 The existing static export, canonical URLs, root asset paths and production boundaries are unchanged. No dependencies, APIs, deployment workflow or Pages settings were added. The exact `public/resume/Ariston_Michael.pdf` remains absent; `resumeUrl` remains null. Resume-derived job details, FireGuard XR expansion and skill corrections are pending source verification, not inferred from the requested topics.
+
+## Pre-release automation
+
+Read-only development/PR CI runs locked installation, lint, strict type checking, release-policy tests, static export verification and all three browser engines, with diagnostics on failure. `check-export.mjs` verifies the five canonical content routes, root `_next/` assets and required static metadata/recovery files, rejecting PDFs, source/dependency/secret folders and symlinks in the artifact.
+
+A separate manual-only release workflow is prepared for main, with explicit boolean approval, full-SHA equality, exact checkout, Pages-mode verification and no automatic triggers. Official GitHub actions are pinned to verified release commits. Pages enablement/generator mutation is disabled; settings are never changed by the workflow. Build has contents/read and pages/read; only deploy gets pages/write and OIDC, after every check succeeds. Serialized deployments, timeouts, failure summaries and retained browser diagnostics support review/rollback.
+
+Current production source was read as legacy main/root, so the owner must authorize switching Pages to Actions before merging the reviewed release PR. A normal origin/main merge into development reconciles the historical divergence without rewriting history or touching main; the source-tree hash must remain unchanged for this particular merge. See `RELEASE.md` for the exact approval/launch/rollback procedure. No production configuration change or deployment is part of this preparation.

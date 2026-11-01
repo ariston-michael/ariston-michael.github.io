@@ -63,7 +63,9 @@ for (const width of widths) {
         "AristonMichael.",
       );
       await expect(page.locator("#projects article")).toHaveCount(4);
-      await expect(page.locator("#experience li")).toHaveCount(6);
+      await expect(
+        page.locator(".experience-list > li, .achievement-list > li"),
+      ).toHaveCount(6);
       await expectNoOverflow(page);
       expect(
         await page
@@ -192,7 +194,11 @@ test("every local link resolves and no placeholder hrefs exist", async ({
       if (href!.startsWith("https:")) {
         expect([
           "https://github.com/ariston-michael",
+          "https://github.com/ariston-michael/BearHacks-2026",
+          "https://github.com/ariston-michael/Seneca-Energy-Hackathon",
+          "https://github.com/ariston-michael/fireguard",
           "https://www.linkedin.com/in/ariston-michael/",
+          "https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view",
         ]).toContain(href);
       } else if (href!.startsWith("mailto:")) {
         expect(href).toBe("mailto:ariston.pmichael@gmail.com");

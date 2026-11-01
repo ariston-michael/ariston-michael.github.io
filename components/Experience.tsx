@@ -25,13 +25,37 @@ export function Experience() {
             {experience.map((item) => (
               <li key={item.organization}>
                 <span className="orbit-dot" aria-hidden="true" />
-                <div>
-                  <h4>{item.role}</h4>
-                  <p>{item.organization}</p>
+                <div className="experience-entry">
+                  <div className="experience-entry-heading">
+                    <div>
+                      <h4>{item.role}</h4>
+                      <p>{item.organization}</p>
+                    </div>
+                    {item.date && (
+                      <span className="experience-date">{item.date}</span>
+                    )}
+                  </div>
+                  {item.location && (
+                    <p className="experience-location">{item.location}</p>
+                  )}
+                  {item.details && (
+                    <div className="role-details">
+                      {item.details.map((detail) => (
+                        <p key={detail}>{detail}</p>
+                      ))}
+                    </div>
+                  )}
+                  {item.technologies && (
+                    <ul
+                      className="tech-list flex flex-wrap gap-2"
+                      aria-label="Internship technologies"
+                    >
+                      {item.technologies.map((tech) => (
+                        <li key={tech}>{tech}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                {item.date && (
-                  <span className="experience-date">{item.date}</span>
-                )}
               </li>
             ))}
           </ul>

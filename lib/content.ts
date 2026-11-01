@@ -2,8 +2,9 @@
 export const githubUrl = "https://github.com/ariston-michael";
 export const linkedInUrl = "https://www.linkedin.com/in/ariston-michael/";
 export const email = "ariston.pmichael@gmail.com";
-// Enable only after the exact supplied source has been reviewed and copied unchanged.
-export const resumeUrl: string | null = null;
+// Verified 2026-11-01: Drive metadata and signed-out Chrome viewer both confirmed this PDF.
+export const resumeUrl =
+  "https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view";
 export type Project = {
   id: string;
   name: string;
@@ -12,6 +13,7 @@ export type Project = {
   description: string;
   technologies: readonly string[];
   todo: string;
+  repositoryUrl?: string;
   study?: {
     headline: string;
     overview: string;
@@ -22,80 +24,116 @@ export type Project = {
 export const projects: readonly Project[] = [
   {
     id: "aircontrol",
+    repositoryUrl: "https://github.com/ariston-michael/BearHacks-2026",
     name: "AirControl",
     category: "Human–computer interaction",
     distinction: "BearHacks 2026 · Top 10",
     description:
-      "Gesture-based computer interaction with calibration and iterative gesture changes driven by collected interaction data.",
+      "Real-time gesture-based desktop control with six MVP gestures, MediaPipe hand tracking, and user/device calibration.",
     technologies: ["Electron", "MediaPipe", "TensorFlow", "nut-js"],
-    todo: "Repository and demo links: TODO verify.",
+    todo: "Live demo and screenshots: TODO verify.",
     study: {
       headline: "A different way to interact.",
       overview:
-        "AirControl explores gesture-based computer interaction. Its documented implementation includes calibration and iterative gesture changes driven by collected interaction data.",
+        "AirControl is a real-time gesture control system using MediaPipe hand tracking for cursor navigation and desktop interaction. Six MVP gestures and user/device calibration support the interaction experience.",
       features: [
         {
           title: "Gesture interaction",
           description:
-            "Computer interaction through gestures, with Electron, MediaPipe, TensorFlow, and nut-js in the project’s technology stack.",
+            "Six MVP gestures support cursor navigation and desktop interaction using Electron, MediaPipe, TensorFlow, and nut-js.",
         },
         {
           title: "Calibration",
-          description: "Calibration is part of the interaction experience.",
+          description:
+            "User/device calibration addresses recognition and latency differences across hardware and allows recalibration when gesture accuracy degrades.",
         },
         {
           title: "Iteration through interaction data",
           description:
-            "Collected interaction data informed iterative changes to gestures.",
+            "TensorFlow gesture-interaction data identified usability issues and informed more intuitive alternatives for two of the six gestures for future iterations.",
         },
       ],
       boundary:
-        "BearHacks 2026 Top 10. Performance measurements, implementation diagrams, and individual contribution details are not yet verified.",
+        "BearHacks 2026 Top 10. Scope and gesture counts are documented in the verified resume; performance benchmarks, screenshots, and live demo still require verification.",
     },
   },
   {
     id: "energy",
-    name: "Seneca Energy Hackathon project",
+    repositoryUrl: "https://github.com/ariston-michael/Seneca-Energy-Hackathon",
+    name: "Seneca Energy",
     category: "Energy & geospatial",
     distinction: "Hackathon finalist",
     description:
-      "A platform for facility assessment and microgrid recommendations, with risk ranking and mapping.",
+      "A GIS-based microgrid opportunity-mapping platform ranking facilities by outage risk, solar potential, and facility criticality.",
     technologies: ["Python", "React", "TypeScript", "ArcGIS Online"],
-    todo: "Public name, repository and demo links: TODO verify.",
+    todo: "Live demo and screenshots: TODO verify.",
     study: {
       headline: "Energy decisions, with spatial context.",
       overview:
-        "A hackathon finalist platform for facility assessment and microgrid recommendations, combining risk ranking and mapping.",
+        "A hackathon finalist platform combining Python facility-data processing with a React/TypeScript dashboard and ArcGIS Online maps to identify microgrid deployment candidates.",
       features: [
         {
           title: "Facility assessment",
           description:
-            "The platform supports assessing facilities in the context of energy planning.",
+            "Python processes facility data to support GIS-based microgrid opportunity mapping.",
         },
         {
           title: "Microgrid recommendations",
           description:
-            "Microgrid recommendation is part of the platform’s documented scope.",
+            "The React/TypeScript dashboard displays calculated scores and highlights strong candidates for microgrid deployment.",
         },
         {
           title: "Risk ranking & mapping",
           description:
-            "Risk ranking and mapping are included, with Python, React, TypeScript, and ArcGIS Online in the technology stack.",
+            "Locations are ranked by outage risk, solar potential, and facility criticality, with ArcGIS Online supplying interactive mapping.",
         },
       ],
       boundary:
-        "Hackathon finalist. The final public name, recommendation methodology, evaluation results, and individual contribution details are not yet verified.",
+        "Seneca Energy Hackathon finalist. Ranking factors and stack are verified in the resume; evaluation metrics, screenshots, and live demo are not yet verified.",
     },
   },
   {
     id: "fireguard",
+    repositoryUrl: "https://github.com/ariston-michael/fireguard",
     name: "FireGuard XR",
-    category: "Individual project",
-    distinction: "Python + FastAPI",
+    category: "Wildfire intelligence",
+    distinction: "Full-stack project · February 2026",
     description:
-      "An individual project built with Python and FastAPI. Detailed features are awaiting verification.",
-    technologies: ["Python", "FastAPI"],
-    todo: "Feature details, repository and demo links: TODO verify.",
+      "A full-stack wildfire intelligence platform integrating 8+ external APIs for risk monitoring and AI-assisted analysis, with a 3D ember simulation.",
+    technologies: [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "Docker",
+      "Three.js",
+      "React Three Fiber",
+    ],
+    todo: "Live demo and screenshots: TODO verify.",
+    study: {
+      headline: "Wildfire intelligence, in context.",
+      overview:
+        "FireGuard XR is a full-stack wildfire intelligence platform using Python/FastAPI and React/TypeScript. Its resume-documented implementation combines risk monitoring, AI-assisted analysis, external data integrations, and a 3D wildfire simulation.",
+      features: [
+        {
+          title: "External data integrations",
+          description:
+            "The platform integrates data from 8+ external APIs for wildfire risk monitoring and AI-assisted analysis. Individual providers are not named in the source resume.",
+        },
+        {
+          title: "Full-stack implementation",
+          description:
+            "Python and FastAPI support the application alongside a React/TypeScript frontend. Docker is included in the verified project stack.",
+        },
+        {
+          title: "Wind-driven ember simulation",
+          description:
+            "A 3D simulation built with Three.js and React Three Fiber models wind-driven ember movement and visualizes how fire risk spreads across an area.",
+        },
+      ],
+      boundary:
+        "Project dated February 2026 in the resume. API count, stack, and simulation scope are source-supported; scientific validation, prediction accuracy, external provider names, screenshots, and live demo are not verified.",
+    },
   },
   {
     id: "chicken",
@@ -131,13 +169,85 @@ export const projects: readonly Project[] = [
   },
 ];
 export const skills = [
-  { title: "Languages", items: ["C++", "Python", "C#", "TypeScript"] },
-  { title: "Web & application", items: ["React", "ASP.NET Core"] },
-  { title: "Cloud & tools", items: ["AWS / cloud", "SQL / SQLite", "Git"] },
+  {
+    title: "Languages",
+    items: [
+      "Python",
+      "C/C++",
+      "TypeScript",
+      "Java",
+      "C#",
+      "JavaScript",
+      "SQL",
+      "HTML",
+      "CSS",
+      "Bash",
+    ],
+  },
+  {
+    title: "Frameworks & libraries",
+    items: ["React", "Node.js", "FastAPI", "Flask", "Django", ".NET", "Spring"],
+  },
+  {
+    title: "ML & data",
+    items: [
+      "PyTorch",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy",
+      "Vertex AI",
+      "Gemini API",
+      "ResNet",
+      "LLM prompting",
+      "RAG",
+      "Spatial data / GIS",
+    ],
+  },
+  {
+    title: "Databases & pipelines",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "Firestore",
+      "Google Sheets data pipelines",
+      "Azure Data Studio",
+    ],
+  },
+  {
+    title: "Cloud & platforms",
+    items: ["Firebase", "Google Cloud Platform", "AWS", "Docker", "Linux"],
+  },
+  {
+    title: "Developer tools",
+    items: ["Git", "GitHub", "Jupyter Notebook", "Postman"],
+  },
 ] as const;
 
-export const experience = [
-  { organization: "Spindle Strategy", role: "Internship", date: null },
+export type Experience = {
+  organization: string;
+  role: string;
+  date: string | null;
+  location?: string;
+  details?: readonly string[];
+  technologies?: readonly string[];
+};
+export const experience: readonly Experience[] = [
+  {
+    organization: "Spindle Strategy",
+    role: "Software Developer Intern",
+    date: "Apr – Aug 2026",
+    location: "Toronto, ON",
+    details: [
+      "Built a strategic planning web application on Google Cloud Platform, using Google Apps Script and JavaScript to automate a manual consulting process. The resume reports approximately 20× lower processing time and cost, with report generation reduced from months to weeks.",
+      "Created a three-report internal review workflow and refined Vertex AI outputs using historical reports, reviewer feedback, and prompt improvements. Redesigned the interface for clients and internal reviewers.",
+    ],
+    technologies: [
+      "Google Cloud Platform",
+      "Google Apps Script",
+      "JavaScript",
+      "Vertex AI",
+    ],
+  },
   { organization: "Sheridan College", role: "Peer Mentor", date: null },
   {
     organization: "Tennis Canada",
@@ -145,7 +255,7 @@ export const experience = [
     date: "2025 & 2026",
   },
   { organization: "GDG Sheridan", role: "Tech team involvement", date: null },
-] as const;
+];
 
 export const achievements = [
   {

@@ -6,6 +6,7 @@ import { socialImage } from "@/lib/site";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Starfield } from "@/components/Starfield";
 import { ProjectVisual } from "@/components/ProjectVisual";
+import { ResumeLink } from "@/components/ResumeLink";
 import { Footer } from "@/components/Footer";
 
 export const dynamicParams = false;
@@ -103,12 +104,24 @@ export default async function ProjectPage({ params }: Props) {
             ✦
           </span>
           <div>
-            <h2 id="status-title">Project notes, in progress.</h2>
+            <h2 id="status-title">Scope & evidence.</h2>
             <p>{project.study.boundary}</p>
             <p>
-              Repository, demo links, and screenshots will appear here once
-              verified. The artwork above is an original concept illustration.
+              Live demos and screenshots are not yet available. The artwork
+              above is an original concept illustration.
             </p>
+            <div className="study-resources">
+              {project.repositoryUrl && (
+                <a
+                  href={project.repositoryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Source on GitHub <span aria-hidden="true">↗</span>
+                </a>
+              )}
+              <ResumeLink />
+            </div>
           </div>
         </aside>
         <nav className="related-projects" aria-label="More project notes">

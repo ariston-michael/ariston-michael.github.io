@@ -827,7 +827,7 @@ dd {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: 64px;
 }
-.experience-list li {
+.experience-list > li {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1160,7 +1160,7 @@ dd {
   .education-panel dd {
     text-align: left;
   }
-  .experience-list li {
+  .experience-list > li {
     flex-wrap: wrap;
   }
   .experience-date {
@@ -1773,4 +1773,69 @@ html[data-motion="paused"] .scene-progress > span {
   html {
     scroll-padding-top: 112px;
   }
+}
+
+.experience-entry {
+  min-width: 0;
+  flex: 1;
+}
+.experience-entry-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.experience-list > li {
+  align-items: flex-start;
+}
+.experience-list > li > .orbit-dot {
+  margin-top: 9px;
+}
+.experience-location {
+  margin-top: 8px;
+}
+.role-details p {
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.experience-entry .tech-list {
+  margin-top: 18px;
+}
+.experience-entry .tech-list li {
+  display: block;
+  padding: 6px 9px;
+  border-top: 1px solid #a1b3d41c;
+}
+
+.project-source {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  font-size: 11px;
+  color: #c2e9f4;
+  border-top: 1px solid #9dafcf1a;
+}
+.project-source:hover,
+.study-resources a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.study-resources {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 18px;
+  font-size: 12px;
+  color: #c2e9f4;
+}
+.study-resources a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 8px;
 }

@@ -288,7 +288,7 @@ test("motion controller settles instead of running an idle RAF loop", async ({
   ).toBe(before);
 });
 
-test("verified contact links and honest resume state", async ({ page }) => {
+test("verified contact links and external Drive resume", async ({ page }) => {
   await page.goto("/");
   await expect(
     page.locator('#contact a[href="mailto:ariston.pmichael@gmail.com"]'),
@@ -302,9 +302,18 @@ test("verified contact links and honest resume state", async ({ page }) => {
   await expect(
     page.getByText("Spindle Strategy", { exact: true }),
   ).toBeVisible();
-  // No fabricated URL is exposed while the exact resume PDF remains unavailable.
   await expect(page.locator('a[href^="/resume/"]')).toHaveCount(0);
-  await expect(
-    page.getByText("PDF not yet available", { exact: true }),
-  ).toHaveCount(2);
+  const resumes = page.getByRole("link", {
+    name: "Resume Google Drive — Ariston Michael (opens in a new tab)",
+  });
+  await expect(resumes).toHaveCount(2);
+  for (const link of await resumes.all()) {
+    await expect(link).toHaveAttribute(
+      "href",
+      "https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view",
+    );
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    expect(await link.getAttribute("download")).toBeNull();
+  }
 });

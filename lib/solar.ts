@@ -19,7 +19,7 @@ export const solarDestinations = [
     name: "Mercury",
     section: "Skills",
     title: "A toolkit for building.",
-    description: skills.flatMap((group) => group.items).join(" · "),
+    description: skills.map((group) => group.title).join(" · "),
     href: "#skills",
     action: "Explore the toolkit",
     x: 26,

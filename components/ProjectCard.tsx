@@ -38,7 +38,21 @@ export function ProjectCard({
         ) : (
           <p className="project-pending">More details awaiting verification</p>
         )}
-        <p className="project-todo">Project links awaiting verification.</p>
+        {project.repositoryUrl ? (
+          <a
+            className="project-source"
+            href={project.repositoryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${project.name} source on GitHub`}
+          >
+            Source on GitHub <span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          <p className="project-todo">
+            Public project link awaiting verification.
+          </p>
+        )}
       </div>
     </article>
   );

@@ -79,3 +79,15 @@ Latest continuation validation: **136 passed** across Chrome/WebKit; lint, stric
 - No production workflow, Pages setting, main-branch modification, merge or deployment is included.
 
 Final cinematic validation: **168 passed** in Chrome/WebKit; npm ci, lint, strict TypeScript and static export passed. Measured desktop entry/mid/end scales are **1 / 2.29964 / 3.6**. Lighthouse mobile/desktop remain **100/100/100/100**, with CLS/TBT 0. Mobile LCP measured 1.5s versus prior 1.4s; transfer increased 25 KiB locally. Resume-dependent tasks remain blocked on the exact PDF. See `VALIDATION.md` for evidence and limitations.
+
+## Pre-release preparation (2026-11-01) — current status supersedes historical source blockers
+
+- [x] Verify the owner-designated Drive PDF by metadata, complete readable content and signed-out public viewer; no sharing change or repository PDF.
+- [x] Add descriptive secure-new-tab Resume links in hero/contact and project evidence sections.
+- [x] Expand Spindle Strategy role/dates/stack/source-reported outcomes and FireGuard XR’s source-supported implementation; align skills and improve project scope.
+- [x] Extract three actual repository URLs from PDF annotations and verify anonymous public reachability.
+- [x] Inspect the live legacy site, Pages configuration, PRs and branch divergence without production changes.
+- [x] Prepare non-production validation CI, guarded manual release workflow, export checks, release-policy tests and exact launch/rollback instructions.
+- [ ] Record final local/remote validation, reconcile main history into development with an unchanged-tree merge, and provide a draft release PR.
+- [ ] Obtain explicit final approval before switching Pages source, merging main or dispatching production.
+- Optional content extras remain in CONTENT_TODOS.md; current verified content contains no invented links or claims.
