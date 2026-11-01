@@ -86,3 +86,7 @@
 ## 2026-11-01 — Reconcile history without rewriting it
 **Decision:** Merge the already-inspected origin/main history into development normally, checking that the tree remains identical, and use a draft PR for release review. Never force push or modify local/remote main during preparation.
 **Rationale:** Main’s historical merge contributes no new source relative to the shared ancestor. Recording it on development gives a clean review base while preserving all existing work. Launch/rollback remain separate explicitly authorized production actions documented in RELEASE.md.
+
+## 2026-11-01 — Fix actual CI differences without weakening checks
+**Decision:** Size the mobile Sun at its rendered dimensions, give header targets a 45px minimum, and use elapsed-time damping rather than a fixed per-frame interpolation factor.
+**Rationale:** Ubuntu Firefox exposed pre-transform flex overflow and subpixel target measurements; shared-runner WebKit exposed slow reversal convergence. The fixes change actual layout/behavior while retaining the original overflow, minimum-target and reversal assertions, with no retries or browser skips.

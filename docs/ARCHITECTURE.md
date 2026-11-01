@@ -71,3 +71,9 @@ Read-only development/PR CI runs locked installation, lint, strict type checking
 A separate manual-only release workflow is prepared for main, with explicit boolean approval, full-SHA equality, exact checkout, Pages-mode verification and no automatic triggers. Official GitHub actions are pinned to verified release commits. Pages enablement/generator mutation is disabled; settings are never changed by the workflow. Build has contents/read and pages/read; only deploy gets pages/write and OIDC, after every check succeeds. Serialized deployments, timeouts, failure summaries and retained browser diagnostics support review/rollback.
 
 Current production source was read as legacy main/root, so the owner must authorize switching Pages to Actions before merging the reviewed release PR. A normal origin/main merge into development reconciles the historical divergence without rewriting history or touching main; the source-tree hash must remain unchanged for this particular merge. See `RELEASE.md` for the exact approval/launch/rollback procedure. No production configuration change or deployment is part of this preparation.
+
+## Cross-browser release refinements
+
+The selected solar-world boundary is opaque cyan. Header targets have a 45px minimum, retaining a physical margin above 44px under Firefox’s fractional layout. Mobile Sun artwork uses its actual 64px visual/layout size instead of an 80px pre-transform flex box, preventing Firefox’s narrow-screen scroll overflow without clipping content.
+
+CosmicMotion damping is now based on elapsed RAF timestamps (110ms response, frame delta capped at 64ms), with timestamp reset on idle, pause/cleanup and visibility changes. This preserves the original 60fps feel but avoids frame-count-dependent settling on slow/shared renderers. Existing strict reversal and idle-stop checks remain unchanged; no test retry or reduced assertion threshold was introduced.

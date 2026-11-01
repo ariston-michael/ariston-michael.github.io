@@ -1,6 +1,6 @@
 # Validation report — 2026-10-31
 
-The latest cinematic solar-system validation is recorded at the end. Earlier sections preserve historical completion and contact/motion baselines.
+The latest pre-release validation is recorded at the end. Earlier sections preserve historical implementation and source-availability baselines; their old resume blockers are superseded by the verified Drive source.
 
 ## Environment and checks
 
@@ -188,3 +188,72 @@ The expanded explorer/cinema adds approximately 25 KiB of local uncompressed tra
 Physical devices, assistive technology, actual toolbar zoom and low-power frame pacing remain unverified. Firefox was not required/rerun in this continuation; its prior host launch limitation remains documented above. No deployment, production workflow/Pages change, main modification, merge, permission change or paid service was performed.
 
 Implementation commit for the cinematic pass: `b3a67737faaaf67d7fa85db78429c3e5ee9a1b5d` (`feat: build cinematic Saturn hero and solar portfolio explorer`). The following test/documentation commit records the final evidence. The exact resume source remains absent at finalization.
+
+## Pre-release validation — 2026-11-01 (current evidence)
+
+### Resume/content and public-link verification
+
+The owner-designated Drive ID `12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_` was verified through connected file metadata and complete readable content as `Ariston_Michael.pdf`, application/pdf, 169071 bytes, one page, modified 2026-10-31. Metadata reports anyone/reader. A fresh Chrome browser context with no saved Google authentication opened the exact candidate viewer URL with HTTP 200, title `Ariston_Michael.pdf - Google Drive`, the correct full name and complete resume page, and a Sign in option rather than a login requirement. The only recorded cookie name was NID. No sharing permission was changed. This is a real signed-out check, independent of the connector’s authenticated access.
+
+The PDF’s actual link annotations supplied AirControl, Seneca Energy and FireGuard XR repository URLs. Each was confirmed public by GitHub repository metadata and fresh anonymous HTTP 200. No URL was guessed. Resume-supported role/dates/stack/results, project scope and skills are recorded in ABOUT_ME.md. No scientific accuracy claim, unprovided API-provider list or fabricated live demo was added. Reported metrics are attributed to the resume; no independent benchmark is claimed.
+
+Resume CTAs open the actual Drive viewer with target=_blank, rel=noopener noreferrer and a descriptive label including the visible Resume/Google Drive text. Hero/contact links and project evidence links are available without JavaScript. Mobile/desktop popup behavior is regression-tested using a routed external target to isolate application behavior from Drive uptime; this mock is not the evidence for public document access. The live signed-out check above supplies that evidence. No PDF is hosted by the repository/export and no separate phone link is published.
+
+### Repository, live site and Pages inspection
+
+Initial development head: `4fbb2cee6aeea5ddb4aef5c807ce12d4f31c9e3a`; working tree was clean and safe pull reported Already up to date. No open PR existed initially. The live site returned HTTP 200 and displayed the legacy welcome page. Read-only API inspection confirmed legacy Pages from main/root, HTTPS enforced and no custom domain. The existing dynamic pages-build-deployment workflow was active. Main protection was absent; github-pages had a custom branch policy and no required-reviewer rule was reported. No platform setting, protection rule or permission was changed.
+
+Feature/preparation commit: `61f47ad0bf150672effb63e81b4dbf382cac8f9e`. Normal reconciliation commit: `ce856f57d8e611ec90a539d28cc25fecd004f98e`, merging origin/main **into development**. Pre/post source-tree hashes were identical: `8b7125377dc1c2e1292fd323e95a228ae77ebccb`. Local main stayed `b571ccce0832dc6727dc6558fe93826f71f52c1d`; remote main stayed `3c1e928a80432e1fc54cfdeda5907b66546ec27a`. No public history was rewritten. The preserved root index.html remains unchanged.
+
+Draft review PR: https://github.com/ariston-michael/ariston-michael.github.io/pull/2. The connector could not create a PR with its integration permissions; the owner-authorized draft was created successfully using the existing GitHub authentication. No merge occurred. The production workflow has not been dispatched.
+
+### Local source/automation checks
+
+- `npm ci`: succeeded from the existing lockfile; 369 packages installed, no dependency-version changes. Existing 16 moderate lint-chain findings were reported.
+- `npm run lint`: exit 0, no errors/warnings.
+- `npm run typecheck`: exit 0, generated route types and strict TypeScript passed.
+- `npm run test:release`: **9 passed**, covering the accepted exact main dispatch and rejection of development, push/PR events, absent approval, missing/malformed/mismatched SHA and shell text.
+- `npm run build`: exit 0; compiled successfully; **10/10** generation entries. Four project notes, homepage, recovery/metadata output remain statically exported.
+- `npm run check:export`: exit 0; **5 canonical content routes / 52 files**, root assets present, no repository PDF, dependency/secret folders or symlinks in output.
+- Official actionlint **1.7.12**: SHA-256 archive digest verified against its release metadata; YAML/expression lint exited 0. Binary remains in /tmp, not a project dependency. The official GitHub actions’ release tags/commit SHAs and Pages inputs were inspected before pinning.
+
+The final local command `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` completed with **180 passed (2.1m)** after cross-browser refinements; all earlier source/guard/export checks passed again. No retries or skipped assertions were used. The prepared release job itself remains unexecuted: current Pages mode is intentionally legacy, and its configuration guard would refuse it until a separately approved settings change.
+
+The initial hosted source run [41343384828](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/41343384828) actually executed all three engines: **265 passed / 5 failed**. Firefox ran successfully on Ubuntu, revealing mobile Sun pre-transform-box overflow at 320px and a header-target measurement of 43.999996px at 360px. Shared-runner WebKit revealed frame-based damping that settled too slowly at 2560px. The candidate fixes the actual Sun sizing, gives header targets a 45px margin, and uses timestamp-based damping with idle/reset handling. Overflow/44px/reversal assertions remain strict; failures were not hidden or skipped.
+
+The complete fixed candidate is rerun by the PR workflow. [PR #2’s live checks](https://github.com/ariston-michael/ariston-michael.github.io/pull/2/checks) are authoritative for the reviewed head; do not treat the earlier failed run or a pending candidate as production-ready. Push validation is superseded by PR validation through the concurrency group. The completion report records the final hosted result after it executes.
+
+### Rendered audit and zoom limits
+
+Screenshots of Saturn entry, middle and maximum, all planetary controls, projects, expanded experience, six skill groups, contact, FireGuard XR and mobile content were captured outside Git and visually reviewed. Existing cinema/solar/starfield behavior is preserved. The selected-world boundary was strengthened to an opaque light cyan state cue after visual contrast review. Resume/link labels were corrected after the explicit label-in-name audit found a mismatch; the final suite must include that rule rather than relying only on a Lighthouse headline score.
+
+Chrome’s CDP visual-viewport page-scale test reached **2×** with visual width **640 CSS px**, layout width **1280 CSS px** and no document horizontal overflow. This is actual visual/pinch-style browser zoom, not a claim of browser-toolbar zoom/reflow. The separate 200% zoom-equivalent 640×450 layout test at 2× density remains in the suite. Actual toolbar zoom, physical mobile devices, assistive technology and low-powered hardware frame pacing remain unverified.
+
+Firefox 157.0 was attempted again on this Mac and failed before page load with `Could not find profile folder`. It is not counted as a local pass. Ubuntu CI installs/attempts Chromium, Firefox and WebKit; its actual outcome is linked from the PR rather than inferred from local engines.
+
+### Lighthouse mobile/desktop
+
+Local static export was served on a separate owned loopback port **3201**, because an existing server occupied 3000; that existing server was preserved. Lighthouse 13.6.0 used installed Chrome, default simulated mobile and preset=desktop, sequentially with JSON output in /tmp. Final measured values are recorded below. Measurements are local lab data, not field guarantees. Browser diagnostics and screenshots are not committed.
+
+### Release readiness boundary
+
+The resume source/content blocker is resolved. Optional live demos/screenshots, Chicken Shooter public/cooperative details and deeper independent benchmark/scientific evidence remain honest TODOs. Required code/export/workflow checks and draft review are preparatory work. Deployment integration and public post-release checks cannot execute until the owner approves the Pages-source switch, reviewed PR merge and exact-SHA manual dispatch in RELEASE.md. No production deployment, main write, Pages mutation or paid service was performed.
+
+### Final candidate measurements and publication gate
+
+After the actual CI sizing/settling fixes, the complete local Chrome/WebKit matrix passed again: **180 passed (2.1m)**. Release guard tests remain **9/9**, static generation **10/10**, export verification **5 routes / 52 files**, and actionlint/lint/strict types all pass. No assertion thresholds, retries or browser exclusions were added to obtain that result. The final candidate is pushed for the complete three-engine PR rerun; the PR checks link above provides its live source-of-truth status, and the completion report must report the observed outcome rather than infer it.
+
+| Final local Lighthouse metric | Mobile | Desktop |
+| --- | --- | --- |
+| Performance | 100 | 100 |
+| Accessibility | 100 | 100 |
+| Best practices | 100 | 100 |
+| SEO | 100 | 100 |
+| Largest contentful paint | 1.5 s | 0.3 s |
+| Total blocking time | 10 ms | 0 ms |
+| Cumulative layout shift | 0 | 0 |
+| Local uncompressed transfer | 633 KiB | 633 KiB |
+
+Compared with the prior cinematic baseline: scores and LCP are unchanged; transfer is about 15 KiB higher for expanded verified content. Mobile blocking time measured 10ms rather than 0ms in this final run; this is lab data with normal variance, not a claim of production field equivalence. Both audits exited 0 on the final corrected export.
+
+Readiness assessment: the resume/content blocker is resolved and required preparation is concrete/reviewable. Final green PR validation and explicit owner approval remain required before the documented Pages-source switch, main merge or manual deployment. Actual deployment/public post-release checks remain intentionally unexecuted. Optional demos/screenshots and manual physical-device/assistive-technology/toolbar-zoom checks are listed, not fabricated as passes.

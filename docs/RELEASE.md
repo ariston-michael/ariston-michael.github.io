@@ -5,7 +5,7 @@
 - Public site: https://ariston-michael.github.io — HTTP 200, legacy welcome page.
 - Pages: `build_type: legacy`, source branch `main`, path `/`, HTTPS enforced, no custom domain.
 - Remote main: `3c1e928a80432e1fc54cfdeda5907b66546ec27a`; local main is intentionally untouched at `b571ccce0832dc6727dc6558fe93826f71f52c1d`.
-- No open PR existed at initial inspection. This preparation may create a draft review PR; it must not be merged without explicit approval.
+- No open PR existed at initial inspection. Draft review PR #2 is now open: https://github.com/ariston-michael/ariston-michael.github.io/pull/2. It must not be merged without explicit approval.
 - Main branch protection was not configured. The existing github-pages environment has a custom branch policy and no required-reviewer rule was reported. No protection/permission setting was changed.
 - The existing dynamic `pages-build-deployment` workflow serves the legacy branch source. **Merging before switching the source can start that legacy build.**
 

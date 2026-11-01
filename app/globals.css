@@ -1839,3 +1839,21 @@ html[data-motion="paused"] .scene-progress > span {
   min-height: 44px;
   gap: 8px;
 }
+/* The selected-world boundary is an essential state cue: keep it opaque and high contrast. */
+.world[aria-pressed="true"] {
+  border-color: #a5dded;
+}
+
+/* A one-pixel margin keeps target size above 44px even under fractional browser layout. */
+.site-header nav a {
+  min-width: 45px;
+  min-height: 45px;
+}
+@media (max-width: 767px) {
+  /* Preserve the visual Sun size without an oversized pre-transform flex box in Firefox. */
+  .solar-map .surface-sun {
+    width: 64px;
+    height: 64px;
+    transform: none;
+  }
+}

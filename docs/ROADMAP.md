@@ -18,17 +18,18 @@
 
 ## Phase 3 — Real content
 - [x] Add owner-verified GitHub, LinkedIn, and email links.
-- [ ] Review and add exact resume PDF after source availability.
-- [x] Build four factual project cards and three verified-scope project-note pages.
-- [ ] Expand FireGuard XR and deeper case-study claims after owner verification.
+- [x] Verify the actual external Drive resume and expose secure-new-tab CTAs without a hosted PDF.
+- [x] Build four factual project cards and four verified-scope project-note pages.
+- [x] Expand FireGuard XR using verified resume scope; leave unsupported scientific/benchmark claims pending.
 - [x] Add lightweight original SVG concept illustrations for each project.
 - [ ] Add actual project screenshots after verification.
-- [ ] Verify experience and achievement claims.
+- [x] Ground experience/achievement claims in reviewed owner facts and the verified resume.
 
 ## Phase 4 — Review and launch
 - [x] Implement local responsive/accessibility/SEO/link tests and performance review.
 - [ ] Complete real-device, assistive-technology, browser-zoom and final publication review.
-- [ ] Configure Pages deployment with GitHub Actions.
+- [x] Prepare guarded Pages workflow and release/rollback instructions.
+- [ ] Switch production Pages source and dispatch only after explicit owner approval.
 - [ ] Review pull request into `main`.
 - [ ] Deploy only with owner approval; verify live website.
 
@@ -88,6 +89,9 @@ Final cinematic validation: **168 passed** in Chrome/WebKit; npm ci, lint, stric
 - [x] Extract three actual repository URLs from PDF annotations and verify anonymous public reachability.
 - [x] Inspect the live legacy site, Pages configuration, PRs and branch divergence without production changes.
 - [x] Prepare non-production validation CI, guarded manual release workflow, export checks, release-policy tests and exact launch/rollback instructions.
-- [ ] Record final local/remote validation, reconcile main history into development with an unchanged-tree merge, and provide a draft release PR.
+- [x] Record local validation and actual hosted-CI findings, reconcile main history into development with an unchanged-tree merge, and open draft release PR #2.
+- [ ] Confirm final candidate PR CI is green before approving release; live checks remain authoritative.
 - [ ] Obtain explicit final approval before switching Pages source, merging main or dispatching production.
 - Optional content extras remain in CONTENT_TODOS.md; current verified content contains no invented links or claims.
+
+Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard tests**, strict lint/types, **10/10** static generation and **5-route** export validation passed. Lighthouse mobile/desktop remains **100/100/100/100**. Ubuntu CI executes Firefox successfully; initial CI findings were repaired in real layout/damping code and the fixed candidate is rerun on all three engines. Review draft PR #2 and RELEASE.md; no production action is authorized yet.

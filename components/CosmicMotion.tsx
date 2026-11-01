@@ -33,6 +33,7 @@ export function CosmicMotion() {
     );
     const narrow = matchMedia("(max-width: 767px)");
     let frame = 0;
+    let previousFrameTime = 0;
     let enabled = false;
     let pointerEnabled = false;
     let inside = false;
@@ -97,20 +98,26 @@ export function CosmicMotion() {
       targetProgress = clamp((scrollY - heroTop) / scrollRange);
       schedule();
     }
-    function render() {
+    function render(timestamp: number) {
       frame = 0;
       if (!enabled || document.hidden) return;
-      cursorX += (targetX - cursorX) * 0.14;
-      cursorY += (targetY - cursorY) * 0.14;
+      const delta = previousFrameTime
+        ? clamp(timestamp - previousFrameTime, 1, 64)
+        : 1000 / 60;
+      previousFrameTime = timestamp;
+      // Match the original 60fps feel while converging reliably on slow/shared renderers.
+      const damping = 1 - Math.exp(-delta / 110);
+      cursorX += (targetX - cursorX) * damping;
+      cursorY += (targetY - cursorY) * damping;
       const desiredX =
         inside && pointerEnabled ? (cursorX / innerWidth - 0.5) * 16 : 0;
       const desiredY =
         inside && pointerEnabled ? (cursorY / innerHeight - 0.5) * 12 : 0;
-      offsetX += (desiredX - offsetX) * 0.14;
-      offsetY += (desiredY - offsetY) * 0.14;
+      offsetX += (desiredX - offsetX) * damping;
+      offsetY += (desiredY - offsetY) * damping;
       const desiredProximity = inside && pointerEnabled ? 1 : 0;
-      proximity += (desiredProximity - proximity) * 0.14;
-      progress += (targetProgress - progress) * 0.14;
+      proximity += (desiredProximity - proximity) * damping;
+      progress += (targetProgress - progress) * damping;
       layers.forEach((layer, index) => {
         const depth = (index + 1) / 3;
         layer.style.transform = `translate3d(${(offsetX * depth).toFixed(3)}px,${(offsetY * depth - progress * depth * 18).toFixed(3)}px,0) scale(${(1 + progress * depth * 0.12).toFixed(5)})`;
@@ -166,6 +173,7 @@ export function CosmicMotion() {
         Math.abs(desiredProximity - proximity) > 0.001 ||
         Math.abs(targetProgress - progress) > 0.0001;
       if (unsettled) schedule();
+      else previousFrameTime = 0;
     }
     function move(event: PointerEvent) {
       if (event.pointerType !== "mouse") return;
@@ -181,6 +189,7 @@ export function CosmicMotion() {
     function reset() {
       cancelAnimationFrame(frame);
       frame = 0;
+      previousFrameTime = 0;
       inside = false;
       offsetX = offsetY = proximity = progress = 0;
       layers.forEach((layer) => layer.style.removeProperty("transform"));
@@ -219,6 +228,7 @@ export function CosmicMotion() {
       if (document.hidden) {
         cancelAnimationFrame(frame);
         frame = 0;
+        previousFrameTime = 0;
       } else if (enabled) measure();
     }
     const observer = new ResizeObserver(measure);
