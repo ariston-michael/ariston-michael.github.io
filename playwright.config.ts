@@ -4,7 +4,10 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
-  workers: 3,
+  // Hosted WebKit shares a software compositor: concurrent browser processes can
+  // starve requestAnimationFrame for seconds. Keep the same motion deadlines and
+  // assertions, and give each CI case an exclusive rendering budget.
+  workers: process.env.CI ? 1 : 3,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL: "http://127.0.0.1:3100",

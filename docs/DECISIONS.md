@@ -90,3 +90,7 @@
 ## 2026-11-01 — Fix actual CI differences without weakening checks
 **Decision:** Size the mobile Sun at its rendered dimensions, give header targets a 45px minimum, and use elapsed-time damping rather than a fixed per-frame interpolation factor.
 **Rationale:** Ubuntu Firefox exposed pre-transform flex overflow and subpixel target measurements; shared-runner WebKit exposed slow reversal convergence. The fixes change actual layout/behavior while retaining the original overflow, minimum-target and reversal assertions, with no retries or browser skips.
+
+## 2026-11-01 — Serialize hosted browser cases
+
+Ubuntu's shared software-rendered WebKit starved animation frames when three narrow-screen cases ran concurrently, while all local WebKit cases and hosted Firefox passed. Use one CI worker and retain three local workers. Preserve strict motion deadlines, all assertions, every browser and zero retries; resource isolation gives the animation checks a meaningful rendering budget instead of concealing failures with timeout inflation.
