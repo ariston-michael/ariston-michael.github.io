@@ -18,18 +18,19 @@ export function About() {
           in April 2028.
         </p>
         <p className="section-copy">
-          Beyond projects, I’m a Peer Mentor at Sheridan College, part of the
-          GDG Sheridan tech team, and served as a Tennis Canada Court Control
-          Lead in 2025 and 2026.
+          I’m seeking software engineering internships for Summer 2027. My
+          projects span gesture interaction, energy assessment, and game
+          development.
         </p>
       </div>
-      <div className="education-panel">
+      <div className="education-panel" id="education">
         <span className="panel-icon" aria-hidden="true">
           ✦
         </span>
         <p className="eyebrow">EDUCATION & DIRECTION</p>
         <h3>Sheridan College</h3>
         <p>Honours Bachelor of Computer Science</p>
+        <p>Trafalgar Campus · Oakville, ON</p>
         <dl>
           <div>
             <dt>Specialization</dt>

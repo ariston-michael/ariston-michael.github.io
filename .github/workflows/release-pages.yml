@@ -1,0 +1,93 @@
+name: Approved Pages release
+on:
+  workflow_dispatch:
+    inputs:
+      approve_release:
+        description: Owner has explicitly approved this production release
+        type: boolean
+        default: false
+        required: true
+      expected_sha:
+        description: Full 40-character SHA of the approved main commit
+        type: string
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: approved-production-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main' && inputs.approve_release
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pages: read
+    env:
+      CI: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Enforce approval for this exact main commit
+        run: node scripts/verify-release.mjs
+        env:
+          APPROVE_RELEASE: ${{ inputs.approve_release }}
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+      - name: Verify production source without changing settings
+        run: node scripts/verify-pages-config.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+        with:
+          enablement: false
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test:release
+      - run: npm run build
+      - run: npm run check:export
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm test
+      - name: Preserve browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-browser-diagnostics-${{ github.run_id }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+          if-no-files-found: ignore
+      - name: Package only validated static output
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: out/
+      - name: Report build failure
+        if: failure()
+        run: echo 'Release build failed. Deployment is blocked. Inspect the failed check and browser diagnostics.' >> "$GITHUB_STEP_SUMMARY"
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && inputs.approve_release && needs.build.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy approved artifact
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+      - name: Report deployment failure
+        if: failure()
+        run: echo 'Deployment failed. Do not force-push or change Pages settings to retry. Inspect the run and follow docs/RELEASE.md rollback instructions under explicit release approval.' >> "$GITHUB_STEP_SUMMARY"

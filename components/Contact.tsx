@@ -1,4 +1,5 @@
-import { githubUrl } from "@/lib/content";
+import { ResumeLink } from "./ResumeLink";
+import { email, githubUrl, linkedInUrl } from "@/lib/content";
 export function Contact() {
   return (
     <section
@@ -7,7 +8,7 @@ export function Contact() {
       aria-labelledby="contact-title"
     >
       <div className="contact-panel">
-        <p className="eyebrow">04 / NEXT TRANSMISSION</p>
+        <p className="eyebrow">05 / NEXT TRANSMISSION</p>
         <h2 id="contact-title">
           Let’s build
           <br />
@@ -15,22 +16,28 @@ export function Contact() {
         </h2>
         <p>
           I’m seeking software engineering internships for Summer 2027.
-          <br className="hidden md:block" /> Explore my work or find me on
-          GitHub.
+          <br className="hidden md:block" /> Let’s connect about the next
+          opportunity.
         </p>
-        <a className="button button-primary" href={githubUrl}>
-          Find me on GitHub <span aria-hidden="true">↗</span>
-        </a>
-        <div className="contact-pending">
-          <p>
-            Email <span>TODO · professional address pending</span>
-          </p>
-          <p>
-            Resume <span>TODO · PDF pending</span>
-          </p>
-          <p>
-            LinkedIn <span>TODO · profile URL pending</span>
-          </p>
+        <div className="contact-actions">
+          <a className="button button-primary" href={`mailto:${email}`}>
+            Send me an email <span aria-hidden="true">↗</span>
+          </a>
+          <a className="button button-secondary" href={linkedInUrl}>
+            LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+          <a className="button button-secondary" href={githubUrl}>
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div className="contact-details">
+          <a
+            href={`mailto:${email}`}
+            aria-label={`Email Ariston Michael at ${email}`}
+          >
+            {email}
+          </a>
+          <ResumeLink />
         </div>
       </div>
     </section>
