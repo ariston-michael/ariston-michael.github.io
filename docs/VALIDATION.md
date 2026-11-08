@@ -261,3 +261,24 @@ Readiness assessment: the resume/content blocker is resolved and required prepar
 ### Hosted WebKit rendering-budget follow-up
 
 The next Ubuntu run [41344930401](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/41344930401) produced **267 passed / 3 failed**. All Firefox checks passed. At 320/360/375px, three concurrent software-rendered WebKit cases received almost no animation frames during the five-second approach assertion: the trace recorded scale 1 for several seconds, then only the first damped frame (1.01064). This differs from the fully passing local WebKit matrix. CI now runs one browser case at a time to give the shared renderer an exclusive budget; local runs keep three workers. Test deadlines, scale/overflow assertions, all three engines, no retries and the complete viewport matrix remain unchanged. This configuration change requires a fresh complete hosted run; its result must be observed before release readiness is asserted.
+
+## Approved production launch — 2026-11-07
+
+The owner requested publication to the existing root URL. Rechecked PR #2 head `d03454d312754eb31d71f1938822828e7bbb56a4`, unchanged main and successful 270/270 PR validation. A fresh signed-out Chrome viewer returned HTTP 200, title `Ariston_Michael.pdf - Google Drive` and the actual Ariston Philip Michael resume. Pages was switched to Actions before a normal PR merge; release main SHA is `975d0ebb061c9ccbd9b1d858614f393bd31441d2`, with the same source tree as the reviewed head.
+
+[Approved release run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196), attempt 1: source/guard/build/export checks passed; **269 passed / 1 failed** browser checks (12.7m). The first narrow-screen WebKit case reproduced the intermittent near-zero animation-frame startup issue (scale 1.01064 versus >1.08). Deployment was correctly skipped. Diagnostics were inspected, and the complete unchanged workflow was manually rerun for the same approved SHA; no test was skipped or assertion weakened. Final deployment/live results follow only after execution.
+
+### Successful release and live verification — 2026-11-08
+
+Release run 42412024196, **attempt 2**, completed successfully for exact main SHA `975d0ebb061c9ccbd9b1d858614f393bd31441d2`: the complete unchanged browser suite passed **270/270 (9.3m)**, all earlier source/guard/build/export stages passed, and official Pages artifact/deployment jobs succeeded. No tests were bypassed.
+
+Post-deployment installed Chrome checks against the public HTTPS site exited 0:
+- Homepage plus all four project-note routes returned HTTP 200, each with one H1 and the correct canonical URL. Referenced scripts/styles, robots, sitemap and social image returned HTTP 200.
+- A missing public path returned HTTP 404 and the custom portfolio recovery link.
+- No document horizontal overflow at 320, 375, 768, 1024, 1440 and 2560 CSS px (900px height). Live 375/1440 screenshots were visually reviewed outside Git.
+- Live WCAG 2 A/AA, 2.1 AA and 2.2 AA axe scans at 375/1440 reported zero violations.
+- Keyboard skip-to-content focus, cinematic skip, bounded scroll approach and reversal, pause/resume, all nine solar-world controls and live reduced-motion changes passed.
+- Secure external Resume URL/target/rel attributes passed at all six checked widths. The actual external PDF was independently reverified signed-out before launch.
+- No-JavaScript public content/direct navigation remained available. No page errors were observed.
+
+Physical devices, assistive technology and browser-toolbar zoom remain the previously documented manual limits. Existing moderate development lint-chain advisories and optional content TODOs are unchanged. The portfolio is published and ready to share; future releases still require approval.

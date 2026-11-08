@@ -52,15 +52,15 @@ Firefox is configured but this Mac has reported `Could not find profile folder` 
 - `scripts/preview.mjs`, `check-export.mjs`: Loopback preview and deployable-artifact checks.
 - `scripts/release-policy.mjs`, `scripts/tests/`: Exact-commit release guard and negative-case tests.
 - `.github/workflows/validate.yml`: Read-only, non-production validation on development/PRs.
-- `.github/workflows/release-pages.yml`: Prepared manual-only main release; approval and exact SHA required.
-- `index.html`: Unchanged legacy welcome page, retained for the current production source/rollback.
+- `.github/workflows/release-pages.yml`: Manual-only main release; approval and exact SHA required.
+- `index.html`: Unchanged legacy welcome page retained for rollback.
 
 Read `AGENTS.md` before editing. Architecture, design, decisions, roadmap, evidence and content TODOs live in `docs/`.
 
 ## Release boundary
 
-Current production https://ariston-michael.github.io still uses legacy Pages from main/root. Preparation does not authorize merging, changing Pages settings or publishing. Development CI cannot deploy. The manual release workflow refuses development, automatic events, missing approval, SHA mismatch or legacy Pages mode.
+The owner approved publishing to https://ariston-michael.github.io on 2026-11-07. Pages now uses GitHub Actions; reviewed PR #2 was merged normally at `975d0ebb061c9ccbd9b1d858614f393bd31441d2`. [Release run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196) passed all 270 browser tests and deployed this exact SHA, publishing only `out/`. Development CI cannot deploy.
 
-**Review [docs/RELEASE.md](docs/RELEASE.md) for the exact approval, branch reconciliation, Pages source switch, launch and rollback procedure.** Do not merge before approval: the existing legacy source can build automatically on main changes. Runtime remains Next.js static export with root-domain assets and trailing slashes; no deployment was performed during preparation.
+**Review [docs/RELEASE.md](docs/RELEASE.md) for the release record and rollback procedure.** Future production releases still require owner authorization, a reviewed merge and an exact-SHA manual dispatch. Static export retains root-domain assets and trailing slashes.
 
 The existing full development audit has 16 moderate lint-chain findings; dependency versions were preserved rather than forcing incompatible tool/framework changes.

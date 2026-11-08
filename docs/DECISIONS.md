@@ -94,3 +94,7 @@
 ## 2026-11-01 — Serialize hosted browser cases
 
 Ubuntu's shared software-rendered WebKit starved animation frames when three narrow-screen cases ran concurrently, while all local WebKit cases and hosted Firefox passed. Use one CI worker and retain three local workers. Preserve strict motion deadlines, all assertions, every browser and zero retries; resource isolation gives the animation checks a meaningful rendering budget instead of concealing failures with timeout inflation.
+
+## 2026-11-07 — Approved first publication
+
+The owner requested immediate publication at the existing GitHub Pages address after reviewing the green candidate. Rechecked unchanged PR/main SHAs and the 270-test successful run, then verified the actual Drive PDF in a fresh signed-out browser. Switched Pages to Actions before merging PR #2 normally, preserving HTTPS/root URL. Dispatched the guarded workflow for exact main SHA `975d0ebb061c9ccbd9b1d858614f393bd31441d2`; release build/browser checks remain mandatory. Development was fast-forwarded normally to the merge. Future publication still requires authorization; this approval does not enable automatic deployment.

@@ -14,15 +14,15 @@ There are 72 deterministic stars generated using a seeded integer hash at build 
 
 System fonts avoid external requests and font-build network dependencies. The illustration has an SVG title/description; decorative stars and project glyphs are hidden from assistive technology. The layout includes a skip link, logical headings, semantic landmarks, visible focus, and usable anchor navigation without JavaScript. Owner-verified GitHub, LinkedIn, and mailto links are functional. Resume uses the anonymously verified Google Drive viewer in a new tab, with no hosted PDF.
 
-## Static export and future deployment
+## Static export and deployment
 - `next.config.ts`: `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true`.
 - User-site root URL: `https://ariston-michael.github.io`; no repository basePath or assetPrefix.
 - Production output is `out/`; no server runtime, SSR, server actions, request handlers, or environment variables are required.
 - Metadata includes title, description, canonical URL, Open Graph, Twitter summary, theme color, original favicon, and a 1200×630 original PNG sharing card. Static `robots.txt` and `sitemap.xml` cover the homepage and all four project-note routes.
 - The root `index.html` remains byte-for-byte unchanged as the legacy production source. It is not an input to the Next.js application.
-- No workflow or production Pages setting is modified in this milestone.
+- Production Pages uses GitHub Actions following owner approval on 2026-11-07. The manual-only release workflow validates the exact approved main SHA before publishing `out/`.
 
-Phase 4 requires owner approval before merging or publishing. A future Pages workflow should use the lockfile (`npm ci`), run lint/typecheck/build, upload **only `out/`** with the official Pages artifact tooling, then deploy with the required Pages environment and least-privilege permissions. Ensure `_next/` assets are served without Jekyll processing (the artifact workflow handles static output; branch-based hosting would need `.nojekyll`). Validate the canonical root URL, assets, routes, missing-link resolution, accessibility, and mobile performance before launch. Do not upload the source root or run `next start`.
+Production releases require owner approval before merging or publishing. The prepared workflow uses the lockfile (`npm ci`), runs lint/typecheck/build/browser/export checks, uploads **only `out/`** with official Pages artifact tooling, then deploys through the Pages environment with least-privilege permissions. Artifact deployment serves `_next/` without Jekyll processing. Do not upload the source root or run `next start`. See `RELEASE.md` for the current release record and rollback procedure.
 
 ## Commands
 - `npm ci`: reproducible installation.
@@ -62,7 +62,7 @@ The hero has a full-width `.hero-stage` and foreground copy with a separate visu
 
 A permanent nine-link navigation list remains available independently of the map. Education/achievement anchors are added to existing content. A noscript style hides inactive map buttons; all destination anchors and portfolio content still work without JavaScript. Reduced-motion users also receive an unpinned hero with static art. Shared pause/resume continues to control both hero and footer controls without breaking solar selection.
 
-The existing static export, canonical URLs, root asset paths and production boundaries are unchanged. No dependencies, APIs, deployment workflow or Pages settings were added. The exact `public/resume/Ariston_Michael.pdf` remains absent; `resumeUrl` remains null. Resume-derived job details, FireGuard XR expansion and skill corrections are pending source verification, not inferred from the requested topics.
+Static export, canonical URLs and root asset paths are preserved. No motion or graphics dependency was added. Resume access uses the verified external Drive viewer; the repository contains no redundant PDF. Source-supported experience, FireGuard XR and skills are recorded in ABOUT_ME.md.
 
 ## Pre-release automation
 
@@ -70,7 +70,7 @@ Read-only development/PR CI runs locked installation, lint, strict type checking
 
 A separate manual-only release workflow is prepared for main, with explicit boolean approval, full-SHA equality, exact checkout, Pages-mode verification and no automatic triggers. Official GitHub actions are pinned to verified release commits. Pages enablement/generator mutation is disabled; settings are never changed by the workflow. Build has contents/read and pages/read; only deploy gets pages/write and OIDC, after every check succeeds. Serialized deployments, timeouts, failure summaries and retained browser diagnostics support review/rollback.
 
-Current production source was read as legacy main/root, so the owner must authorize switching Pages to Actions before merging the reviewed release PR. A normal origin/main merge into development reconciles the historical divergence without rewriting history or touching main; the source-tree hash must remain unchanged for this particular merge. See `RELEASE.md` for the exact approval/launch/rollback procedure. No production configuration change or deployment is part of this preparation.
+Preparation reconciled origin/main into development without changing the source tree. On 2026-11-07 the owner authorized publication; Pages was switched from legacy main/root to Actions before normal merging of reviewed PR #2. The release tree matches reviewed development exactly. See `RELEASE.md` for release evidence and the future approval/rollback procedure.
 
 ## Cross-browser release refinements
 
