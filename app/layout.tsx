@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteUrl, socialImage } from "@/lib/site";
+import { homeEntryScript } from "@/lib/home-entry";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Ariston Michael | Software Engineering Portfolio",
@@ -33,9 +34,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          id="home-entry"
+          dangerouslySetInnerHTML={{ __html: homeEntryScript }}
+        />
+      </head>
       <body>
         <noscript>
-          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .motion-toggle { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; }`}</style>
+          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .motion-toggle { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; } .journey-backdrop, .planet-reserve { display: none !important; }`}</style>
         </noscript>
         <a href="#main" className="skip-link">
           Skip to content

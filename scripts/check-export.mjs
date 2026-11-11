@@ -28,7 +28,7 @@ for (const route of routes) {
   for (const match of html.matchAll(
     /(?:src|href)="(\/_next\/[^"?]+)(?:[^\"]*)"/g,
   ))
-    await access(join(root, match[1]));
+    await access(join(root, decodeURIComponent(match[1])));
 }
 let files = 0;
 async function inspect(directory) {

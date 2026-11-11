@@ -95,3 +95,16 @@ Final cinematic validation: **168 passed** in Chrome/WebKit; npm ci, lint, stric
 - Optional content extras remain in CONTENT_TODOS.md; current verified content contains no invented links or claims.
 
 Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard tests**, strict lint/types, **10/10** static generation and **5-route** export validation passed. Lighthouse mobile/desktop remains **100/100/100/100**. Ubuntu CI executes Firefox successfully; initial CI findings were repaired in real layout/damping code and the fixed candidate is rerun on all three engines. Reviewed PR #2 passed 270/270 hosted tests. Publication was explicitly authorized on 2026-11-07; see RELEASE.md for the current release record.
+
+## 2026-11-11 — Continuous ring passage and homepage entry
+
+- [x] Share one sky between hero and explorer, morph existing ring paths into luminous trails and reverse from normalized scroll progress.
+- [x] Preserve readable copy, skip/direct links, deterministic stars, bounded desktop pinning and simpler phone choreography.
+- [x] Reproduce native reload restoration; implement a homepage-document-only policy preserving fragments and history.
+- [x] Preserve pause/reduced-motion/no-JavaScript static alternatives without graphics dependencies.
+- Validation evidence and performance comparison for this development-only pass are recorded in VALIDATION.md. Production deployment remains the previously approved release; this continuation does not merge, publish or change Pages settings.
+
+- [x] Complete final local Chrome/WebKit suite: **296 passed** across 13 widths and short/tall viewports, including deferred hydration/early interaction.
+- [x] Inspect eight transition states and capture continuous down/up recording.
+- [x] Run lint, strict types, supported webpack production export, guard/export checks and same-session Lighthouse comparison: performance **99 mobile / 100 desktop**, all other categories 100, CLS 0.
+- Default local Turbopack remains restricted by worker-port EPERM; actual command/results and manual-device limits are recorded in VALIDATION.md. No publication is authorized for this continuation.

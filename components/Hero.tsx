@@ -42,14 +42,17 @@ export function Hero() {
               <a href="#experience">Experience ↓</a>
             </div>
           </div>
-          <PlanetIllustration />
+          <div className="planet-reserve" aria-hidden="true" />
+          <noscript>
+            <PlanetIllustration idPrefix="fallback-" />
+          </noscript>
           <div className="hero-bottom">
             <a className="skip-cinema" href="#projects">
               Skip cinematic experience <span aria-hidden="true">↓</span>
             </a>
             <MotionToggle />
             <span className="scene-progress" aria-hidden="true">
-              <span /> SCROLL TO APPROACH
+              <span /> THROUGH THE RINGS
             </span>
           </div>
         </div>

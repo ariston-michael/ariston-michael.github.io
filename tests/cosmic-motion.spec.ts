@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { sceneGeometry, seekScene } from "./helpers/cinema";
 
 const widths = [
   320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560,
@@ -11,18 +12,8 @@ const scale = (page: Page) =>
     );
 
 async function heroGeometry(page: Page) {
-  return page.locator(".hero").evaluate((element) => {
-    const rect = element.getBoundingClientRect();
-    const stage = element.querySelector<HTMLElement>(".hero-stage")!;
-    const pinned = getComputedStyle(stage).position === "sticky";
-    return {
-      top:
-        rect.top +
-        scrollY -
-        (pinned ? parseFloat(getComputedStyle(stage).top) : 0),
-      height: pinned ? (rect.height - stage.offsetHeight) / 0.85 : rect.height,
-    };
-  });
+  const geometry = await sceneGeometry(page);
+  return { top: geometry.top, height: geometry.range / 0.85 };
 }
 async function jump(page: Page, y: number) {
   await page.evaluate(
@@ -39,9 +30,9 @@ async function assertBounded(page: Page) {
       copy.left >= 0 &&
       copy.right <= innerWidth &&
       getComputedStyle(stage).overflowX === "clip" &&
-      Number(getComputedStyle(document.querySelector(".hero-copy")!).zIndex) >
+      Number(getComputedStyle(document.querySelector(".hero")!).zIndex) >
         Number(
-          getComputedStyle(document.querySelector(".planet-scene")!).zIndex,
+          getComputedStyle(document.querySelector(".journey-backdrop")!).zIndex,
         )
     );
   });
@@ -55,8 +46,7 @@ for (const width of widths) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
     await expect.poll(() => scale(page)).toBe(1);
-    const hero = await heroGeometry(page);
-    await jump(page, hero.top + hero.height * 0.5);
+    await seekScene(page, 0.22);
     await expect.poll(() => scale(page)).toBeGreaterThan(1.08);
     const zoomed = await scale(page);
     const limit =
@@ -69,7 +59,7 @@ for (const width of widths) {
             : 3.601;
     expect(zoomed).toBeLessThanOrEqual(limit);
     await assertBounded(page);
-    await jump(page, hero.top + hero.height);
+    await seekScene(page, 0.44);
     await expect.poll(() => scale(page)).toBeGreaterThan(zoomed);
     expect(await scale(page)).toBeLessThanOrEqual(limit);
     await assertBounded(page);

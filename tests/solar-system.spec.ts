@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { seekScene } from "./helpers/cinema";
 import { solarDestinations } from "../lib/solar";
 
 for (const width of [
@@ -110,17 +111,7 @@ test("cinematic pinning, maximum approach, camera depth and reduced motion", asy
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   await expect(page.locator(".hero-stage")).toHaveCSS("position", "sticky");
-  const distance = await page
-    .locator(".hero")
-    .evaluate(
-      (element) =>
-        element.getBoundingClientRect().height -
-        element.querySelector<HTMLElement>(".hero-stage")!.offsetHeight,
-    );
-  await page.evaluate(
-    (y) => scrollTo({ top: y, behavior: "instant" }),
-    distance,
-  );
+  await seekScene(page, 0.44);
   await expect
     .poll(() =>
       page

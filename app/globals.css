@@ -1857,3 +1857,140 @@ html[data-motion="paused"] .scene-progress > span {
     transform: none;
   }
 }
+
+/* One continuous sky owns Saturn, the ring passage and the explorer backdrop. */
+.cosmic-journey {
+  position: relative;
+  isolation: isolate;
+}
+.journey-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: clip;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 75% 40%, #33326a22, transparent 64%);
+}
+.journey-sky {
+  position: sticky;
+  top: 88px;
+  height: calc(100svh - 88px);
+}
+.journey-sky .planet-scene {
+  position: absolute;
+  width: min(66vw, 1050px);
+  right: -3vw;
+  top: 50%;
+  margin: 0;
+  transform: translateY(-50%);
+  z-index: 1;
+  opacity: var(--trail-opacity, 1);
+}
+.journey-sky .planet-window,
+.journey-sky .planet {
+  overflow: visible;
+}
+.journey-sky .planet {
+  width: 100%;
+  margin: 0;
+}
+.journey-sky .planet-scene figcaption {
+  margin: 0;
+  opacity: calc(1 - var(--scene-progress, 0) * 3);
+}
+.journey-sky .planet-body,
+.journey-sky .planet-orbit,
+.journey-sky .planet-atmosphere {
+  opacity: var(--planet-body-opacity, 1);
+}
+.journey-sky [data-ring="0"] {
+  stroke-width: calc(22px - var(--ring-morph, 0) * 18px);
+}
+.journey-sky .ring-frame {
+  stroke-linecap: butt;
+}
+.cosmic-journey .hero,
+.cosmic-journey .solar-section {
+  position: relative;
+  z-index: 1;
+}
+.cosmic-journey .solar-section {
+  transform: translate3d(0, var(--explorer-offset, 0px), 0);
+}
+.cosmic-journey .hero-stage::after {
+  /* Dissolve the copy scrim too: it must never leave a rectangular scene edge. */
+  mask-image: linear-gradient(transparent, #000 12%, #000 78%, transparent);
+}
+.planet-reserve {
+  display: none;
+}
+.cosmic-journey:not([data-scene-ready]) .cinematic-planet {
+  /* Only enhanced decoration waits for its measured phase; copy and the
+     no-JavaScript in-flow illustration are always available. */
+  visibility: hidden;
+}
+@media (min-width: 1024px) and (min-height: 700px) {
+  .cosmic-journey .hero {
+    height: calc(220svh - 88px);
+  }
+}
+@media (max-width: 1023px), (max-height: 699px) {
+  .journey-sky {
+    top: 0;
+    height: 100svh;
+  }
+  .journey-sky .planet-scene {
+    width: 62vw;
+    right: -8vw;
+  }
+}
+@media (max-width: 767px) {
+  .planet-reserve {
+    display: block;
+    width: min(460px, 100%);
+    aspect-ratio: 640 / 630;
+    margin: 40px auto 20px;
+  }
+  .journey-sky {
+    position: relative;
+    height: 100%;
+    padding-top: var(--planet-entry, 760px);
+  }
+  .journey-sky .planet-scene {
+    position: sticky;
+    top: 100px;
+    width: min(460px, calc(100% - 40px));
+    margin-inline: auto;
+    transform: none;
+  }
+  .journey-sky .planet-scene figcaption {
+    font-size: 7px;
+    letter-spacing: 1.1px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-journey .hero {
+    height: auto;
+  }
+  .journey-sky,
+  .journey-sky .planet-scene {
+    position: absolute;
+  }
+  .cosmic-journey .solar-section {
+    transform: none;
+  }
+}
+.journey-sky .planet-orbit {
+  opacity: calc(var(--planet-body-opacity, 1) * 0.16);
+}
+@media (max-width: 767px) {
+  .journey-sky .planet-scene { right: auto; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 767px) {
+  .journey-sky { inset: 0; height: 100%; padding: 0; }
+  .journey-sky .planet-scene {
+    top: var(--planet-entry, 760px);
+    left: 20px;
+    right: 20px;
+  }
+}

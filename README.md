@@ -42,6 +42,8 @@ Installed-Chrome/WebKit host command:
 PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit
 ```
 
+If a managed environment blocks Turbopack’s local CSS-worker port with `EPERM`, `npm run build -- --webpack` produces the same static-export routes using Next.js’s supported alternative compiler. Validation records the exact compiler/command used.
+
 Firefox is configured but this Mac has reported `Could not find profile folder` before launch. CI attempts all three browsers on Ubuntu. See `docs/VALIDATION.md` for actual local/remote evidence and limits; do not treat unavailable checks as passes. Reports/screenshots/build output are ignored. Use `npx playwright show-report` to inspect diagnostics.
 
 ## Structure
@@ -49,6 +51,8 @@ Firefox is configured but this Mac has reported `Could not find profile folder` 
 - `app/`: Home, static project routes, metadata, sitemap, robots, 404 and styles.
 - `components/`: Semantic portfolio sections, original SVG/CSS artwork, optional solar explorer and shared motion controls.
 - `lib/content.ts`, `lib/solar.ts`, `lib/site.ts`: Verified typed content, navigation mapping and canonical metadata.
+- `components/CosmicJourney.tsx`, `lib/cinema.ts`: Shared Saturn-to-trails scene and compatible SVG geometry.
+- `lib/home-entry.ts`: Initial-homepage target policy; anchors and browser history are regression-tested.
 - `scripts/preview.mjs`, `check-export.mjs`: Loopback preview and deployable-artifact checks.
 - `scripts/release-policy.mjs`, `scripts/tests/`: Exact-commit release guard and negative-case tests.
 - `.github/workflows/validate.yml`: Read-only, non-production validation on development/PRs.
