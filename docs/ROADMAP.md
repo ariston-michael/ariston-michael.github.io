@@ -108,3 +108,12 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Inspect eight transition states and capture continuous down/up recording.
 - [x] Run lint, strict types, supported webpack production export, guard/export checks and same-session Lighthouse comparison: performance **99 mobile / 100 desktop**, all other categories 100, CLS 0.
 - Default local Turbopack remains restricted by worker-port EPERM; actual command/results and manual-device limits are recorded in VALIDATION.md. No publication is authorized for this continuation.
+
+## 2026-11-13 — Approved ring-passage publication
+
+- [x] Obtain explicit publication approval (2026-11-12), resolve hosted test-timing findings without weakening assertions, and pass all 444 hosted tests.
+- [x] Merge PR #3 normally and publish exact main SHA `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab` through guarded release run 43366281384.
+- [x] Repeat all 444 browser checks in the successful production workflow (23.7m); preserve root URL, HTTPS and Pages configuration.
+- Future releases still require approval. Release details/rollback guidance and actual public verification are recorded in RELEASE.md/VALIDATION.md.
+
+- [x] Complete public Chrome smoke verification of real ring morph/reversal, painted-position reloads, anchors/history, all routes/assets, mobile touch/axe, motion controls and no-JavaScript content. Public URL: https://ariston-michael.github.io/.

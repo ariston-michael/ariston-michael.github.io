@@ -63,7 +63,7 @@ Read `AGENTS.md` before editing. Architecture, design, decisions, roadmap, evide
 
 ## Release boundary
 
-The owner approved publishing to https://ariston-michael.github.io on 2026-11-07. Pages now uses GitHub Actions; reviewed PR #2 was merged normally at `975d0ebb061c9ccbd9b1d858614f393bd31441d2`. [Release run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196) passed all 270 browser tests and deployed this exact SHA, publishing only `out/`. Development CI cannot deploy.
+The latest development application was approved on 2026-11-12 and published at https://ariston-michael.github.io on 2026-11-13. [PR #3](https://github.com/ariston-michael/ariston-michael.github.io/pull/3) merged normally at `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. [Release run 43366281384](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/43366281384) passed all 444 browser tests and deployed that exact SHA, publishing only `out/`. Development CI cannot deploy.
 
 **Review [docs/RELEASE.md](docs/RELEASE.md) for the release record and rollback procedure.** Future production releases still require owner authorization, a reviewed merge and an exact-SHA manual dispatch. Static export retains root-domain assets and trailing slashes.
 
