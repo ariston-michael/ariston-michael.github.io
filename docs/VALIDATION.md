@@ -261,3 +261,88 @@ Readiness assessment: the resume/content blocker is resolved and required prepar
 ### Hosted WebKit rendering-budget follow-up
 
 The next Ubuntu run [41344930401](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/41344930401) produced **267 passed / 3 failed**. All Firefox checks passed. At 320/360/375px, three concurrent software-rendered WebKit cases received almost no animation frames during the five-second approach assertion: the trace recorded scale 1 for several seconds, then only the first damped frame (1.01064). This differs from the fully passing local WebKit matrix. CI now runs one browser case at a time to give the shared renderer an exclusive budget; local runs keep three workers. Test deadlines, scale/overflow assertions, all three engines, no retries and the complete viewport matrix remain unchanged. This configuration change requires a fresh complete hosted run; its result must be observed before release readiness is asserted.
+
+## Approved production launch — 2026-11-07
+
+The owner requested publication to the existing root URL. Rechecked PR #2 head `d03454d312754eb31d71f1938822828e7bbb56a4`, unchanged main and successful 270/270 PR validation. A fresh signed-out Chrome viewer returned HTTP 200, title `Ariston_Michael.pdf - Google Drive` and the actual Ariston Philip Michael resume. Pages was switched to Actions before a normal PR merge; release main SHA is `975d0ebb061c9ccbd9b1d858614f393bd31441d2`, with the same source tree as the reviewed head.
+
+[Approved release run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196), attempt 1: source/guard/build/export checks passed; **269 passed / 1 failed** browser checks (12.7m). The first narrow-screen WebKit case reproduced the intermittent near-zero animation-frame startup issue (scale 1.01064 versus >1.08). Deployment was correctly skipped. Diagnostics were inspected, and the complete unchanged workflow was manually rerun for the same approved SHA; no test was skipped or assertion weakened. Final deployment/live results follow only after execution.
+
+### Successful release and live verification — 2026-11-08
+
+Release run 42412024196, **attempt 2**, completed successfully for exact main SHA `975d0ebb061c9ccbd9b1d858614f393bd31441d2`: the complete unchanged browser suite passed **270/270 (9.3m)**, all earlier source/guard/build/export stages passed, and official Pages artifact/deployment jobs succeeded. No tests were bypassed.
+
+Post-deployment installed Chrome checks against the public HTTPS site exited 0:
+- Homepage plus all four project-note routes returned HTTP 200, each with one H1 and the correct canonical URL. Referenced scripts/styles, robots, sitemap and social image returned HTTP 200.
+- A missing public path returned HTTP 404 and the custom portfolio recovery link.
+- No document horizontal overflow at 320, 375, 768, 1024, 1440 and 2560 CSS px (900px height). Live 375/1440 screenshots were visually reviewed outside Git.
+- Live WCAG 2 A/AA, 2.1 AA and 2.2 AA axe scans at 375/1440 reported zero violations.
+- Keyboard skip-to-content focus, cinematic skip, bounded scroll approach and reversal, pause/resume, all nine solar-world controls and live reduced-motion changes passed.
+- Secure external Resume URL/target/rel attributes passed at all six checked widths. The actual external PDF was independently reverified signed-out before launch.
+- No-JavaScript public content/direct navigation remained available. No page errors were observed.
+
+Physical devices, assistive technology and browser-toolbar zoom remain the previously documented manual limits. Existing moderate development lint-chain advisories and optional content TODOs are unchanged. The portfolio is published and ready to share; future releases still require approval.
+
+## Continuous ring passage and homepage restoration — 2026-11-11
+
+Started with a clean development tree at `5af9f33d1a22eba5d1100d6bd19f649e9a7da1e6`; safe `git pull --ff-only origin development` reported Already up to date. This continuation changes development only: no merge, main write, Pages setting/workflow change, deployment or dependency/lockfile change. Personal facts and links are preserved.
+
+### Reproduction, fixes and actual checks
+
+The unchanged baseline in installed Chrome restored a hashless reload at y=3559 (middle) and y=6218 (bottom), with native restoration set to auto. WebKit returned to zero for the same baseline cases. The initial-document guard now distinguishes a fresh homepage's intended hero/decoded fragment from Back/Forward navigation. It remains manual until an actual interaction/popstate because releasing at pageshow alone failed, and the departing page must not race the incoming reload by resetting the shared entry mode. Fresh anchor entries also need this guard against late WebKit restoration. Actual user scrolling during deferred hydration is preserved.
+
+The same six compatible cubic ring paths morph into straight trails, rotating/thinning as the planet fades. A shared sky/gradient and vertically dissolving copy scrim span hero/explorer. Fixed-coordinate SVG gradients keep straight, zero-height paths visible. Enhanced decoration waits for measured initialization; text/links and the uniquely identified no-JavaScript illustration remain available. No graphics library or React frame updates were added.
+
+| Executed command | Actual final result |
+| --- | --- |
+| `npm ci` | Exit 0; locked installation, 369 packages added |
+| `npm run lint` | Exit 0; zero warnings/errors |
+| `npm run typecheck` | Exit 0; route generation and strict TypeScript passed |
+| `npm run build` | Turbopack failed with local CSS-worker port binding EPERM, both sandboxed and escalated; not reported as a pass |
+| `npm run build -- --webpack` | Exit 0; production static export, 10/10 generation entries |
+| `npm run check:export` | Exit 0; 5 canonical routes / 66 webpack-output files, correct root assets, no PDFs/secrets/dependency folders/symlinks |
+| `npm run test:release` | 9 passed; production guards unchanged |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **296 passed (4.6m)**, exit 0, zero retries |
+
+Export verification now decodes encoded `_next` asset URL segments before filesystem lookup: webpack correctly emits `%5Bslug%5D` in URLs for literal `[slug]` directories. Actual project routes/assets also pass browser checks. The supported alternate compiler was necessary because of this environment's pre-existing Turbopack restriction; default build/CI configuration was preserved.
+
+The final matrix contains 148 cases per engine. New morph/reversal and real top/middle/bottom reload/fragment checks cover all 13 widths (320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560px) at 430px and 1000px heights. Assertions verify node continuity, straight geometry, bounded camera approach, seamless shared containment, no horizontal overflow and exact reverse geometry. Existing tall/short layout, automated WCAG/label-in-name, routes/SEO/assets, keyboard, touch/landscape, star proximity, pause/resume, idle RAF convergence, reduced motion, no-JavaScript and external CTA tests remain passing.
+
+Native project-page Back/Forward preserves the actual departure position; fragment traversal waits for navigation to finish; the existing client-side project-return Link retains its explicit projects target and document time origin. Deferred-script tests verify hidden enhanced decoration before measurement, correct initialized phase on explicit fragment loads at 375/1440, and preservation of early wheel scrolling after hydration. Initial diagnostic failures led to actual restoration/gradient fixes, preserved ambient float/camera depth, and correct selection of the visible no-JavaScript illustration. No assertions were disabled, retries added or browsers excluded from the requested pair.
+
+### Visual review and recording
+
+Captured and inspected all eight requested 1440x900 states: entry (p=0), midway approach (.22), maximum approach (.44), initial straightening (.50), half morph (.62), full trails (.82), crossover (.93), and final explorer (past 1). Also inspected the full-page 375px composition. The background remains continuous, essential text/buttons remain readable, and clipping is confined to decoration.
+
+A separate continuous wheel-driven down/up WebM recording reaches scroll 2000 / progress .99992 / morph 1, then returns to scroll 0 / progress .00015 / morph 0. Review images, recording, both baseline/final Lighthouse JSON reports and the complete final browser log are saved under ignored `test-results/cinematic-review/`; no generated artifacts are committed. The recording is captured for review, not a claim of physical-device frame-rate certification.
+
+### Same-session Lighthouse comparison
+
+Lighthouse **13.6.0**, installed Chrome, static preview on loopback 3201. Baseline and final both use webpack, default simulated mobile and preset desktop, headless Chrome, sequential runs with no competing browser suite. All four audits exited 0.
+
+| Metric | Baseline mobile | Final mobile | Baseline desktop | Final desktop |
+| --- | --- | --- | --- | --- |
+| Performance | 99 | 99 | 100 | 100 |
+| Accessibility | 100 | 100 | 100 | 100 |
+| Best practices | 100 | 100 | 100 | 100 |
+| SEO | 100 | 100 | 100 | 100 |
+| LCP | 1.5s | 1.7s | 0.3s | 0.4s |
+| Total blocking time | 40ms | 10ms | 0ms | 0ms |
+| CLS | 0 | 0 | 0 | 0 |
+| Local uncompressed transfer | 627KiB | 647KiB | 627KiB | 647KiB |
+
+The added geometry/controller, CSS and static fallback cost about 20KiB. Scores remain unchanged; LCP measured +0.2s mobile/+0.1s desktop and mobile blocking time decreased by 30ms. These are simulated local lab measurements with normal variance, not field or low-powered-device guarantees. No dependency or remote imagery/font request was added.
+
+### Limits and publication boundary
+
+Actual Safari app/physical devices, assistive technology, browser-toolbar zoom, browser/OS session restart and low-powered-device frame pacing were not newly verified. WebKit and Chrome are the executed engines; Firefox was not required or rerun locally. JavaScript-disabled content retains native browser restoration. Default Turbopack remains blocked locally; the successful supported webpack static build is reported explicitly. Development CI may independently run the default compiler/all three engines after push; its result must not be inferred from these local checks.
+
+All requested feasible implementation/local checks are complete. This pass is committed/pushed to development for review only; the live site remains the previous approved production release.
+
+## Publication preflight — 2026-11-12
+
+The owner authorized publication of the latest development version. Hosted [development run 43074211419](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/43074211419) completed source/default-Turbopack build/export checks successfully and actually executed all three engines: **442 passed / 2 failed (25.5m)**. The two WebKit findings involved renderer startup before a timed seek and capturing unfinished wheel input (25px remained); no production action was taken while this check was red.
+
+Test setup now waits for measured scene readiness and two native animation frames, and sends early wheel input over a painted visible page, waiting for its requested 400px completion before testing preservation. Existing thresholds, all browsers, deadlines and zero retries are preserved. Targeted Chrome/WebKit verification passed **4/4** after the changes; the complete hosted checks must pass before merge/publication. No application/runtime/dependency/workflow change is included in this timing refinement.
+
+`CI=true PLAYWRIGHT_CHANNEL=chrome npm test -- --project=webkit --grep 'continuous reversible ring passage at 320x430|early user scrolling' --repeat-each=3` completed **6 passed (17.9s)** with one worker. This explicit stability check does not enable retries in the test configuration. Lint and strict typecheck also passed.

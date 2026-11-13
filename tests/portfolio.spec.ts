@@ -298,7 +298,7 @@ test("content remains usable without JavaScript", async ({ browser }) => {
   await expect(page.locator(".motion-toggle").first()).toBeHidden();
   expect(
     await page
-      .locator(".planet")
+      .locator(".planet:visible")
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
   await page.getByRole("link", { name: "Explore AirControl" }).click();

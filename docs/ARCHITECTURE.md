@@ -8,21 +8,21 @@
 - No Motion dependency: CSS supplies ambient twinkle/float/reveals; a small imperative controller supplies desktop pointer parallax and hero-relative scroll motion. No WebGL.
 
 ## Rendering and content
-`app/page.tsx` composes semantic server components: SiteHeader, Starfield, PlanetIllustration, Hero, SolarSystem, FeaturedProjects/ProjectCard, About, Experience, Skills, Contact, and Footer. `lib/content.ts` holds readonly typed project records, skill groups, verified-scope project notes, experience, achievements, and the owner-derived GitHub profile URL. Personal claims are sourced only from `docs/ABOUT_ME.md`; missing URLs use honest availability messages, while factual TODOs remain documented without fabricated destinations.
+`app/page.tsx` composes semantic server components: SiteHeader, Starfield, CosmicJourney (Hero, PlanetIllustration and SolarSystem), FeaturedProjects/ProjectCard, About, Experience, Skills, Contact, and Footer. `lib/content.ts` holds readonly typed project records, skill groups, verified-scope project notes, experience, achievements, and the owner-derived GitHub profile URL. Personal claims are sourced only from `docs/ABOUT_ME.md`; missing URLs use honest availability messages, while factual TODOs remain documented without fabricated destinations.
 
 There are 72 deterministic stars generated using a seeded integer hash at build time; only 36 are visible on small screens. CSS animates opacity only; the original SVG planet floats with a transform. No particle components hydrate or attach per-star event listeners. MotionToggle changes a document data attribute to pause/resume animation; CosmicMotion is the null-rendering client controller for visual effects; SolarSystem is a small client component whose selection state changes only on activation. A `useSyncExternalStore` subscription keeps the button’s state accurate across client navigation. A no-JavaScript fallback disables movement and hides the inactive pause control. The system reduced-motion preference always takes precedence. Scroll reveals use progressive CSS view timelines with fully opaque content and a static fallback. There is no hidden content awaiting JavaScript.
 
 System fonts avoid external requests and font-build network dependencies. The illustration has an SVG title/description; decorative stars and project glyphs are hidden from assistive technology. The layout includes a skip link, logical headings, semantic landmarks, visible focus, and usable anchor navigation without JavaScript. Owner-verified GitHub, LinkedIn, and mailto links are functional. Resume uses the anonymously verified Google Drive viewer in a new tab, with no hosted PDF.
 
-## Static export and future deployment
+## Static export and deployment
 - `next.config.ts`: `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true`.
 - User-site root URL: `https://ariston-michael.github.io`; no repository basePath or assetPrefix.
 - Production output is `out/`; no server runtime, SSR, server actions, request handlers, or environment variables are required.
 - Metadata includes title, description, canonical URL, Open Graph, Twitter summary, theme color, original favicon, and a 1200×630 original PNG sharing card. Static `robots.txt` and `sitemap.xml` cover the homepage and all four project-note routes.
 - The root `index.html` remains byte-for-byte unchanged as the legacy production source. It is not an input to the Next.js application.
-- No workflow or production Pages setting is modified in this milestone.
+- Production Pages uses GitHub Actions following owner approval on 2026-11-07. The manual-only release workflow validates the exact approved main SHA before publishing `out/`.
 
-Phase 4 requires owner approval before merging or publishing. A future Pages workflow should use the lockfile (`npm ci`), run lint/typecheck/build, upload **only `out/`** with the official Pages artifact tooling, then deploy with the required Pages environment and least-privilege permissions. Ensure `_next/` assets are served without Jekyll processing (the artifact workflow handles static output; branch-based hosting would need `.nojekyll`). Validate the canonical root URL, assets, routes, missing-link resolution, accessibility, and mobile performance before launch. Do not upload the source root or run `next start`.
+Production releases require owner approval before merging or publishing. The prepared workflow uses the lockfile (`npm ci`), runs lint/typecheck/build/browser/export checks, uploads **only `out/`** with official Pages artifact tooling, then deploys through the Pages environment with least-privilege permissions. Artifact deployment serves `_next/` without Jekyll processing. Do not upload the source root or run `next start`. See `RELEASE.md` for the current release record and rollback procedure.
 
 ## Commands
 - `npm ci`: reproducible installation.
@@ -52,7 +52,11 @@ Verified contact constants live in `lib/content.ts`; `ResumeLink` is reused in h
 
 The controller gates fine-pointer/hover effects at 1024px. Stars now use viewport-fixed coordinates; cached normalized positions are transformed with the same camera scale/drift used visually, so proximity stays aligned while scrolling. No geometry reads occur in the animation loop.
 
-The hero has a full-width `.hero-stage` and foreground copy with a separate visual scrim. Pinning applies only for `(min-width:1024px) and (min-height:700px)`. Its range is measured hero height minus stage height; progress begins at the hero’s document top minus the stage’s sticky offset. Other viewports use 85% of measured hero height and no pinning. Progress is clamped, damped and eased with smoothstep before applying 3.6/3.3 desktop, 1.95 tablet/short-screen, or 1.55 phone zoom. The stage clips decorative art at viewport bounds while foreground controls remain above it; the caption fades as the camera approaches. There is no event prevention, scroll snapping, global sticky scene or runtime graphics dependency.
+`CosmicJourney` composes a shared `journey-backdrop`/sticky sky, Hero and SolarSystem. The illustration lives in this backdrop instead of the clipped hero stage; only decoration is clipped at the outer journey boundary. The scrim has a vertical mask and both foreground sections stay transparent, preserving one sky across the crossover. A mobile reservation slot supplies the correct entry geometry without reading layout during frames. With JavaScript disabled a uniquely prefixed, in-flow SVG is shown instead of the inactive shared backdrop.
+
+`lib/cinema.ts` defines the normalized approach/morph/exit phases and compatible cubic SVG geometries. The same six half-ring DOM paths survive from ellipse to straight trail. CosmicMotion caches their references and only updates path coordinates/rotation while morph progress changes. Fixed-coordinate gradients handle the final zero-height paths. Opacity, scale and perspective are coordinated with the same damped progress; no separate timeline, React frame state, library, WebGL or continuous idle loop.
+
+Tall desktops use a 220svh hero and an 88px-offset stage. The normalized range is hero height minus stage height plus 55vh for crossover. Other wide/short screens use 85% of hero height plus 40vh. Phones start when the reserved illustration enters around the middle of the viewport and use the larger of 90vh or 75% of hero height. Geometry is measured on resize/visibility changes, not each scroll event. Approach peaks at 3.6/3.3 desktop, 1.95 tablet/short-screen or 1.55 phone, then relaxes as rings straighten. Initial explicit anchor/history entries initialize at their measured phase instead of animating from an incorrect zero. Enhanced decoration waits for `data-scene-ready` after measurement/render; text and the no-JavaScript static illustration do not wait.
 
 `lib/motion.ts` shares the existing motion-change event between the controller and pause control. Live media-query changes, pause/resume, and navigation trigger consistent setup/cleanup. Reduced-motion and paused CSS also force neutral transforms and hide proximity halos immediately; no-JavaScript output defaults to neutral interactive transforms with existing animation fallback disabled.
 
@@ -62,7 +66,7 @@ The hero has a full-width `.hero-stage` and foreground copy with a separate visu
 
 A permanent nine-link navigation list remains available independently of the map. Education/achievement anchors are added to existing content. A noscript style hides inactive map buttons; all destination anchors and portfolio content still work without JavaScript. Reduced-motion users also receive an unpinned hero with static art. Shared pause/resume continues to control both hero and footer controls without breaking solar selection.
 
-The existing static export, canonical URLs, root asset paths and production boundaries are unchanged. No dependencies, APIs, deployment workflow or Pages settings were added. The exact `public/resume/Ariston_Michael.pdf` remains absent; `resumeUrl` remains null. Resume-derived job details, FireGuard XR expansion and skill corrections are pending source verification, not inferred from the requested topics.
+Static export, canonical URLs and root asset paths are preserved. No motion or graphics dependency was added. Resume access uses the verified external Drive viewer; the repository contains no redundant PDF. Source-supported experience, FireGuard XR and skills are recorded in ABOUT_ME.md.
 
 ## Pre-release automation
 
@@ -70,10 +74,16 @@ Read-only development/PR CI runs locked installation, lint, strict type checking
 
 A separate manual-only release workflow is prepared for main, with explicit boolean approval, full-SHA equality, exact checkout, Pages-mode verification and no automatic triggers. Official GitHub actions are pinned to verified release commits. Pages enablement/generator mutation is disabled; settings are never changed by the workflow. Build has contents/read and pages/read; only deploy gets pages/write and OIDC, after every check succeeds. Serialized deployments, timeouts, failure summaries and retained browser diagnostics support review/rollback.
 
-Current production source was read as legacy main/root, so the owner must authorize switching Pages to Actions before merging the reviewed release PR. A normal origin/main merge into development reconciles the historical divergence without rewriting history or touching main; the source-tree hash must remain unchanged for this particular merge. See `RELEASE.md` for the exact approval/launch/rollback procedure. No production configuration change or deployment is part of this preparation.
+Preparation reconciled origin/main into development without changing the source tree. On 2026-11-07 the owner authorized publication; Pages was switched from legacy main/root to Actions before normal merging of reviewed PR #2. The release tree matches reviewed development exactly. See `RELEASE.md` for release evidence and the future approval/rollback procedure.
 
 ## Cross-browser release refinements
 
 The selected solar-world boundary is opaque cyan. Header targets have a 45px minimum, retaining a physical margin above 44px under Firefox’s fractional layout. Mobile Sun artwork uses its actual 64px visual/layout size instead of an 80px pre-transform flex box, preventing Firefox’s narrow-screen scroll overflow without clipping content.
 
 CosmicMotion damping is now based on elapsed RAF timestamps (110ms response, frame delta capped at 64ms), with timestamp reset on idle, pause/cleanup and visibility changes. This preserves the original 60fps feel but avoids frame-count-dependent settling on slow/shared renderers. Existing strict reversal and idle-stop checks remain unchanged; no test retry or reduced assertion threshold was introduced.
+
+## Homepage entry and scroll restoration
+
+`lib/home-entry.ts` supplies a small inline script in the initial document head, before hydration. Fresh/reloaded homepage documents initialize at the hero when hashless or resolve the decoded explicit target at DOMContentLoaded/pageshow. Chrome and WebKit can apply restoration after those lifecycle events, so the initial entry remains manual until the first real pointer/touch/wheel/key interaction or popstate, then restores native automatic mode. The departing document does not race an incoming reload by changing their shared entry mode. No history state is rewritten and the application maintains no session-storage position cache.
+
+Back_forward documents and bfcache returns retain native saved-position behavior. The bootstrap does not rerun on App Router transitions; the existing project-return Link keeps its explicit `/#projects` target. No initialization correction occurs after a real interaction or changed target. No-JavaScript content remains available with browser-native restoration. This deliberate fresh-homepage policy implements the owner's requested reload/anchor behavior rather than a global router scroll reset.

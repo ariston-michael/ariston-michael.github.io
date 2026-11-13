@@ -94,3 +94,23 @@
 ## 2026-11-01 — Serialize hosted browser cases
 
 Ubuntu's shared software-rendered WebKit starved animation frames when three narrow-screen cases ran concurrently, while all local WebKit cases and hosted Firefox passed. Use one CI worker and retain three local workers. Preserve strict motion deadlines, all assertions, every browser and zero retries; resource isolation gives the animation checks a meaningful rendering budget instead of concealing failures with timeout inflation.
+
+## 2026-11-07 — Approved first publication
+
+The owner requested immediate publication at the existing GitHub Pages address after reviewing the green candidate. Rechecked unchanged PR/main SHAs and the 270-test successful run, then verified the actual Drive PDF in a fresh signed-out browser. Switched Pages to Actions before merging PR #2 normally, preserving HTTPS/root URL. Dispatched the guarded workflow for exact main SHA `975d0ebb061c9ccbd9b1d858614f393bd31441d2`; release build/browser checks remain mandatory. Development was fast-forwarded normally to the merge. Future publication still requires authorization; this approval does not enable automatic deployment.
+
+## 2026-11-11 — Shared SVG ring-to-trail journey
+
+Move Saturn from the clipped hero into one backdrop shared with the solar explorer. Reuse six compatible cubic half-ring paths, interpolating geometry and coordinating rotation/scale/opacity with a single bounded progress model. This preserves continuity and reversibility without GSAP/WebGL or another dependency. Fixed user-space gradients prevent zero-height straight paths from disappearing; a vertically dissolving scrim prevents a rectangular section seam. Add only 40vh to desktop pinning; phones stay unpinned. Paused/reduced-motion/no-JavaScript variants retain readable static content.
+
+## 2026-11-11 — Scope reload restoration to homepage documents
+
+Reproduced native Chrome restoration on a hashless reload at y=3559 and y=6218; WebKit returned to top in the same baseline check. A pre-hydration script scopes manual restoration to fresh hashless homepage documents and releases it on interaction/popstate. Releasing at pageshow alone failed in Chrome because restoration can occur afterward. Do not let a departing page set automatic mode on an incoming reload. Fresh explicit hashes also need an initial-entry guard: WebKit could override a DOM-ready anchor with late restoration. Resolve their target at DOM readiness/pageshow and release on interaction; do not reset scroll on route changes, rewrite history state, or suppress back_forward/bfcache behavior. Browser regressions exercise actual reloads and real native/client navigation.
+
+## 2026-11-11 — Local compiler restriction
+
+Default Turbopack static build attempted both inside and outside the sandbox but its CSS worker could not bind a local port (EPERM). Validate production static export with the supported `next build --webpack` mode and report that exact command; retain the repository's default build/CI configuration and dependency lockfile. Baseline and changed Lighthouse measurements use the same compiler so transfer comparisons are meaningful.
+
+## 2026-11-12 — Synchronize browser preconditions before release
+
+Owner authorized publishing the latest development version. Hosted CI for 3ba6c64 completed 442/444 tests; two WebKit timing checks failed. A cold compositor had not presented its first frame before the timed approach, and the early-input test captured an intermediate wheel position (375px instead of the requested 400px). Wait for scene readiness/two native animation frames before seeking, and a painted page/pointer target/completed 400px wheel movement before capturing the baseline. Keep all scale, displacement and five-second assertions unchanged, with no test retries or exclusions. Application runtime is unchanged.

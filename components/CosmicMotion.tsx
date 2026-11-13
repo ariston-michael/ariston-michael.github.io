@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { cinemaAt, ringPath } from "@/lib/cinema";
 import { MOTION_CHANGE_EVENT } from "@/lib/motion";
 
 const clamp = (value: number, min = 0, max = 1) =>
@@ -11,7 +12,16 @@ export function CosmicMotion() {
     const field = document.querySelector<HTMLElement>(".starfield");
     if (!field) return;
     const hero = document.querySelector<HTMLElement>(".hero");
-    const planet = hero?.querySelector<HTMLElement>(".planet-approach");
+    const journey = document.querySelector<HTMLElement>(".cosmic-journey");
+    const planet = journey?.querySelector<HTMLElement>(".planet-approach");
+    const reserve = hero?.querySelector<HTMLElement>(".planet-reserve");
+    const rings = Array.from(
+      journey?.querySelectorAll<SVGPathElement>("[data-ring]") ?? [],
+    );
+    const ringFrames = Array.from(
+      journey?.querySelectorAll<SVGGElement>(".ring-frame") ?? [],
+    );
+    let lastMorph = -1;
     const stage = hero?.querySelector<HTMLElement>(".hero-stage");
     const pinned = matchMedia("(min-width: 1024px) and (min-height: 700px)");
     const layers = Array.from(
@@ -75,8 +85,18 @@ export function CosmicMotion() {
       }
       scrollRange =
         pinned.matches && stage
-          ? Math.max(1, heroHeight - stage.offsetHeight)
-          : heroHeight * 0.85;
+          ? Math.max(1, heroHeight - stage.offsetHeight + innerHeight * 0.55)
+          : heroHeight * 0.85 + innerHeight * 0.4;
+      if (narrow.matches && reserve && journey) {
+        const slot = reserve.getBoundingClientRect();
+        const entry = slot.top + window.scrollY;
+        journey.style.setProperty(
+          "--planet-entry",
+          `${(slot.top - journey.getBoundingClientRect().top).toFixed(2)}px`,
+        );
+        heroTop = entry - innerHeight * 0.52;
+        scrollRange = Math.max(innerHeight * 0.9, heroHeight * 0.75);
+      }
       scaleLimit = pinned.matches
         ? innerWidth >= 1920
           ? 2.3
@@ -118,9 +138,11 @@ export function CosmicMotion() {
       const desiredProximity = inside && pointerEnabled ? 1 : 0;
       proximity += (desiredProximity - proximity) * damping;
       progress += (targetProgress - progress) * damping;
+      const scene = cinemaAt(progress);
+      const camera = scene.approach;
       layers.forEach((layer, index) => {
         const depth = (index + 1) / 3;
-        layer.style.transform = `translate3d(${(offsetX * depth).toFixed(3)}px,${(offsetY * depth - progress * depth * 18).toFixed(3)}px,0) scale(${(1 + progress * depth * 0.12).toFixed(5)})`;
+        layer.style.transform = `translate3d(${(offsetX * depth).toFixed(3)}px,${(offsetY * depth - camera * depth * 18).toFixed(3)}px,0) scale(${(1 + camera * depth * 0.12).toFixed(5)})`;
       });
       if (pointerEnabled || proximity > 0.001) {
         for (const star of stars) {
@@ -128,17 +150,15 @@ export function CosmicMotion() {
             cursorX -
             (fieldLeft +
               fieldWidth / 2 +
-              (star.x - 0.5) * fieldWidth * (1 + progress * star.depth * 0.12) +
+              (star.x - 0.5) * fieldWidth * (1 + camera * star.depth * 0.12) +
               offsetX * star.depth);
           const dy =
             cursorY -
             (fieldTop +
               fieldHeight / 2 +
-              (star.y - 0.5) *
-                fieldHeight *
-                (1 + progress * star.depth * 0.12) +
+              (star.y - 0.5) * fieldHeight * (1 + camera * star.depth * 0.12) +
               offsetY * star.depth -
-              progress * star.depth * 18);
+              camera * star.depth * 18);
           const distance = dx * dx + dy * dy;
           const glow =
             distance < 19600 ? (1 - distance / 19600) * proximity : 0;
@@ -151,22 +171,49 @@ export function CosmicMotion() {
         }
       }
       if (planet) {
-        planet.style.setProperty(
-          "--saturn-scale",
-          (1 + progress * progress * (3 - 2 * progress) * scaleLimit).toFixed(
-            5,
-          ),
-        );
+        const zoom =
+          (1 + scene.approach * scaleLimit) * (1 - scene.morph * 0.65);
+        planet.style.setProperty("--saturn-scale", zoom.toFixed(5));
         planet.style.setProperty(
           "--saturn-y",
-          `${(-progress * shiftLimit).toFixed(3)}px`,
+          `${(-scene.approach * shiftLimit + scene.morph * 45).toFixed(3)}px`,
         );
-        planet.style.setProperty(
-          "--saturn-opacity",
-          (1 - progress * 0.12).toFixed(4),
+        planet.style.setProperty("--saturn-opacity", "1");
+      }
+      if (journey) {
+        journey.style.setProperty("--scene-progress", progress.toFixed(5));
+        journey.style.setProperty("--ring-morph", scene.morph.toFixed(5));
+        journey.style.setProperty(
+          "--planet-body-opacity",
+          (1 - Math.min(1, scene.morph / 0.7)).toFixed(5),
+        );
+        journey.style.setProperty(
+          "--trail-opacity",
+          (1 - scene.exit).toFixed(5),
+        );
+        journey.style.setProperty(
+          "--explorer-offset",
+          `${((1 - scene.exit) * 12).toFixed(3)}px`,
         );
       }
-      if (hero) hero.style.setProperty("--scene-progress", progress.toFixed(5));
+      // Six compatible cubic paths; do not allocate strings/write geometry while idle.
+      if (Math.abs(scene.morph - lastMorph) > 0.00001) {
+        for (const path of rings)
+          path.setAttribute(
+            "d",
+            ringPath(
+              Number(path.dataset.ring),
+              path.dataset.front === "true",
+              scene.morph,
+            ),
+          );
+        for (const group of ringFrames)
+          group.setAttribute(
+            "transform",
+            `rotate(${(-26 + scene.morph * 19).toFixed(3)} 320 267)`,
+          );
+        lastMorph = scene.morph;
+      }
       const unsettled =
         Math.abs(targetX - cursorX) + Math.abs(targetY - cursorY) > 0.2 ||
         Math.abs(desiredX - offsetX) + Math.abs(desiredY - offsetY) > 0.02 ||
@@ -200,7 +247,22 @@ export function CosmicMotion() {
       planet?.style.removeProperty("--saturn-scale");
       planet?.style.removeProperty("--saturn-y");
       planet?.style.removeProperty("--saturn-opacity");
-      hero?.style.removeProperty("--scene-progress");
+      for (const property of [
+        "--scene-progress",
+        "--ring-morph",
+        "--planet-body-opacity",
+        "--trail-opacity",
+        "--explorer-offset",
+      ])
+        journey?.style.removeProperty(property);
+      for (const path of rings)
+        path.setAttribute(
+          "d",
+          ringPath(Number(path.dataset.ring), path.dataset.front === "true"),
+        );
+      for (const group of ringFrames)
+        group.setAttribute("transform", "rotate(-26 320 267)");
+      lastMorph = -1;
     }
     function configure() {
       reset();
@@ -213,6 +275,7 @@ export function CosmicMotion() {
       document.documentElement.removeEventListener("pointerleave", leave);
       window.removeEventListener("blur", leave);
       window.removeEventListener("scroll", updateScroll);
+      measure();
       if (enabled) {
         if (pointerEnabled) {
           window.addEventListener("pointermove", move, { passive: true });
@@ -221,8 +284,13 @@ export function CosmicMotion() {
         }
         if (planet || pointerEnabled)
           window.addEventListener("scroll", updateScroll, { passive: true });
-        measure();
+        // Explicit fragment/history entries begin at their actual scene phase.
+        progress = targetProgress;
+        cancelAnimationFrame(frame);
+        frame = 0;
+        render(performance.now());
       }
+      journey?.setAttribute("data-scene-ready", "");
     }
     function visibility() {
       if (document.hidden) {
@@ -234,6 +302,7 @@ export function CosmicMotion() {
     const observer = new ResizeObserver(measure);
     observer.observe(field);
     if (hero) observer.observe(hero);
+    if (journey) observer.observe(journey);
     reduced.addEventListener("change", configure);
     pointer.addEventListener("change", configure);
     narrow.addEventListener("change", configure);

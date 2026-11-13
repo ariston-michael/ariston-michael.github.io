@@ -27,15 +27,18 @@ Favor a single readable column on phones, progressively enhanced grids on tablet
 ## To verify
 Final brand font, exact accent colors, hero copy, optional portrait and actual project imagery. GitHub, LinkedIn and email are owner-verified; the Drive resume viewer was verified signed-out on 2026-11-01. No PDF is hosted locally.
 
-## Cinematic hero and camera — current implementation
+## Continuous ring passage — current implementation
 
-The hero uses original SVG/CSS artwork and interaction principles only; no Apple source, imagery, or page design is copied. The Saturn material has layered cloud bands, atmospheric light, and its original ring geometry.
+One shared sky spans the hero and solar explorer. Saturn's original blue/violet material and ring orientation remain; the same six cubic half-ring paths flatten into long parallel contrails. The planet dissolves while the ring plane rotates from −26° toward −7°, expands into trails and settles into a softer perspective before fading over the explorer. A continuous atmospheric gradient and the existing fixed seeded stars replace the separate section backgrounds. The copy scrim dissolves vertically rather than ending in a rectangular edge.
 
-- At widths ≥1024px and heights ≥700px, a full-bleed stage pins below the 88px navigation for a bounded extra 80svh. It never controls wheel/touch scrolling or snaps the page. A visible Skip cinematic experience link jumps directly to projects.
-- Hero-relative progress uses smoothstep easing and damped RAF updates. Desktop scale reaches 3.6 (3.3 on ultrawide displays), so the rings pass beyond the viewport. A stage clip contains decorative graphics; a dark scrim and separate foreground layer keep name, role, links and controls readable/clickable throughout.
-- Tablets and short desktop viewports have no pinning and reach 1.95 scale. Phones use a stacked, unpinned scene capped at 1.55. This gives noticeable motion without forcing a long sequence on small screens.
-- The three deterministic star layers stay viewport-fixed, with up to 12% camera-depth scale and 18px drift at maximum depth. Fine-pointer hover at ≥1024px retains ±8px/±6px parallax and subtle proximity lift within 140px. Phones show 36 of the original 72 points.
-- Reduced motion and no-JavaScript mode remove pinning and use neutral static artwork. Pause returns movement to neutral without collapsing scroll geometry under the visitor; the skip link remains available. RAF work stops at convergence and while hidden.
+- One measured 0–1 journey drives approach (0–0.44), overlapping ring morph (0.42–0.82), and exit/explorer crossover (0.78–1). These phases reverse naturally from actual scroll position; no wheel/touch interception or snapping.
+- Tall desktop pinning remains bounded: the hero is 220svh minus the 88px header, with a 120svh pinned travel distance (40svh more than the previous approach). The final crossover continues beyond the pin as the explorer enters. Skip cinematic experience still links straight to projects.
+- Peak zoom remains 3.6 desktop / 3.3 ultrawide, 1.95 tablet/short desktop and 1.55 phone. The camera then relaxes its scale as the ring curves straighten, retaining recognizable geometry instead of crossfading to unrelated lines.
+- Phones keep a stacked, unpinned hero. A reserved illustration slot anchors the shared artwork, which passes behind the explorer with a shorter, restrained choreography. Foreground text, focus and links stay above pointer-transparent decoration.
+- Original 72 stars, 36 visible on phones, retain layered depth, gentle CSS twinkle and gated desktop pointer proximity. No new animation/graphics dependency.
+- Pause resets the illustration to a readable static state without collapsing document geometry. Reduced motion removes pinning and all scroll/pointer effects. No JavaScript uses the original in-flow static illustration and permanent direct navigation.
+
+SVG ring gradients use fixed user-space coordinates so fully straight, zero-height path bounds remain visible. A flattened ring is a real continuation of the initial path, not an independently appearing horizontal stripe. Screenshots and a down/up recording are retained outside Git for visual review.
 
 ## Solar-system exploration
 

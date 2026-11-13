@@ -1,4 +1,18 @@
-# Production release procedure — approval required
+# Production release procedure
+
+## Approved first release — completed 2026-11-08
+
+- Public URL: https://ariston-michael.github.io/
+- Owner approved immediate publication on 2026-11-07 after the pre-release report.
+- Reviewed development head: `d03454d312754eb31d71f1938822828e7bbb56a4`; PR validation passed 270/270 before approval.
+- Rechecked the unchanged PR/main heads and signed-out public resume before release.
+- Switched Pages from legacy main/root to GitHub Actions before normally merging [PR #2](https://github.com/ariston-michael/ariston-michael.github.io/pull/2).
+- Published main SHA: `975d0ebb061c9ccbd9b1d858614f393bd31441d2`. Its source tree exactly matches the reviewed development head (`3989d83eb616a39ed47f7cf5bfca5e74cdd6f533`). No force push or history rewrite.
+- [Approved release run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196), attempt 2: build and deploy succeeded, including all 270 browser tests. Attempt 1 correctly blocked deployment after 269/270 tests, with the first WebKit case hitting the documented startup frame starvation. The full unchanged workflow was rerun; no checks were bypassed.
+- HTTPS and the user-site root URL are preserved. Development was fast-forwarded to the release merge; release-record documentation continues on development.
+- The legacy root index remains available for authorized rollback. Future production changes still require explicit owner approval and exact-SHA manual dispatch; development documentation pushes do not deploy.
+
+The initial preparation and reusable release/rollback instructions below retain their historical context. Current Pages source is Actions, so future releases do not repeat the legacy-source switch. Live verification evidence is recorded in VALIDATION.md.
 
 ## Current state inspected on 2026-11-01
 
