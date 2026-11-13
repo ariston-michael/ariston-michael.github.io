@@ -110,3 +110,7 @@ Reproduced native Chrome restoration on a hashless reload at y=3559 and y=6218; 
 ## 2026-11-11 — Local compiler restriction
 
 Default Turbopack static build attempted both inside and outside the sandbox but its CSS worker could not bind a local port (EPERM). Validate production static export with the supported `next build --webpack` mode and report that exact command; retain the repository's default build/CI configuration and dependency lockfile. Baseline and changed Lighthouse measurements use the same compiler so transfer comparisons are meaningful.
+
+## 2026-11-12 — Synchronize browser preconditions before release
+
+Owner authorized publishing the latest development version. Hosted CI for 3ba6c64 completed 442/444 tests; two WebKit timing checks failed. A cold compositor had not presented its first frame before the timed approach, and the early-input test captured an intermediate wheel position (375px instead of the requested 400px). Wait for scene readiness/two native animation frames before seeking, and a painted page/pointer target/completed 400px wheel movement before capturing the baseline. Keep all scale, displacement and five-second assertions unchanged, with no test retries or exclusions. Application runtime is unchanged.

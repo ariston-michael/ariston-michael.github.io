@@ -61,8 +61,18 @@ test("early user scrolling is preserved when deferred hydration completes", asyn
   });
   try {
     await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("h1")).toBeVisible();
+    await page.mouse.move(200, 300);
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+        ),
+    );
     await page.mouse.wheel(0, 400);
-    await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(300);
+    // WebKit wheel input is asynchronous; capture the requested final position,
+    // not an intermediate point in the still-running wheel scroll.
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(400);
     const position = await page.evaluate(() => scrollY);
     release();
     await page.waitForLoadState("networkidle");

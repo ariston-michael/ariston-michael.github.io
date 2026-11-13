@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 
 export async function sceneGeometry(page: Page) {
   return page.locator(".cosmic-journey").evaluate((journey) => {
@@ -27,6 +27,17 @@ export async function sceneGeometry(page: Page) {
   });
 }
 export async function seekScene(page: Page, progress: number) {
+  await expect(page.locator(".cosmic-journey")).toHaveAttribute(
+    "data-scene-ready",
+    "",
+  );
+  // Let the software compositor present its first frame before timing motion.
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+      ),
+  );
   const { top, range } = await sceneGeometry(page);
   await page.evaluate(
     (y) => scrollTo({ top: y, behavior: "instant" }),

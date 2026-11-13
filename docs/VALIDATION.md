@@ -338,3 +338,11 @@ The added geometry/controller, CSS and static fallback cost about 20KiB. Scores 
 Actual Safari app/physical devices, assistive technology, browser-toolbar zoom, browser/OS session restart and low-powered-device frame pacing were not newly verified. WebKit and Chrome are the executed engines; Firefox was not required or rerun locally. JavaScript-disabled content retains native browser restoration. Default Turbopack remains blocked locally; the successful supported webpack static build is reported explicitly. Development CI may independently run the default compiler/all three engines after push; its result must not be inferred from these local checks.
 
 All requested feasible implementation/local checks are complete. This pass is committed/pushed to development for review only; the live site remains the previous approved production release.
+
+## Publication preflight — 2026-11-12
+
+The owner authorized publication of the latest development version. Hosted [development run 43074211419](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/43074211419) completed source/default-Turbopack build/export checks successfully and actually executed all three engines: **442 passed / 2 failed (25.5m)**. The two WebKit findings involved renderer startup before a timed seek and capturing unfinished wheel input (25px remained); no production action was taken while this check was red.
+
+Test setup now waits for measured scene readiness and two native animation frames, and sends early wheel input over a painted visible page, waiting for its requested 400px completion before testing preservation. Existing thresholds, all browsers, deadlines and zero retries are preserved. Targeted Chrome/WebKit verification passed **4/4** after the changes; the complete hosted checks must pass before merge/publication. No application/runtime/dependency/workflow change is included in this timing refinement.
+
+`CI=true PLAYWRIGHT_CHANNEL=chrome npm test -- --project=webkit --grep 'continuous reversible ring passage at 320x430|early user scrolling' --repeat-each=3` completed **6 passed (17.9s)** with one worker. This explicit stability check does not enable retries in the test configuration. Lint and strict typecheck also passed.
