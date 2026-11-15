@@ -114,3 +114,13 @@ Default Turbopack static build attempted both inside and outside the sandbox but
 ## 2026-11-12 — Synchronize browser preconditions before release
 
 Owner authorized publishing the latest development version. Hosted CI for 3ba6c64 completed 442/444 tests; two WebKit timing checks failed. A cold compositor had not presented its first frame before the timed approach, and the early-input test captured an intermediate wheel position (375px instead of the requested 400px). Wait for scene readiness/two native animation frames before seeking, and a painted page/pointer target/completed 400px wheel movement before capturing the baseline. Keep all scale, displacement and five-second assertions unchanged, with no test retries or exclusions. Application runtime is unchanged.
+
+## 2026-11-12 — Publish the approved ring-passage version
+
+After explicit owner approval and green 444/444 hosted validation, normally merge PR #3 and dispatch the existing guarded production workflow for exact main SHA `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. Preserve the same source tree, root URL, HTTPS and Actions-based Pages configuration; do not force-push or alter production settings. Development fast-forwards normally to the merge. The release workflow repeats full validation before uploading only static output and deploying.
+
+## 2026-11-14 — Project showcase as scoped, self-contained sections
+
+**Decision:** Build ProjectShowcase, HackathonGallery and GameExperience on `feature/project-showcase` as server components with CSS Modules, exported from `components/showcase`. They do not edit the rocket scene, global layout or global CSS.
+**Rationale:** Another agent owns the homepage and rocket motion in parallel. Scoped modules plus a documented insertion point (docs/SHOWCASE_INTEGRATION.md) minimise merge conflicts. Native `<details>` provides the "Ready to play? → Yes" reveal without JavaScript.
+**Media:** Use only the owner's own FireGuard XR recording (stills plus a 30 s, 3.8 MB H.264 excerpt with no audio and preload none). Exclude its third-party news section. Devpost could not be read (HTTP 403), and the repositories contain no screenshots, so other projects use clearly labelled original schematics. No Chicken Shooter recording or public URL exists, so the game section offers no launch button and never presents a video as the playable game. The provenance and rights review are recorded in docs/MEDIA_MANIFEST.md.

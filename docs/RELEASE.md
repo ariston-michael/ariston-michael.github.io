@@ -1,5 +1,16 @@
 # Production release procedure
 
+## Ring-passage release — published 2026-11-13
+
+- Owner explicitly approved publishing the latest development version on 2026-11-12.
+- [PR #3](https://github.com/ariston-michael/ariston-michael.github.io/pull/3) released the Saturn ring-to-trail passage and homepage entry policy, with test-only renderer/input synchronization fixes.
+- Reviewed head: `67e376774ee0defc879eba0dbcbff61e63ce3a54`; [preflight 43362918788](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/43362918788) passed all **444** Chromium/Firefox/WebKit tests (26.6m), source checks and default production export.
+- Normal main merge/published SHA: `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. Its tree exactly matches the reviewed head: `0c75995d3412dc2a6e1e97f4e9a8e2f4af7f5d01`.
+- [Release run 43366281384](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/43366281384), attempt 1, passed the exact-SHA approval/Pages guard, locked install/lint/types/9 policy tests, production build/export verification and **444 browser tests (23.7m)**, then deployed successfully through official Pages actions.
+- Public address remains https://ariston-michael.github.io/. Pages source, root URL, HTTPS and permissions were unchanged during this release.
+- Previous known-good release: main `975d0ebb061c9ccbd9b1d858614f393bd31441d2`, [run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196). Use the authorized Actions rollback procedure below if needed.
+- Development fast-forwarded normally to the merge; subsequent release-record documentation does not trigger deployment. No history rewrite or branch deletion.
+
 ## Approved first release — completed 2026-11-08
 
 - Public URL: https://ariston-michael.github.io/
@@ -72,6 +83,6 @@ If no eligible known-good run can be rebuilt, prepare a reviewed rollback/fix PR
 
 ## Outstanding operational limits
 
-The deployment path is prepared and locally syntax/guard checked, not executed. Production Pages remains legacy until approval. Physical-device/assistive-technology and actual browser-toolbar zoom checks require human equipment/access; the validation report distinguishes executed emulation, browser zoom attempts and unavailable browsers. Optional screenshots/live demos and unverified Chicken Shooter URLs remain honest content TODOs, not fabricated links.
+The Actions deployment path has executed successfully for the releases recorded above. Future production changes still require explicit owner approval, a reviewed merge and exact-SHA manual dispatch. Physical-device/assistive-technology and actual browser-toolbar zoom checks remain manual limits. Optional screenshots/live demos and unverified Chicken Shooter details remain content TODOs. See VALIDATION.md for actual executed checks.
 
 Official workflow guidance: [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).

@@ -17,8 +17,10 @@ PDF annotations supplied these links, each confirmed public by repository metada
 
 ## Still pending
 
-- TODO: Verified live demos and actual screenshots for projects. Original concept illustrations remain explicitly labeled.
-- TODO: Chicken Shooter public game/repository URL and cooperative-mode status; keep previous owner facts and do not attribute this project to the reviewed PDF.
+- TODO: Verified live demos and actual screenshots for AirControl and Seneca Energy. FireGuard XR now has owner-recording stills/excerpt pending rights review (see MEDIA_MANIFEST.md). Original concept illustrations remain explicitly labeled.
+- TODO: Devpost submission links/prizes. The owner-supplied profile returned HTTP 403 to automated fetches and is linked unverified.
+- TODO: Owner-approved hackathon event photos.
+- TODO: Chicken Shooter gameplay recording (none found in the workspace on 2026-11-14), public game/repository URL and cooperative-mode status; keep previous owner facts and do not attribute this project to the reviewed PDF.
 - TODO: Independent benchmark evidence beyond source-reported metrics; do not convert reported improvements into agent-measured results.
 - TODO: FireGuard XR provider names, scientific validation and prediction accuracy are not established by the source.
 - TODO: Additional dates/details for community roles beyond what is already owner verified.
