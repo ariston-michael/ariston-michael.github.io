@@ -1,0 +1,239 @@
+.header {
+  padding-bottom: clamp(40px, 6vw, 72px);
+  border-bottom: 1px solid var(--sk-line);
+}
+.list {
+  display: grid;
+}
+.entry {
+  display: grid;
+  gap: clamp(28px, 4vw, 40px);
+  padding-block: clamp(48px, 7vw, 96px);
+  border-bottom: 1px solid var(--sk-line);
+}
+.visual,
+.copy {
+  min-width: 0;
+}
+
+/* Pending media */
+.pendingFigure {
+  margin: 0;
+}
+.sketchFrame {
+  aspect-ratio: 16 / 10;
+  padding: clamp(16px, 4vw, 40px);
+  color: var(--sk-ink);
+}
+.pendingTag {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+}
+.figcaption {
+  margin-top: 14px;
+  color: var(--sk-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+/* Copy */
+.stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+  color: var(--sk-muted);
+  font: 0.75rem/1.4 var(--sk-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.stage > span:first-child {
+  color: var(--sk-accent);
+}
+.rule {
+  width: 24px;
+  height: 1px;
+  background: var(--sk-line-strong);
+}
+.name {
+  margin: 14px 0 0;
+  font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.headline {
+  margin: 8px 0 0;
+  color: var(--sk-body);
+  font-size: 1.0625rem;
+  font-style: italic;
+}
+.description {
+  margin: 18px 0 0;
+  max-width: 60ch;
+  color: var(--sk-body);
+  line-height: 1.7;
+}
+
+.spec {
+  display: grid;
+  gap: 0;
+  margin: 26px 0 0;
+  border-top: 1px solid var(--sk-line);
+}
+.spec > div {
+  display: grid;
+  grid-template-columns: minmax(96px, 120px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--sk-line);
+}
+.spec dt {
+  color: var(--sk-muted);
+  font: 0.6875rem/1.6 var(--sk-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.spec dd {
+  margin: 0;
+  min-width: 0;
+  color: var(--sk-ink);
+  line-height: 1.5;
+}
+
+/* Case-study disclosure */
+.study {
+  margin-top: 4px;
+  border-bottom: 1px solid var(--sk-line);
+}
+.studySummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding-block: 12px;
+  color: var(--sk-ink);
+  font: 0.75rem/1.4 var(--sk-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+.studySummary::-webkit-details-marker {
+  display: none;
+}
+.studySummary::after {
+  content: "+";
+  color: var(--sk-accent);
+  font-size: 1rem;
+}
+.study[open] .studySummary::after {
+  content: "−";
+}
+.studyCount {
+  margin-left: auto;
+  color: var(--sk-muted);
+}
+.features {
+  display: grid;
+  gap: 18px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: feature;
+}
+.features li {
+  position: relative;
+  padding-left: 40px;
+  counter-increment: feature;
+}
+.features li::before {
+  content: counter(feature, decimal-leading-zero);
+  position: absolute;
+  top: 2px;
+  left: 0;
+  color: var(--sk-accent);
+  font: 0.75rem/1.4 var(--sk-mono);
+}
+.features h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.features p {
+  margin: 6px 0 0;
+  color: var(--sk-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.boundary {
+  margin: 20px 0 18px;
+  padding: 14px 16px;
+  border-left: 1px solid var(--sk-accent);
+  background: rgb(236 239 245 / 0.03);
+  color: var(--sk-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.boundaryLabel {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--sk-ink);
+  font: 0.6875rem/1.4 var(--sk-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* Tablet: figure on top, spec table split in two columns. */
+@container (min-width: 640px) and (max-width: 1023.98px) {
+  .spec {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+  }
+  .spec > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* Desktop: alternating figure/copy columns. */
+@container (min-width: 1024px) {
+  .entry {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+    gap: clamp(40px, 5vw, 72px);
+  }
+  .entry:nth-child(even) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+  .entry:nth-child(even) .visual {
+    order: 2;
+  }
+}
+@container (min-width: 1024px) {
+  .visual {
+    position: sticky;
+    top: 112px;
+  }
+}
+@media (max-width: 479.98px) {
+  .spec > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .actions > a {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+}

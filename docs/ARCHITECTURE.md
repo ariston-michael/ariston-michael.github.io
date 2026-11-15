@@ -1,89 +1,35 @@
-# Technical architecture
+# Stage Separation architecture
 
-## Implemented stack
-- Next.js 16.4.3 App Router, React 19.3.1, TypeScript 5.9 with `strict: true`.
-- Tailwind CSS 4.3.3 through `@tailwindcss/postcss`; custom CSS owns the original cosmic artwork and responsive composition, utilities handle repeated flex/grid layout.
-- npm lockfile; Node.js 22.13+ (verified with 24.14.0).
-- ESLint flat config using Next.js Core Web Vitals and TypeScript rules; zero warnings allowed.
-- No Motion dependency: CSS supplies ambient twinkle/float/reveals; a small imperative controller supplies desktop pointer parallax and hero-relative scroll motion. No WebGL.
+## Stack and static export
 
-## Rendering and content
-`app/page.tsx` composes semantic server components: SiteHeader, Starfield, CosmicJourney (Hero, PlanetIllustration and SolarSystem), FeaturedProjects/ProjectCard, About, Experience, Skills, Contact, and Footer. `lib/content.ts` holds readonly typed project records, skill groups, verified-scope project notes, experience, achievements, and the owner-derived GitHub profile URL. Personal claims are sourced only from `docs/ABOUT_ME.md`; missing URLs use honest availability messages, while factual TODOs remain documented without fabricated destinations.
+Next.js 16.4.3 App Router, React 19.3.1, TypeScript 5.9 strict, Tailwind 4.3.3 and custom CSS. npm lockfile; Node 22.13+ (locally 24.14.0). No added runtime dependency, server action, database, API route, secret or remote font.
 
-There are 72 deterministic stars generated using a seeded integer hash at build time; only 36 are visible on small screens. CSS animates opacity only; the original SVG planet floats with a transform. No particle components hydrate or attach per-star event listeners. MotionToggle changes a document data attribute to pause/resume animation; CosmicMotion is the null-rendering client controller for visual effects; SolarSystem is a small client component whose selection state changes only on activation. A `useSyncExternalStore` subscription keeps the button’s state accurate across client navigation. A no-JavaScript fallback disables movement and hides the inactive pause control. The system reduced-motion preference always takes precedence. Scroll reveals use progressive CSS view timelines with fully opaque content and a static fallback. There is no hidden content awaiting JavaScript.
+`next.config.ts` preserves `output: 'export'`, `trailingSlash: true`, unoptimized images and the root URL `https://ariston-michael.github.io`. Output is `out/`; preview it with `npm run preview`, never `next start`. Four generated project-note routes, sitemap, robots, sharing card and custom 404 remain. The temporary showcase-preview route is removed.
 
-System fonts avoid external requests and font-build network dependencies. The illustration has an SVG title/description; decorative stars and project glyphs are hidden from assistive technology. The layout includes a skip link, logical headings, semantic landmarks, visible focus, and usable anchor navigation without JavaScript. Owner-verified GitHub, LinkedIn, and mailto links are functional. Resume uses the anonymously verified Google Drive viewer in a new tab, with no hosted PDF.
+## Composition
 
-## Static export and deployment
-- `next.config.ts`: `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true`.
-- User-site root URL: `https://ariston-michael.github.io`; no repository basePath or assetPrefix.
-- Production output is `out/`; no server runtime, SSR, server actions, request handlers, or environment variables are required.
-- Metadata includes title, description, canonical URL, Open Graph, Twitter summary, theme color, original favicon, and a 1200×630 original PNG sharing card. Static `robots.txt` and `sitemap.xml` cover the homepage and all four project-note routes.
-- The root `index.html` remains byte-for-byte unchanged as the legacy production source. It is not an input to the Next.js application.
-- Production Pages uses GitHub Actions following owner approval on 2026-11-07. The manual-only release workflow validates the exact approved main SHA before publishing `out/`.
+`app/page.tsx` is a server component. `RocketExperience` accepts server-rendered children: introduction, `ProjectShowcase id="projects"`, experience, education/skills, about with `HackathonGallery id="achievements"`, and contact. `GameExperience` is a full-width closing bonus outside the rocket grid. Old FeaturedProjects and the separate achievement summary are not rendered.
 
-Production releases require owner approval before merging or publishing. The prepared workflow uses the lockfile (`npm ci`), runs lint/typecheck/build/browser/export checks, uploads **only `out/`** with official Pages artifact tooling, then deploys through the Pages environment with least-privilege permissions. Artifact deployment serves `_next/` without Jekyll processing. Do not upload the source root or run `next start`. See `RELEASE.md` for the current release record and rollback procedure.
+- `lib/content.ts`: typed, verified personal/project facts and contact/resume destinations.
+- `lib/rocket.ts`: shared original six-module SVG geometry.
+- `components/RocketExperience.tsx`: small client controller; one scroll-scheduled RAF measures section positions and writes bounded CSS transforms. Cumulative joint gaps keep modules ordered. No wheel/touch interception or per-frame React state updates. Mouse and keyboard offsets are ephemeral; Home/Escape reconnect one module, Reassemble resets all until subsequent scroll.
+- `components/RocketSketch.tsx`: static recovery drawing using the same geometry.
+- `app/rocket.css`: editorial composition, responsive diagram, shared integration slots and note/recovery theming.
+- `components/showcase/`: server-rendered showcase, gallery and native game disclosure, with CSS Modules and actual-column container queries. MediaViewer is the only client boundary within these components.
+- `components/showcase/data.ts`: source-recording media, hackathon records and honest empty Chicken Shooter recording/launch fields. `MEDIA_MANIFEST.md` owns provenance/rights status.
 
-## Commands
-- `npm ci`: reproducible installation.
-- `npm run dev`: local development.
-- `npm run lint`: ESLint with zero warnings.
-- `npm run typecheck`: generate route types, then strict `tsc --noEmit`.
-- `npm run build`: production build and static export.
-- `npm run preview`: Node.js static server for `out/` on loopback port 3000. No application backend is introduced.
+The desktop rocket lives in its reserved sticky column. At ≤900px the content wrapper uses `display: contents`, allowing the introduction, complete diagram and remaining sections to stay in normal flow without absolute phone spacers. Short desktop drawings scale geometry and expansion together. Existing global styles remain for shared project-note utilities; legacy solar/cinema modules are unused by the homepage.
 
-Generated `.next/`, `out/`, browser reports/screenshots, dependencies, TypeScript cache, and all `.env*` files are ignored. ESLint also ignores generated browser reports. Runtime audit is clean; the development lint chain has moderate minimatch advisories. Retain peer-compatible ESLint 9 until its plugins support ESLint 10; review upstream fixes before launch.
+## Progressive enhancement and media
 
-## Project pages and illustration
+Static HTML contains every section and link. No-JavaScript disables the rocket buttons and hides enhancement-only controls; native stage links, project/game disclosures and video remain. Static FireGuard still links replace inactive thumbnail selectors. Reduced motion and shared MotionToggle are honoured live. The original `lib/home-entry.ts` policy is retained: fresh hashless reload starts at the introduction; explicit fragments and back/forward traversal preserve their intended targets; deferred hydration must not discard early user scrolling.
 
-`app/projects/[slug]/page.tsx` uses `generateStaticParams` and `dynamicParams: false` for AirControl, Seneca Energy, FireGuard XR and Chicken Shooter. Each page has unique metadata/canonical URL, verified scope, stack, project-status boundaries, and related links. No request-time server feature is used. FireGuard XR now has a resume-supported case study; its Three.js/React Three Fiber stack is described as project content, not imported into this static portfolio. `ProjectVisual` contains lightweight original inline SVG concept art, explicitly distinguished from screenshots and actual architecture. The social card’s editable SVG source and PNG export are tracked together.
+The release includes one unchanged 1120×640 owner-approved FireGuard simulation crop with native lazy loading. Four wider screenshots/video are deleted from public/ and forbidden in out/ because third-party imagery rights are unresolved. The generic viewer retains its video/thumbnail capability for a future rights-reviewed asset, but this release serves no recording. No game video or public launch URL is supplied. Resume always opens the existing external Drive viewer securely; no PDF or separate phone contact is hosted.
 
-## Responsive and test strategy
+## Verification and release boundary
 
-Intrinsic grid tracks use `minmax(0, …)`, headings use bounded fluid sizes, content wraps, and shell gutters honor safe-area insets. Small-screen navigation stays fully visible in its own row and needs no menu JavaScript. Every navigation target is at least 44×44px. Hero text/planet stack on phones, project/feature grids collapse, education details stack on very narrow screens, and ultrawide layouts retain a readable bounded width. Small-screen reveals are disabled and ambient complexity is reduced.
+`playwright.config.ts` retains Chromium/Firefox/WebKit projects, zero retries and static preview on loopback 3100. Tests exercise the integrated homepage (the preview-only route is gone), all requested widths, notes, rocket interactions, native links/disclosures, media playback/lazy loading, no-JavaScript, reduced motion, accessibility and restoration. The local server provides media MIME types and byte ranges. `check-export.mjs` validates canonical content routes, root assets and forbidden artifact types.
 
-`playwright.config.ts` targets Chromium (optionally installed Chrome), Firefox, and WebKit. The suite tests exported HTML served on port 3100. `scripts/preview.mjs` uses Node’s HTTP/file APIs to handle concurrent asset requests, supports GET/HEAD with correct MIME types, restricts reads to `out/`, and serves the custom 404 with a 404 status for absent paths. It does not change hosting or create a production server. Tests have no retries; a failure must be investigated. See `docs/VALIDATION.md` for executed coverage and host limits.
+Run `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm run check:export`, `npm run test:release`, then `npm test`. On this host Chrome can be selected with `PLAYWRIGHT_CHANNEL=chrome`; unavailable browsers must be reported. Current actual results and Lighthouse metrics are in `VALIDATION.md`.
 
-## Contact and interactive motion continuation
-
-Verified contact constants live in `lib/content.ts`; `ResumeLink` is reused in hero/contact and project evidence sections. The owner-designated Drive file was verified by connector metadata/text and a fresh signed-out browser on 2026-11-01. `resumeUrl` points directly to the standard file viewer; target/rel attributes open a secure new tab. No PDF is copied into the repository/artifact. Public name remains Ariston Michael. Resume-supported Spindle Strategy, FireGuard XR, skills and project counts are recorded in `ABOUT_ME.md`. Three repository URLs were extracted from actual PDF annotations and verified public before use.
-
-`Starfield` still renders all seeded positions on the server. Points are grouped into three static layers; no particle component state or library is introduced. `CosmicMotion` mounts once per page, caches normalized point coordinates and the field/hero geometry, and owns one damped RAF scheduler shared by pointer and scroll effects. Pointer events only update numeric targets. Frame work uses cached geometry and quantized proximity changes; no bounding-box reads occur in the animation loop. ResizeObserver refreshes layout measurements outside that loop. The scheduler stops after convergence and cancels while the document is hidden. All observers/listeners/frames are cleaned up on unmount.
-
-The controller gates fine-pointer/hover effects at 1024px. Stars now use viewport-fixed coordinates; cached normalized positions are transformed with the same camera scale/drift used visually, so proximity stays aligned while scrolling. No geometry reads occur in the animation loop.
-
-`CosmicJourney` composes a shared `journey-backdrop`/sticky sky, Hero and SolarSystem. The illustration lives in this backdrop instead of the clipped hero stage; only decoration is clipped at the outer journey boundary. The scrim has a vertical mask and both foreground sections stay transparent, preserving one sky across the crossover. A mobile reservation slot supplies the correct entry geometry without reading layout during frames. With JavaScript disabled a uniquely prefixed, in-flow SVG is shown instead of the inactive shared backdrop.
-
-`lib/cinema.ts` defines the normalized approach/morph/exit phases and compatible cubic SVG geometries. The same six half-ring DOM paths survive from ellipse to straight trail. CosmicMotion caches their references and only updates path coordinates/rotation while morph progress changes. Fixed-coordinate gradients handle the final zero-height paths. Opacity, scale and perspective are coordinated with the same damped progress; no separate timeline, React frame state, library, WebGL or continuous idle loop.
-
-Tall desktops use a 220svh hero and an 88px-offset stage. The normalized range is hero height minus stage height plus 55vh for crossover. Other wide/short screens use 85% of hero height plus 40vh. Phones start when the reserved illustration enters around the middle of the viewport and use the larger of 90vh or 75% of hero height. Geometry is measured on resize/visibility changes, not each scroll event. Approach peaks at 3.6/3.3 desktop, 1.95 tablet/short-screen or 1.55 phone, then relaxes as rings straighten. Initial explicit anchor/history entries initialize at their measured phase instead of animating from an incorrect zero. Enhanced decoration waits for `data-scene-ready` after measurement/render; text and the no-JavaScript static illustration do not wait.
-
-`lib/motion.ts` shares the existing motion-change event between the controller and pause control. Live media-query changes, pause/resume, and navigation trigger consistent setup/cleanup. Reduced-motion and paused CSS also force neutral transforms and hide proximity halos immediately; no-JavaScript output defaults to neutral interactive transforms with existing animation fallback disabled.
-
-## Solar explorer and progressive enhancement
-
-`lib/solar.ts` defines nine typed portfolio destinations, reusing verified local content where possible. `SolarSystem` renders nine native buttons and a default server-rendered Sun panel. Activating a button updates one React selection value and the associated labeled live region. There are no pointer-driven React updates, orbit timers or continuous scene loops. The planets use independent original CSS surfaces, including Saturn/Uranus ring treatments; orbital tracks are a small decorative inline SVG.
-
-A permanent nine-link navigation list remains available independently of the map. Education/achievement anchors are added to existing content. A noscript style hides inactive map buttons; all destination anchors and portfolio content still work without JavaScript. Reduced-motion users also receive an unpinned hero with static art. Shared pause/resume continues to control both hero and footer controls without breaking solar selection.
-
-Static export, canonical URLs and root asset paths are preserved. No motion or graphics dependency was added. Resume access uses the verified external Drive viewer; the repository contains no redundant PDF. Source-supported experience, FireGuard XR and skills are recorded in ABOUT_ME.md.
-
-## Pre-release automation
-
-Read-only development/PR CI runs locked installation, lint, strict type checking, release-policy tests, static export verification and all three browser engines, with diagnostics on failure. `check-export.mjs` verifies the five canonical content routes, root `_next/` assets and required static metadata/recovery files, rejecting PDFs, source/dependency/secret folders and symlinks in the artifact.
-
-A separate manual-only release workflow is prepared for main, with explicit boolean approval, full-SHA equality, exact checkout, Pages-mode verification and no automatic triggers. Official GitHub actions are pinned to verified release commits. Pages enablement/generator mutation is disabled; settings are never changed by the workflow. Build has contents/read and pages/read; only deploy gets pages/write and OIDC, after every check succeeds. Serialized deployments, timeouts, failure summaries and retained browser diagnostics support review/rollback.
-
-Preparation reconciled origin/main into development without changing the source tree. On 2026-11-07 the owner authorized publication; Pages was switched from legacy main/root to Actions before normal merging of reviewed PR #2. The release tree matches reviewed development exactly. See `RELEASE.md` for release evidence and the future approval/rollback procedure.
-
-## Cross-browser release refinements
-
-The selected solar-world boundary is opaque cyan. Header targets have a 45px minimum, retaining a physical margin above 44px under Firefox’s fractional layout. Mobile Sun artwork uses its actual 64px visual/layout size instead of an 80px pre-transform flex box, preventing Firefox’s narrow-screen scroll overflow without clipping content.
-
-CosmicMotion damping is now based on elapsed RAF timestamps (110ms response, frame delta capped at 64ms), with timestamp reset on idle, pause/cleanup and visibility changes. This preserves the original 60fps feel but avoids frame-count-dependent settling on slow/shared renderers. Existing strict reversal and idle-stop checks remain unchanged; no test retry or reduced assertion threshold was introduced.
-
-## Homepage entry and scroll restoration
-
-`lib/home-entry.ts` supplies a small inline script in the initial document head, before hydration. Fresh/reloaded homepage documents initialize at the hero when hashless or resolve the decoded explicit target at DOMContentLoaded/pageshow. Chrome and WebKit can apply restoration after those lifecycle events, so the initial entry remains manual until the first real pointer/touch/wheel/key interaction or popstate, then restores native automatic mode. The departing document does not race an incoming reload by changing their shared entry mode. No history state is rewritten and the application maintains no session-storage position cache.
-
-Back_forward documents and bfcache returns retain native saved-position behavior. The bootstrap does not rerun on App Router transitions; the existing project-return Link keeps its explicit `/#projects` target. No initialization correction occurs after a real interaction or changed target. No-JavaScript content remains available with browser-native restoration. This deliberate fresh-homepage policy implements the owner's requested reload/anchor behavior rather than a global router scroll reset.
+Normal merge commits preserve both source feature histories. The integration branch targets development via PR. Read-only validation now includes development-targeted PRs, with no Pages write permission or deploy job. The manual main-only release workflow, production settings and legacy root `index.html` are unchanged. Publishing requires a separate approved release, including media-rights confirmation; no merge or deployment is part of this integration.

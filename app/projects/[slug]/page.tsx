@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { projects } from "@/lib/content";
 import { socialImage } from "@/lib/site";
 import { SiteHeader } from "@/components/SiteHeader";
-import { Starfield } from "@/components/Starfield";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { ResumeLink } from "@/components/ResumeLink";
 import { Footer } from "@/components/Footer";
@@ -47,8 +46,7 @@ export default async function ProjectPage({ params }: Props) {
   if (!project?.study) notFound();
   const related = projects.filter((item) => item.study && item.id !== slug);
   return (
-    <div className="site" id="top">
-      <Starfield />
+    <div className="site notes-site" id="top">
       <SiteHeader home={false} />
       <main
         id="main"
@@ -107,8 +105,8 @@ export default async function ProjectPage({ params }: Props) {
             <h2 id="status-title">Scope & evidence.</h2>
             <p>{project.study.boundary}</p>
             <p>
-              Live demos and screenshots are not yet available. The artwork
-              above is an original concept illustration.
+              {project.id === "fireguard" ? <>An owner-approved simulation crop is available in the <Link href="/#showcase-fireguard" prefetch={false}>portfolio media viewer</Link>. The wider screenshots and recording are withheld while third-party imagery rights are unresolved.</> : "Live demos and screenshots are not yet available."}{" "}
+              The artwork above is an original concept illustration.
             </p>
             <div className="study-resources">
               {project.repositoryUrl && (

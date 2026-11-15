@@ -12,18 +12,18 @@ async function expectNoOverflow(page: Page) {
     const viewport = document.documentElement.clientWidth;
     const elements = [
       ...document.querySelectorAll<HTMLElement>(
-        "h1,h2,h3,h4,p,a,button,article,nav,dl",
+        "h1,h2,h3,h4,p,a,button,article,nav,dl,.module-label",
       ),
     ];
     return elements
       .filter((element) => {
-        if (element.classList.contains("skip-link")) return false;
+        if (element.classList.contains("skip-link") || element.classList.contains("sr-only") || getComputedStyle(element).clipPath === "inset(50%)") return false;
         const rect = element.getBoundingClientRect();
         if (!rect.width || !rect.height) return false;
         return (
           rect.left < -1 ||
           rect.right > viewport + 1 ||
-          element.scrollWidth > element.clientWidth + 1
+          (!element.classList.contains("rocket-module") && element.scrollWidth > element.clientWidth + 1)
         );
       })
       .map((element) => ({
@@ -62,21 +62,15 @@ for (const width of widths) {
       await expect(page.getByRole("heading", { level: 1 })).toHaveText(
         "AristonMichael.",
       );
-      await expect(page.locator("#projects article")).toHaveCount(4);
+      await expect(page.locator("#projects article")).toHaveCount(3);
       await expect(
-        page.locator(".experience-list > li, .achievement-list > li"),
+        page.locator(".flight-experience > article, #achievements li > article"),
       ).toHaveCount(6);
       await expectNoOverflow(page);
-      expect(
-        await page
-          .locator(".hero-stage")
-          .evaluate((element) => getComputedStyle(element).overflowX),
-      ).toBe("clip");
-      expect(
-        await page
-          .locator(".hero-copy")
-          .evaluate((element) => Number(getComputedStyle(element).zIndex)),
-      ).toBeGreaterThan(1);
+      if (width <= 900) {
+        const clearance = await page.evaluate(() => document.querySelector(".stage-content")!.getBoundingClientRect().top - document.querySelector(".rocket-flight")!.getBoundingClientRect().bottom);
+        expect(clearance).toBeGreaterThanOrEqual(30);
+      }
       for (const link of await page
         .locator('nav[aria-label="Main navigation"] a')
         .all()) {
@@ -149,18 +143,18 @@ test("keyboard navigation, focus and motion controls", async ({
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
   expect(
     await page
-      .locator(".planet")
+      .locator(".rocket-module svg").first()
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
   await page.keyboard.press("Space");
   await expect(toggle).toHaveAttribute("aria-pressed", "false");
   expect(
     await page
-      .locator(".planet")
+      .locator(".rocket-module svg").first()
       .evaluate((el) => getComputedStyle(el).animationName),
-  ).toBe("float");
+  ).toBe("module-drift");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const selector of [".star", ".planet", ".section-heading"]) {
+  for (const selector of [".rocket-module svg", ".showcase-slot"]) {
     expect(
       await page
         .locator(selector)
@@ -194,6 +188,7 @@ test("every local link resolves and no placeholder hrefs exist", async ({
       if (href!.startsWith("https:")) {
         expect([
           "https://github.com/ariston-michael",
+          "https://devpost.com/ariston-michael",
           "https://github.com/ariston-michael/BearHacks-2026",
           "https://github.com/ariston-michael/Seneca-Energy-Hackathon",
           "https://github.com/ariston-michael/fireguard",
@@ -266,7 +261,7 @@ test("200% zoom-equivalent reflow", async ({ browser }) => {
   await page.goto("/");
   await expectNoOverflow(page);
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await page.getByRole("link", { name: "Explore AirControl" }).click();
+  await page.getByRole("link", { name: /Read case study\s*:\s*AirControl/ }).click();
   await expectNoOverflow(page);
   await context.close();
 });
@@ -294,14 +289,14 @@ test("content remains usable without JavaScript", async ({ browser }) => {
   });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.locator("#projects article")).toHaveCount(4);
+  await expect(page.locator("#projects article")).toHaveCount(3);
   await expect(page.locator(".motion-toggle").first()).toBeHidden();
   expect(
     await page
-      .locator(".planet:visible")
+      .locator(".rocket-module svg").first()
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
-  await page.getByRole("link", { name: "Explore AirControl" }).click();
+  await page.getByRole("link", { name: /Read case study\s*:\s*AirControl/ }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "AirControl",
   );
@@ -323,7 +318,7 @@ test("paused motion stays consistent after client return from project notes", as
   );
   expect(
     await page
-      .locator(".planet")
+      .locator(".rocket-module svg").first()
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
 });

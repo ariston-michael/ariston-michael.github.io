@@ -360,3 +360,109 @@ The final uninstrumented public Chrome smoke check (`node /tmp/stellar-publish/v
 The first ad-hoc smoke script reloaded before its synthetic scroll had painted and returned the prior position; lifecycle-instrumented runs passed. The final ordinary-browser check waits for completed wheel input and two paint frames after positioning before invoking reload, matching a visible stable user position. A redundant CDN asset fetch also timed out transiently; final checks use actual browser responses plus a single request for unused legacy polyfills. These harness findings were not hidden as passes; the corrected full public run is the passing result above. Instantaneous programmatic scroll/reload without a painted intermediate state is not claimed as covered by that public check.
 
 Public screenshots and the final smoke JSON are saved outside Git under ignored `test-results/published-release/`. Existing physical-device/assistive-technology/OS-session and toolbar-zoom limits remain unchanged. The site is published and ready to share.
+
+## 2026-11-14 — Stage Separation feature validation
+
+Worktree: `/private/tmp/stellar-rocket-experience`; branch: `feature/rocket-experience`; base: freshly fetched `origin/development` at `c9bf5c90caf24e50b3cb389e9dee293af88d9142`. No Claude-owned project/gallery/game component, project record or project-note route was edited. The root GitHub Pages URL, export configuration, workflows, legacy index and production branches remain unchanged.
+
+Executed locally:
+
+- `npm run lint`: passed, zero warnings; `npm run typecheck`: passed with strict TypeScript.
+- `npm run build -- --webpack`: passed, all 10 generation entries completed. This is the supported webpack compiler, selected for the previously documented local Turbopack worker-port restriction; no new default-compiler result is claimed.
+- `npm run check:export`: passed, 5 canonical routes / 66 files, root assets and no hosted PDF/secrets directories/symlinks.
+- `npm run test:release`: 9/9 passed; release workflows were not changed or dispatched.
+- `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2`: **130/130 passed (1.8m)**, zero retries. Earlier full/intermediate runs and a separate 14-case final-branding/deferred-hydration pass also completed; the 130-case result is the expanded suite after readability refinements.
+
+Coverage: 13 widths (320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560px), 430/1000px heights, no horizontal text/annotation overflow, mobile drawing/content clearance, sequential separation/reversal, pointer catching and magnetic return, bounded keyboard offsets/Home/reset, touch module/navigation activation, live reduced motion and pause, no-JavaScript content/links, project pages, metadata/assets and the resume popup. Fresh hashless reloads return to the assembled entry; explicit fragments, deferred hydration and early wheel input preserve the intended position. Home/project scans report zero axe WCAG 2/2.1/2.2 A/AA violations in the covered cases; label/name checks also pass.
+
+Visual review: captured 14 desktop stage/reversal and phone/tablet/ultrawide screenshots under ignored `test-results/rocket-review/`, plus responsive test screenshots. Reviewed the original sharing card and actual entry, mobile drawing and education/separated states. Replaced inherited blue accents; changed mobile from an absolute reserved slot to normal-flow ordering after measuring a ~30px overlap; brightened annotation numbers that initially measured 4.49:1; increased functional label sizes; moved small-screen star sketches clear of labels. Saturn-specific browser assertions were replaced with rocket behavior checks; hydration/initial-entry coverage was adapted and retained.
+
+Limits: installed Firefox fails before page launch with `Could not find profile folder`, including an attempted canonical-temp-directory workaround. No Firefox pass, hosted CI result, Lighthouse score, physical-device test, screen-reader session or actual browser-toolbar zoom is claimed. The reflow test uses an explicit 640×450 CSS viewport at 2× raster density. Dependencies and lockfile are unchanged; local tools reused the installed dependencies through a temporary symlink, removed before handoff. Local browser/server execution required expanded sandbox access; no production service was modified.
+
+The feature is review-only. Claude's verified named exports and insertion points are in `ROCKET_INTEGRATION.md`; those components were inspected read-only at Claude branch SHA `5a0c68ff16b3dd21a51bf078ab84decb18840295`, but have not been integrated or runtime-tested here. No merge or deployment.
+
+After the final star-only placement correction, lint/types/webpack build/export checks passed again. A focused Chrome/WebKit pass covering touch modules and 320/375/768/1440/2560px home layouts completed **12/12 (19.0s)**, and all 14 review screenshots were refreshed. Final review confirmed star sketches clear the mobile module labels.
+
+## Project showcase branch — 2026-11-14
+
+Branch `feature/project-showcase` (worktree separate from the rocket-experience worktree). Local commands and results:
+
+| Command | Result |
+| --- | --- |
+| `npm run lint` | exit 0, zero warnings |
+| `npm run typecheck` | exit 0 |
+| `npm run build` (default Turbopack) | succeeded; 11 static pages including the noindex `/showcase-preview/` |
+| `npm run check:export` | 5 canonical routes, 71 files verified |
+| `npm run test:release` | 9/9 passed |
+| `PLAYWRIGHT_CHANNEL=chrome npx playwright test --project=chromium --project=webkit` | **324/324 passed**: 296 existing tests plus 28 new `tests/showcase.spec.ts` checks. Because another worktree's server held port 3100, the full run used a local, uncommitted port-3101 override, and the four port-pinned `resume.spec.ts` checks were rerun on 3100 once it was free (4/4). |
+
+The showcase spec covers 7 widths (320–1920) with no overflow and ≥44px targets, zero axe violations in `main` with every disclosure open, H.264 excerpt playback and dimensions (1280×758, 30 s) in Chrome and WebKit, correct MIME types, `preload="none"`, thumbnail switching, labelled placeholders, keyboard toggling of "Yes" with no unverified launch link, external links limited to verified destinations with `noopener noreferrer`, and the preview route kept out of the sitemap.
+
+Measured in Chrome (unthrottled, local): CLS 0. The initial load fetches only the 223 KiB poster JPEG; the MP4 is fetched only on play. Lighthouse was **not** run for this branch, because the package download was not permitted in this session. Firefox could not launch in this sandbox ("Could not find profile folder"), so hosted CI must cover it. Visual review used Chrome screenshots at 1440, 820 and 390px. Physical devices and assistive technology were not tested.
+
+## 2026-11-14 — Integrated Stage Separation
+
+Dedicated worktree `/private/tmp/stellar-stage-integration`, branch `feature/integrate-stage-separation`, from fetched development `c9bf5c90caf24e50b3cb389e9dee293af88d9142`. Both remote feature heads matched the requested SHAs: rocket `48e35c7ff3877a283a6a51ecafdf541a38f04a36`, showcase `5a0c68ff16b3dd21a51bf078ab84decb18840295`. Normal merge commits retain both histories; three append-only documentation conflicts were resolved by preserving both records. The source worktrees were not edited.
+
+| Executed command | Result |
+| --- | --- |
+| `npm ci` | Passed, 369 packages installed in the isolated checkout; lockfile unchanged |
+| `npm run lint` | Passed, zero warnings/errors |
+| `npm run typecheck` | Passed, strict TypeScript and route types |
+| `npm run build` | Default Turbopack production static export passed, 10/10 generation entries, with expanded local sandbox access |
+| `npm run check:export` | Passed: 5 canonical routes / 64 files, root assets, no hosted PDF/secrets folders/symlinks |
+| `npm run test:release` | 9/9 passed; production guard/workflow unchanged |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2` | **180/180 passed (2.1m)**, 90 cases per engine, zero retries and zero skips |
+
+This is an actually executed combined suite, not the sum of the feature branches' reports. The old Saturn cases remain superseded by rocket tests; the showcase spec now exercises `/`, not a preview-only route. Shared route, metadata, restoration, resume, keyboard/touch and responsive checks remain. Layouts cover all 13 requested widths at 430/1000px heights; showcase/game checks use the same 13 widths. Automated axe and label/name scans pass on the covered homepage, open-disclosure and project-note cases.
+
+Additional coverage verifies clear stage joints above the attached engine, an assembled phone rocket at first complete view, real drag/magnetic return/Home/reset, reversal, overflow and content clearance, reduced motion/pause, native game Yes by keyboard/touch/no-JavaScript, no unverified game video/launch link, live H.264 playback (1280×758, 30s) in both available engines, zero MP4 requests before play, correct MIME types, lazy thumbnails, static still links, explicit pending media review, real reloads/fragments and deferred hydration/early wheel input.
+
+The first integrated run was 170 passed / 6 failed: stale selectors expected the old exact case-study label spacing. These were corrected to the actual accessible names without weakening the navigation checks. Visual review separately found a real lower-stage/engine overlap; cumulative joint expansion fixed it and the new ordering test passes. Phone separation now waits until the complete drawing is visible. Project/gallery container queries avoid squeezed desktop columns inside the rocket rail layout; duplicate achievement summaries and the preview route were removed. Project notes and 404 recovery match the new theme.
+
+All five FireGuard asset SHA-256 prefixes match the supplied manifest; bytes are unchanged. The dashboard still was directly inspected. Map tiles and the dim forest photograph remain pending owner rights/attribution confirmation; a visible media note reports this. No third-party ownership, 94% prediction accuracy or playable Chicken Shooter claim is made. Event photos, game footage/URL and AirControl/Seneca screenshots remain honest placeholders.
+
+The initial sandboxed Turbopack attempt made no progress and was stopped (exit 130); the expanded-access default build succeeded. Firefox still fails before page launch with `Could not find profile folder`, including with `TMPDIR=/private/tmp`; no Firefox result is claimed. Physical-device, screen-reader, actual browser-toolbar zoom and field performance were not tested. The reflow test is an effective CSS viewport at 2× raster density. Expanded access was also needed for local browsers, loopback servers and the temporary Lighthouse CLI download; no repository dependency was added.
+
+The integration branch/PR is for review only. No main change, automatic merge, deployment, public website publication or Pages settings change. Read-only validation was extended to development-targeted PRs; its future hosted result must be reported separately from these local results.
+
+### Integrated performance and visual evidence
+
+Lighthouse **13.6.0** ran sequentially against the same default-Turbopack static export on loopback 3111, using installed headless Chrome with no competing browser suite. A temporary CLI was downloaded outside the repository after the sandboxed registry request failed; no dependency/lockfile was changed. Both audits exited 0 without a runtime error.
+
+| Local simulated lab metric | Mobile | Desktop |
+| --- | --- | --- |
+| Performance | 99 | 100 |
+| Accessibility | 100 | 100 |
+| Best practices | 100 | 100 |
+| SEO | 100 | 100 |
+| LCP | 1.65 s | 0.40 s |
+| Total blocking time | 2.5 ms | 0 ms |
+| CLS | 0 | 0 |
+| Total measured transfer | 899,081 bytes | 899,081 bytes |
+
+The mobile audit uses default simulated mobile settings; desktop uses `--preset=desktop`. These are current local lab measurements, not field/device guarantees or a source-branch comparison. Native media tests independently verify that the MP4 is not requested until play. Reports: `/private/tmp/stellar-integration-evidence/lighthouse-mobile.json` and `lighthouse-desktop.json`.
+
+Visual evidence is stored outside Git at `/private/tmp/stellar-integration-evidence/screens/`: entry, projects, authentic FireGuard media, separation, gallery and open game at **320, 375, 768, 1440, 2560px**, plus assembled-phone/tablet views. Review uses actual rendered screenshots rather than only DOM assertions. The static artifact, local browser reports and performance files are review evidence, not a deployed website.
+
+Final visual refinement scoped the outer experience paragraph rules so gallery award typography is preserved, and pairs the achievement cards once their actual container reaches 640px. The complete 180-case suite passed again after that change (2.1m); final screenshot/audit files were refreshed afterward.
+
+## 2026-11-14 — Production-authorised, rights-resolved candidate
+
+Owner authorises production and owner-created FireGuard media, contingent on third-party imagery being licensed or removed. Inspected and retained only the original simulation-only crop (SHA-256 `210c5c88324b21672805c25a7bc8635a3c555abd0f8d1fb8b36a1af4271fe967`). Removed the wider demo and three screenshots from public/, added an export prohibition, and replaced the obsolete recording cases with crop provenance, forbidden-file 404 and no-forbidden-request checks. The publication serves no video; its absence is deliberate rights resolution, not a skipped codec check.
+
+PR #4 hosted run 43669724358 failed **240 passed / 30 failed**: 28 Firefox cases identified only the email anchor with zero inline clientWidth; two WebKit recording cases failed. The CSS fix makes that anchor inline-flex with a 44px target, preserving all overflow assertions and every Firefox case. No retries or browser exclusions were added.
+
+Executed final local checks on the release-safe source: zero-warning lint, strict types, default Turbopack production build (10/10 entries), export verification (**5 canonical routes / 60 files**, including forbidden-media absence), **9/9 release guards**, and the complete Chrome/WebKit suite **180/180 passed (1.9m)**, zero retries/skips. Automated accessibility, 13-width/short-screen layout, drag/reconnect/reset/reversal, native game Yes, no-JavaScript, project routes, refresh/fragments and deferred hydration remain covered. A new hosted run must pass all three engines before an integration merge; local Firefox is still unavailable as previously recorded.
+
+Fresh signed-out Chrome reached the intended `Ariston_Michael.pdf - Google Drive`, HTTP 200, expected name visible, viewer present, no access-required message. No account session, sharing update or repository PDF was used. GitHub profile and three project URLs plus Devpost returned 200. LinkedIn returned its automation-blocking HTTP 999; no impersonation/workaround was attempted and the owner-verified link remains. Anonymous Pages API returned 404 (configuration not publicly readable); current public homepage is HTTPS 200 and still the previous cosmic/Saturn presentation, not the new rocket. The release workflow statically packages only out/ and verifies actual authenticated Pages mode when dispatched.
+
+Anonymous resume evidence, forthcoming Lighthouse reports and five-width screenshots are local-only under `/private/tmp/stellar-release-evidence/`. Successful local preparation is not publication. Actual hosted result, merge/deployment SHA and public smoke status will be recorded only after they exist.
+
+Release-safe Lighthouse 13.6.0 rerun, sequential/no competing suite: performance **99 mobile / 100 desktop**, accessibility/best practices/SEO **100/100**, CLS **0/0**, LCP **1.65s / 0.40s**, TBT **2.5ms / 0ms**. Measured transfer: **666,070 / 711,668 bytes** (native lazy image timing differs between viewports). Refreshed 33 five-width stage/media/gallery/game screenshots; inspected the genuine simulation-only figure at phone width and confirmed no map/photo background is present. Reports/screenshots are under `/private/tmp/stellar-release-evidence/`. These are local lab results, not a deployed-site verification.
+
+Current repository rulesets API returns an empty list; the two visible PR checks are GitGuardian and Portfolio validation. The former was successful on the original head, while validation failed as described above. The guarded Pages workflow's out/ upload remains unchanged; fresh authenticated Pages-mode confirmation still belongs to the eventual permitted release run. Anonymous configuration GET returned 404, so no current authenticated Pages-settings assertion is made here.
+
+Hosted release-safe run **43671795500** for `92b235485ef5801ece3ba52fd49cc1f4a99eccdb` completed **268 passed / 2 failed (7.1m)** across all three engines. The previous 28 inline-email failures and two recording failures are resolved. Remaining Firefox cases at 600×1000 and 600×430 measured a main-navigation width of 43.999969px against the unchanged 44px minimum. Increase actual header target minimums to 45px rather than adding tolerance, retries, browser skips or weaker assertions; require a fresh hosted pass before merge.
+
+After the 45px header-target correction, lint/types/default production build/export passed again. Targeted tall/short home checks at both 320px and the failing 600px width passed **8/8 Chrome/WebKit (15.4s)** with the strict 44px threshold intact. A new full hosted run is required for the corrected head before merging; the previous 268/270 result is not represented as green.

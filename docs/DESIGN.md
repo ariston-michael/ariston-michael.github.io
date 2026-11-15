@@ -1,59 +1,36 @@
-# Cosmic design system
+# Stage Separation design
 
-## Direction
-A premium, immersive space observatory aesthetic, inspired by the clarity of georgefarag.ca but with original design and code. More editorial and cinematic than gamified.
+The integrated site replaces the Saturn/solar-system presentation with a restrained technical rocket sketch. Personal facts and project scope come from `ABOUT_ME.md`; media provenance and approval status come from `MEDIA_MANIFEST.md`.
 
-## Visual language
-- Deep navy/near-black background, subtle star field, occasional soft cosmic gradients.
-- Restrained cyan, indigo, and violet highlights; maintain readable contrast.
-- Large, crisp headline typography with generous whitespace.
-- Saturn-inspired illustrative hero focal point; no copyrighted third-party artwork without appropriate rights.
-- Dark glass-inspired project panels with simple borders and clear hierarchy.
+- Near-black `#0d0f10`, off-white `#eeede7`, muted grey-green text and one sage accent (`#c5ceb6`). Authentic FireGuard media keeps its original colours.
+- System typography, large identity text, fine rules, numbered stage markers and original vector diagrams. No external fonts, WebGL or decorative graphics dependency.
+- One continuous background. Content remains opaque and in normal document flow; no animation reveals are required to read it. No scroll capture or snapping.
 
-## Motion
-- Subtle star twinkle, gentle depth/parallax and tasteful section reveals.
-- Do not let animations obscure content, hijack scroll, or harm mobile performance.
-- Follow `prefers-reduced-motion`; minimize or remove movement when requested.
-- Avoid expensive high-density particles or mandatory WebGL.
+## Six-stage composition
 
-## Interaction
-- Clear project cards with keyboard-visible focus.
-- Prominent View Projects, Resume, GitHub, and Contact actions.
-- Accessible contrast, meaningful alt text, tap targets, and visible hover/focus states.
-
-## Responsive behavior
-Favor a single readable column on phones, progressively enhanced grids on tablets/desktops. Interactive graphics must never overlap navigation or main content.
-
-## To verify
-Final brand font, exact accent colors, hero copy, optional portrait and actual project imagery. GitHub, LinkedIn and email are owner-verified; the Drive resume viewer was verified signed-out on 2026-11-01. No PDF is hosted locally.
-
-## Continuous ring passage — current implementation
-
-One shared sky spans the hero and solar explorer. Saturn's original blue/violet material and ring orientation remain; the same six cubic half-ring paths flatten into long parallel contrails. The planet dissolves while the ring plane rotates from −26° toward −7°, expands into trails and settles into a softer perspective before fading over the explorer. A continuous atmospheric gradient and the existing fixed seeded stars replace the separate section backgrounds. The copy scrim dissolves vertically rather than ending in a rectangular edge.
-
-- One measured 0–1 journey drives approach (0–0.44), overlapping ring morph (0.42–0.82), and exit/explorer crossover (0.78–1). These phases reverse naturally from actual scroll position; no wheel/touch interception or snapping.
-- Tall desktop pinning remains bounded: the hero is 220svh minus the 88px header, with a 120svh pinned travel distance (40svh more than the previous approach). The final crossover continues beyond the pin as the explorer enters. Skip cinematic experience still links straight to projects.
-- Peak zoom remains 3.6 desktop / 3.3 ultrawide, 1.95 tablet/short desktop and 1.55 phone. The camera then relaxes its scale as the ring curves straighten, retaining recognizable geometry instead of crossfading to unrelated lines.
-- Phones keep a stacked, unpinned hero. A reserved illustration slot anchors the shared artwork, which passes behind the explorer with a shorter, restrained choreography. Foreground text, focus and links stay above pointer-transparent decoration.
-- Original 72 stars, 36 visible on phones, retain layered depth, gentle CSS twinkle and gated desktop pointer proximity. No new animation/graphics dependency.
-- Pause resets the illustration to a readable static state without collapsing document geometry. Reduced motion removes pinning and all scroll/pointer effects. No JavaScript uses the original in-flow static illustration and permanent direct navigation.
-
-SVG ring gradients use fixed user-space coordinates so fully straight, zero-height path bounds remain visible. A flattened ring is a real continuation of the initial path, not an independently appearing horizontal stripe. Screenshots and a down/up recording are retained outside Git for visual review.
-
-## Solar-system exploration
-
-A stylized Sun and eight planets form a portfolio navigation map, explicitly labeled as illustrative rather than a scale model. All surfaces, craters, clouds, lighting and rings are original CSS treatments. There are no running orbit animations.
-
-| World | Portfolio destination |
+| Module | Content |
 | --- | --- |
-| Sun | About |
-| Mercury | Skills |
-| Venus | Education |
-| Earth | Experience |
-| Mars | Achievements |
-| Jupiter | AirControl |
-| Saturn | Featured projects |
-| Uranus | Contact |
-| Neptune | Verified GitHub profile |
+| Command | Introduction and internship direction |
+| Payload | AirControl, Seneca Energy and FireGuard XR showcase |
+| Upper stage | Professional and community experience |
+| Middle stage | Education and technical skills |
+| Lower stage | About and hackathon gallery |
+| Engine | Contact and final professional call to action |
 
-Native buttons support Tab/Enter/Space, mouse and touch. Selection updates a labeled, polite content region and an explicit destination link. A permanent direct-link menu covers all destinations without planetary interaction. On phones, the orbital composition becomes a three-column labeled grid. With JavaScript disabled, the inactive button map is hidden and direct links remain available. Selection works with reduced motion or pause enabled; it does not require animation.
+The final Ready to Play disclosure is an optional full-width bonus, followed by the footer. It does not advertise a playable game or show unrelated footage.
+
+Desktop reserves a drawing column beside the content. The initially assembled rocket separates from real section positions; cumulative joint expansion prevents a detached stage crossing an attached neighbour. Pointer catching, magnetic return, keyboard arrows/Home/Escape and Reassemble all use bounded offsets. Reversing scroll reverses the same geometry. Levitation is subtle and confined to the drawing.
+
+At 900px and below, the complete drawing appears in normal flow after the introduction. Short desktop viewports use a compact drawing. The full phone experience scrolls naturally rather than shrinking text to fit everything above the fold. Its command stage waits until the complete drawing enters view before separating. Native stage links remain available independently of the enhanced controls.
+
+## Components and media
+
+The showcase and gallery use CSS container queries against their actual parent column. They stay stacked beside the rocket and can use wider compositions when space permits. Borders, tags, typography and link states share the rocket palette. Project-note pages and 404 recovery use the same visual language.
+
+AirControl and Seneca use explicitly labelled original line art. Hackathon event photos are not available; their cards use labelled schematic placeholders. The release uses only an authentic owner-approved simulation crop for FireGuard XR. Wider screenshots/video with unresolved map/photo rights are removed from the artifact. No ownership or scientific accuracy claim is inferred from pixels in the recording. See the media manifest before release.
+
+## Accessibility
+
+Semantic headings/sections, a skip link, visible focus and native navigation/disclosures are permanent. Reduced motion removes automatic separation, levitation and disclosure fades; pause controls ambient motion. Touch taps navigate without capturing vertical scrolling. No-JavaScript retains the assembled drawing, all content, case-study disclosures, video controls, direct still links and the game Yes interaction. Inactive enhancement controls are hidden or disabled.
+
+Validate 320–2560px, short/landscape layouts, focus order, target bounds, scroll reversal, media controls, refresh/fragment restoration and contrast after any composition change. Actual browser and visual evidence is in `VALIDATION.md`; physical-device and screen-reader sessions remain separate review tasks.
