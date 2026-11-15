@@ -117,3 +117,11 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - Future releases still require approval. Release details/rollback guidance and actual public verification are recorded in RELEASE.md/VALIDATION.md.
 
 - [x] Complete public Chrome smoke verification of real ring morph/reversal, painted-position reloads, anchors/history, all routes/assets, mobile touch/axe, motion controls and no-JavaScript content. Public URL: https://ariston-michael.github.io/.
+
+## 2026-11-14 — Project showcase feature branch
+
+- [x] Self-contained ProjectShowcase, HackathonGallery and GameExperience components with desktop/tablet/phone layouts, scoped styles and a noindex preview route.
+- [x] Authentic FireGuard XR stills and a web-optimised demo excerpt from the owner's recording, with an asset manifest.
+- [ ] Owner review of FireGuard media rights (map tiles, background photo).
+- [ ] Owner-supplied AirControl/Seneca screenshots, event photos, Chicken Shooter recording/public URL and Devpost submission links.
+- [ ] Integrate into the homepage (rocket-experience owner), then run hosted three-engine CI.

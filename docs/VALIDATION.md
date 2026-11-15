@@ -360,3 +360,20 @@ The final uninstrumented public Chrome smoke check (`node /tmp/stellar-publish/v
 The first ad-hoc smoke script reloaded before its synthetic scroll had painted and returned the prior position; lifecycle-instrumented runs passed. The final ordinary-browser check waits for completed wheel input and two paint frames after positioning before invoking reload, matching a visible stable user position. A redundant CDN asset fetch also timed out transiently; final checks use actual browser responses plus a single request for unused legacy polyfills. These harness findings were not hidden as passes; the corrected full public run is the passing result above. Instantaneous programmatic scroll/reload without a painted intermediate state is not claimed as covered by that public check.
 
 Public screenshots and the final smoke JSON are saved outside Git under ignored `test-results/published-release/`. Existing physical-device/assistive-technology/OS-session and toolbar-zoom limits remain unchanged. The site is published and ready to share.
+
+## Project showcase branch — 2026-11-14
+
+Branch `feature/project-showcase` (worktree separate from the rocket-experience worktree). Local commands and results:
+
+| Command | Result |
+| --- | --- |
+| `npm run lint` | exit 0, zero warnings |
+| `npm run typecheck` | exit 0 |
+| `npm run build` (default Turbopack) | succeeded; 11 static pages including the noindex `/showcase-preview/` |
+| `npm run check:export` | 5 canonical routes, 71 files verified |
+| `npm run test:release` | 9/9 passed |
+| `PLAYWRIGHT_CHANNEL=chrome npx playwright test --project=chromium --project=webkit` | **324/324 passed**: 296 existing tests plus 28 new `tests/showcase.spec.ts` checks. Because another worktree's server held port 3100, the full run used a local, uncommitted port-3101 override, and the four port-pinned `resume.spec.ts` checks were rerun on 3100 once it was free (4/4). |
+
+The showcase spec covers 7 widths (320–1920) with no overflow and ≥44px targets, zero axe violations in `main` with every disclosure open, H.264 excerpt playback and dimensions (1280×758, 30 s) in Chrome and WebKit, correct MIME types, `preload="none"`, thumbnail switching, labelled placeholders, keyboard toggling of "Yes" with no unverified launch link, external links limited to verified destinations with `noopener noreferrer`, and the preview route kept out of the sitemap.
+
+Measured in Chrome (unthrottled, local): CLS 0. The initial load fetches only the 223 KiB poster JPEG; the MP4 is fetched only on play. Lighthouse was **not** run for this branch, because the package download was not permitted in this session. Firefox could not launch in this sandbox ("Could not find profile folder"), so hosted CI must cover it. Visual review used Chrome screenshots at 1440, 820 and 390px. Physical devices and assistive technology were not tested.

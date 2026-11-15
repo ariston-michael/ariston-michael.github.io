@@ -118,3 +118,9 @@ Owner authorized publishing the latest development version. Hosted CI for 3ba6c6
 ## 2026-11-12 — Publish the approved ring-passage version
 
 After explicit owner approval and green 444/444 hosted validation, normally merge PR #3 and dispatch the existing guarded production workflow for exact main SHA `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. Preserve the same source tree, root URL, HTTPS and Actions-based Pages configuration; do not force-push or alter production settings. Development fast-forwards normally to the merge. The release workflow repeats full validation before uploading only static output and deploying.
+
+## 2026-11-14 — Project showcase as scoped, self-contained sections
+
+**Decision:** Build ProjectShowcase, HackathonGallery and GameExperience on `feature/project-showcase` as server components with CSS Modules, exported from `components/showcase`. They do not edit the rocket scene, global layout or global CSS.
+**Rationale:** Another agent owns the homepage and rocket motion in parallel. Scoped modules plus a documented insertion point (docs/SHOWCASE_INTEGRATION.md) minimise merge conflicts. Native `<details>` provides the "Ready to play? → Yes" reveal without JavaScript.
+**Media:** Use only the owner's own FireGuard XR recording (stills plus a 30 s, 3.8 MB H.264 excerpt with no audio and preload none). Exclude its third-party news section. Devpost could not be read (HTTP 403), and the repositories contain no screenshots, so other projects use clearly labelled original schematics. No Chicken Shooter recording or public URL exists, so the game section offers no launch button and never presents a video as the playable game. The provenance and rights review are recorded in docs/MEDIA_MANIFEST.md.
