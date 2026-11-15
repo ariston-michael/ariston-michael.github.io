@@ -142,3 +142,7 @@ Display the media approval state, retain genuine FireGuard files byte-for-byte, 
 The owner authorises production and owner-created FireGuard media, with the explicit requirement to resolve or remove third-party imagery. Retain the unmodified simulation-only crop after visual inspection; remove the four wider screenshots/video whose map/background permissions are undocumented. Reject those files in static export and require HTTP 404 in browser checks. This resolves publication scope without inventing a licence, simply hiding files in the UI, or rewriting Git history. The former video tests are replaced by publication-absence/crop provenance checks because that recording is deliberately excluded, not skipped to conceal playback failures.
 
 Hosted PR #4 run 43669724358 had 240 passes / 30 failures. The 28 Firefox layout failures all identified the inline email link's zero clientWidth; make it an inline-flex 44px target rather than weakening overflow assertions. The two WebKit video cases concern the recording excluded above. Re-run the complete relevant suites and require a green hosted check before merging. Production workflow still uploads only out/ and requires exact main SHA approval.
+
+## 2026-11-14 — Give navigation targets a real rounding margin
+
+Hosted Firefox measured 43.999969px for nominally 44px navigation links at 600px. Set header targets to 45px in both dimensions so actual painted/layout bounds satisfy the 44px requirement. Keep assertions strict and rerun the complete hosted matrix; no retry or browser exclusion.

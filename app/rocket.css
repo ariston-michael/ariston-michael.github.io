@@ -968,3 +968,5 @@ html[data-motion="paused"] .rocket-module svg {
 
 /* Inline anchors have clientWidth 0 in Firefox; give email a real target box. */
 .email-address { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; }
+/* Keep actual targets above 44px despite Firefox fractional layout rounding. */
+.site-header nav a { min-width: 45px; min-height: 45px; }
