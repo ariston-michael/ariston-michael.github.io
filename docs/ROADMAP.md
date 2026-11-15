@@ -128,3 +128,11 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Integrate Claude’s separately delivered ProjectShowcase/HackathonGallery/GameExperience after both feature branches are reviewed.
 - [x] Pass lint, strict types, webpack static build/export checks, 9 release-policy checks and 130 Chrome/WebKit cases; review actual screenshots and refine mobile clearance/contrast/readability.
 - Local validation and Firefox/device limits are recorded in VALIDATION.md. This branch is for review only; no merge or deployment.
+
+## 2026-11-14 — Project showcase feature branch
+
+- [x] Self-contained ProjectShowcase, HackathonGallery and GameExperience components with desktop/tablet/phone layouts, scoped styles and a noindex preview route.
+- [x] Authentic FireGuard XR stills and a web-optimised demo excerpt from the owner's recording, with an asset manifest.
+- [ ] Owner review of FireGuard media rights (map tiles, background photo).
+- [ ] Owner-supplied AirControl/Seneca screenshots, event photos, Chicken Shooter recording/public URL and Devpost submission links.
+- [ ] Integrate into the homepage (rocket-experience owner), then run hosted three-engine CI.

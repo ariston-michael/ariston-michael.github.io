@@ -382,3 +382,20 @@ Limits: installed Firefox fails before page launch with `Could not find profile 
 The feature is review-only. Claude's verified named exports and insertion points are in `ROCKET_INTEGRATION.md`; those components were inspected read-only at Claude branch SHA `5a0c68ff16b3dd21a51bf078ab84decb18840295`, but have not been integrated or runtime-tested here. No merge or deployment.
 
 After the final star-only placement correction, lint/types/webpack build/export checks passed again. A focused Chrome/WebKit pass covering touch modules and 320/375/768/1440/2560px home layouts completed **12/12 (19.0s)**, and all 14 review screenshots were refreshed. Final review confirmed star sketches clear the mobile module labels.
+
+## Project showcase branch — 2026-11-14
+
+Branch `feature/project-showcase` (worktree separate from the rocket-experience worktree). Local commands and results:
+
+| Command | Result |
+| --- | --- |
+| `npm run lint` | exit 0, zero warnings |
+| `npm run typecheck` | exit 0 |
+| `npm run build` (default Turbopack) | succeeded; 11 static pages including the noindex `/showcase-preview/` |
+| `npm run check:export` | 5 canonical routes, 71 files verified |
+| `npm run test:release` | 9/9 passed |
+| `PLAYWRIGHT_CHANNEL=chrome npx playwright test --project=chromium --project=webkit` | **324/324 passed**: 296 existing tests plus 28 new `tests/showcase.spec.ts` checks. Because another worktree's server held port 3100, the full run used a local, uncommitted port-3101 override, and the four port-pinned `resume.spec.ts` checks were rerun on 3100 once it was free (4/4). |
+
+The showcase spec covers 7 widths (320–1920) with no overflow and ≥44px targets, zero axe violations in `main` with every disclosure open, H.264 excerpt playback and dimensions (1280×758, 30 s) in Chrome and WebKit, correct MIME types, `preload="none"`, thumbnail switching, labelled placeholders, keyboard toggling of "Yes" with no unverified launch link, external links limited to verified destinations with `noopener noreferrer`, and the preview route kept out of the sitemap.
+
+Measured in Chrome (unthrottled, local): CLS 0. The initial load fetches only the 223 KiB poster JPEG; the MP4 is fetched only on play. Lighthouse was **not** run for this branch, because the package download was not permitted in this session. Firefox could not launch in this sandbox ("Could not find profile folder"), so hosted CI must cover it. Visual review used Chrome screenshots at 1440, 820 and 390px. Physical devices and assistive technology were not tested.
