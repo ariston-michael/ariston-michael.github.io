@@ -1,3 +1,9 @@
+# Stage Separation design system — current feature direction
+
+The owner-requested rocket direction supersedes the historical Saturn/solar-system presentation below. Near-black `#0d0f10`, off-white `#eeede7`, muted warm grey and a restrained sage accent define an editorial technical drawing. System typography, a large identity headline, fine rules, numbered stage markers and original monochrome SVG modules provide the visual hierarchy. Content remains in normal flow beside a reserved sticky illustration column; phones receive a compact introductory drawing. No 3D or animation dependency. Module transforms follow actual section positions and reverse with scroll. Reduced-motion, pause, touch, keyboard and static fallbacks are required. See `ROCKET_INTEGRATION.md` for component ownership and anchor contracts.
+
+## Historical presentation (superseded on feature/rocket-experience)
+
 # Cosmic design system
 
 ## Direction

@@ -1,0 +1,929 @@
+/* Stage Separation. Scoped styles keep project/gallery/game internals independent. */
+:root {
+  --bg: #0d0f10;
+  --text: #eeede7;
+  --muted: #a2a5a3;
+  --accent: #d5d7c8;
+}
+body {
+  background: var(--bg);
+}
+html {
+  scroll-padding-top: 32px;
+}
+.rocket-site {
+  background: var(--bg);
+  overflow: clip;
+}
+.rocket-site .shell {
+  width: min(1440px, calc(100% - 112px));
+}
+.rocket-site .site-header {
+  min-height: 104px;
+  border-color: #ffffff20;
+}
+.site-header .wordmark {
+  gap: 0;
+  font-weight: 600;
+  letter-spacing: -1.5px;
+}
+.site-header .wordmark>span:first-child {
+  color: #cbceba;
+}
+.header-edition {
+  margin-left: 24px;
+  font: 9px var(--font-mono);
+  letter-spacing: 1.4px;
+  color: var(--muted);
+}
+.site-header nav a {
+  min-width: 44px;
+  min-height: 44px;
+  color: #c4c6c1;
+}
+.rocket-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0,1.25fr) minmax(340px,1fr);
+  column-gap: 7%;
+  align-items: start;
+}
+.rocket-content {
+  min-width: 0;
+}
+.launch-intro {
+  min-height: calc(100svh - 104px);
+  padding: 90px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.rocket-site .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #c0c4b9;
+}
+.launch-intro .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 38px;
+  font-size: 9px;
+}
+.availability-dot {
+  height: 5px;
+  width: 5px;
+  flex: none;
+  background: #c7cfb1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #c7cfb10c;
+}
+.launch-intro h1 {
+  font-size: clamp(70px,7.6vw,118px);
+  line-height: .97;
+  font-weight: 500;
+  letter-spacing: -.075em;
+  margin: 0 0 32px;
+}
+.title-period {
+  color: #bfc8a8;
+}
+.intro-role {
+  font-size: clamp(20px,2vw,28px);
+  line-height: 1.4;
+  letter-spacing: -.6px;
+  margin: 0 0 25px;
+}
+.intro-role>span {
+  color: #909590;
+}
+.intro-copy {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #a9ada8;
+  margin: 0 0 30px;
+}
+.launch-actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.rocket-site .button {
+  border-radius: 2px;
+  padding: 14px 18px;
+  min-height: 48px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.rocket-site .button-primary {
+  background: #e5e6db;
+  color: #171917;
+  border: 1px solid #e5e6db;
+  box-shadow: none;
+}
+.rocket-site .button-primary:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+.launch-actions .resume-link {
+  color: #c3c6bd;
+  font-size: 12px;
+}
+.intro-bottom {
+  margin-top: auto;
+  padding: 65px 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+  font: 8px var(--font-mono);
+  letter-spacing: 1.2px;
+  color: #8e958e;
+}
+.intro-bottom a {
+  color: #c9cdc1;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rocket-flight {
+  position: sticky;
+  top: 24px;
+  padding-top: 40px;
+  align-self: start;
+  width: 100%;
+}
+.drawing-heading,.drawing-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 8px var(--font-mono);
+  letter-spacing: 1.2px;
+  color: #9da498;
+  gap: 10px;
+}
+.drawing-heading {
+  padding: 0 0 16px;
+  border-bottom: 1px solid #ffffff20;
+}
+.rocket-drawing {
+  position: relative;
+  height: 660px;
+  margin-top: 18px;
+}
+.drawing-axis {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: repeating-linear-gradient(to bottom,#aab09c30 0 3px,transparent 3px 12px);
+}
+.rocket-module {
+  position: absolute;
+  left: calc(50% - 80px);
+  top: calc(var(--y) + 28px);
+  height: var(--h);
+  width: 160px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #d9dbd0;
+  transform: translate(calc(var(--dx,0px) + var(--manual-x,0px)),calc(var(--dy,0px) + var(--manual-y,0px)));
+  transition: transform .16s ease-out,color .2s;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.rocket-module:active {
+  cursor: grabbing;
+  transition: none;
+}
+.rocket-module:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.rocket-module svg {
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+  animation: module-drift 6s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -1.1s);
+}
+.module-outline {
+  fill: #101313;
+  stroke: currentColor;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.module-detail {
+  fill: none;
+  stroke: #878e80;
+  stroke-width: .65;
+}
+.rocket-module:hover,.rocket-module:focus-visible {
+  color: #fff;
+}
+.rocket-module:hover .module-outline,.rocket-module:focus-visible .module-outline {
+  fill: #20251f;
+}
+.module-label {
+  position: absolute;
+  top: 45%;
+  left: calc(100% + 7px);
+  white-space: nowrap;
+  text-align: left;
+  font: 8px var(--font-mono);
+  letter-spacing: .2px;
+  opacity: calc(.35 + var(--separation,0) * .65);
+  color: #b9c0b1;
+}
+.module-label>span {
+  display: block;
+  font-size: 7px;
+  color: #8e9888;
+  margin-bottom: 4px;
+}
+.dimension {
+  position: absolute;
+  top: 180px;
+  left: 8px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font: 7px var(--font-mono);
+  letter-spacing: 2px;
+  color: #777f74;
+}
+.dimension:before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  bottom: -60px;
+  right: -12px;
+  border-right: 1px solid #aab09c35;
+}
+.sketch-star {
+  position: absolute;
+  color: #999f8f;
+  font-size: 19px;
+  font-weight: 200;
+}
+.star-a {
+  top: 52px;
+  right: 32px;
+}
+.star-b {
+  top: 334px;
+  left: 37px;
+  font-size: 13px;
+}
+.star-c {
+  bottom: 75px;
+  right: 10px;
+  font-size: 25px;
+}
+.drawing-footer {
+  padding-top: 12px;
+  border-top: 1px solid #ffffff20;
+}
+.reassemble {
+  border: 1px solid #757c6b;
+  background: transparent;
+  color: #dadfd0;
+  min-height: 44px;
+  padding: 10px 12px;
+  font: 10px var(--font-mono);
+  border-radius: 2px;
+}
+.reassemble:hover {
+  background: #ffffff0a;
+}
+.drawing-help {
+  font: 8px/1.8 var(--font-mono);
+  color: #9aab93;
+  text-align: right;
+  margin: 12px 0;
+}
+@keyframes module-drift {
+  from {
+    transform: translateY(calc(var(--separation,0) * -2px));
+  }
+  to {
+    transform: translateY(calc(var(--separation,0) * 2px));
+  }
+}
+.flight-section,.stage-content {
+  padding: 70px 0 80px;
+  border-top: 1px solid #ffffff26;
+  scroll-margin-top: 30px;
+}
+.stage-marker {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font: 8px/1.8 var(--font-mono);
+  letter-spacing: 1px;
+  color: #a9b09f;
+  margin-bottom: 42px;
+}
+.rocket-site h2 {
+  font-size: clamp(32px,3vw,45px);
+  line-height: 1.15;
+  font-weight: 450;
+  letter-spacing: -1.7px;
+  margin: 0 0 36px;
+}
+.rocket-site h2 span {
+  color: #8f978b;
+}
+.flight-section p {
+  color: #b2b8ae;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.flight-section .flight-lead {
+  color: #d5d9cf;
+  font-size: 19px;
+  line-height: 1.65;
+}
+.flight-experience article {
+  border-top: 1px solid #ffffff18;
+  padding: 27px 0;
+}
+.entry-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font: 10px var(--font-mono);
+  color: #b8c0ad;
+}
+.flight-section h3 {
+  font-size: 20px;
+  font-weight: 450;
+  letter-spacing: -.5px;
+  line-height: 1.4;
+  margin: 14px 0 0;
+}
+.flight-section .entry-location {
+  color: #909b87;
+  font: 11px/1.8 var(--font-mono);
+  margin-top: 12px;
+}
+.flight-section .tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 20px;
+}
+.flight-section .tech-list li {
+  border-radius: 2px;
+  color: #b6c0ae;
+  border-color: #ffffff20;
+  background: transparent;
+  font-size: 10px;
+}
+.flight-education {
+  padding: 28px;
+  border: 1px solid #ffffff26;
+  margin-bottom: 32px;
+  position: relative;
+}
+.flight-education:after {
+  content: "+";
+  position: absolute;
+  top: -9px;
+  right: -4px;
+  color: #c0c6b6;
+  font: 16px var(--font-mono);
+}
+.flight-education h3 {
+  font-size: 26px;
+  margin-top: 18px;
+}
+.flight-skills>div {
+  padding: 19px 0;
+  border-bottom: 1px solid #ffffff18;
+}
+.flight-skills h3 {
+  font: 10px var(--font-mono);
+  color: #d6dbd0;
+  letter-spacing: .5px;
+  margin: 0;
+}
+.flight-skills p {
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+.flight-achievements {
+  margin-top: 35px;
+}
+.flight-achievements>a {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 0;
+  border-top: 1px solid #ffffff26;
+}
+.flight-achievements>a>span:last-child {
+  margin-left: auto;
+}
+.flight-achievements strong,.flight-achievements small,.flight-achievements a>span>span {
+  display: block;
+}
+.flight-achievements strong {
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+.flight-achievements a>span>span {
+  font-size: 13px;
+  color: #c0c6b9;
+  margin-top: 6px;
+}
+.flight-achievements small {
+  color: #909b87;
+  font: 10px var(--font-mono);
+  margin-top: 8px;
+}
+.award-icon {
+  font-size: 36px;
+  color: #b4bda7;
+}
+.flight-contact {
+  padding-top: 65px;
+  padding-bottom: 100px;
+}
+.flight-contact .eyebrow {
+  margin-top: 65px;
+}
+.contact-email {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #adb79e;
+  font-size: 40px;
+  letter-spacing: -1.5px;
+}
+.email-address {
+  color: #b3bfaa;
+  font: 12px var(--font-mono);
+  overflow-wrap: anywhere;
+}
+.contact-social {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  font-size: 12px;
+}
+.contact-social a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.rocket-site .footer {
+  border-color: #ffffff26;
+  color: #a9b19f;
+  font-size: 10px;
+  padding-block: 28px;
+}
+/* Adapt the existing verified project fallback without changing its component files. */
+.payload-content>.section {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.payload-content .section-heading {
+  display: block;
+  margin-bottom: 32px;
+}
+.payload-content .section-heading .eyebrow {
+  display: none;
+}
+.payload-content .section-heading>p {
+  font-size: 13px;
+  margin-top: 16px;
+}
+.payload-content .section-heading br {
+  display: none;
+}
+.payload-content .grid {
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.payload-content .project-card {
+  background: #111412;
+  border: 1px solid #ffffff24;
+  border-radius: 2px;
+  box-shadow: none;
+}
+.payload-content .project-card:hover {
+  border-color: #a2ae90;
+}
+.payload-content .project-card:before {
+  display: none;
+}
+.payload-content .project-visual {
+  filter: grayscale(1);
+  opacity: .8;
+  border-radius: 0;
+}
+.payload-content .project-card h3 {
+  font-weight: 450;
+}
+.payload-content .tech-list li {
+  color: #b7c1aa;
+  background: #ffffff04;
+  border-color: #ffffff20;
+  border-radius: 2px;
+}
+.payload-content .project-category,.payload-content .project-number,.payload-content .project-distinction {
+  color: #b8c4a9;
+}
+html[data-motion="paused"] .rocket-module svg {
+  animation: none;
+}
+@media(min-width:1800px) {
+  .rocket-layout {
+    column-gap: 10%;
+  }
+  .rocket-flight {
+    top: 65px;
+  }
+  .launch-intro {
+    padding-top: 115px;
+  }
+}
+@media(max-height:850px) and (min-width:901px) {
+  .rocket-flight {
+    top: 10px;
+    padding-top: 15px;
+  }
+  .rocket-drawing {
+    height: calc(100svh - 190px);
+    min-height: 330px;
+  }
+  .rocket-module {
+    --compact: .75;
+    top: calc(var(--y) * .75 + 15px);
+    height: calc(var(--h) * .75);
+    width: 120px;
+    left: calc(50% - 60px);
+  }
+  .dimension {
+    top: 140px;
+  }
+  .drawing-help {
+    font-size: 7px;
+  }
+}
+@media(max-width:1100px) {
+  .rocket-site .shell {
+    width: calc(100% - 64px);
+  }
+  .rocket-layout {
+    column-gap: 4%;
+    grid-template-columns: minmax(0,1.2fr) minmax(310px,1fr);
+  }
+  .module-label {
+    font-size: 7px;
+    left: calc(100% - 5px);
+  }
+  .header-edition {
+    display: none;
+  }
+}
+@media(max-width:900px) {
+  .rocket-site .shell {
+    width: calc(100% - 48px);
+  }
+  .rocket-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .rocket-content {
+    display: contents;
+  }
+  .launch-intro {
+    order: 0;
+    width: 100%;
+  }
+  .flight-section,.stage-content {
+    order: 2;
+    width: 100%;
+  }
+  .rocket-flight {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    padding: 0;
+    order: 1;
+    margin: 20px 0 50px;
+  }
+  .rocket-drawing {
+    height: 430px;
+    width: min(400px,100%);
+    margin: 12px auto;
+  }
+  .rocket-module {
+    top: calc(var(--y) * .62 + 25px);
+    height: calc(var(--h) * .62);
+    width: 100px;
+    left: calc(50% - 50px);
+  }
+  .module-label {
+    left: calc(100% + 12px);
+    font-size: 8px;
+  }
+  .drawing-heading {
+    padding-bottom: 12px;
+  }
+  .drawing-footer {
+    justify-content: space-between;
+  }
+  .dimension {
+    top: 125px;
+    left: 20px;
+  }
+  .drawing-help {
+    text-align: left;
+    font-size: 8px;
+  }
+  .launch-intro {
+    padding: 55px 0 0;
+    min-height: 0;
+  }
+  .launch-intro h1 {
+    font-size: 86px;
+  }
+  .launch-intro .eyebrow {
+    margin-bottom: 30px;
+  }
+  .intro-copy {
+    margin-bottom: 20px;
+  }
+  .intro-bottom {
+    padding-top: 45px;
+    width: 100%;
+  }
+  .flight-section,.stage-content {
+    padding: 50px 0 60px;
+  }
+  .rocket-site h2 {
+    font-size: 36px;
+  }
+  .stage-marker {
+    margin-bottom: 30px;
+  }
+  .payload-content .grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .flight-contact .eyebrow {
+    margin-top: 30px;
+  }
+}
+@media(max-width:600px) {
+  .rocket-site .shell {
+    width: calc(100% - 40px);
+  }
+  .rocket-site .site-header {
+    min-height: 100px;
+    align-items: center;
+    gap: 15px;
+  }
+  .site-header .wordmark {
+    font-size: 22px;
+  }
+  .site-header nav {
+    font-size: 10px;
+  }
+  .site-header nav ul {
+    column-gap: 10px;
+    row-gap: 0;
+    justify-content: end;
+  }
+  .site-header nav a {
+    min-width: 44px;
+  }
+  .launch-intro {
+    padding-top: 42px;
+  }
+  .launch-intro h1 {
+    font-size: 80px;
+    margin-bottom: 26px;
+  }
+  .launch-intro .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .intro-role {
+    font-size: 21px;
+  }
+  .intro-copy {
+    font-size: 12px;
+  }
+  .launch-actions {
+    gap: 18px;
+  }
+  .rocket-site .button {
+    font-size: 11px;
+    padding: 12px 14px;
+  }
+  .intro-bottom {
+    font-size: 6px;
+    gap: 8px;
+    letter-spacing: .6px;
+  }
+  .module-label {
+    left: calc(100% + 5px);
+    font-size: 7px;
+  }
+  .dimension {
+    left: 2px;
+  }
+  .drawing-heading {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+  .drawing-help {
+    font-size: 7px;
+  }
+  .drawing-footer {
+    font-size: 6px;
+  }
+  .rocket-site h2 {
+    font-size: 32px;
+    letter-spacing: -1.2px;
+  }
+  .stage-marker {
+    font-size: 7px;
+    letter-spacing: .5px;
+  }
+  .payload-content .grid {
+    grid-template-columns: 1fr;
+  }
+  .flight-section p {
+    font-size: 13px;
+  }
+  .flight-education {
+    padding: 22px;
+  }
+  .flight-education h3 {
+    font-size: 24px;
+  }
+  .contact-email {
+    font-size: 36px;
+  }
+  .contact-social {
+    gap: 20px;
+  }
+  .flight-section .flight-lead {
+    font-size: 18px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rocket-module,.rocket-module svg {
+    animation: none!important;
+    transition: none!important;
+  }
+  .rocket-module {
+    transform: none!important;
+  }
+}
+/* Neutralize legacy hero accents and make diagram annotations readable. */
+.rocket-site .site-header {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+}
+.rocket-site .launch-intro .title-period {
+  color: #c8ceba;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+.rocket-site .launch-actions>a:not(.button) {
+  font-size: 12px;
+  color: #d0d4c7;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.payload-content .project-art {
+  filter: grayscale(1);
+  opacity: .8;
+}
+.rocket-site .footer .text-cyan-200 {
+  color: #c6ceba;
+}
+.module-label {
+  color: #c6ccbe;
+  opacity: 1;
+}
+.module-label>span {
+  color: #a8b59c;
+}
+.drawing-help {
+  color: #b2bca8;
+}
+.flight-readout {
+  margin: 0 0 15px;
+  font: 10px var(--font-mono);
+  letter-spacing: 1px;
+  color: #c2cdb5;
+}
+.rocket-flight[data-active="0"] .rocket-module:nth-of-type(1) .module-label,
+.rocket-flight[data-active="1"] .rocket-module:nth-of-type(2) .module-label,
+.rocket-flight[data-active="2"] .rocket-module:nth-of-type(3) .module-label,
+.rocket-flight[data-active="3"] .rocket-module:nth-of-type(4) .module-label,
+.rocket-flight[data-active="4"] .rocket-module:nth-of-type(5) .module-label,
+.rocket-flight[data-active="5"] .rocket-module:nth-of-type(6) .module-label {
+  color: #f2f3e7;
+  opacity: 1;
+}
+@media(max-width:900px) {
+  .intro-bottom {
+    padding-bottom: 10px;
+  }
+  .flight-readout {
+    margin-bottom: 18px;
+  }
+}
+@media(max-height:650px) and (min-width:901px) {
+  .rocket-flight {
+    position: relative;
+    top: 0;
+  }
+  .rocket-drawing {
+    height: 660px;
+  }
+  .rocket-module {
+    top: calc(var(--y) + 28px);
+    height: var(--h);
+    width: 160px;
+    left: calc(50% - 80px);
+  }
+}
+.stage-index {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  margin-top: 16px;
+  border-top: 1px solid #ffffff18;
+  padding-top: 6px;
+  gap: 0 12px;
+}
+.stage-index a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font: 9px/1.4 var(--font-mono);
+  color: #b6c2aa;
+  gap: 8px;
+}
+.stage-index a:hover {
+  color: #fff;
+}
+.stage-index a>span {
+  color: #919d87;
+  font-size: 8px;
+}
+@media(max-width:600px) {
+  .stage-index {
+    gap: 0 8px;
+  }
+  .stage-index a {
+    font-size: 8px;
+    gap: 5px;
+  }
+}
+/* Keep functional annotations readable at phone sizes. */
+.module-label { font-size: 9px; }
+.module-label > span { font-size: 8px; }
+.drawing-help { font-size: 9px; }
+.stage-index a { font-size: 9px; }
+@media (max-width: 600px) {
+  .launch-intro .eyebrow { font-size: 9px; }
+  .stage-marker { font-size: 9px; }
+  .drawing-heading { font-size: 8px; }
+  .drawing-footer { font-size: 8px; }
+}
+.rocket-site .payload-content > .section {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 900px) {
+  .star-a { right: auto; left: 42px; top: 45px; }
+  .star-c { right: auto; left: 37px; bottom: 25px; }
+}

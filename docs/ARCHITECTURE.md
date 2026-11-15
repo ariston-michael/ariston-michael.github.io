@@ -1,3 +1,9 @@
+# Stage Separation architecture — feature update
+
+`app/page.tsx` now composes server-rendered introduction, existing FeaturedProjects fallback, verified experience, education/skills, about/achievements and contact inside `RocketExperience`. That small client boundary draws six original SVG modules, measures live section geometry on a single scroll-scheduled animation frame, and writes bounded CSS transforms. No scroll interception, content visibility gating, graphics library or new dependency. `app/rocket.css` supplies scoped editorial composition; legacy cosmic code is unused by the homepage and retained pending integration. `SiteHeader` preserves native anchors; Footer/MotionToggle and the established initial-document restoration policy are reused. Static-export configuration, root URL, content data, project routes and release workflows are unchanged.
+
+See `ROCKET_INTEGRATION.md` for the verified Claude exports and insertion points. The historical implementation notes below describe the previous presentation.
+
 # Technical architecture
 
 ## Implemented stack

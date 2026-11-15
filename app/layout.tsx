@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./rocket.css";
 import { siteUrl, socialImage } from "@/lib/site";
 import { homeEntryScript } from "@/lib/home-entry";
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 export const viewport: Viewport = {
-  themeColor: "#070b16",
+  themeColor: "#0d0f10",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -42,7 +43,7 @@ export default function RootLayout({
       </head>
       <body>
         <noscript>
-          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .motion-toggle { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; } .journey-backdrop, .planet-reserve { display: none !important; }`}</style>
+          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .motion-toggle, .reassemble, .rocket-flight > .drawing-help { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; } .journey-backdrop, .planet-reserve { display: none !important; }`}</style>
         </noscript>
         <a href="#main" className="skip-link">
           Skip to content

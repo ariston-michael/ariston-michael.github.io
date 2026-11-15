@@ -117,3 +117,14 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - Future releases still require approval. Release details/rollback guidance and actual public verification are recorded in RELEASE.md/VALIDATION.md.
 
 - [x] Complete public Chrome smoke verification of real ring morph/reversal, painted-position reloads, anchors/history, all routes/assets, mobile touch/axe, motion controls and no-JavaScript content. Public URL: https://ariston-michael.github.io/.
+
+## 2026-11-14 — Stage Separation feature
+
+- [x] Create `feature/rocket-experience` in `/private/tmp/stellar-rocket-experience` from latest fetched `origin/development`; preserve the other working directory.
+- [x] Replace homepage Saturn/solar presentation with a monochrome technical rocket and six portfolio stages.
+- [x] Add reversible section-driven separation, levitation, bounded mouse catching, magnetic return, keyboard movement and Reassemble.
+- [x] Preserve native navigation/scrolling, touch simplification, reduced-motion/pause and static content.
+- [x] Reserve Claude-owned component insertion points and document verified exports in `ROCKET_INTEGRATION.md`.
+- [ ] Integrate Claude’s separately delivered ProjectShowcase/HackathonGallery/GameExperience after both feature branches are reviewed.
+- [x] Pass lint, strict types, webpack static build/export checks, 9 release-policy checks and 130 Chrome/WebKit cases; review actual screenshots and refine mobile clearance/contrast/readability.
+- Local validation and Firefox/device limits are recorded in VALIDATION.md. This branch is for review only; no merge or deployment.

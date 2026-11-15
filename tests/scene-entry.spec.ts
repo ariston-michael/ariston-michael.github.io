@@ -1,61 +1,32 @@
 import { expect, test } from "@playwright/test";
-import { sceneGeometry } from "./helpers/cinema";
 
 for (const width of [375, 1440]) {
-  test(`fragment decoration waits for its measured phase at ${width}`, async ({
-    page,
-  }) => {
+  test(`fragment and rocket position survive deferred hydration at ${width}`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     let release!: () => void;
-    const scripts = new Promise<void>((resolve) => {
-      release = resolve;
-    });
-    await page.route(/\/_next\/.*\.js(?:\?.*)?$/, async (route) => {
+    const scripts = new Promise<void>(resolve => { release = resolve; });
+    await page.route(/\/_next\/.*\.js(?:\?.*)?$/, async route => {
       await scripts;
       await route.continue();
     });
     try {
-      await page.goto("/#solar-system", { waitUntil: "domcontentloaded" });
-      await expect(page.locator("#solar-title")).toBeInViewport();
-      await expect(page.locator(".cinematic-planet")).toBeHidden();
+      await page.goto("/#education", { waitUntil: "domcontentloaded" });
+      await expect(page.locator("#education-title")).toBeInViewport();
+      await expect(page.locator(".rocket-module").first()).toBeDisabled();
+      const position = await page.evaluate(() => scrollY);
       release();
-      await expect(page.locator(".cosmic-journey")).toHaveAttribute(
-        "data-scene-ready",
-        "",
-      );
-      const geometry = await sceneGeometry(page);
-      const expected = await page.evaluate(
-        ({ top, range }) => Math.min(1, Math.max(0, (scrollY - top) / range)),
-        geometry,
-      );
-      await expect
-        .poll(async () =>
-          Math.abs(
-            (await page
-              .locator(".cosmic-journey")
-              .evaluate((e) =>
-                Number(
-                  (e as HTMLElement).style.getPropertyValue("--scene-progress"),
-                ),
-              )) - expected,
-          ),
-        )
-        .toBeLessThan(0.001);
-      await expect(page.locator("#solar-title")).toBeInViewport();
-    } finally {
-      release();
-    }
+      await expect(page.locator(".rocket-module").first()).toBeEnabled();
+      await expect.poll(() => page.locator(".rocket-module").nth(3).evaluate(el => Number(el.style.getPropertyValue("--separation")))).toBe(1);
+      await expect(page.locator("#education-title")).toBeInViewport();
+      expect(Math.abs((await page.evaluate(() => scrollY)) - position)).toBeLessThan(2);
+    } finally { release(); }
   });
 }
 
-test("early user scrolling is preserved when deferred hydration completes", async ({
-  page,
-}) => {
+test("early user scrolling is preserved when deferred hydration completes", async ({ page }) => {
   let release!: () => void;
-  const scripts = new Promise<void>((resolve) => {
-    release = resolve;
-  });
-  await page.route(/\/_next\/.*\.js(?:\?.*)?$/, async (route) => {
+  const scripts = new Promise<void>(resolve => { release = resolve; });
+  await page.route(/\/_next\/.*\.js(?:\?.*)?$/, async route => {
     await scripts;
     await route.continue();
   });
@@ -63,28 +34,13 @@ test("early user scrolling is preserved when deferred hydration completes", asyn
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.locator("h1")).toBeVisible();
     await page.mouse.move(200, 300);
-    await page.evaluate(
-      () =>
-        new Promise<void>((resolve) =>
-          requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
-        ),
-    );
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
     await page.mouse.wheel(0, 400);
-    // WebKit wheel input is asynchronous; capture the requested final position,
-    // not an intermediate point in the still-running wheel scroll.
     await expect.poll(() => page.evaluate(() => scrollY)).toBe(400);
     const position = await page.evaluate(() => scrollY);
     release();
-    await page.waitForLoadState("networkidle");
-    await expect(page.locator(".cosmic-journey")).toHaveAttribute(
-      "data-scene-ready",
-      "",
-    );
-    expect(
-      Math.abs((await page.evaluate(() => scrollY)) - position),
-    ).toBeLessThan(2);
+    await expect(page.locator(".rocket-module").first()).toBeEnabled();
+    expect(Math.abs((await page.evaluate(() => scrollY)) - position)).toBeLessThan(2);
     expect(await page.evaluate(() => history.scrollRestoration)).toBe("auto");
-  } finally {
-    release();
-  }
+  } finally { release(); }
 });
