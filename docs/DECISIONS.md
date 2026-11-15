@@ -118,3 +118,7 @@ Owner authorized publishing the latest development version. Hosted CI for 3ba6c6
 ## 2026-11-12 — Publish the approved ring-passage version
 
 After explicit owner approval and green 444/444 hosted validation, normally merge PR #3 and dispatch the existing guarded production workflow for exact main SHA `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. Preserve the same source tree, root URL, HTTPS and Actions-based Pages configuration; do not force-push or alter production settings. Development fast-forwards normally to the merge. The release workflow repeats full validation before uploading only static output and deploying.
+
+## 2026-11-14 — Stage Separation in an isolated feature worktree
+
+Use a section-driven SVG rocket beside normal-flow server content, with a compact drawing on phones. Six recognizable modules share the same geometry before/after separation; bounded transform offsets reverse directly with scroll. Pointer/keyboard offsets are ephemeral, with magnetic return and a visible Reassemble control. Prefer CSS levitation and a scroll-scheduled RAF over a graphics/motion dependency, preserving static export, native scrolling and readable no-JavaScript content. Keep Claude-owned showcase/gallery/game components untouched; document verified named exports and explicit insertion points rather than importing unavailable components. The existing verified project fallback/routes/content stay in place until integration. No merge or deployment is authorized in this feature pass.

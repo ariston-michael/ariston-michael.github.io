@@ -360,3 +360,25 @@ The final uninstrumented public Chrome smoke check (`node /tmp/stellar-publish/v
 The first ad-hoc smoke script reloaded before its synthetic scroll had painted and returned the prior position; lifecycle-instrumented runs passed. The final ordinary-browser check waits for completed wheel input and two paint frames after positioning before invoking reload, matching a visible stable user position. A redundant CDN asset fetch also timed out transiently; final checks use actual browser responses plus a single request for unused legacy polyfills. These harness findings were not hidden as passes; the corrected full public run is the passing result above. Instantaneous programmatic scroll/reload without a painted intermediate state is not claimed as covered by that public check.
 
 Public screenshots and the final smoke JSON are saved outside Git under ignored `test-results/published-release/`. Existing physical-device/assistive-technology/OS-session and toolbar-zoom limits remain unchanged. The site is published and ready to share.
+
+## 2026-11-14 — Stage Separation feature validation
+
+Worktree: `/private/tmp/stellar-rocket-experience`; branch: `feature/rocket-experience`; base: freshly fetched `origin/development` at `c9bf5c90caf24e50b3cb389e9dee293af88d9142`. No Claude-owned project/gallery/game component, project record or project-note route was edited. The root GitHub Pages URL, export configuration, workflows, legacy index and production branches remain unchanged.
+
+Executed locally:
+
+- `npm run lint`: passed, zero warnings; `npm run typecheck`: passed with strict TypeScript.
+- `npm run build -- --webpack`: passed, all 10 generation entries completed. This is the supported webpack compiler, selected for the previously documented local Turbopack worker-port restriction; no new default-compiler result is claimed.
+- `npm run check:export`: passed, 5 canonical routes / 66 files, root assets and no hosted PDF/secrets directories/symlinks.
+- `npm run test:release`: 9/9 passed; release workflows were not changed or dispatched.
+- `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2`: **130/130 passed (1.8m)**, zero retries. Earlier full/intermediate runs and a separate 14-case final-branding/deferred-hydration pass also completed; the 130-case result is the expanded suite after readability refinements.
+
+Coverage: 13 widths (320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560px), 430/1000px heights, no horizontal text/annotation overflow, mobile drawing/content clearance, sequential separation/reversal, pointer catching and magnetic return, bounded keyboard offsets/Home/reset, touch module/navigation activation, live reduced motion and pause, no-JavaScript content/links, project pages, metadata/assets and the resume popup. Fresh hashless reloads return to the assembled entry; explicit fragments, deferred hydration and early wheel input preserve the intended position. Home/project scans report zero axe WCAG 2/2.1/2.2 A/AA violations in the covered cases; label/name checks also pass.
+
+Visual review: captured 14 desktop stage/reversal and phone/tablet/ultrawide screenshots under ignored `test-results/rocket-review/`, plus responsive test screenshots. Reviewed the original sharing card and actual entry, mobile drawing and education/separated states. Replaced inherited blue accents; changed mobile from an absolute reserved slot to normal-flow ordering after measuring a ~30px overlap; brightened annotation numbers that initially measured 4.49:1; increased functional label sizes; moved small-screen star sketches clear of labels. Saturn-specific browser assertions were replaced with rocket behavior checks; hydration/initial-entry coverage was adapted and retained.
+
+Limits: installed Firefox fails before page launch with `Could not find profile folder`, including an attempted canonical-temp-directory workaround. No Firefox pass, hosted CI result, Lighthouse score, physical-device test, screen-reader session or actual browser-toolbar zoom is claimed. The reflow test uses an explicit 640×450 CSS viewport at 2× raster density. Dependencies and lockfile are unchanged; local tools reused the installed dependencies through a temporary symlink, removed before handoff. Local browser/server execution required expanded sandbox access; no production service was modified.
+
+The feature is review-only. Claude's verified named exports and insertion points are in `ROCKET_INTEGRATION.md`; those components were inspected read-only at Claude branch SHA `5a0c68ff16b3dd21a51bf078ab84decb18840295`, but have not been integrated or runtime-tested here. No merge or deployment.
+
+After the final star-only placement correction, lint/types/webpack build/export checks passed again. A focused Chrome/WebKit pass covering touch modules and 320/375/768/1440/2560px home layouts completed **12/12 (19.0s)**, and all 14 review screenshots were refreshed. Final review confirmed star sketches clear the mobile module labels.
