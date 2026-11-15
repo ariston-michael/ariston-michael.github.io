@@ -1,13 +1,13 @@
 # Stellar Portfolio
 
-Ariston Michael’s original static software engineering portfolio: cinematic Saturn hero, optional Sun/eight-planet navigation, deterministic interactive stars, four featured projects and four project-note pages, verified experience, education, skills and contact links.
+Ariston Michael’s static software engineering portfolio. The Stage Separation feature replaces the Saturn homepage with an original technical-sketch rocket: six reversible stages, bounded pointer/keyboard interactions, and normal-flow verified work, experience, education, skills and contact. Four existing project-note routes remain available.
 
 ## Local preview
 
 Node.js 22.13+ (verified on 24.14.0) and npm:
 
 ```sh
-cd /Users/aristonmichael/stellar-portfolio
+cd /private/tmp/stellar-rocket-experience
 npm ci
 npm run build
 npm run check:export
@@ -34,7 +34,7 @@ npx playwright install chromium firefox webkit
 npm test
 ```
 
-Browser tests serve exported HTML on loopback port 3100 and cover 320–2560px widths, tall/short layouts, mouse/keyboard/touch, cinematic entry/maximum/reversal/skip, all nine solar destinations, reduced motion, pause/resume, idle frame settling, no-JavaScript links, project pages, SEO, external resume attributes/new-tab behavior and automated accessibility.
+Browser tests serve exported HTML on loopback port 3100 and cover 320–2560px widths, tall/short layouts, mouse/keyboard/touch, stage separation/reversal, drag/catch/magnetic return, keyboard reconnection/reset, direct stage links, reduced motion, pause/resume, deferred hydration and reload restoration, no-JavaScript links, project pages, SEO, external resume attributes/new-tab behavior and automated accessibility.
 
 Installed-Chrome/WebKit host command:
 
@@ -49,9 +49,10 @@ Firefox is configured but this Mac has reported `Could not find profile folder` 
 ## Structure
 
 - `app/`: Home, static project routes, metadata, sitemap, robots, 404 and styles.
-- `components/`: Semantic portfolio sections, original SVG/CSS artwork, optional solar explorer and shared motion controls.
-- `lib/content.ts`, `lib/solar.ts`, `lib/site.ts`: Verified typed content, navigation mapping and canonical metadata.
-- `components/CosmicJourney.tsx`, `lib/cinema.ts`: Shared Saturn-to-trails scene and compatible SVG geometry.
+- `components/`: Semantic portfolio sections, original rocket SVG and shared motion controls.
+- `lib/content.ts`, `lib/site.ts`: Verified typed content and canonical metadata.
+- `components/RocketExperience.tsx`, `app/rocket.css`: Rocket geometry, bounded stage interactions and responsive editorial layout. Legacy cosmic code remains unused pending integration.
+- `docs/ROCKET_INTEGRATION.md`: Verified Claude component exports, insertion points and shared anchor contract.
 - `lib/home-entry.ts`: Initial-homepage target policy; anchors and browser history are regression-tested.
 - `scripts/preview.mjs`, `check-export.mjs`: Loopback preview and deployable-artifact checks.
 - `scripts/release-policy.mjs`, `scripts/tests/`: Exact-commit release guard and negative-case tests.
@@ -63,7 +64,10 @@ Read `AGENTS.md` before editing. Architecture, design, decisions, roadmap, evide
 
 ## Release boundary
 
-The owner approved publishing to https://ariston-michael.github.io on 2026-11-07. Pages now uses GitHub Actions; reviewed PR #2 was merged normally at `975d0ebb061c9ccbd9b1d858614f393bd31441d2`. [Release run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196) passed all 270 browser tests and deployed this exact SHA, publishing only `out/`. Development CI cannot deploy.
+`feature/rocket-experience` is review-only. It does not merge development/main or publish. Claude’s separate showcase/gallery/game work is not yet integrated.
+
+
+The latest development application was approved on 2026-11-12 and published at https://ariston-michael.github.io on 2026-11-13. [PR #3](https://github.com/ariston-michael/ariston-michael.github.io/pull/3) merged normally at `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. [Release run 43366281384](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/43366281384) passed all 444 browser tests and deployed that exact SHA, publishing only `out/`. Development CI cannot deploy.
 
 **Review [docs/RELEASE.md](docs/RELEASE.md) for the release record and rollback procedure.** Future production releases still require owner authorization, a reviewed merge and an exact-SHA manual dispatch. Static export retains root-domain assets and trailing slashes.
 

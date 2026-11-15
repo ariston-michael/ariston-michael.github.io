@@ -10,7 +10,7 @@ Software engineering and adjacent technical internship recruiters, engineers, ha
 - Communicate identity, role, and technical strengths above the fold.
 - Showcase engineering decisions and measurable impact where verified.
 - Offer clear paths to resume, GitHub, live demos, and contact.
-- Deliver a distinctive but restrained cosmic aesthetic without compromising legibility or performance.
+- Deliver the owner-requested Stage Separation rocket experience: restrained monochrome technical linework, six reversible content stages, and premium editorial clarity without compromising legibility or performance.
 - Serve reliably at the existing GitHub Pages user-site URL.
 
 ## Proposed sections
