@@ -24,7 +24,7 @@ The desktop rocket lives in its reserved sticky column. At ≤900px the content 
 
 Static HTML contains every section and link. No-JavaScript disables the rocket buttons and hides enhancement-only controls; native stage links, project/game disclosures and video remain. Static FireGuard still links replace inactive thumbnail selectors. Reduced motion and shared MotionToggle are honoured live. The original `lib/home-entry.ts` policy is retained: fresh hashless reload starts at the introduction; explicit fragments and back/forward traversal preserve their intended targets; deferred hydration must not discard early user scrolling.
 
-FireGuard video uses native controls, `preload="none"`, no autoplay, a poster and lazy thumbnail images. Switching away unmounts the video. The 30-second H.264 excerpt is about 3.84 MB; files remain byte-identical to the source feature branch. Both provenance and pending map/forest approval are visible. No game video or public launch URL is supplied. Resume always opens the existing external Drive viewer securely; no PDF or separate phone contact is hosted.
+The release includes one unchanged 1120×640 owner-approved FireGuard simulation crop with native lazy loading. Four wider screenshots/video are deleted from public/ and forbidden in out/ because third-party imagery rights are unresolved. The generic viewer retains its video/thumbnail capability for a future rights-reviewed asset, but this release serves no recording. No game video or public launch URL is supplied. Resume always opens the existing external Drive viewer securely; no PDF or separate phone contact is hosted.
 
 ## Verification and release boundary
 

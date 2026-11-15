@@ -36,3 +36,9 @@ These missing extras do not justify fake destinations or fabricated claims. Curr
 - AirControl/Seneca real screenshots and Chicken Shooter genuine footage/public game URL remain pending. FireGuard footage appears only under FireGuard, never under the game.
 - Devpost remains an owner-supplied, unverified profile link; the UI labels it as a profile, without claiming verified submissions or additional prizes.
 - Integration is a review branch/PR only. No website publication or production settings change is authorised by this task.
+
+## Production authorisation and resolved media scope — 2026-11-14
+
+This supersedes the earlier review-only boundary: the owner authorises the Stage Separation production release and owner-created FireGuard media. Third-party map/photo rights remain unverified. To remove that release blocker, publication now retains only the inspected owner-created 3D simulation crop and removes all four wider screenshots/video from public/ and out/. MEDIA_MANIFEST records the exact crop checksum and withheld files; the export/browser checks enforce their absence. Wider media can return only after a separate rights review or replacement.
+
+Missing AirControl/Seneca screenshots, event photos, genuine Chicken Shooter footage/public URL and independent benchmarks remain optional content TODOs. No substitute resume PDF or separate phone link is introduced.

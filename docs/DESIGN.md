@@ -27,7 +27,7 @@ At 900px and below, the complete drawing appears in normal flow after the introd
 
 The showcase and gallery use CSS container queries against their actual parent column. They stay stacked beside the rocket and can use wider compositions when space permits. Borders, tags, typography and link states share the rocket palette. Project-note pages and 404 recovery use the same visual language.
 
-AirControl and Seneca use explicitly labelled original line art. Hackathon event photos are not available; their cards use labelled schematic placeholders. FireGuard XR uses authentic owner-recording stills and an H.264 excerpt, with visible pending-review text for map attribution and the unidentified forest photograph. No ownership or scientific accuracy claim is inferred from pixels in the recording. See the media manifest before release.
+AirControl and Seneca use explicitly labelled original line art. Hackathon event photos are not available; their cards use labelled schematic placeholders. The release uses only an authentic owner-approved simulation crop for FireGuard XR. Wider screenshots/video with unresolved map/photo rights are removed from the artifact. No ownership or scientific accuracy claim is inferred from pixels in the recording. See the media manifest before release.
 
 ## Accessibility
 

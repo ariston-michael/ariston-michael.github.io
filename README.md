@@ -2,7 +2,7 @@
 
 A statically exported software engineering portfolio built around an original six-stage rocket sketch. Normal scrolling separates modules beside verified introduction, projects, experience, education/skills, about/achievements and contact content. Mouse catching, magnetic reconnection, keyboard controls and Reassemble are optional enhancements.
 
-ProjectShowcase, HackathonGallery and the final Ready to Play disclosure are integrated. AirControl/Seneca/event imagery remain labelled original schematics. FireGuard XR has authentic owner-recording stills and a 30-second demo excerpt. Chicken Shooter has neither verified footage nor a public launch URL, so Yes reveals an honest project placeholder, not an embedded game.
+ProjectShowcase, HackathonGallery and the final Ready to Play disclosure are integrated. AirControl/Seneca/event imagery remain labelled original schematics. FireGuard XR uses an owner-approved crop of its original 3D simulation. Wider screenshots/video are withheld because third-party map/photo rights are unresolved. Chicken Shooter has neither verified footage nor a public launch URL, so Yes reveals an honest project placeholder, not an embedded game.
 
 ## Local preview
 
@@ -44,7 +44,7 @@ Firefox is configured but currently fails before launch with `Could not find pro
 
 Personal facts and verified destinations: [ABOUT_ME.md](docs/ABOUT_ME.md). Resume uses the existing [external Google Drive viewer](https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view), opening securely in a new tab. No substitute PDF or separate phone link is published.
 
-**Before publishing:** confirm FireGuard recording reuse, map-tile provider/attribution and permission for the unidentified forest photograph. The viewer displays this review state; matching media checksums establish identity, not third-party ownership. No 94% accuracy claim is repeated from the recording. See [MEDIA_MANIFEST.md](docs/MEDIA_MANIFEST.md) and [CONTENT_TODOS.md](docs/CONTENT_TODOS.md). Hackathon event photos and genuine Chicken Shooter footage/URL remain missing.
+The owner has authorised publication of owner-created FireGuard media. The release includes only the inspected simulation crop; the wider video and screenshots containing unresolved third-party imagery are removed and rejected by the export checker. Before reintroducing them, confirm map attribution and forest-photo reuse rights. No 94% accuracy claim is repeated from the recording. See [MEDIA_MANIFEST.md](docs/MEDIA_MANIFEST.md) and [CONTENT_TODOS.md](docs/CONTENT_TODOS.md). Hackathon event photos and genuine Chicken Shooter footage/URL remain missing.
 
 ## Structure and release boundary
 
@@ -55,4 +55,4 @@ Personal facts and verified destinations: [ABOUT_ME.md](docs/ABOUT_ME.md). Resum
 - `scripts/preview.mjs`, `scripts/check-export.mjs`: static preview with media ranges/MIME types and artifact checks.
 - `docs/ROCKET_INTEGRATION.md`, `docs/SHOWCASE_INTEGRATION.md`: assembly, anchors and source history.
 
-`feature/integrate-stage-separation` preserves both source commits through normal merge commits and targets development by PR. The work is for review; it does not merge automatically, alter main, publish or change Pages settings. Root URL remains https://ariston-michael.github.io. The main-only manual release workflow and legacy root index are unchanged. [RELEASE.md](docs/RELEASE.md) retains the historical production record and future approval procedure.
+`feature/integrate-stage-separation` preserves both source commits through normal merge commits and targets development by PR. The owner has now authorised the production release; actual validation, merge/deployment status and any permission blocker are recorded in docs/RELEASE.md. Root URL remains https://ariston-michael.github.io. The main-only manual release workflow and legacy root index are unchanged. [RELEASE.md](docs/RELEASE.md) retains the historical production record and future approval procedure.

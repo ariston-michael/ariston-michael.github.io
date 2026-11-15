@@ -1,3 +1,17 @@
+# Stage Separation production release — authorised, not yet deployed
+
+Owner instruction on 2026-11-14 explicitly authorises merging the validated Stage Separation integration, preparing/merging its production PR and dispatching GitHub Actions publication. This supersedes the historical review-only boundary below; no routine approval is needed. Security and authentication restrictions still apply.
+
+PR #4 initially points to `3b9c2f9e1deffafe9559f15915dfcaaa4c571831` against development `c9bf5c90caf24e50b3cb389e9dee293af88d9142`. Hosted run **43669724358** failed (240 passed / 30 failed): 28 Firefox email-inline layout failures, plus two WebKit recording checks. Release fixes provide a real email target box and exclude the unlicensed wider recording/screenshots. Only the inspected, unchanged owner-approved 3D simulation crop remains; the export guard and browser checks prohibit the four withheld files. See MEDIA_MANIFEST for rights scope and exact checksum.
+
+The existing guarded workflow is correct: main-only manual dispatch, `approve_release=true`, exact full `expected_sha`, full validation, then official Pages artifact upload of **out/** and dependent deploy. No server runtime or source-root upload. Existing production URL remains `https://ariston-michael.github.io/`; the previously published Saturn release below stays live until a successful new deployment is actually verified.
+
+Fresh anonymous Chrome verification opened the intended `Ariston_Michael.pdf - Google Drive` viewer with HTTP 200, the expected name, and no access-required message. No Drive permission or PDF copy was changed. GitHub profile/project links and Devpost returned 200; LinkedIn returned its automation-blocking HTTP 999, so the owner-verified URL was retained without bypassing the block.
+
+Pending: final release-safe local/hosted checks, normal integration/main PR merges through permitted GitHub actions, actual Pages configuration/dispatch permission, and public smoke verification. Local preparation or an authorised merge alone is not a deployment. Do not use keychain/credential extraction, alternate authentication or modified workflow triggers to bypass connector/security restrictions. Record the actual final SHA, production PR and successful workflow run below only after they exist.
+
+---
+
 # Production release procedure
 
 ## Ring-passage release — published 2026-11-13

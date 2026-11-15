@@ -965,3 +965,6 @@ html[data-motion="paused"] .rocket-module svg {
 .notes-site .footer .text-cyan-200 { color: #c5ceb6; }
 .rocket-recovery .button { background: #e5e6db; color: #171917; border-radius: 2px; }
 .recovery-rocket { width: min(160px, 55%); height: auto; margin: 30px auto; color: #d9dbd0; }
+
+/* Inline anchors have clientWidth 0 in Firefox; give email a real target box. */
+.email-address { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; }
