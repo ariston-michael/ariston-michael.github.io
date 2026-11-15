@@ -116,7 +116,7 @@ export function HackathonGallery({ id = "hackathons" }: HackathonGalleryProps) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          All submissions on Devpost
+          Devpost profile
           <span className={shared.srOnly}> (opens in a new tab)</span>
           <span className={shared.arrow} aria-hidden="true">
             ↗

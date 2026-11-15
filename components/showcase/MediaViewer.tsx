@@ -61,7 +61,7 @@ export function MediaViewer({
       </div>
 
       {media.length > 1 && (
-        <ul className={styles.strip} aria-label={`${projectName} media`}>
+        <ul className={`${styles.strip} media-thumbnails`} aria-label={`${projectName} media`}>
           {media.map((item, index) => {
             const thumb = item.kind === "video" ? item.poster : item.src;
             const label =
@@ -96,6 +96,10 @@ export function MediaViewer({
           })}
         </ul>
       )}
+
+      {source?.pendingOwnerReview && <p className={styles.review}>Media review pending: confirm map-tile attribution and permission for the forest photograph before publication.</p>}
+
+      <noscript><p className={styles.staticNote}>Additional stills from the FireGuard XR demo:</p><ul className={styles.staticStills}>{media.filter(item => item.kind === "image").map(item => <li key={item.src}><a href={item.src}>{item.caption}</a></li>)}</ul></noscript>
 
       <figcaption id={captionId} className={styles.caption}>
         <span className={styles.index} aria-hidden="true">

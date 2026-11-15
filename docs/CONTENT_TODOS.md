@@ -28,3 +28,11 @@ PDF annotations supplied these links, each confirmed public by repository metada
 - Recheck the signed-out resume link immediately before launch; access and file contents can change outside this repository.
 
 These missing extras do not justify fake destinations or fabricated claims. Current UI presents honest unavailable states where necessary. No external Drive permissions, production Pages settings or deployment are changed by content verification.
+
+## Integrated review boundary — 2026-11-14
+
+- **Publication blocker:** owner confirmation of FireGuard recording reuse, identification/required attribution of the map tiles, and permission for the forest photograph. The five media hashes match Claude's manifest; that verifies file identity, not third-party rights. The media viewer visibly flags this pending approval.
+- Authentic hackathon photos are still unavailable. Both gallery cards deliberately retain labelled original artwork; no event image was invented.
+- AirControl/Seneca real screenshots and Chicken Shooter genuine footage/public game URL remain pending. FireGuard footage appears only under FireGuard, never under the game.
+- Devpost remains an owner-supplied, unverified profile link; the UI labels it as a profile, without claiming verified submissions or additional prizes.
+- Integration is a review branch/PR only. No website publication or production settings change is authorised by this task.

@@ -196,7 +196,7 @@
 }
 
 /* Tablet: figure on top, spec table split in two columns. */
-@media (min-width: 640px) and (max-width: 1023.98px) {
+@container (min-width: 640px) and (max-width: 1023.98px) {
   .spec {
     grid-template-columns: 1fr 1fr;
     column-gap: 24px;
@@ -208,7 +208,7 @@
 }
 
 /* Desktop: alternating figure/copy columns. */
-@media (min-width: 1024px) {
+@container (min-width: 1024px) {
   .entry {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     align-items: start;
@@ -221,7 +221,7 @@
     order: 2;
   }
 }
-@media (min-width: 1024px) and (min-height: 760px) {
+@container (min-width: 1024px) {
   .visual {
     position: sticky;
     top: 112px;

@@ -399,3 +399,50 @@ Branch `feature/project-showcase` (worktree separate from the rocket-experience 
 The showcase spec covers 7 widths (320–1920) with no overflow and ≥44px targets, zero axe violations in `main` with every disclosure open, H.264 excerpt playback and dimensions (1280×758, 30 s) in Chrome and WebKit, correct MIME types, `preload="none"`, thumbnail switching, labelled placeholders, keyboard toggling of "Yes" with no unverified launch link, external links limited to verified destinations with `noopener noreferrer`, and the preview route kept out of the sitemap.
 
 Measured in Chrome (unthrottled, local): CLS 0. The initial load fetches only the 223 KiB poster JPEG; the MP4 is fetched only on play. Lighthouse was **not** run for this branch, because the package download was not permitted in this session. Firefox could not launch in this sandbox ("Could not find profile folder"), so hosted CI must cover it. Visual review used Chrome screenshots at 1440, 820 and 390px. Physical devices and assistive technology were not tested.
+
+## 2026-11-14 — Integrated Stage Separation
+
+Dedicated worktree `/private/tmp/stellar-stage-integration`, branch `feature/integrate-stage-separation`, from fetched development `c9bf5c90caf24e50b3cb389e9dee293af88d9142`. Both remote feature heads matched the requested SHAs: rocket `48e35c7ff3877a283a6a51ecafdf541a38f04a36`, showcase `5a0c68ff16b3dd21a51bf078ab84decb18840295`. Normal merge commits retain both histories; three append-only documentation conflicts were resolved by preserving both records. The source worktrees were not edited.
+
+| Executed command | Result |
+| --- | --- |
+| `npm ci` | Passed, 369 packages installed in the isolated checkout; lockfile unchanged |
+| `npm run lint` | Passed, zero warnings/errors |
+| `npm run typecheck` | Passed, strict TypeScript and route types |
+| `npm run build` | Default Turbopack production static export passed, 10/10 generation entries, with expanded local sandbox access |
+| `npm run check:export` | Passed: 5 canonical routes / 64 files, root assets, no hosted PDF/secrets folders/symlinks |
+| `npm run test:release` | 9/9 passed; production guard/workflow unchanged |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2` | **180/180 passed (2.1m)**, 90 cases per engine, zero retries and zero skips |
+
+This is an actually executed combined suite, not the sum of the feature branches' reports. The old Saturn cases remain superseded by rocket tests; the showcase spec now exercises `/`, not a preview-only route. Shared route, metadata, restoration, resume, keyboard/touch and responsive checks remain. Layouts cover all 13 requested widths at 430/1000px heights; showcase/game checks use the same 13 widths. Automated axe and label/name scans pass on the covered homepage, open-disclosure and project-note cases.
+
+Additional coverage verifies clear stage joints above the attached engine, an assembled phone rocket at first complete view, real drag/magnetic return/Home/reset, reversal, overflow and content clearance, reduced motion/pause, native game Yes by keyboard/touch/no-JavaScript, no unverified game video/launch link, live H.264 playback (1280×758, 30s) in both available engines, zero MP4 requests before play, correct MIME types, lazy thumbnails, static still links, explicit pending media review, real reloads/fragments and deferred hydration/early wheel input.
+
+The first integrated run was 170 passed / 6 failed: stale selectors expected the old exact case-study label spacing. These were corrected to the actual accessible names without weakening the navigation checks. Visual review separately found a real lower-stage/engine overlap; cumulative joint expansion fixed it and the new ordering test passes. Phone separation now waits until the complete drawing is visible. Project/gallery container queries avoid squeezed desktop columns inside the rocket rail layout; duplicate achievement summaries and the preview route were removed. Project notes and 404 recovery match the new theme.
+
+All five FireGuard asset SHA-256 prefixes match the supplied manifest; bytes are unchanged. The dashboard still was directly inspected. Map tiles and the dim forest photograph remain pending owner rights/attribution confirmation; a visible media note reports this. No third-party ownership, 94% prediction accuracy or playable Chicken Shooter claim is made. Event photos, game footage/URL and AirControl/Seneca screenshots remain honest placeholders.
+
+The initial sandboxed Turbopack attempt made no progress and was stopped (exit 130); the expanded-access default build succeeded. Firefox still fails before page launch with `Could not find profile folder`, including with `TMPDIR=/private/tmp`; no Firefox result is claimed. Physical-device, screen-reader, actual browser-toolbar zoom and field performance were not tested. The reflow test is an effective CSS viewport at 2× raster density. Expanded access was also needed for local browsers, loopback servers and the temporary Lighthouse CLI download; no repository dependency was added.
+
+The integration branch/PR is for review only. No main change, automatic merge, deployment, public website publication or Pages settings change. Read-only validation was extended to development-targeted PRs; its future hosted result must be reported separately from these local results.
+
+### Integrated performance and visual evidence
+
+Lighthouse **13.6.0** ran sequentially against the same default-Turbopack static export on loopback 3111, using installed headless Chrome with no competing browser suite. A temporary CLI was downloaded outside the repository after the sandboxed registry request failed; no dependency/lockfile was changed. Both audits exited 0 without a runtime error.
+
+| Local simulated lab metric | Mobile | Desktop |
+| --- | --- | --- |
+| Performance | 99 | 100 |
+| Accessibility | 100 | 100 |
+| Best practices | 100 | 100 |
+| SEO | 100 | 100 |
+| LCP | 1.65 s | 0.40 s |
+| Total blocking time | 2.5 ms | 0 ms |
+| CLS | 0 | 0 |
+| Total measured transfer | 899,081 bytes | 899,081 bytes |
+
+The mobile audit uses default simulated mobile settings; desktop uses `--preset=desktop`. These are current local lab measurements, not field/device guarantees or a source-branch comparison. Native media tests independently verify that the MP4 is not requested until play. Reports: `/private/tmp/stellar-integration-evidence/lighthouse-mobile.json` and `lighthouse-desktop.json`.
+
+Visual evidence is stored outside Git at `/private/tmp/stellar-integration-evidence/screens/`: entry, projects, authentic FireGuard media, separation, gallery and open game at **320, 375, 768, 1440, 2560px**, plus assembled-phone/tablet views. Review uses actual rendered screenshots rather than only DOM assertions. The static artifact, local browser reports and performance files are review evidence, not a deployed website.
+
+Final visual refinement scoped the outer experience paragraph rules so gallery award typography is preserved, and pairs the achievement cards once their actual container reaches 640px. The complete 180-case suite passed again after that change (2.1m); final screenshot/audit files were refreshed afterward.

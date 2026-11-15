@@ -1,9 +1,9 @@
 import { SiteHeader } from "@/components/SiteHeader";
 import { RocketExperience } from "@/components/RocketExperience";
-import { FeaturedProjects } from "@/components/FeaturedProjects";
+import { ProjectShowcase, HackathonGallery, GameExperience } from "@/components/showcase";
 import { ResumeLink } from "@/components/ResumeLink";
 import { Footer } from "@/components/Footer";
-import { achievements, email, experience, githubUrl, linkedInUrl, skills } from "@/lib/content";
+import { email, experience, githubUrl, linkedInUrl, skills } from "@/lib/content";
 
 export default function Home() {
   return <div id="top" className="site rocket-site">
@@ -20,8 +20,7 @@ export default function Home() {
         </section>
         <div className="stage-content payload-content" data-stage="payload">
           <div className="stage-marker"><span>02 / PAYLOAD</span><span>SELECTED WORK</span></div>
-          {/* Integration slot: replace FeaturedProjects with ProjectShowcase id="projects" from @/components/showcase. */}
-          <FeaturedProjects />
+          <div className="showcase-slot"><ProjectShowcase id="projects" /></div>
         </div>
         <section id="experience" className="flight-section" aria-labelledby="experience-title">
           <div className="stage-marker"><span>03 / UPPER STAGE</span><span>EXPERIENCE</span></div>
@@ -44,9 +43,7 @@ export default function Home() {
           <div className="stage-marker"><span>05 / LOWER STAGE</span><span>ABOUT & ACHIEVEMENTS</span></div>
           <h2 id="about-title">Grounded here.<br /><span>Looking further.</span></h2>
           <p className="flight-lead">From gesture interfaces to wildfire intelligence, I’m interested in how software turns complex problems into useful experiences.</p>
-          <p>Alongside my studies, I’m a Peer Mentor at Sheridan College, involved with the GDG technology team, and a Tennis Canada Court Control Lead for 2025 and 2026.</p>
-          <div id="achievements" className="flight-achievements">{achievements.map(item => <a href={item.href} key={item.context}><span className="award-icon" aria-hidden="true">✳</span><span><strong>{item.title}</strong><span>{item.context}</span><small>{item.project}</small></span><span aria-hidden="true">↗</span></a>)}</div>
-          {/* Integration slot: HackathonGallery id="achievements" may replace the summary above. */}
+          <div className="showcase-slot gallery-slot"><HackathonGallery id="achievements" /></div>
         </section>
         <section id="contact" className="flight-section flight-contact" aria-labelledby="contact-title">
           <div className="stage-marker"><span>06 / ENGINE</span><span>WHAT COMES NEXT</span></div>
@@ -58,7 +55,7 @@ export default function Home() {
           <div className="contact-social"><a href={githubUrl}>GitHub ↗</a><a href={linkedInUrl}>LinkedIn ↗</a><ResumeLink /></div>
         </section>
       </RocketExperience>
-      {/* Integration slot: Claude's GameExperience as an optional full-width closing bonus. */}
+      <div className="game-slot shell"><GameExperience /></div>
     </main>
     <Footer />
   </div>;

@@ -47,3 +47,9 @@ All assets are derived from one source recording. Source: `FireGuardXR.mov`, cap
    - Project media: add `media` entries.
    - Event photos: set `photo` on the hackathon record.
    - Chicken Shooter: set `chickenShooter.recording` and/or `launchUrl`, using a verified public URL only.
+
+## Integration verification — 2026-11-14
+
+All five files' SHA-256 values were recomputed in the isolated integration checkout; each matches the manifest prefix above and the source branch. The original dashboard still was visually inspected: it includes map imagery, the dim forest photograph and the unverified 94% UI readout. File identity/provenance does not establish rights or prediction accuracy. No media bytes were modified and none are attributed to Chicken Shooter.
+
+`MediaViewer` now uses `pendingOwnerReview` to show a visible review note. Confirm recording reuse, map-provider attribution and the forest-photo permission before an external website release. The integration PR is not publication approval. AirControl, Seneca, event photos and game footage remain explicit schematic placeholders.

@@ -67,7 +67,7 @@ test("fresh reload returns to the assembled entry and explicit fragments survive
   await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0);
   await page.goto("/#education"); await page.reload();
   await expect.poll(()=>page.locator("#education").evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(100);
-  await page.getByRole("link",{name:"Explore AirControl",exact:true}).click();
+  await page.getByRole("link",{name:/Read case study\s*:\s*AirControl/,exact:true}).click();
   await page.getByRole("link",{name:"All projects"}).click();
   await expect(page).toHaveURL(/#projects$/);
 });
@@ -93,4 +93,25 @@ test("touch modules navigate without taking over page scrolling", async ({browse
   await page.getByRole("navigation",{name:"Portfolio sections"}).getByRole("link",{name:"Education / skills"}).tap();
   await expect(page).toHaveURL(/#education$/);
   await context.close();
+});
+
+test("separating stages preserve clear joints above the still-attached engine", async ({page}) => {
+  await page.setViewportSize({width:1440,height:1000});await page.goto("/");
+  for (const id of ["experience","education","about","contact","about","education"]) {
+    await page.locator(`#${id}`).evaluate(el=>el.scrollIntoView({behavior:"instant"}));
+    await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+    await page.evaluate(()=>Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished)));
+    const gaps=await page.locator(".rocket-module").evaluateAll(elements=>elements.slice(1).map((el,i)=>el.getBoundingClientRect().top-elements[i].getBoundingClientRect().bottom));
+    expect(gaps.every(gap=>gap>=-1),`${id}: ${gaps.join(", ")}`).toBe(true);
+  }
+});
+
+test("the phone rocket is fully assembled when its complete drawing first enters view", async ({page}) => {
+  await page.setViewportSize({width:375,height:1000});await page.goto("/");
+  await page.locator(".rocket-drawing").evaluate(el=>el.scrollIntoView({block:"end",behavior:"instant"}));
+  await expect.poll(()=>page.locator(".rocket-module").evaluateAll(elements=>elements.map(el=>Number((el as HTMLElement).style.getPropertyValue("--separation"))))).toEqual([0,0,0,0,0,0]);
+  const limits=await page.locator(".rocket-module").evaluateAll(elements=>[elements[0].getBoundingClientRect().top,elements[5].getBoundingClientRect().bottom]);
+  expect(limits[0]).toBeGreaterThan(0);expect(limits[1]).toBeLessThan(1000);
+  await page.evaluate(()=>scrollBy({top:400,behavior:"instant"}));
+  await expect.poll(()=>page.locator(".rocket-module").first().evaluate(el=>Number(el.style.getPropertyValue("--separation")))).toBeGreaterThan(.3);
 });

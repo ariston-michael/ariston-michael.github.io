@@ -192,7 +192,7 @@ html {
   background: none;
   border: 0;
   color: #d9dbd0;
-  transform: translate(calc(var(--dx,0px) + var(--manual-x,0px)),calc(var(--dy,0px) + var(--manual-y,0px)));
+  transform: translate(calc(var(--dx,0px) + var(--manual-x,0px)),calc(var(--dy,0px) * var(--assembly-scale, 1) + var(--manual-y,0px)));
   transition: transform .16s ease-out,color .2s;
   touch-action: pan-y;
   cursor: grab;
@@ -339,7 +339,7 @@ html {
 .rocket-site h2 span {
   color: #8f978b;
 }
-.flight-section p {
+.flight-section > p, .flight-experience article > p:not([class]) {
   color: #b2b8ae;
   font-size: 14px;
   line-height: 1.85;
@@ -770,7 +770,7 @@ html[data-motion="paused"] .rocket-module svg {
   .payload-content .grid {
     grid-template-columns: 1fr;
   }
-  .flight-section p {
+  .flight-section > p, .flight-experience article > p:not([class]) {
     font-size: 13px;
   }
   .flight-education {
@@ -927,3 +927,41 @@ html[data-motion="paused"] .rocket-module svg {
   .star-a { right: auto; left: 42px; top: 45px; }
   .star-c { right: auto; left: 37px; bottom: 25px; }
 }
+/* The showcase responds to its actual column, not the browser width. */
+.showcase-slot, .game-slot {
+  container-type: inline-size;
+  min-width: 0;
+  --showcase-accent: #c5ceb6;
+}
+.showcase-slot > section {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.gallery-slot { margin-top: 40px; }
+.game-slot { padding: 80px 0 100px; border-top: 1px solid #ffffff26; }
+.game-slot > section { width: 100%; padding: 0; }
+.rocket-site .game-slot h2 { font-size: clamp(44px, 6vw, 80px); }
+@media (max-height: 650px) and (min-width: 901px) {
+  .rocket-drawing { height: 270px; min-height: 0; }
+  .rocket-module { top: calc(var(--y) * .4 + 8px); height: calc(var(--h) * .4); width: 64px; left: calc(50% - 32px); }
+  .dimension { top: 70px; }
+  .star-b { top: 170px; }
+}
+
+@media (max-height: 850px) and (min-width: 901px) { .rocket-module { --assembly-scale: .75; } }
+@media (max-width: 900px) { .rocket-module { --assembly-scale: .62; } }
+@media (max-height: 650px) and (min-width: 901px) { .rocket-module { --assembly-scale: .4; } }
+/* Project notes and route recovery share the same visual language. */
+.notes-site { background: var(--bg); }
+.notes-site .site-header { position: relative; background: transparent; backdrop-filter: none; }
+.notes-site .project-art { filter: grayscale(1); border-radius: 2px; }
+.notes-site .study-boundary { background: #111512; border-radius: 2px; }
+.notes-site .study-headline, .notes-site .back-link, .notes-site .project-distinction,
+.notes-site .project-number, .notes-site .panel-icon, .notes-site .study-resources a { color: #c5ceb6; }
+.notes-site .tech-list li { background: transparent; color: #b8c0b0; border-color: #ffffff26; border-radius: 2px; }
+.notes-site .button-secondary { background: transparent; border-color: #ffffff26; border-radius: 2px; }
+.notes-site .study-boundary p>a { display: inline-flex; min-height: 44px; align-items: center; text-decoration: underline; color: #d6ddcb; }
+.notes-site .footer .text-cyan-200 { color: #c5ceb6; }
+.rocket-recovery .button { background: #e5e6db; color: #171917; border-radius: 2px; }
+.recovery-rocket { width: min(160px, 55%); height: auto; margin: 30px auto; color: #d9dbd0; }

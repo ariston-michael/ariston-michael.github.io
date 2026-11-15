@@ -1,52 +1,32 @@
-# Showcase integration guide (for the rocket-experience owner)
+# Showcase assembly — completed on the integration branch
 
-The `feature/project-showcase` branch adds three self-contained sections. It does **not** touch `app/page.tsx`, `app/layout.tsx`, `app/globals.css`, the rocket/cinema scene or any existing component.
-
-```ts
-import {
-  ProjectShowcase,   // id="project-showcase": AirControl, Seneca Energy, FireGuard XR
-  HackathonGallery,  // id="hackathons": BearHacks 2026 Top 10, Seneca finalist, Devpost link
-  GameExperience,    // id="play": "Ready to play?" → Yes → Chicken Shooter panel
-} from "@/components/showcase";
-```
-
-## Placement
-
-Each component renders its own `<section aria-labelledby>` with an `h2` and `h3`s, so it should sit directly inside `<main>`, after the hero/stage sequence:
+The supplied exports are integrated through `@/components/showcase`:
 
 ```tsx
-<main id="main" tabIndex={-1}>
-  {/* …rocket / stage-separation scene… */}
-  <ProjectShowcase />        {/* may replace <FeaturedProjects /> */}
-  <HackathonGallery />
-  {/* About, Experience, Skills, Contact … */}
-  <GameExperience />         {/* intended as the final section before the footer */}
-</main>
+<RocketExperience>
+  {/* introduction */}
+  <div className="payload-content stage-content">
+    <div className="showcase-slot"><ProjectShowcase id="projects" /></div>
+  </div>
+  {/* experience, education/skills, about */}
+  <div className="showcase-slot gallery-slot"><HackathonGallery id="achievements" /></div>
+  {/* contact */}
+</RocketExperience>
+<div className="game-slot shell"><GameExperience /></div>
 ```
 
-- `ProjectShowcase` can replace `FeaturedProjects`, or sit after it. If it replaces it, either keep an element with `id="projects"` (pass `id="projects"`) or update the `#projects` anchors in the header, solar map and project pages.
-- Every component takes an optional `id` prop for anchors and nav links.
-- `GameExperience` also accepts `recording` and `launchUrl` props. Leave both unset until the owner supplies a verified recording or a public game URL.
+This is a placement outline; actual semantic sections and headings live in `app/page.tsx`. The old FeaturedProjects and separate achievement list are not rendered. GameExperience stays last before Footer, uses native Yes/`details`, and receives no recording or launch override.
 
-## Styling contract
+## Styling and runtime
 
-- The components use CSS Modules only (`*.module.css`), with no global selectors and no Tailwind, so they will not conflict with `globals.css`.
-- Each section is width-bounded (`min(1200px, 100% - 2·gutter)`), centered, and has a transparent background. The surrounding starfield/sky shows through.
-- There is one accent colour. Set `--showcase-accent` on any ancestor to retune it (default `#a5dded`, the site's existing accent).
-- Fonts use the existing system stacks. No web fonts are added.
-- Reduced motion turns off the only animations: the link hover nudge and the game panel fade. Forced-colours mode is handled.
+The components remain server components except MediaViewer. CSS Modules use container queries for parent-column layouts and warm shared monochrome tokens. The homepage slot supplies the full available width without applying legacy project-card classes. Component figures, spec lists, targets and captions must remain readable beside the rocket and at 320px. The game has a full-width slot.
 
-## Runtime
+The media viewer has a native `preload="none"` H.264 video, no autoplay, a poster, lazy thumbnails, selection buttons and source captions. It visibly reports pending map/forest-photo review. No-JavaScript hides inactive thumbnail controls and offers direct still-image links; video and native disclosures remain usable. FireGuard source hashes are unchanged.
 
-- `ProjectShowcase`, `HackathonGallery` and `GameExperience` are server components. The only client component is `MediaViewer`, the FireGuard thumbnail switcher, which has a single `useState`.
-- The game reveal is a native `<details>/<summary>`. It works with the keyboard and without JavaScript, and screen readers announce it as expandable.
-- The video uses `preload="none"` with a poster, native controls and no autoplay. No video bytes load until the user presses play.
-- `next/image` runs with the existing `images.unoptimized` static-export setting. No new dependencies.
+The temporary `/showcase-preview/` route is removed. `tests/showcase.spec.ts` now runs against `/` and covers all 13 widths, open disclosures/accessibility, tap targets, real playback, deferred video bytes, keyboard/touch, static still links and game-media separation. `scripts/preview.mjs` retains the supplied MIME and byte-range support.
 
-## Remove after integration
+## Outstanding content/release items
 
-`app/showcase-preview/page.tsx` is a `noindex`, unlinked preview route that is not in the sitemap. `tests/showcase.spec.ts` exercises it. Once the sections are on the homepage, either point the spec at `/` or keep the preview route out of production.
+See MEDIA_MANIFEST and CONTENT_TODOS before publication: FireGuard recording reuse, unidentified map tiles and forest photograph need owner confirmation. No genuine event photos or Chicken Shooter recording/public URL are available. AirControl/Seneca keep original line-art placeholders. Devpost is an owner-supplied profile link whose submissions were not verified.
 
-## Shared-file change
-
-`scripts/preview.mjs` gained MIME types (`.jpg`, `.webp`, `.avif`, `.mp4`, `.webm`) and single byte-range responses. Without them, the local test server served JPEG/MP4 as `application/octet-stream` with `nosniff`, and WebKit cannot play video without ranges. GitHub Pages already behaves this way, so production is unaffected.
+Both source commits are preserved through normal merges. The integration PR targets development; no automatic merge, main change, deployment or Pages setting change.

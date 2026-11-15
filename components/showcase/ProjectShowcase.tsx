@@ -39,7 +39,7 @@ function ShowcaseArticle({ entry }: { entry: ShowcaseEntry }) {
 
       <div className={styles.copy}>
         <p className={styles.stage}>
-          <span>Stage {entry.stage}</span>
+          <span>Project {entry.stage}</span>
           <span aria-hidden="true" className={styles.rule} />
           <span>{project.category}</span>
         </p>
@@ -135,14 +135,13 @@ export function ProjectShowcase({ id = "project-showcase" }: ProjectShowcaseProp
   return (
     <section id={id} className={shared.surface} aria-labelledby={titleId}>
       <header className={styles.header}>
-        <p className={shared.eyebrow}>Payload · Selected projects</p>
+        <p className={shared.eyebrow}>Project manifest · Three studies</p>
         <h2 id={titleId} className={shared.title}>
           Selected work, in detail.
         </h2>
         <p className={shared.lede}>
-          Three projects in detail: what each one does, the stack behind it and
-          what has actually been verified. Real media appears where it exists;
-          clearly marked schematics stand in where it does not yet.
+          Gesture interaction, geospatial decisions and wildfire intelligence.
+          Three different problems, explored through working software.
         </p>
       </header>
       <div className={styles.list}>

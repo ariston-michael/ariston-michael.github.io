@@ -103,3 +103,13 @@ video.media {
     transition: none;
   }
 }
+.review {
+  padding: 12px 14px;
+  border: 1px dashed var(--sk-line-strong);
+  color: var(--sk-body);
+  font: 11px/1.7 var(--sk-mono);
+  margin: 18px 0 0;
+}
+.staticNote { color: var(--sk-body); font-size: 13px; }
+.staticStills { padding: 0; list-style: none; }
+.staticStills a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; font-size: 13px; }

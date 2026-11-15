@@ -125,7 +125,7 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Add reversible section-driven separation, levitation, bounded mouse catching, magnetic return, keyboard movement and Reassemble.
 - [x] Preserve native navigation/scrolling, touch simplification, reduced-motion/pause and static content.
 - [x] Reserve Claude-owned component insertion points and document verified exports in `ROCKET_INTEGRATION.md`.
-- [ ] Integrate Claude’s separately delivered ProjectShowcase/HackathonGallery/GameExperience after both feature branches are reviewed.
+- [x] Integrate Claude’s ProjectShowcase/HackathonGallery/GameExperience on the separate integration branch; development PR review remains pending.
 - [x] Pass lint, strict types, webpack static build/export checks, 9 release-policy checks and 130 Chrome/WebKit cases; review actual screenshots and refine mobile clearance/contrast/readability.
 - Local validation and Firefox/device limits are recorded in VALIDATION.md. This branch is for review only; no merge or deployment.
 
@@ -136,3 +136,15 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Owner review of FireGuard media rights (map tiles, background photo).
 - [ ] Owner-supplied AirControl/Seneca screenshots, event photos, Chicken Shooter recording/public URL and Devpost submission links.
 - [ ] Integrate into the homepage (rocket-experience owner), then run hosted three-engine CI.
+
+## 2026-11-14 — Integrated Stage Separation
+
+- [x] Verify both remote feature SHAs and merge histories into a dedicated `feature/integrate-stage-separation` worktree; preserve both sides of documentation conflicts.
+- [x] Compose the six stages with ProjectShowcase, HackathonGallery and final native game disclosure; remove fallback duplicates and temporary preview route.
+- [x] Match component proportions to the actual content column; unify palette, note pages and rocket 404 recovery.
+- [x] Fix observed stage/engine collision with continuous joint expansion; retain drag, reconnection, reset, keyboard/touch and restoration.
+- [x] Verify FireGuard file hashes and visibly flag pending rights review; preserve all honest media/game placeholders and the Drive resume.
+- [x] Run locked install, lint, strict types, default production export, 9 release guards and the reconciled 180-case Chrome/WebKit suite; review five-width screenshots and run Lighthouse mobile/desktop. Actual results and limits are in VALIDATION.md.
+- [ ] Owner approval of FireGuard recording/map attribution/forest-photo reuse before any website publication.
+- [ ] Genuine event photos, AirControl/Seneca screenshots and Chicken Shooter footage/public URL.
+- PR targets development for review; no automatic merge, main modification, deployment or Pages change.

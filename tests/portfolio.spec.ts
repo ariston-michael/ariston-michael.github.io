@@ -17,7 +17,7 @@ async function expectNoOverflow(page: Page) {
     ];
     return elements
       .filter((element) => {
-        if (element.classList.contains("skip-link") || element.classList.contains("sr-only")) return false;
+        if (element.classList.contains("skip-link") || element.classList.contains("sr-only") || getComputedStyle(element).clipPath === "inset(50%)") return false;
         const rect = element.getBoundingClientRect();
         if (!rect.width || !rect.height) return false;
         return (
@@ -62,9 +62,9 @@ for (const width of widths) {
       await expect(page.getByRole("heading", { level: 1 })).toHaveText(
         "AristonMichael.",
       );
-      await expect(page.locator("#projects article")).toHaveCount(4);
+      await expect(page.locator("#projects article")).toHaveCount(3);
       await expect(
-        page.locator(".flight-experience > article, .flight-achievements > a"),
+        page.locator(".flight-experience > article, #achievements li > article"),
       ).toHaveCount(6);
       await expectNoOverflow(page);
       if (width <= 900) {
@@ -154,7 +154,7 @@ test("keyboard navigation, focus and motion controls", async ({
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("module-drift");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const selector of [".rocket-module svg", ".section-heading"]) {
+  for (const selector of [".rocket-module svg", ".showcase-slot"]) {
     expect(
       await page
         .locator(selector)
@@ -188,6 +188,7 @@ test("every local link resolves and no placeholder hrefs exist", async ({
       if (href!.startsWith("https:")) {
         expect([
           "https://github.com/ariston-michael",
+          "https://devpost.com/ariston-michael",
           "https://github.com/ariston-michael/BearHacks-2026",
           "https://github.com/ariston-michael/Seneca-Energy-Hackathon",
           "https://github.com/ariston-michael/fireguard",
@@ -260,7 +261,7 @@ test("200% zoom-equivalent reflow", async ({ browser }) => {
   await page.goto("/");
   await expectNoOverflow(page);
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await page.getByRole("link", { name: "Explore AirControl" }).click();
+  await page.getByRole("link", { name: /Read case study\s*:\s*AirControl/ }).click();
   await expectNoOverflow(page);
   await context.close();
 });
@@ -288,14 +289,14 @@ test("content remains usable without JavaScript", async ({ browser }) => {
   });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.locator("#projects article")).toHaveCount(4);
+  await expect(page.locator("#projects article")).toHaveCount(3);
   await expect(page.locator(".motion-toggle").first()).toBeHidden();
   expect(
     await page
       .locator(".rocket-module svg").first()
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
-  await page.getByRole("link", { name: "Explore AirControl" }).click();
+  await page.getByRole("link", { name: /Read case study\s*:\s*AirControl/ }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "AirControl",
   );

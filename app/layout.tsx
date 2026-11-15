@@ -43,7 +43,7 @@ export default function RootLayout({
       </head>
       <body>
         <noscript>
-          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .motion-toggle, .reassemble, .rocket-flight > .drawing-help { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; } .journey-backdrop, .planet-reserve { display: none !important; }`}</style>
+          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .media-thumbnails, .motion-toggle, .reassemble, .rocket-flight > .drawing-help { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; } .journey-backdrop, .planet-reserve { display: none !important; }`}</style>
         </noscript>
         <a href="#main" className="skip-link">
           Skip to content
