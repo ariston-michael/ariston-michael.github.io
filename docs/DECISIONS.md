@@ -146,3 +146,7 @@ Hosted PR #4 run 43669724358 had 240 passes / 30 failures. The 28 Firefox layout
 ## 2026-11-14 — Give navigation targets a real rounding margin
 
 Hosted Firefox measured 43.999969px for nominally 44px navigation links at 600px. Set header targets to 45px in both dimensions so actual painted/layout bounds satisfy the 44px requirement. Keep assertions strict and rerun the complete hosted matrix; no retry or browser exclusion.
+
+## 2026-11-14 — Preserve validated release head at permission boundary
+
+After all 270 hosted browser cases and source/export checks passed on f91b203, the supported SHA-locked integration merge returned HTTP 403 Resource not accessible by integration. Keep that validated head unchanged, prepare documentation-only release/stage-separation in its own worktree, and leave development/main/publication untouched. Normal owner UI merges or a suitably permitted supported connection and manual exact-SHA Actions dispatch are required; direct target pushes, credential extraction and deployment-trigger changes would circumvent the denial. Unlicensed wider media is excluded, so it is not a blocker for this narrowly scoped release.

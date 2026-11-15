@@ -154,6 +154,7 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Receive explicit production authorisation; inspect latest PR #4 and hosted failure logs.
 - [x] Resolve media scope by retaining only the owner-approved simulation crop; remove and prohibit unlicensed wider media in the static artifact.
 - [x] Repair the Firefox email-link layout without excluding Firefox or loosening overflow checks.
-- [ ] Pass final local and hosted validation for the new PR head.
+- [x] Pass final local 180/180 and hosted 270/270 validation for f91b203; all three browser engines, lint/types/static export/9 guards pass.
+- [x] Prepare isolated release/stage-separation documentation handoff; record GitHub merge 403 and manual Actions continuation.
 - [ ] Merge integration to development, reconcile main normally, open/review production PR and dispatch the exact-SHA Pages workflow through authorised permissions.
 - [ ] Verify the actual deployed HTTPS site and record release SHA/run and outstanding issues.

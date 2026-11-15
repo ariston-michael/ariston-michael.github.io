@@ -22,13 +22,13 @@ The desktop rocket lives in its reserved sticky column. At ≤900px the content 
 
 ## Progressive enhancement and media
 
-Static HTML contains every section and link. No-JavaScript disables the rocket buttons and hides enhancement-only controls; native stage links, project/game disclosures and video remain. Static FireGuard still links replace inactive thumbnail selectors. Reduced motion and shared MotionToggle are honoured live. The original `lib/home-entry.ts` policy is retained: fresh hashless reload starts at the introduction; explicit fragments and back/forward traversal preserve their intended targets; deferred hydration must not discard early user scrolling.
+Static HTML contains every section and link. No-JavaScript disables the rocket buttons and hides enhancement-only controls; native stage links, project/game disclosures and the approved static FireGuard image remain. Reduced motion and shared MotionToggle are honoured live. The original `lib/home-entry.ts` policy is retained: fresh hashless reload starts at the introduction; explicit fragments and back/forward traversal preserve their intended targets; deferred hydration must not discard early user scrolling.
 
 The release includes one unchanged 1120×640 owner-approved FireGuard simulation crop with native lazy loading. Four wider screenshots/video are deleted from public/ and forbidden in out/ because third-party imagery rights are unresolved. The generic viewer retains its video/thumbnail capability for a future rights-reviewed asset, but this release serves no recording. No game video or public launch URL is supplied. Resume always opens the existing external Drive viewer securely; no PDF or separate phone contact is hosted.
 
 ## Verification and release boundary
 
-`playwright.config.ts` retains Chromium/Firefox/WebKit projects, zero retries and static preview on loopback 3100. Tests exercise the integrated homepage (the preview-only route is gone), all requested widths, notes, rocket interactions, native links/disclosures, media playback/lazy loading, no-JavaScript, reduced motion, accessibility and restoration. The local server provides media MIME types and byte ranges. `check-export.mjs` validates canonical content routes, root assets and forbidden artifact types.
+`playwright.config.ts` retains Chromium/Firefox/WebKit projects, zero retries and static preview on loopback 3100. Tests exercise the integrated homepage (the preview-only route is gone), all requested widths, notes, rocket interactions, native links/disclosures, approved-image provenance/withheld-media exclusion/lazy loading, no-JavaScript, reduced motion, accessibility and restoration. The local server provides media MIME types and byte ranges. `check-export.mjs` validates canonical content routes, root assets and forbidden artifact types.
 
 Run `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm run check:export`, `npm run test:release`, then `npm test`. On this host Chrome can be selected with `PLAYWRIGHT_CHANNEL=chrome`; unavailable browsers must be reported. Current actual results and Lighthouse metrics are in `VALIDATION.md`.
 

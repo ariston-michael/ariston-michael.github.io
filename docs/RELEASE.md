@@ -8,7 +8,25 @@ The existing guarded workflow is correct: main-only manual dispatch, `approve_re
 
 Fresh anonymous Chrome verification opened the intended `Ariston_Michael.pdf - Google Drive` viewer with HTTP 200, the expected name, and no access-required message. No Drive permission or PDF copy was changed. GitHub profile/project links and Devpost returned 200; LinkedIn returned its automation-blocking HTTP 999, so the owner-verified URL was retained without bypassing the block.
 
-Pending: final release-safe local/hosted checks, normal integration/main PR merges through permitted GitHub actions, actual Pages configuration/dispatch permission, and public smoke verification. Local preparation or an authorised merge alone is not a deployment. Do not use keychain/credential extraction, alternate authentication or modified workflow triggers to bypass connector/security restrictions. Record the actual final SHA, production PR and successful workflow run below only after they exist.
+## Current handoff — 2026-11-14
+
+- Validated integration head: **`f91b203f95675c9d32cbbe00f6f8a10108b625fc`**. [PR #4](https://github.com/ariston-michael/ariston-michael.github.io/pull/4) remains open against development; it was not merged.
+- [Portfolio validation run 43672823579](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/43672823579), job 132686416804: **270 passed (7.4m)** across Chromium, Firefox and WebKit, zero retries/skips. Lint, strict types, default static build/export and all 9 release-policy tests passed. GitGuardian also succeeded on this exact head.
+- Local final suite: **180/180 Chrome/WebKit**; Lighthouse performance **99 mobile / 100 desktop**, accessibility/best practices/SEO **100** on both. Anonymous resume verification passed. See VALIDATION.md.
+- The supported SHA-locked normal PR merge was attempted after green checks. GitHub returned **403: Resource not accessible by integration**. This connection also exposes no Actions workflow-dispatch or Pages-settings operation. No alternative credentials, direct development/main push or changed deployment trigger was used.
+- Development remains `c9bf5c90caf24e50b3cb389e9dee293af88d9142`; main remains `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. Main is already an ancestor of the candidate; no reconciliation or history rewrite is needed with these refs.
+- The isolated **release/stage-separation** branch is prepared from the validated head with documentation-only handoff updates. It is not a merged production PR. Preserve the green integration head; merge updated development into the release branch normally before preparing the main-targeted PR if needed.
+- Public root currently returns HTTPS 200 and still shows the previous Saturn presentation. **Stage Separation is not published.** No production PR merge or new deployment run exists.
+
+### Owner intervention / permitted continuation
+
+1. Give the supported GitHub connection repository write access, or merge green PR #4 through GitHub's normal UI. Do not bypass its permission denial with extracted credentials or a direct protected-target push.
+2. Fetch/recheck development and main, reconcile normally if either advanced, and create the production PR targeting main from the prepared release branch after incorporating development. Require fresh production-PR validation before its normal merge.
+3. In Settings → Pages, confirm Source is **GitHub Actions** (historical successful releases used Actions; fresh authenticated mode inspection is unavailable here). Preserve the root URL and HTTPS. The workflow verifies this setting without modifying it.
+4. On the resulting main commit, run **Actions → Approved Pages release → Run workflow**, branch **main**, `approve_release=true`, `expected_sha=<actual full main merge SHA>`. Do not enter the feature-head SHA. Wait for successful build and deploy jobs; the artifact path is **out/**.
+5. Independently verify the actual public rocket, desktop/mobile layouts, scroll reversal, drag/reset/keyboard/touch, projects/media, native game disclosure, navigation, signed-out resume, HTTPS and assets. Record the resulting production PR, main SHA, deploy-run URL and public smoke result here. The local smoke helper at `/private/tmp/stellar-release-smoke.cjs` can be run against the public root after deployment; local temporary evidence is not committed or durable.
+
+Successful preparation is not publication. Current blocker is GitHub write/dispatch capability, not media rights: the unresolved third-party media is absent from this release. Physical-device, assistive-technology and real browser-toolbar zoom remain manual verification limits.
 
 ---
 

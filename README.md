@@ -30,7 +30,7 @@ npx playwright install chromium firefox webkit
 npm test
 ```
 
-The reconciled suite tests the integrated homepage on all 13 requested widths, short/tall layouts, rocket stages/drag/reset/joints, notes/routes, focus/touch, reduced motion, no-JavaScript, restoration/deferred hydration, galleries, native game disclosure, genuine video playback, lazy media loading and automated accessibility. It does not add the old source-branch counts together. Tests serve the export on loopback 3100 with zero retries.
+The reconciled suite tests the integrated homepage on all 13 requested widths, short/tall layouts, rocket stages/drag/reset/joints, notes/routes, focus/touch, reduced motion, no-JavaScript, restoration/deferred hydration, galleries, native game disclosure, approved-image provenance, withheld-media exclusion, lazy loading and automated accessibility. It does not add the old source-branch counts together. Tests serve the export on loopback 3100 with zero retries.
 
 Installed Chrome/WebKit command on this Mac:
 
