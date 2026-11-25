@@ -22,6 +22,12 @@ export function RocketExperience({ children }: { children: ReactNode }) {
     const paint = () => {
       frame = 0;
       const quiet = media.matches || document.documentElement.dataset.motion === "paused";
+      const landing = document.querySelector<HTMLElement>(".launch-vehicle");
+      if (landing) {
+        const hull = landing.querySelector(".vehicle-hull")!.getBoundingClientRect();
+        const separation = quiet || reassembled.current ? 0 : Math.max(0, Math.min(1, -hull.top / (hull.height * .65)));
+        landing.style.setProperty("--launch-separation", String(separation));
+      }
       let active = 0;
       const drawingBottom = scene.current?.querySelector(".rocket-drawing")?.getBoundingClientRect().bottom ?? innerHeight;
       const commandDistance = innerWidth <= 900 ? innerHeight * .85 - drawingBottom : scrollY;
@@ -94,6 +100,7 @@ export function RocketExperience({ children }: { children: ReactNode }) {
   }
   function reset() {
     reassembled.current = true;
+    document.querySelector<HTMLElement>(".launch-vehicle")?.style.setProperty("--launch-separation", "0");
     modules.forEach((_, index) => {
       move(index, { x: 0, y: 0 });
       const el = pieces.current[index];

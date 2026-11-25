@@ -146,3 +146,7 @@ Hosted PR #4 run 43669724358 had 240 passes / 30 failures. The 28 Firefox layout
 ## 2026-11-14 — Give navigation targets a real rounding margin
 
 Hosted Firefox measured 43.999969px for nominally 44px navigation links at 600px. Set header targets to 45px in both dimensions so actual painted/layout bounds satisfy the 44px requirement. Keep assertions strict and rerun the complete hosted matrix; no retry or browser exclusion.
+
+## 2026-11-25 — Make the introduction the command body
+
+The separate introduction column made the rocket read as an accompanying diagram. Use a large assembled vehicle as the landing itself: server-rendered identity/availability/copy/CTAs inside an original vector hull, five native stage bands below and an engine/fin base. Keep the content modules and existing interactive diagram architecture; use its single scroll scheduler for bounded reversible landing joint expansion, without scroll capture or per-frame React state. A fixed-height cap prevents shoulder rules crossing text at narrow widths or reflow. Phone content grows naturally instead of reducing type to force a full rocket into a short viewport. The optional hero clip is disclosed on request, and future generated game concepts are explicitly labelled separately from actual gameplay. No new media, credentials, graphics dependency, deployment or main merge is part of this pass.

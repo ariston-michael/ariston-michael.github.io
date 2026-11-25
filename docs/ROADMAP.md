@@ -157,3 +157,14 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Pass final local and hosted validation for the new PR head.
 - [ ] Merge integration to development, reconcile main normally, open/review production PR and dispatch the exact-SHA Pages workflow through authorised permissions.
 - [ ] Verify the actual deployed HTTPS site and record release SHA/run and outstanding issues.
+
+## 2026-11-25 — Hero inside the rocket refinement
+
+- [x] Branch from latest integrated origin/development in an isolated feature/rocket-hero-integration worktree.
+- [x] Put verified hero content and CTA/resume inside the assembled command hull; add attached stage navigation and reversible landing joint motion.
+- [x] Preserve the integrated project/experience/education/about/contact/game modules, drag/reset, keyboard/touch, restoration, reduced motion and no-JavaScript content.
+- [x] Prepare optional approved hero media and explicitly labelled concept/gameplay video support; keep honest placeholders and existing media-rights exclusions.
+- [x] Review real screenshots at 320, 375, 768, 1440 and 2560px; fix cap/text collisions found in the first phone rendering.
+- Validation results and host/dependency limitations are recorded in VALIDATION.md. No main merge or publication is authorised for this refinement.
+- [ ] Address the pinned Next.js production-dependency security advisory in a separately validated maintenance change.
+- [ ] Supply approved final concept/gameplay media and captions/credit if desired; no asset was fabricated or generated.

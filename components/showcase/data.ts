@@ -118,6 +118,9 @@ export const hackathonRecords: readonly HackathonRecord[] = [
 ];
 
 export type GameRecording = {
+  /** Generated/stylized concepts must never be labelled as genuine gameplay. */
+  kind?: "gameplay" | "concept";
+  credit?: string;
   src: string;
   poster: string;
   width: number;

@@ -19,9 +19,11 @@ The integrated site replaces the Saturn/solar-system presentation with a restrai
 
 The final Ready to Play disclosure is an optional full-width bonus, followed by the footer. It does not advertise a playable game or show unrelated footage.
 
-Desktop reserves a drawing column beside the content. The initially assembled rocket separates from real section positions; cumulative joint expansion prevents a detached stage crossing an attached neighbour. Pointer catching, magnetic return, keyboard arrows/Home/Escape and Reassemble all use bounded offsets. Reversing scroll reverses the same geometry. Levitation is subtle and confined to the drawing.
+The opening is a full-width assembled vehicle: original vector nose, real HTML command body containing all hero copy and actions, five attached stage bands and an engine/fin base. The hull uses a fixed-height nose rather than stretching rules through wrapped text. On phones the command body grows with its readable content; no viewport-height text squeezing or video dependency. Stage bands use native links, and open bounded joints from the existing scroll scheduler; reversing scroll reconnects them.
 
-At 900px and below, the complete drawing appears in normal flow after the introduction. Short desktop viewports use a compact drawing. The full phone experience scrolls naturally rather than shrinking text to fit everything above the fold. Its command stage waits until the complete drawing enters view before separating. Native stage links remain available independently of the enhanced controls.
+Below the landing, desktop reserves a drawing column beside the portfolio content. The initially assembled rocket separates from real section positions; cumulative joint expansion prevents a detached stage crossing an attached neighbour. Pointer catching, magnetic return, keyboard arrows/Home/Escape and Reassemble all use bounded offsets. Reversing scroll reverses the same geometry. Levitation is subtle and confined to the drawing.
+
+At 900px and below, the interactive drawing appears in normal flow after the assembled landing. Short desktop viewports use a compact drawing. The full phone experience scrolls naturally rather than shrinking text to fit everything above the fold. Its command stage waits until the complete drawing enters view before separating. Native stage links remain available independently of the enhanced controls.
 
 ## Components and media
 

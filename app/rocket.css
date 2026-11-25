@@ -970,3 +970,95 @@ html[data-motion="paused"] .rocket-module svg {
 .email-address { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; }
 /* Keep actual targets above 44px despite Firefox fractional layout rounding. */
 .site-header nav a { min-width: 45px; min-height: 45px; }
+
+/* The landing is the vehicle: semantic HTML sits inside its command hull. */
+.rocket-site .launch-vehicle { width: min(1160px, calc(100% - 64px)); padding-top: 22px; }
+.vehicle-registration, .vehicle-caption, .command-registration {
+  display: flex; justify-content: space-between; gap: 16px;
+  font: 9px/1.6 var(--font-mono); letter-spacing: 1.3px; color: #b2b9ad;
+}
+.vehicle-registration { padding: 0 12px; }
+.vehicle-hull { position: relative; isolation: isolate; margin: 20px auto 0; padding: 148px 13% 50px; }
+.vehicle-outline { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; overflow: visible; fill: none; stroke: #9ba491; stroke-width: 1; }
+.vehicle-outline path { vector-effect: non-scaling-stroke; }
+.vehicle-outline .vehicle-skin { fill: #111412; stroke: #c1c8b6; }
+.vehicle-outline .vehicle-guide { stroke: #7c8a72; }
+.command-registration { margin: 0 0 28px; font-size: 8px; color: #abb89e; }
+.launch-vehicle .launch-intro { min-height: 0; padding: 0; display: grid; grid-template-columns: 1.05fr 1fr; column-gap: 9%; align-items: start; }
+.launch-vehicle .launch-intro .eyebrow { grid-column: 1 / -1; font-size: 9px; margin: 0 0 32px; letter-spacing: 1.1px; }
+.launch-vehicle .launch-intro h1 { grid-column: 1; grid-row: 2 / 5; font-size: clamp(74px, 8vw, 116px); margin: -8px 0 0; }
+.launch-vehicle .intro-role { grid-column: 2; margin: 0 0 20px; font-size: clamp(19px, 2vw, 25px); }
+.launch-vehicle .intro-copy { grid-column: 2; margin: 0 0 23px; font-size: 13px; }
+.launch-vehicle .launch-actions { grid-column: 2; gap: 10px 20px; }
+.launch-vehicle .intro-bottom { grid-column: 1 / -1; padding: 28px 0 16px; margin: 0; font-size: 8px; }
+.vehicle-stages { border-top: 1px solid #b2bba060; }
+.vehicle-stages a { display: grid; grid-template-columns: 30px 1fr 1fr 16px; align-items: center; gap: 12px; min-height: 45px; border-bottom: 1px solid #a3ae9135; font: 10px/1.5 var(--font-mono); color: #c8d0be; }
+.vehicle-stages a > span:first-child { color: #9cae8c; font-size: 8px; }
+.vehicle-stages a > span:nth-child(3) { color: #a3ad9c; }
+.vehicle-stages a:hover { background: #d3dfbc0a; color: #fff; }
+.vehicle-nozzle { display: flex; justify-content: center; gap: 12px; height: 25px; padding-top: 8px; }
+.vehicle-nozzle i { display: block; width: 42px; height: 23px; border: 1px solid #99a68a; border-top: 0; transform: perspective(40px) rotateX(20deg); }
+.vehicle-caption { padding: 18px 10% 30px; margin: 0; font-size: 8px; }
+.vehicle-star { position: absolute; color: #a3af96; font-size: 26px; }
+.vehicle-star-left { left: 3%; top: 35%; }
+.vehicle-star-right { right: 3%; top: 65%; font-size: 18px; }
+.rocket-layout { padding-top: 30px; }
+@media (min-width: 1600px) {
+  .vehicle-hull { padding-top: 165px; }
+  .launch-vehicle .launch-intro { min-height: 330px; }
+}
+@media (max-width: 900px) {
+  .rocket-site .launch-vehicle { width: calc(100% - 32px); }
+  .vehicle-hull { padding: 148px 13% 44px; }
+  .launch-vehicle .launch-intro { display: flex; gap: 0; }
+  .launch-vehicle .launch-intro h1 { font-size: clamp(62px, 11vw, 94px); margin: 0 0 24px; }
+  .launch-vehicle .launch-intro .eyebrow { margin-bottom: 24px; font-size: 8px; }
+  .launch-vehicle .intro-role { font-size: 21px; }
+  .launch-vehicle .intro-copy { font-size: 13px; }
+  .command-registration > span:last-child { display: none; }
+  .vehicle-stages a { grid-template-columns: 22px 1fr 16px; gap: 8px; min-height: 45px; }
+  .vehicle-stages a > span:nth-child(3) { display: none; }
+  .launch-vehicle .intro-bottom { display: block; padding-top: 20px; }
+  .launch-vehicle .intro-bottom > span { display: none; }
+  .vehicle-registration { font-size: 8px; letter-spacing: .6px; }
+  .vehicle-registration > span:last-child { display: none; }
+  .vehicle-caption { font-size: 7px; letter-spacing: .5px; }
+}
+@media (max-width: 430px) {
+  .vehicle-hull { padding-top: 160px; }
+  .launch-vehicle .launch-intro h1 { font-size: clamp(56px, 16vw, 68px); }
+  .launch-vehicle .launch-intro .eyebrow { align-items: flex-start; gap: 8px; line-height: 1.8; }
+  .availability-dot { margin-top: 5px; }
+  .command-registration { letter-spacing: .7px; }
+}
+.command-media { margin: 12px 0 24px; font-size: 12px; color: #c9d3bd; }
+.command-media summary { min-height: 44px; display: list-item; align-content: center; cursor: pointer; }
+.command-media figure { margin: 8px 0; }
+.command-media video { display: block; width: 100%; height: auto; }
+.command-media figcaption { margin-top: 12px; font-size: 11px; line-height: 1.7; color: #b2b9ad; }
+/* Fixed-height cap keeps shoulder rules above text when content wraps or zooms. */
+.rocket-site .launch-vehicle { padding-top: 12px; }
+.vehicle-hull { margin-top: 12px; padding-top: 125px; }
+.vehicle-hull::before { content: ""; position: absolute; z-index: -1; inset: 99px 9% 34px; background: #111412; border: 1px solid #c1c8b6; border-top: 0; }
+.vehicle-outline { height: 100px; }
+.vehicle-base { position: absolute; bottom: 0; left: 0; width: 100%; height: 50px; fill: none; stroke: #c1c8b6; z-index: -1; }
+.vehicle-base path { vector-effect: non-scaling-stroke; }
+.launch-vehicle .intro-bottom { padding-top: 20px; }
+@media (min-width: 1600px) { .vehicle-hull { padding-top: 125px; } }
+@media (max-width: 900px) {
+  .vehicle-outline { height: 140px; }
+  .vehicle-hull { padding-top: 166px; }
+  .vehicle-hull::before { top: 139px; }
+}
+/* The same scroll scheduler opens the landing joints, and reverses them on return. */
+.vehicle-hull::before { opacity: calc(1 - var(--launch-separation, 0)); }
+.command-body { position: relative; transform: translateY(calc(var(--launch-separation, 0) * -6px)); }
+.vehicle-stages a { position: relative; background: #111412; transform: translate(calc(var(--launch-separation, 0) * var(--stage-drift, 10px)), calc(var(--launch-separation, 0) * var(--stage-gap, 6px))); }
+.vehicle-stages a:nth-child(2) { --stage-drift: -10px; --stage-gap: 12px; }
+.vehicle-stages a:nth-child(3) { --stage-gap: 18px; }
+.vehicle-stages a:nth-child(4) { --stage-drift: -10px; --stage-gap: 24px; }
+.vehicle-stages a:nth-child(5) { --stage-gap: 30px; }
+@media (prefers-reduced-motion: reduce) {
+  .command-body, .vehicle-stages a { transform: none; }
+  .vehicle-hull::before { opacity: 1; }
+}

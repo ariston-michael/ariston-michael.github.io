@@ -24,13 +24,15 @@ test("drag catch, magnetic return, keyboard move and reassemble", async ({page})
   await page.goto("/");
   const piece = page.locator(".rocket-module").nth(2);
   await expect(piece).toBeEnabled();
+  await piece.scrollIntoViewIfNeeded();
+  const scrollBeforeDrag = await page.evaluate(() => scrollY);
   const box = (await piece.boundingBox())!;
   await page.mouse.move(box.x+80,box.y+50);
   await page.mouse.down();
   await page.mouse.move(box.x+115,box.y+73,{steps:8});
   await page.mouse.up();
   await expect.poll(() => piece.evaluate(el => el.style.getPropertyValue("--manual-x"))).toBe("35px");
-  expect(await page.evaluate(()=>scrollY)).toBe(0);
+  expect(await page.evaluate(()=>scrollY)).toBe(scrollBeforeDrag);
   await piece.focus();
   await page.keyboard.press("Home");
   await expect.poll(() => piece.evaluate(el => el.style.getPropertyValue("--manual-x"))).toBe("0px");
@@ -44,6 +46,8 @@ test("drag catch, magnetic return, keyboard move and reassemble", async ({page})
   await expect(page.getByRole("status")).toContainText("Rocket reassembled");
   // A small catch snaps back to the attachment position on release.
   await page.evaluate(()=>scrollTo({top:0,behavior:"instant"}));
+  await piece.scrollIntoViewIfNeeded();
+  await page.getByRole("button",{name:"Reassemble",exact:true}).evaluate(el => (el as HTMLButtonElement).click());
   const returned = (await piece.boundingBox())!;
   await page.mouse.move(returned.x+80,returned.y+50);
   await page.mouse.down(); await page.mouse.move(returned.x+90,returned.y+50,{steps:4}); await page.mouse.up();

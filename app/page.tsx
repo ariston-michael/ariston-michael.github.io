@@ -1,4 +1,5 @@
 import { SiteHeader } from "@/components/SiteHeader";
+import { LaunchVehicle } from "@/components/LaunchVehicle";
 import { RocketExperience } from "@/components/RocketExperience";
 import { ProjectShowcase, HackathonGallery, GameExperience } from "@/components/showcase";
 import { ResumeLink } from "@/components/ResumeLink";
@@ -9,7 +10,7 @@ export default function Home() {
   return <div id="top" className="site rocket-site">
     <SiteHeader />
     <main id="main" tabIndex={-1}>
-      <RocketExperience>
+      <LaunchVehicle>
         <section id="introduction" className="launch-intro" aria-labelledby="intro-title">
           <p className="eyebrow"><span className="availability-dot" /> OPEN TO SUMMER 2027 INTERNSHIPS</p>
           <h1 id="intro-title">Ariston<br />Michael<span className="title-period">.</span></h1>
@@ -18,6 +19,8 @@ export default function Home() {
           <div className="launch-actions"><a className="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a><ResumeLink /></div>
           <div className="intro-bottom"><span>COMPUTER SCIENCE / CLOUD COMPUTING</span><a href="#projects">BEGIN SEPARATION <span aria-hidden="true">↓</span></a></div>
         </section>
+      </LaunchVehicle>
+      <RocketExperience>
         <div className="stage-content payload-content" data-stage="payload">
           <div className="stage-marker"><span>02 / PAYLOAD</span><span>SELECTED WORK</span></div>
           <div className="showcase-slot"><ProjectShowcase id="projects" /></div>

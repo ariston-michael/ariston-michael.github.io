@@ -23,6 +23,7 @@ export function GameExperience({
   launchUrl = chickenShooter.launchUrl,
 }: GameExperienceProps) {
   const { project } = chickenShooter;
+  const mediaLabel = recording?.kind === "concept" ? "Stylized concept video" : "Gameplay recording";
   const titleId = `${id}-title`;
   const panelTitleId = `${id}-panel-title`;
 
@@ -54,15 +55,17 @@ export function GameExperience({
                       poster={recording.poster}
                       width={recording.width}
                       height={recording.height}
-                      aria-label={`${project.name} gameplay recording (video preview, ${recording.duration})`}
+                      aria-label={`${project.name}: ${mediaLabel} (video preview, ${recording.duration})`}
                     >
                       <source src={recording.src} type="video/mp4" />
-                      <a href={recording.src}>Download the gameplay recording (MP4)</a>
+                      <a href={recording.src}>Open the video (MP4)</a>
                     </video>
                   </div>
                   <figcaption className={styles.caption}>
-                    Gameplay recording · {recording.duration}. This is a video
-                    preview, not the playable game.
+                    {mediaLabel} · {recording.duration}. {recording.kind === "concept"
+                      ? "Concept imagery — not gameplay footage or the playable game."
+                      : "This is a video preview, not the playable game."}
+                    {recording.credit && <> {recording.credit}</>}
                   </figcaption>
                 </figure>
               ) : (
