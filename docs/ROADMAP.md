@@ -108,3 +108,52 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Inspect eight transition states and capture continuous down/up recording.
 - [x] Run lint, strict types, supported webpack production export, guard/export checks and same-session Lighthouse comparison: performance **99 mobile / 100 desktop**, all other categories 100, CLS 0.
 - Default local Turbopack remains restricted by worker-port EPERM; actual command/results and manual-device limits are recorded in VALIDATION.md. No publication is authorized for this continuation.
+
+## 2026-11-13 — Approved ring-passage publication
+
+- [x] Obtain explicit publication approval (2026-11-12), resolve hosted test-timing findings without weakening assertions, and pass all 444 hosted tests.
+- [x] Merge PR #3 normally and publish exact main SHA `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab` through guarded release run 43366281384.
+- [x] Repeat all 444 browser checks in the successful production workflow (23.7m); preserve root URL, HTTPS and Pages configuration.
+- Future releases still require approval. Release details/rollback guidance and actual public verification are recorded in RELEASE.md/VALIDATION.md.
+
+- [x] Complete public Chrome smoke verification of real ring morph/reversal, painted-position reloads, anchors/history, all routes/assets, mobile touch/axe, motion controls and no-JavaScript content. Public URL: https://ariston-michael.github.io/.
+
+## 2026-11-14 — Stage Separation feature
+
+- [x] Create `feature/rocket-experience` in `/private/tmp/stellar-rocket-experience` from latest fetched `origin/development`; preserve the other working directory.
+- [x] Replace homepage Saturn/solar presentation with a monochrome technical rocket and six portfolio stages.
+- [x] Add reversible section-driven separation, levitation, bounded mouse catching, magnetic return, keyboard movement and Reassemble.
+- [x] Preserve native navigation/scrolling, touch simplification, reduced-motion/pause and static content.
+- [x] Reserve Claude-owned component insertion points and document verified exports in `ROCKET_INTEGRATION.md`.
+- [x] Integrate Claude’s ProjectShowcase/HackathonGallery/GameExperience on the separate integration branch; development PR review remains pending.
+- [x] Pass lint, strict types, webpack static build/export checks, 9 release-policy checks and 130 Chrome/WebKit cases; review actual screenshots and refine mobile clearance/contrast/readability.
+- Local validation and Firefox/device limits are recorded in VALIDATION.md. This branch is for review only; no merge or deployment.
+
+## 2026-11-14 — Project showcase feature branch
+
+- [x] Self-contained ProjectShowcase, HackathonGallery and GameExperience components with desktop/tablet/phone layouts, scoped styles and a noindex preview route.
+- [x] Authentic FireGuard XR stills and a web-optimised demo excerpt from the owner's recording, with an asset manifest.
+- [ ] Owner review of FireGuard media rights (map tiles, background photo).
+- [ ] Owner-supplied AirControl/Seneca screenshots, event photos, Chicken Shooter recording/public URL and Devpost submission links.
+- [ ] Integrate into the homepage (rocket-experience owner), then run hosted three-engine CI.
+
+## 2026-11-14 — Integrated Stage Separation
+
+- [x] Verify both remote feature SHAs and merge histories into a dedicated `feature/integrate-stage-separation` worktree; preserve both sides of documentation conflicts.
+- [x] Compose the six stages with ProjectShowcase, HackathonGallery and final native game disclosure; remove fallback duplicates and temporary preview route.
+- [x] Match component proportions to the actual content column; unify palette, note pages and rocket 404 recovery.
+- [x] Fix observed stage/engine collision with continuous joint expansion; retain drag, reconnection, reset, keyboard/touch and restoration.
+- [x] Verify FireGuard file hashes and visibly flag pending rights review; preserve all honest media/game placeholders and the Drive resume.
+- [x] Run locked install, lint, strict types, default production export, 9 release guards and the reconciled 180-case Chrome/WebKit suite; review five-width screenshots and run Lighthouse mobile/desktop. Actual results and limits are in VALIDATION.md.
+- [ ] Owner approval of FireGuard recording/map attribution/forest-photo reuse before any website publication.
+- [ ] Genuine event photos, AirControl/Seneca screenshots and Chicken Shooter footage/public URL.
+- PR targets development for review; no automatic merge, main modification, deployment or Pages change.
+
+## 2026-11-14 — Authorised Stage Separation production release
+
+- [x] Receive explicit production authorisation; inspect latest PR #4 and hosted failure logs.
+- [x] Resolve media scope by retaining only the owner-approved simulation crop; remove and prohibit unlicensed wider media in the static artifact.
+- [x] Repair the Firefox email-link layout without excluding Firefox or loosening overflow checks.
+- [ ] Pass final local and hosted validation for the new PR head.
+- [ ] Merge integration to development, reconcile main normally, open/review production PR and dispatch the exact-SHA Pages workflow through authorised permissions.
+- [ ] Verify the actual deployed HTTPS site and record release SHA/run and outstanding issues.

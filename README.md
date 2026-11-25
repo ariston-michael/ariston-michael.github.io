@@ -1,26 +1,22 @@
-# Stellar Portfolio
+# Stage Separation — Ariston Michael
 
-Ariston Michael’s original static software engineering portfolio: cinematic Saturn hero, optional Sun/eight-planet navigation, deterministic interactive stars, four featured projects and four project-note pages, verified experience, education, skills and contact links.
+A statically exported software engineering portfolio built around an original six-stage rocket sketch. Normal scrolling separates modules beside verified introduction, projects, experience, education/skills, about/achievements and contact content. Mouse catching, magnetic reconnection, keyboard controls and Reassemble are optional enhancements.
+
+ProjectShowcase, HackathonGallery and the final Ready to Play disclosure are integrated. AirControl/Seneca/event imagery remain labelled original schematics. FireGuard XR uses an owner-approved crop of its original 3D simulation. Wider screenshots/video are withheld because third-party map/photo rights are unresolved. Chicken Shooter has neither verified footage nor a public launch URL, so Yes reveals an honest project placeholder, not an embedded game.
 
 ## Local preview
 
-Node.js 22.13+ (verified on 24.14.0) and npm:
+Node 22.13+ and npm (tested on Node 24.14.0):
 
 ```sh
-cd /Users/aristonmichael/stellar-portfolio
+cd /private/tmp/stellar-stage-integration
 npm ci
 npm run build
 npm run check:export
 npm run preview
 ```
 
-Open **http://127.0.0.1:3000**. Stop with Ctrl+C. This previews the production `out/` export, not the legacy root `index.html`. For editing, use `npm run dev` and http://localhost:3000. No secrets, environment files, backend, external fonts or graphics service are required. Do not use `next start` for the export.
-
-## Resume and content
-
-Resume: [Ariston_Michael.pdf on Google Drive](https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view). The correct one-page file was verified in a fresh signed-out Chrome context on 2026-11-01; connected metadata also reports anyone/reader. Resume CTAs open this viewer in a new tab with noopener/noreferrer. **No PDF is stored or served by this repository.** Access/content can change on Drive; recheck before release.
-
-`docs/ABOUT_ME.md` records verified resume/owner facts and provenance. Content includes Spindle Strategy’s Software Developer Intern role, FireGuard XR’s technical scope, resume-aligned skills and three verified public repository links. Public branding stays Ariston Michael. The external resume retains its original full name/content; no separate phone link is published. Remaining screenshots, live demos and Chicken Shooter details are listed in `docs/CONTENT_TODOS.md`.
+Open http://127.0.0.1:3000; stop with Ctrl+C. `npm run dev` is available for editing. No secrets, backend or external fonts are required. Preview `out/`, not the legacy root index; do not use `next start`. A sandbox may require expanded access for the compiler/preview worker ports. The supported `npm run build -- --webpack` alternative remains available; current validation used the default Turbopack build successfully with expanded local access.
 
 ## Checks
 
@@ -34,37 +30,29 @@ npx playwright install chromium firefox webkit
 npm test
 ```
 
-Browser tests serve exported HTML on loopback port 3100 and cover 320–2560px widths, tall/short layouts, mouse/keyboard/touch, cinematic entry/maximum/reversal/skip, all nine solar destinations, reduced motion, pause/resume, idle frame settling, no-JavaScript links, project pages, SEO, external resume attributes/new-tab behavior and automated accessibility.
+The reconciled suite tests the integrated homepage on all 13 requested widths, short/tall layouts, rocket stages/drag/reset/joints, notes/routes, focus/touch, reduced motion, no-JavaScript, restoration/deferred hydration, galleries, native game disclosure, genuine video playback, lazy media loading and automated accessibility. It does not add the old source-branch counts together. Tests serve the export on loopback 3100 with zero retries.
 
-Installed-Chrome/WebKit host command:
+Installed Chrome/WebKit command on this Mac:
 
 ```sh
-PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit
+PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2
 ```
 
-If a managed environment blocks Turbopack’s local CSS-worker port with `EPERM`, `npm run build -- --webpack` produces the same static-export routes using Next.js’s supported alternative compiler. Validation records the exact compiler/command used.
+Firefox is configured but currently fails before launch with `Could not find profile folder`. Read-only CI includes development/main PRs and attempts all three engines on Ubuntu. See [actual validation evidence](docs/VALIDATION.md); no unavailable browser, device or performance check should be inferred from another result.
 
-Firefox is configured but this Mac has reported `Could not find profile folder` before launch. CI attempts all three browsers on Ubuntu. See `docs/VALIDATION.md` for actual local/remote evidence and limits; do not treat unavailable checks as passes. Reports/screenshots/build output are ignored. Use `npx playwright show-report` to inspect diagnostics.
+## Sources and media approval
 
-## Structure
+Personal facts and verified destinations: [ABOUT_ME.md](docs/ABOUT_ME.md). Resume uses the existing [external Google Drive viewer](https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view), opening securely in a new tab. No substitute PDF or separate phone link is published.
 
-- `app/`: Home, static project routes, metadata, sitemap, robots, 404 and styles.
-- `components/`: Semantic portfolio sections, original SVG/CSS artwork, optional solar explorer and shared motion controls.
-- `lib/content.ts`, `lib/solar.ts`, `lib/site.ts`: Verified typed content, navigation mapping and canonical metadata.
-- `components/CosmicJourney.tsx`, `lib/cinema.ts`: Shared Saturn-to-trails scene and compatible SVG geometry.
-- `lib/home-entry.ts`: Initial-homepage target policy; anchors and browser history are regression-tested.
-- `scripts/preview.mjs`, `check-export.mjs`: Loopback preview and deployable-artifact checks.
-- `scripts/release-policy.mjs`, `scripts/tests/`: Exact-commit release guard and negative-case tests.
-- `.github/workflows/validate.yml`: Read-only, non-production validation on development/PRs.
-- `.github/workflows/release-pages.yml`: Manual-only main release; approval and exact SHA required.
-- `index.html`: Unchanged legacy welcome page retained for rollback.
+The owner has authorised publication of owner-created FireGuard media. The release includes only the inspected simulation crop; the wider video and screenshots containing unresolved third-party imagery are removed and rejected by the export checker. Before reintroducing them, confirm map attribution and forest-photo reuse rights. No 94% accuracy claim is repeated from the recording. See [MEDIA_MANIFEST.md](docs/MEDIA_MANIFEST.md) and [CONTENT_TODOS.md](docs/CONTENT_TODOS.md). Hackathon event photos and genuine Chicken Shooter footage/URL remain missing.
 
-Read `AGENTS.md` before editing. Architecture, design, decisions, roadmap, evidence and content TODOs live in `docs/`.
+## Structure and release boundary
 
-## Release boundary
+- `app/page.tsx`, `app/rocket.css`: integrated server-rendered content and editorial layout.
+- `components/RocketExperience.tsx`, `lib/rocket.ts`: bounded enhancement and shared vector geometry.
+- `components/showcase/`: scoped server components and client media selector; container queries use the actual content column.
+- `lib/content.ts`, `lib/home-entry.ts`: verified content and initial-document restoration policy.
+- `scripts/preview.mjs`, `scripts/check-export.mjs`: static preview with media ranges/MIME types and artifact checks.
+- `docs/ROCKET_INTEGRATION.md`, `docs/SHOWCASE_INTEGRATION.md`: assembly, anchors and source history.
 
-The owner approved publishing to https://ariston-michael.github.io on 2026-11-07. Pages now uses GitHub Actions; reviewed PR #2 was merged normally at `975d0ebb061c9ccbd9b1d858614f393bd31441d2`. [Release run 42412024196](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/42412024196) passed all 270 browser tests and deployed this exact SHA, publishing only `out/`. Development CI cannot deploy.
-
-**Review [docs/RELEASE.md](docs/RELEASE.md) for the release record and rollback procedure.** Future production releases still require owner authorization, a reviewed merge and an exact-SHA manual dispatch. Static export retains root-domain assets and trailing slashes.
-
-The existing full development audit has 16 moderate lint-chain findings; dependency versions were preserved rather than forcing incompatible tool/framework changes.
+`feature/integrate-stage-separation` preserves both source commits through normal merge commits and targets development by PR. The owner has now authorised the production release; actual validation, merge/deployment status and any permission blocker are recorded in docs/RELEASE.md. Root URL remains https://ariston-michael.github.io. The main-only manual release workflow and legacy root index are unchanged. [RELEASE.md](docs/RELEASE.md) retains the historical production record and future approval procedure.

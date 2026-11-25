@@ -56,6 +56,13 @@ await inspect(root);
 await access(join(root, "404.html"));
 await access(join(root, "robots.txt"));
 await access(join(root, "social-card.png"));
+
+
+// These wider recording assets include third-party imagery without verified
+// reuse rights. Removing markup alone must not leave downloadable files behind.
+for (const file of ["fireguard-demo-1280.mp4", "fireguard-dashboard-1600.jpg", "fireguard-forecast-analysis-1600.jpg", "fireguard-analytics-1600.jpg"]) {
+  await assert.rejects(access(join(root, "media/projects/fireguard-xr", file)), `Withheld media must not be published: ${file}`);
+}
 console.log(
   `Static export verified: ${routes.length} canonical routes, ${files} files, root assets present, no PDFs/secrets folders/symlinks.`,
 );

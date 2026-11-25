@@ -114,3 +114,35 @@ Default Turbopack static build attempted both inside and outside the sandbox but
 ## 2026-11-12 — Synchronize browser preconditions before release
 
 Owner authorized publishing the latest development version. Hosted CI for 3ba6c64 completed 442/444 tests; two WebKit timing checks failed. A cold compositor had not presented its first frame before the timed approach, and the early-input test captured an intermediate wheel position (375px instead of the requested 400px). Wait for scene readiness/two native animation frames before seeking, and a painted page/pointer target/completed 400px wheel movement before capturing the baseline. Keep all scale, displacement and five-second assertions unchanged, with no test retries or exclusions. Application runtime is unchanged.
+
+## 2026-11-12 — Publish the approved ring-passage version
+
+After explicit owner approval and green 444/444 hosted validation, normally merge PR #3 and dispatch the existing guarded production workflow for exact main SHA `ba0d3013c9695b680ea954e5ff0b9761dd8cd7ab`. Preserve the same source tree, root URL, HTTPS and Actions-based Pages configuration; do not force-push or alter production settings. Development fast-forwards normally to the merge. The release workflow repeats full validation before uploading only static output and deploying.
+
+## 2026-11-14 — Stage Separation in an isolated feature worktree
+
+Use a section-driven SVG rocket beside normal-flow server content, with a compact drawing on phones. Six recognizable modules share the same geometry before/after separation; bounded transform offsets reverse directly with scroll. Pointer/keyboard offsets are ephemeral, with magnetic return and a visible Reassemble control. Prefer CSS levitation and a scroll-scheduled RAF over a graphics/motion dependency, preserving static export, native scrolling and readable no-JavaScript content. Keep Claude-owned showcase/gallery/game components untouched; document verified named exports and explicit insertion points rather than importing unavailable components. The existing verified project fallback/routes/content stay in place until integration. No merge or deployment is authorized in this feature pass.
+
+## 2026-11-14 — Project showcase as scoped, self-contained sections
+
+**Decision:** Build ProjectShowcase, HackathonGallery and GameExperience on `feature/project-showcase` as server components with CSS Modules, exported from `components/showcase`. They do not edit the rocket scene, global layout or global CSS.
+**Rationale:** Another agent owns the homepage and rocket motion in parallel. Scoped modules plus a documented insertion point (docs/SHOWCASE_INTEGRATION.md) minimise merge conflicts. Native `<details>` provides the "Ready to play? → Yes" reveal without JavaScript.
+**Media:** Use only the owner's own FireGuard XR recording (stills plus a 30 s, 3.8 MB H.264 excerpt with no audio and preload none). Exclude its third-party news section. Devpost could not be read (HTTP 403), and the repositories contain no screenshots, so other projects use clearly labelled original schematics. No Chicken Shooter recording or public URL exists, so the game section offers no launch button and never presents a video as the playable game. The provenance and rights review are recorded in docs/MEDIA_MANIFEST.md.
+
+## 2026-11-14 — Integrate Stage Separation without rewriting feature history
+
+Merge exact rocket `48e35c7ff3877a283a6a51ecafdf541a38f04a36` and showcase `5a0c68ff16b3dd21a51bf078ab84decb18840295` into a dedicated integration worktree from development `c9bf5c90caf24e50b3cb389e9dee293af88d9142`. Retain both appended histories when resolving the three documentation conflicts. No squash/rebase, source-worktree edit or production action.
+
+Replace fallback projects and duplicate achievement summaries with the supplied components; preserve `#projects`/`#achievements` and all four note routes. Put the native game disclosure at the end. Use container queries for figures/gallery layouts inside the narrower rocket column and shared warm monochrome tokens across notes/recovery. Share rocket geometry with the static 404 drawing. Cumulative joint expansion fixes the observed lower-stage/engine overlap while preserving reversibility; compact drawings scale expansion too. Phone command separation starts only after the complete drawing enters view, so visitors first see an assembled rocket.
+
+Display the media approval state, retain genuine FireGuard files byte-for-byte, keep all unverified game/event/project imagery as explicit schematics, and offer static still links without JavaScript. Authenticity does not establish map/photo rights. Enable the existing read-only validation workflow for development-targeted PRs; production workflow/settings remain unchanged. Reconcile tests against the actual homepage rather than retaining a temporary preview route or summing branch test counts.
+
+## 2026-11-14 — Publish only the rights-resolved FireGuard crop
+
+The owner authorises production and owner-created FireGuard media, with the explicit requirement to resolve or remove third-party imagery. Retain the unmodified simulation-only crop after visual inspection; remove the four wider screenshots/video whose map/background permissions are undocumented. Reject those files in static export and require HTTP 404 in browser checks. This resolves publication scope without inventing a licence, simply hiding files in the UI, or rewriting Git history. The former video tests are replaced by publication-absence/crop provenance checks because that recording is deliberately excluded, not skipped to conceal playback failures.
+
+Hosted PR #4 run 43669724358 had 240 passes / 30 failures. The 28 Firefox layout failures all identified the inline email link's zero clientWidth; make it an inline-flex 44px target rather than weakening overflow assertions. The two WebKit video cases concern the recording excluded above. Re-run the complete relevant suites and require a green hosted check before merging. Production workflow still uploads only out/ and requires exact main SHA approval.
+
+## 2026-11-14 — Give navigation targets a real rounding margin
+
+Hosted Firefox measured 43.999969px for nominally 44px navigation links at 600px. Set header targets to 45px in both dimensions so actual painted/layout bounds satisfy the 44px requirement. Keep assertions strict and rerun the complete hosted matrix; no retry or browser exclusion.
