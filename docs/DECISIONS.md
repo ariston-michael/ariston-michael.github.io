@@ -146,3 +146,11 @@ Hosted PR #4 run 43669724358 had 240 passes / 30 failures. The 28 Firefox layout
 ## 2026-11-14 — Give navigation targets a real rounding margin
 
 Hosted Firefox measured 43.999969px for nominally 44px navigation links at 600px. Set header targets to 45px in both dimensions so actual painted/layout bounds satisfy the 44px requirement. Keep assertions strict and rerun the complete hosted matrix; no retry or browser exclusion.
+
+## 2026-11-26 — Ariston OS and NFC contact edition
+
+Replace Stage Separation with an original software-window workspace: cream surfaces, navy grid, sage/blue/beige title bars, system monospace display type and readable body type. Follow the owner’s written reference direction; reference attachments/AI Workplace source and a portrait were unavailable. Use an original code-drawn pixel computer/seedling, never an invented photo or external character. Window chrome is decoration, not nonfunctional controls.
+
+Use normal document flow and browser scroll/history rather than the cinematic entry controller. Keep only project filtering as a small client interaction, with every project/link present before hydration and a no-JavaScript fallback. Preserve four factual project notes and the approved FireGuard crop. Replace obsolete rocket/cinematic browser suites with OS layout, interaction and accessibility regressions. Legacy implementation modules remain unused for historical reference.
+
+Build `/card/` as an independent server-rendered page sharing global design tokens. Use a transparent portrait placeholder, approved contacts and a static vCard 3.0 (name, email, portfolio only). No phone number, external data service or extra dependency. The site stays at the GitHub Pages root with static export. NFC encoding and physical-device contact import need review after separate publication approval; no merge or deployment is part of this work.

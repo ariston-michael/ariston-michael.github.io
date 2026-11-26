@@ -466,3 +466,24 @@ Current repository rulesets API returns an empty list; the two visible PR checks
 Hosted release-safe run **43671795500** for `92b235485ef5801ece3ba52fd49cc1f4a99eccdb` completed **268 passed / 2 failed (7.1m)** across all three engines. The previous 28 inline-email failures and two recording failures are resolved. Remaining Firefox cases at 600×1000 and 600×430 measured a main-navigation width of 43.999969px against the unchanged 44px minimum. Increase actual header target minimums to 45px rather than adding tolerance, retries, browser skips or weaker assertions; require a fresh hosted pass before merge.
 
 After the 45px header-target correction, lint/types/default production build/export passed again. Targeted tall/short home checks at both 320px and the failing 600px width passed **8/8 Chrome/WebKit (15.4s)** with the strict 44px threshold intact. A new full hosted run is required for the corrected head before merging; the previous 268/270 result is not represented as green.
+
+## 2026-11-26 — Ariston OS feature validation
+
+Current UI supersedes the historical cosmic/rocket interfaces and their interaction suites. This branch implements a retro workspace, project filters and standalone NFC card while retaining all four verified project notes and media exclusions.
+
+Executed locally:
+
+- `npm ci`: passed (369 packages installed); lockfile/dependency declarations unchanged.
+- `npm run lint`: passed, zero warnings; `npm run typecheck`: passed.
+- `npm run build`: attempted normally and with escalation; both failed because this host denies Turbopack's CSS-worker port binding (EPERM). This is not reported as a default-build pass.
+- `npm run build -- --webpack`: passed; 11 static generation entries, six canonical content routes including `/card/`.
+- `npm run check:export`: passed, six canonical routes / 69 files, card/vCard/root assets present and forbidden wider FireGuard media absent.
+- `npm run test:release`: all nine unchanged release-policy checks passed.
+- Final `PLAYWRIGHT_PORT=3217 PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit`: **78 passed, zero failures/retries (17.5s)**.
+- Full local three-engine run was attempted: Firefox cannot launch ("Could not find profile folder"), also reproduced using an explicit writable temporary directory. No Firefox application result is claimed locally. The first full run had 77 passes, 39 Firefox launch failures and one WebKit keyboard-test failure; use macOS Option-Tab for native link navigation as in the prior suite. The final two-engine run above includes the corrected input.
+
+Coverage: homepage 320/360/375/390/430/600/768/820/1024/1280/1440/1920/2560px with 430/900/1100px heights; card 320/375/430/768/1440px; all four notes at 320/768/1440px. Strict element/document overflow and primary-target size assertions pass. Project filtering (including keyboard activation and result announcement), skip link, navigation, case-study return, mobile touch, no-JavaScript, reduced-motion, original media and missing-route recovery pass. vCard downloads with the expected filename and exact approved CRLF content. Contact hrefs match approved LinkedIn/GitHub/email/portfolio constants; resume popup tests intercept Drive to isolate navigation from external uptime. This does not reverify current third-party availability or native phone contact import.
+
+Axe WCAG 2/2.1/2.2 A/AA scans report zero violations for homepage, card, FireGuard notes and 404 at 375/1440px in both runnable engines. Initial Chrome tests caught real 320/360px hero typography overflow; responsive sizing fixed it without hiding overflow or weakening assertions. Desktop and mobile screenshots were inspected and retained in ignored test-results. New SVG/PNG sharing art and icon use original code-drawn graphics. No reference attachments or portrait were available in this checkout.
+
+Hosted Linux three-engine/default-build validation will be recorded below after the feature branch is pushed. No deployment, main merge, Pages change, production scan or NFC tag write was performed. Physical iOS/Android scanning and native vCard import, screen readers, actual browser-toolbar zoom, final owner visual/portrait approval, external resume recheck and any future publication remain separate tasks. No Lighthouse score is claimed for this redesign.

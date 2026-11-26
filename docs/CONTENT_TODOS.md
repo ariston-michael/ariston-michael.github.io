@@ -42,3 +42,9 @@ These missing extras do not justify fake destinations or fabricated claims. Curr
 This supersedes the earlier review-only boundary: the owner authorises the Stage Separation production release and owner-created FireGuard media. Third-party map/photo rights remain unverified. To remove that release blocker, publication now retains only the inspected owner-created 3D simulation crop and removes all four wider screenshots/video from public/ and out/. MEDIA_MANIFEST records the exact crop checksum and withheld files; the export/browser checks enforce their absence. Wider media can return only after a separate rights review or replacement.
 
 Missing AirControl/Seneca screenshots, event photos, genuine Chicken Shooter footage/public URL and independent benchmarks remain optional content TODOs. No substitute resume PDF or separate phone link is introduced.
+
+## Ariston OS — 2026-11-26
+
+- Portrait not supplied: `/card/` deliberately shows a labeled placeholder. Replace only with an owner-approved photo.
+- AI Workplace source and reference-image attachments were not available in this checkout; implemented the owner’s written visual direction with original code artwork. Optional follow-up: compare supplied visuals with the implementation.
+- Test NFC scanning and native vCard import on physical iOS/Android devices after a separately approved deployment. The production `/card/` address is not published by this branch.

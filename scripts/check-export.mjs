@@ -8,8 +8,8 @@ const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   (match) => new URL(match[1]),
 );
 assert.ok(
-  routes.length >= 5,
-  "Homepage and four project pages must be exported.",
+  routes.length >= 6,
+  "Homepage, contact card and four project pages must be exported.",
 );
 for (const route of routes) {
   assert.equal(route.origin, origin);
@@ -53,6 +53,8 @@ async function inspect(directory) {
   }
 }
 await inspect(root);
+await access(join(root, "card/index.html"));
+await access(join(root, "ariston-michael.vcf"));
 await access(join(root, "404.html"));
 await access(join(root, "robots.txt"));
 await access(join(root, "social-card.png"));
