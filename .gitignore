@@ -9,3 +9,4 @@ test-results/
 .DS_Store
 # Owner-supplied high-resolution portrait sources stay local.
 /assests/portraits/
+/assets/portraits/

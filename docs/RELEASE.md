@@ -1,9 +1,9 @@
-# Ariston OS portrait release — authorized, awaiting valid source image
+# Ariston OS portrait release — authorized, portrait integrated; validation in progress
 
 The owner authorizes the verified Ariston OS release, including PR #8 → development, a production PR → main, exact-SHA publication and live verification. No further routine confirmation is needed. Authentication/security controls remain mandatory.
 
 - PR #8 was green (195 three-engine checks and GitGuardian) and merged normally into development at `005dad8` on 2026-11-26.
-- Supplied path `assests/portraits/my-photo.png` exists but is **0 bytes**. It cannot be decoded or optimized. Preserve it and wait for actual image bytes; do not substitute a keychain image or publish the placeholder as the requested portrait release.
+- The source at `/Users/aristonmichael/stellar-portfolio/assests/portraits/my-photo.png` now contains the valid owner-approved 1254×1254 PNG. The inspected 640×640 WebP derivative is 29,492 bytes; the original remains local. The earlier zero-byte blocker is resolved.
 - Release preparation worktree: `/private/tmp/ariston-os-release`, branch `release/ariston-os-portrait`. Current main history was normally reconciled there without changing the source tree.
 - Authenticated Pages preflight: `build_type: workflow`, HTTPS enforced, root URL `https://ariston-michael.github.io/`, no custom domain. No settings change is needed.
 - Current rollback candidate: main `d8c0fb799f884d0774bc5fbeeaf9d46be308717a`, successful approved release runs `45532539835` and `45532448129`. Record live status again immediately before dispatch.

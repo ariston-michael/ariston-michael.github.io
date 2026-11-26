@@ -26,3 +26,9 @@ Removing HTML references alone would leave files downloadable. These four files 
 `components/showcase/Sketch.tsx` supplies original labelled schematics for AirControl, Seneca Energy, both hackathon event cards and Chicken Shooter. No real event photos or genuine game recording/public play URL were supplied. No FireGuard media is passed to the game. Devpost remains an owner-supplied profile link with unverified submissions.
 
 Before reintroducing wider FireGuard screenshots/video, identify the map provider and required attribution, establish photographic reuse permission or replace/redact the imagery throughout every included frame, inspect the resulting assets, and record new source times/checksums. Do not restore the withheld filenames or weaken the export guard without a reviewed rights decision.
+
+## Owner-approved contact portrait — 2026-11-26
+
+Source: `/Users/aristonmichael/stellar-portfolio/assests/portraits/my-photo.png`, valid nonempty PNG, 1254×1254 RGB, 1,931,193 bytes. The owner explicitly supplied/approved this portrait for the card and deployment. This is not the NFC keychain image. Source remains uncommitted and untouched.
+
+Published derivative: `public/images/ariston-profile.webp`, 640×640, **29,492 bytes**, SHA-256 `d88c4fe46c1df1e45b8400bcca253660cad66d2a69bf8c3391e85b7c9e3030af`. Sharp WebP quality 82/effort 6, orientation normalization, proportional inside resize, no crop/stretch/facial edits and no EXIF. The existing square card frame uses centered `object-fit: cover`; because source/output/frame are square, no additional facial cropping or distortion is introduced. Alt text: “Portrait of Ariston Michael”.

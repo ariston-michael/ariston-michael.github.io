@@ -207,3 +207,7 @@ Choose the static-generated `/card/ariston-michael.vcf` handler/builder as the o
 ## 2026-11-26 — Authorized portrait release preflight
 
 The owner authorizes development/main merges and publication with the supplied portrait. Merge green PR #8 into development; prepare the release in an isolated worktree and reconcile the current main merge history with an unchanged source tree. Pages already uses Actions with HTTPS, so do not change configuration unnecessarily. The supplied PNG is currently a zero-byte file, not a decodable portrait; preserve it and hold production until real bytes arrive. Add a production-only portrait export guard and fresh audit to the existing manual exact-SHA workflow. Adapt card tests to validate either the existing placeholder or the actual supplied photo, including decoding, without weakening layout checks.
+
+## 2026-11-26 — Use supplied portrait without reshaping
+
+Both requested folders were checked. The actual valid source is in the existing misspelled `assests/portraits` directory; `assets/portraits` is absent. Decode and inspect the 1254×1254 PNG, preserve its square composition, proportionally resize to 640×640 and encode WebP (quality 82) without EXIF. Commit only the 29,492-byte derivative. Both source-folder spellings are ignored to prevent accidental original-image publication. The card already detects the approved derivative at build time, uses descriptive alt text and a square cover frame; no runtime photo service or new dependency is required.

@@ -20,7 +20,7 @@ npm test
 
 Use `npm run preview` to serve `out/`. On hosts with Turbopack CSS-worker port restrictions, `npm run build -- --webpack` is the supported local fallback; report the default-build failure accurately. Local browser runs can select installed Chrome with `PLAYWRIGHT_CHANNEL=chrome`.
 
-The homepage is an accessible workspace with a filterable project explorer, verified experience, skills and contact links. `/card/` offers phone-friendly contacts and a downloadable vCard; Claude’s dedicated pixel portrait remains an explicit placeholder. The canonical vCard is `/card/ariston-michael.vcf`, generated once during static export with approved public details and no phone number. Four project case studies retain verified scope. Personal facts come from [ABOUT_ME](docs/ABOUT_ME.md); approved media from [MEDIA_MANIFEST](docs/MEDIA_MANIFEST.md).
+The homepage is an accessible workspace with a filterable project explorer, verified experience, skills and contact links. `/card/` offers phone-friendly contacts and a downloadable vCard; the dedicated card now uses the owner-approved optimized portrait with an accessible fallback. The canonical vCard is `/card/ariston-michael.vcf`, generated once during static export with approved public details and no phone number. Four project case studies retain verified scope. Personal facts come from [ABOUT_ME](docs/ABOUT_ME.md); approved media from [MEDIA_MANIFEST](docs/MEDIA_MANIFEST.md).
 
 Shared colors/fonts live in `app/tokens.css`; the card uses scoped CSS and has no main-portfolio navigation or continuous background animation. Integration preserves Next.js/eslint-config-next 16.4.5.
 

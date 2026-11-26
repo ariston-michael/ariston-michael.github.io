@@ -204,5 +204,5 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Create isolated release worktree; reconcile main history with identical pre/post source trees.
 - [x] Confirm Actions-based Pages, HTTPS and previous successful release/rollback candidate.
 - [x] Clean install, audit (zero vulnerabilities), lint, types, default build, static export and nine release guards pass before portrait integration.
-- [ ] Supplied portrait must contain actual image data; current `assests/portraits/my-photo.png` is 0 bytes. Optimize/inspect before committing any portrait.
+- [x] Verify the actual nonempty 1254×1254 source, inspect and optimize it to a metadata-free 640×640 / 29,492-byte WebP; keep the original local.
 - [ ] Final portrait/browser/CI checks, production PR merge, exact-SHA Pages dispatch and live verification.

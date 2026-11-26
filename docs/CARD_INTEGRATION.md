@@ -5,7 +5,7 @@ The selected implementation is Claude’s dedicated `components/card` window at 
 ## Source and layout
 
 - `app/card/page.tsx`: server-rendered route, canonical/Open Graph/Twitter metadata, telephone auto-detection disabled, navy theme color `#20364e`, safe-area viewport.
-- `components/card/AristonCard.tsx`: independent desktop/window, one focusable `main#main`, original pixel portrait placeholder, five tap-friendly actions and education details. No portfolio navigation or custom client JavaScript.
+- `components/card/AristonCard.tsx`: independent desktop/window, one focusable `main#main`, owner-approved portrait (with an accessible placeholder fallback), five tap-friendly actions and education details. No portfolio navigation or custom client JavaScript.
 - `components/card/PixelArt.tsx`: original pixel renderer, avatar and icons. The placeholder is generic art, not a likeness; a visible label accompanies its accessible name.
 - `components/card/card.module.css`: scoped card layout, 60–64px actions, focus/forced-color/reduced-motion handling. No perpetual sparkle/blink or boot animation.
 - `app/tokens.css`: shared navy/grid/cream/sage/blue/beige/ink and system display/body fonts; both portfolio/global and card/scoped styles use them. The root layout supplies only reset/tokens/skip link, not a persistent header or background controller. The card paints its own static grid.
@@ -15,7 +15,7 @@ The public `components/card` barrel retains `AristonCard`, `PixelArt`, `PixelAva
 
 ## Portrait
 
-No approved photograph is present. The page checks `public/images/ariston-profile.webp` at build time and otherwise renders the labeled placeholder without requesting a missing image. Add only an owner-approved square portrait (suggested 640×640 WebP under 60 KB), then rebuild and verify alt text, crop and responsive behavior. `portraitSrc={null}` forces the placeholder. Do not use an NFC keychain/product photo or invent a likeness.
+The owner-approved portrait is present as `public/images/ariston-profile.webp` (640×640, 29,492 bytes). The source was the valid 1254×1254 PNG at `/Users/aristonmichael/stellar-portfolio/assests/portraits/my-photo.png`; it remains local and is not committed. Encoding preserves its square composition, strips metadata and uses WebP quality 82. The page checks `public/images/ariston-profile.webp` at build time and otherwise renders the labeled placeholder without requesting a missing image. Add only an owner-approved square portrait (suggested 640×640 WebP under 60 KB), then rebuild and verify alt text, crop and responsive behavior. `portraitSrc={null}` forces the placeholder. Do not use an NFC keychain/product photo or invent a likeness.
 
 ## One canonical vCard
 
