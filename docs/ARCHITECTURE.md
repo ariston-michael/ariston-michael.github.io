@@ -2,7 +2,7 @@
 
 ## Stack and static export
 
-Next.js 16.4.3 App Router, React 19.3.1, TypeScript 5.9 strict, Tailwind 4.3.3 and custom CSS. npm lockfile; Node 22.13+ (locally 24.14.0). No added runtime dependency, server action, database, API route, secret or remote font.
+Next.js 16.4.5 App Router, React 19.3.1, TypeScript 5.9 strict, Tailwind 4.3.3 and custom CSS. npm lockfile; Node 22.13+ (locally 24.14.0). No added runtime dependency, server action, database, API route, secret or remote font.
 
 `next.config.ts` preserves `output: 'export'`, `trailingSlash: true`, unoptimized images and the root URL `https://ariston-michael.github.io`. Output is `out/`; preview it with `npm run preview`, never `next start`. Four generated project-note routes, sitemap, robots, sharing card and custom 404 remain. The temporary showcase-preview route is removed.
 

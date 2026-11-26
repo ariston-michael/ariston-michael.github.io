@@ -466,3 +466,13 @@ Current repository rulesets API returns an empty list; the two visible PR checks
 Hosted release-safe run **43671795500** for `92b235485ef5801ece3ba52fd49cc1f4a99eccdb` completed **268 passed / 2 failed (7.1m)** across all three engines. The previous 28 inline-email failures and two recording failures are resolved. Remaining Firefox cases at 600×1000 and 600×430 measured a main-navigation width of 43.999969px against the unchanged 44px minimum. Increase actual header target minimums to 45px rather than adding tolerance, retries, browser skips or weaker assertions; require a fresh hosted pass before merge.
 
 After the 45px header-target correction, lint/types/default production build/export passed again. Targeted tall/short home checks at both 320px and the failing 600px width passed **8/8 Chrome/WebKit (15.4s)** with the strict 44px threshold intact. A new full hosted run is required for the corrected head before merging; the previous 268/270 result is not represented as green.
+
+## 2026-11-26 — Next.js 16.4.5 security upgrade (`feature/nextjs-security-upgrade`)
+
+Run in worktree `/Users/aristonmichael/stellar-next-security` from `origin/development` `fe77fac` after a clean `npm ci`:
+
+- Before: `npm audit` reported 8 moderate findings (7 Next.js advisories ≤16.4.4 and the minimatch chain via typescript-eslint). After: **found 0 vulnerabilities** (all and `--omit=dev`). `npm audit signatures` reported no signature errors.
+- Installed versions: next 16.4.5, eslint-config-next 16.4.5, @next/* 16.4.5, typescript-eslint 8.74.0, minimatch 11.0.9 (adds its declared dependency @isaacs/nonrecursive-glob-match 1.1.0, same maintainer). React/react-dom 19.3.1 and @types/react(-dom) 19.3.0 are unchanged.
+- `npm run lint` passed with zero warnings. `npm run typecheck` passed. `npm run test:release` passed 9/9.
+- `npm run build` passed with Next.js 16.4.5 (Turbopack, 10/10 entries); the previous security-advisory stop no longer appears. `npm run check:export` passed (5 canonical routes, 60 files).
+- Full Playwright regression in Chrome and WebKit: **180 passed (1.3m)**, with zero retries, skips or test changes, matching the pre-upgrade baseline count. Firefox still fails to launch on this host and is not counted; hosted CI must run all three engines before merge.
