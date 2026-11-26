@@ -193,7 +193,7 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Retain Next.js/eslint-config-next 16.4.5; fresh full and production audits report zero vulnerabilities.
 - [x] Share visual tokens; keep dedicated card layout, visible placeholder, approved contacts, one static-generated vCard and no private phone number.
 - [x] Confirm selected implementation passes combined local tests before removing duplicate card file/styles; preserve sitemap, verified projects/media and static root URL.
-- [ ] Finish combined local/hosted browser validation and mobile/desktop Lighthouse; record actual evidence.
-- [ ] Push integration branch and open review PR targeting development; no automatic merge.
+- [x] Finish validation: 130 local Chrome/WebKit checks, 195 hosted three-engine checks, all source/export/release/audit checks; Lighthouse home/card mobile/desktop 100/100/100/100. Evidence: run 45907524646.
+- [x] Push integration branch and open review PR #8 targeting development; no automatic merge.
 - [ ] Physical NFC/vCard import, approved portrait, assistive-technology/zoom and final owner review remain manual follow-ups.
 - No main change, Pages setting change or deployment is authorized.

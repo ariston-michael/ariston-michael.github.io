@@ -561,3 +561,17 @@ Lighthouse **13.6.0**, sequential runs against the same static export, after the
 No significant lab regression is indicated; these are local simulated measurements, not real-device or production results. Reports are `/private/tmp/ariston-os-integration-{home,card}-{mobile,desktop}.json`. Source artifact/tests are reviewable in the integration branch; hosted three-engine PR validation is recorded below when complete.
 
 NFC readiness: the page and one static vCard are build/browser-ready; approved contacts and no private phone number. No photograph is approved, so the original placeholder stays. Physical iOS/Android scanning and native address-book import, live hosting MIME behavior, screen readers/toolbar zoom and final owner visual review remain manual follow-ups after a separately approved publication. No NFC write, main modification, merge, Pages setting change or deployment occurred.
+
+Public destination HEAD checks using system curl/TLS verification returned HTTP 200 for the GitHub profile, all three linked project repositories and the Drive resume viewer. This verifies reachability, not a fresh review of PDF contents. LinkedIn returned HTTP 999 to automated access; retain its owner-approved URL and recheck interactively before release. Python’s separate TLS store initially rejected the host certificates; no verification bypass was used. Email links are tested as approved mailto targets; no message was sent.
+
+[PR #8](https://github.com/ariston-michael/ariston-michael.github.io/pull/8) targets development with verified implementation head `061594876418e5c58d1a67b13e15cf541649fa0f`; GitGuardian passed. The normal PR workflow is running the combined three-engine suite and npm audit; its completed result follows below.
+
+### Integrated hosted result — passed
+
+[PR validation 45907524646](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/45907524646) completed successfully for exact integration implementation SHA `061594876418e5c58d1a67b13e15cf541649fa0f`:
+
+- **195/195 Chromium/Firefox/WebKit tests passed (2.0m), zero retries or skips.** Both agents’ combined coverage runs against the real static export. This includes WebKit vCard downloads and the dedicated card’s first-screen layout, keyboard focus, privacy, no-JavaScript, reduced motion and WCAG checks.
+- npm ci, **npm audit (zero vulnerabilities)**, lint, strict types, nine release guards, default Next.js 16.4.5 build and six-route/59-file export verification passed.
+- GitGuardian passed; PR #8 targets development and is mergeable. Validated static output is retained as a review artifact, not deployed.
+
+The final follow-up changes only documentation/PR evidence; application, dependency, test and workflow source remain identical to the passing implementation above. No source branch was deleted or force-pushed, and neither development nor main was merged or published.
