@@ -554,6 +554,9 @@ div[id] {
   letter-spacing: -1px;
 }
 .project-body h3 a {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 44px;
   text-decoration: none;
 }
 .project-body h3 a:hover {
@@ -977,6 +980,10 @@ div[id] {
 }
 .study-boundary h2 {
   font-size: 24px;
+}
+.study-boundary p a {
+  display: inline-block;
+  max-width: 100%;
 }
 .study-boundary p {
   font-size: 12px;

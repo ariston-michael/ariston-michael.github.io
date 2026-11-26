@@ -156,3 +156,5 @@ Use normal document flow and browser scroll/history rather than the cinematic en
 Build `/card/` as an independent server-rendered page sharing global design tokens. Use a transparent portrait placeholder, approved contacts and a static vCard 3.0 (name, email, portfolio only). No phone number, external data service or extra dependency. The site stays at the GitHub Pages root with static export. NFC encoding and physical-device contact import need review after separate publication approval; no merge or deployment is part of this work.
 
 Git’s local line-ending normalization would otherwise convert vCard records to LF when checked out by CI. Mark `*.vcf -text` in `.gitattributes` so the approved contact file retains its explicit CRLF bytes across platforms; the download regression checks those exact bytes.
+
+The first Linux three-engine run exposed Firefox’s zero clientWidth for inline project-title/evidence links. Give those anchors explicit inline-block layout boxes and bound their width; title links also get 44px target height. Keep the strict browser layout assertions unchanged and rerun the full matrix.
