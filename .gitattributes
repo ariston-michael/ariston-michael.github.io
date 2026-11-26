@@ -1,2 +1,0 @@
-# Preserve RFC vCard CRLF records in fresh checkouts on every platform.
-*.vcf -text

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import "./tokens.css";
 import "./globals.css";
 import { siteUrl, socialImage } from "@/lib/site";
 export const metadata: Metadata = {

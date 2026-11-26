@@ -9,6 +9,7 @@ Verified viewer: https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0e
 The source resolved Spindle Strategy’s Software Developer Intern role (Toronto, April–August 2026), application stack, reporting/review workflow, source-reported impact and UI/UX work. FireGuard XR now has a source-supported case study covering Python/FastAPI, React/TypeScript, Docker, 8+ API integrations and Three.js/React Three Fiber simulation. Skills match the resume without proficiency ratings. AirControl gesture counts/calibration and Seneca Energy ranking factors were expanded accurately.
 
 PDF annotations supplied these links, each confirmed public by repository metadata and signed-out HTTP 200:
+
 - https://github.com/ariston-michael/BearHacks-2026
 - https://github.com/ariston-michael/Seneca-Energy-Hackathon
 - https://github.com/ariston-michael/fireguard
@@ -49,9 +50,14 @@ Missing AirControl/Seneca screenshots, event photos, genuine Chicken Shooter foo
 - AI Workplace source and reference-image attachments were not available in this checkout; implemented the owner’s written visual direction with original code artwork. Optional follow-up: compare supplied visuals with the implementation.
 - Test NFC scanning and native vCard import on physical iOS/Android devices after a separately approved deployment. The production `/card/` address is not published by this branch.
 
-
 ## NFC contact card — 2026-11-26
 
 - **Portrait:** `public/images/ariston-profile.webp` is not supplied (square, ~640px, WebP). The card shows an original pixel-art placeholder until it is added and the site is rebuilt. Do not use the NFC keychain photo.
 - **Phone number:** deliberately omitted from the card and vCard; add only with explicit owner approval.
 - **Reference images:** the owner's style reference images were not available to this task; the design follows the AI Workplace repository only.
+
+## Integrated Ariston OS card — current
+
+Claude’s `components/card` implementation is the selected `/card/` page. No approved portrait exists, so the original avatar is explicitly labeled as a placeholder. The sole download is `/card/ariston-michael.vcf`; verified name/email/education/public URLs only, no private phone number. The earlier root-level file is removed after browser verification.
+
+Before a separately approved publication: owner visual/portrait review, actual iOS/Android NFC scan and native contact import, screen-reader/browser-toolbar zoom review, and external resume/contact reachability recheck. Local browser tests verify the approved hrefs and static vCard bytes; they do not establish availability of external services or actual phone import.

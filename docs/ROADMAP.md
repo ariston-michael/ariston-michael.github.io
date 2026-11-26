@@ -1,22 +1,26 @@
 # Roadmap
 
 ## Phase 0 — Repository foundation
+
 - [x] Create `development` branch from latest `origin/main`.
 - [x] Commit project context docs on `development`.
 - [x] Verify local `main` and legacy production source unchanged by this work; inspect remote history separately.
 - [x] Revalidate the live Pages website during an approved release.
 
 ## Phase 1 — App scaffold
+
 - [x] Initialize Next.js + TypeScript + Tailwind with static export.
 - [x] Add lint/type checks and verify local build.
 - [x] Implement accessibility, metadata, and mobile-first global layout.
 
 ## Phase 2 — Cosmic visual identity
+
 - [x] Design responsive hero and original Saturn-inspired SVG illustration.
 - [x] Add accessible, performant seeded star field and restrained CSS motion.
 - [x] Build navigation, content sections, and footer.
 
 ## Phase 3 — Real content
+
 - [x] Add owner-verified GitHub, LinkedIn, and email links.
 - [x] Verify the actual external Drive resume and expose secure-new-tab CTAs without a hosted PDF.
 - [x] Build four factual project cards and four verified-scope project-note pages.
@@ -26,6 +30,7 @@
 - [x] Ground experience/achievement claims in reviewed owner facts and the verified resume.
 
 ## Phase 4 — Review and launch
+
 - [x] Implement local responsive/accessibility/SEO/link tests and performance review.
 - [ ] Complete real-device, assistive-technology, browser-zoom and final publication review.
 - [x] Prepare guarded Pages workflow and release/rollback instructions.
@@ -171,7 +176,6 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Physical phone/NFC scan, native contact import, assistive technology and actual browser zoom review.
 - No merge, production workflow, Pages setting change or deployment is authorized by this redesign. The existing public site remains unchanged.
 
-
 ## 2026-11-26 — Ariston OS NFC contact card
 
 - [x] Isolated worktree/branch `feature/ariston-os-nfc-card` from latest `origin/development`; no edits to Codex-owned portfolio files.
@@ -181,3 +185,15 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Physical iPhone/Android checks: NFC tap opens `/card/`, Save Contact imports correctly.
 - [ ] Integration into the Ariston OS portfolio (optional sitemap entry, own route-group layout if desired) and hosted three-engine CI.
 - [ ] Write the NFC tag with `https://ariston-michael.github.io/card/` after the card is published.
+
+## 2026-11-26 — Ariston OS integration
+
+- [x] Verify source SHAs and create isolated integration worktree from latest development.
+- [x] Merge security update, portfolio redesign and dedicated card in order, preserving useful history/docs.
+- [x] Retain Next.js/eslint-config-next 16.4.5; fresh full and production audits report zero vulnerabilities.
+- [x] Share visual tokens; keep dedicated card layout, visible placeholder, approved contacts, one static-generated vCard and no private phone number.
+- [x] Confirm selected implementation passes combined local tests before removing duplicate card file/styles; preserve sitemap, verified projects/media and static root URL.
+- [ ] Finish combined local/hosted browser validation and mobile/desktop Lighthouse; record actual evidence.
+- [ ] Push integration branch and open review PR targeting development; no automatic merge.
+- [ ] Physical NFC/vCard import, approved portrait, assistive-technology/zoom and final owner review remain manual follow-ups.
+- No main change, Pages setting change or deployment is authorized.

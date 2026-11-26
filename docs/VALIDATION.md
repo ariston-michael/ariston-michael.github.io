@@ -6,14 +6,14 @@ The latest pre-release validation is recorded at the end. Earlier sections prese
 
 macOS arm64; Node.js 24.14.0; npm 11.9.0. Checks run against the production static export, not just a development server.
 
-| Command | Actual result |
-| --- | --- |
-| `npm ci` | Lockfile installation succeeded; dependencies added without lockfile changes |
+| Command                                                        | Actual result                                                                       |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `npm ci`                                                       | Lockfile installation succeeded; dependencies added without lockfile changes        |
 | `npm install --save-dev @playwright/test @axe-core/playwright` | Added four packages; full audit reports 16 moderate development lint-chain findings |
-| `npm run lint` | Exit 0; no errors or warnings |
-| `npm run typecheck` | Exit 0; route types generated successfully, strict TypeScript passed |
-| `npm run build` | Exit 0; compiled successfully, 9/9 static-generation entries completed |
-| `npm audit --omit=dev` | Exit 0; `found 0 vulnerabilities` |
+| `npm run lint`                                                 | Exit 0; no errors or warnings                                                       |
+| `npm run typecheck`                                            | Exit 0; route types generated successfully, strict TypeScript passed                |
+| `npm run build`                                                | Exit 0; compiled successfully, 9/9 static-generation entries completed              |
+| `npm audit --omit=dev`                                         | Exit 0; `found 0 vulnerabilities`                                                   |
 
 Exported routes: `/`, `/projects/aircontrol/`, `/projects/energy/`, `/projects/chicken/`, `/robots.txt`, `/sitemap.xml`, original favicon, and custom not-found output. No runtime server, APIs, server actions, or deployment workflow are required/introduced.
 
@@ -29,21 +29,21 @@ Actual final output: **`92 passed (1.3m)`**, exit 0. No retries, skipped asserti
 
 The suite uses installed Google Chrome via `PLAYWRIGHT_CHANNEL=chrome` and Playwright WebKit 27.2. Every requested homepage width is tested at both 1000px and 430px viewport heights. Phone portrait and 844×390 landscape touch interaction are included. These are browser-emulated CSS dimensions, not physical-device tests.
 
-| CSS width | Chrome | WebKit |
-| --- | --- | --- |
-| 320 | Passed both heights | Passed both heights |
-| 360 | Passed both heights | Passed both heights |
-| 375 | Passed both heights | Passed both heights |
-| 390 | Passed both heights | Passed both heights |
-| 430 | Passed both heights | Passed both heights |
-| 600 | Passed both heights | Passed both heights |
-| 768 | Passed both heights | Passed both heights |
-| 820 | Passed both heights | Passed both heights |
-| 1024 | Passed both heights | Passed both heights |
-| 1280 | Passed both heights | Passed both heights |
-| 1440 | Passed both heights | Passed both heights |
-| 1920 | Passed both heights | Passed both heights |
-| 2560 | Passed both heights | Passed both heights |
+| CSS width | Chrome              | WebKit              |
+| --------- | ------------------- | ------------------- |
+| 320       | Passed both heights | Passed both heights |
+| 360       | Passed both heights | Passed both heights |
+| 375       | Passed both heights | Passed both heights |
+| 390       | Passed both heights | Passed both heights |
+| 430       | Passed both heights | Passed both heights |
+| 600       | Passed both heights | Passed both heights |
+| 768       | Passed both heights | Passed both heights |
+| 820       | Passed both heights | Passed both heights |
+| 1024      | Passed both heights | Passed both heights |
+| 1280      | Passed both heights | Passed both heights |
+| 1440      | Passed both heights | Passed both heights |
+| 1920      | Passed both heights | Passed both heights |
+| 2560      | Passed both heights | Passed both heights |
 
 The tests inspect document overflow **and** bounds/scroll widths of text, navigation, cards, and controls, so clipping a child with overflow rules is not treated as a fix. Hero SVG bounds are checked against text. All five navigation targets are checked for at least 44px height and width, then activated. Project pages are tested at 320, 768, 1440, and 2560px in both executable engines.
 
@@ -75,19 +75,19 @@ Full development dependency audit still contains 16 moderate minimatch/lint-chai
 
 Lighthouse 13.6.0 was run sequentially against the final static homepage and `/projects/energy/`, using installed Chrome, `--chrome-flags='--headless'`, the default simulated mobile profile, and JSON output. Both commands exited 0; the reports remained in `/tmp/` rather than the repository.
 
-| Metric | Homepage | Energy project notes |
-| --- | --- | --- |
-| Performance | 100 | 100 |
-| Accessibility | 100 | 100 |
-| Best practices | 100 | 100 |
-| SEO | 100 | 100 |
-| First contentful paint | 1.2 s | 1.1 s |
-| Largest contentful paint | 1.2 s | 1.1 s |
-| Total blocking time | 10 ms | 0 ms |
-| Cumulative layout shift | 0 | 0 |
-| Speed index | 1.2 s | 1.1 s |
-| Transferred bytes (local, uncompressed) | 572 KiB | 541 KiB |
-| Explicit label-in-name audit | Passed | Passed |
+| Metric                                  | Homepage | Energy project notes |
+| --------------------------------------- | -------- | -------------------- |
+| Performance                             | 100      | 100                  |
+| Accessibility                           | 100      | 100                  |
+| Best practices                          | 100      | 100                  |
+| SEO                                     | 100      | 100                  |
+| First contentful paint                  | 1.2 s    | 1.1 s                |
+| Largest contentful paint                | 1.2 s    | 1.1 s                |
+| Total blocking time                     | 10 ms    | 0 ms                 |
+| Cumulative layout shift                 | 0        | 0                    |
+| Speed index                             | 1.2 s    | 1.1 s                |
+| Transferred bytes (local, uncompressed) | 572 KiB  | 541 KiB              |
+| Explicit label-in-name audit            | Passed   | Passed               |
 
 These are local simulated lab measurements, not production field data or a guarantee on real hardware. Remaining diagnostics include framework legacy-JavaScript transforms, render-blocking CSS, and local preview-server compression/cache behavior. The preview intentionally uses `Cache-Control: no-store` and no compression; production behavior must be checked after an authorized release. No hosting changes were made to improve a local score.
 
@@ -111,14 +111,14 @@ Started clean on `development` at `f5aadde48ca6c481dc6d75bb27a2e65d2609fdd5`; sa
 
 Owner-provided GitHub, LinkedIn and email are now functional links. Spindle Strategy is listed only as an internship explicitly identified by the owner. The exact `Ariston_Michael.pdf` was not available in the workspace when checked initially and before finalization. No different PDF was substituted. Download behavior, resume byte preservation, expanded internship details, and additional FireGuard XR claims therefore remain unexecuted/blocked on source availability. There is no `tel:` link or separately published phone number.
 
-| Check | Actual latest result |
-| --- | --- |
-| `npm run lint` | Exit 0, zero errors/warnings |
-| `npm run typecheck` | Exit 0, route types generated and strict TypeScript passed |
-| `npm run build` | Exit 0, compiled successfully, 9/9 static entries generated |
-| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **136 passed (1.7m)**, exit 0 |
-| Tested engines | Installed Chrome and Playwright WebKit, 68 tests each |
-| Additional dependencies | None |
+| Check                                                                       | Actual latest result                                        |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `npm run lint`                                                              | Exit 0, zero errors/warnings                                |
+| `npm run typecheck`                                                         | Exit 0, route types generated and strict TypeScript passed  |
+| `npm run build`                                                             | Exit 0, compiled successfully, 9/9 static entries generated |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **136 passed (1.7m)**, exit 0                               |
+| Tested engines                                                              | Installed Chrome and Playwright WebKit, 68 tests each       |
+| Additional dependencies                                                     | None                                                        |
 
 All 13 previous widths (320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560px) continue to pass the baseline tall/short layout and navigation checks in both engines. New tests exercise hero-relative scroll approach and reversal at all 13 widths at 900px viewport height. Tests verify bounded scale (1.025 phone / 1.04 tablet / 1.065 desktop), containment of decorative artwork, separation from copy and project content, and no horizontal overflow.
 
@@ -130,18 +130,18 @@ Desktop scrolling-hero and contact screenshots and a full-page phone screenshot 
 
 Lighthouse 13.6.0 ran sequentially against the corrected static homepage with installed Chrome and `--chrome-flags='--headless'`, JSON output in `/tmp/`. Mobile used the default simulated profile; desktop used `--preset=desktop`. Both exited 0.
 
-| Metric | Mobile | Desktop |
-| --- | --- | --- |
-| Performance | 100 | 100 |
-| Accessibility | 100 | 100 |
-| Best practices | 100 | 100 |
-| SEO | 100 | 100 |
-| Largest contentful paint | 1.4 s | 0.3 s |
-| Total blocking time | 0 ms | 0 ms |
-| Cumulative layout shift | 0 | 0 |
-| Speed index | 1.4 s | 0.3 s |
+| Metric                                 | Mobile  | Desktop |
+| -------------------------------------- | ------- | ------- |
+| Performance                            | 100     | 100     |
+| Accessibility                          | 100     | 100     |
+| Best practices                         | 100     | 100     |
+| SEO                                    | 100     | 100     |
+| Largest contentful paint               | 1.4 s   | 0.3 s   |
+| Total blocking time                    | 0 ms    | 0 ms    |
+| Cumulative layout shift                | 0       | 0       |
+| Speed index                            | 1.4 s   | 0.3 s   |
 | Transferred size (local, uncompressed) | 593 KiB | 593 KiB |
-| Explicit label-in-name audit | Passed | Passed |
+| Explicit label-in-name audit           | Passed  | Passed  |
 
 These are simulated local lab measurements, not field guarantees or low-powered hardware benchmarks. The preview retains its intentional no-store/no-compression behavior. Existing production dependencies and the previously documented development lint advisories were not changed.
 
@@ -151,13 +151,13 @@ Implementation commit for this continuation: `67fe999a5073578c298cf38f2fd48b09e7
 
 Started clean on `development` at `f70d4cbbe12e5d23c14eedcade70c5e46e18335e`; `git pull --ff-only origin development` reported `Already up to date.` No source PDF was found at `public/resume/Ariston_Michael.pdf` or workspace-root `Ariston_Michael.pdf`, initially or at final recheck. No resume bytes, downloadable link, job dates/technologies/metrics, FireGuard XR expansion or skill corrections are claimed without reading that source. Verified contacts and the minimal owner-identified internship entry remain intact. No separate phone link was introduced.
 
-| Executed command | Result |
-| --- | --- |
-| `npm ci` | Exit 0; locked installation completed, 369 packages added; existing 16 moderate development audit findings remain |
-| `npm run lint` | Exit 0; zero errors/warnings |
-| `npm run typecheck` | Exit 0; generated route types and strict TypeScript passed |
-| `npm run build` | Exit 0; compiled successfully, 9/9 static generation entries completed |
-| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **168 passed (1.8m)**, exit 0; no retries |
+| Executed command                                                            | Result                                                                                                            |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `npm ci`                                                                    | Exit 0; locked installation completed, 369 packages added; existing 16 moderate development audit findings remain |
+| `npm run lint`                                                              | Exit 0; zero errors/warnings                                                                                      |
+| `npm run typecheck`                                                         | Exit 0; generated route types and strict TypeScript passed                                                        |
+| `npm run build`                                                             | Exit 0; compiled successfully, 9/9 static generation entries completed                                            |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **168 passed (1.8m)**, exit 0; no retries                                                                         |
 
 The 84 tests per engine cover every established width (320, 360, 375, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920, 2560px), tall/short layout heights, landscape touch and 200% zoom-equivalent reflow. Existing static routes, links, metadata, keyboard skip, pause state, idle RAF convergence, reduced motion, no-JavaScript content and automated WCAG tests remain passing. The PDF-absent state is tested; PDF download/view and preservation checks cannot execute until the exact asset is supplied.
 
@@ -171,17 +171,17 @@ Initial validation caught stale micro-zoom assertions and ambiguous selectors af
 
 Lighthouse 13.6.0 ran sequentially on the static homepage with installed Chrome, `--chrome-flags='--headless'`, JSON reports outside the repository, default simulated mobile and `--preset=desktop`. Both exited 0.
 
-| Metric | Current mobile | Previous mobile | Current desktop | Previous desktop |
-| --- | --- | --- | --- | --- |
-| Performance | 100 | 100 | 100 | 100 |
-| Accessibility | 100 | 100 | 100 | 100 |
-| Best practices | 100 | 100 | 100 | 100 |
-| SEO | 100 | 100 | 100 | 100 |
-| LCP | 1.5 s | 1.4 s | 0.3 s | 0.3 s |
-| Total blocking time | 0 ms | 0 ms | 0 ms | 0 ms |
-| Cumulative layout shift | 0 | 0 | 0 | 0 |
-| Speed index | 1.5 s | 1.4 s | 0.3 s | 0.3 s |
-| Local uncompressed transfer | 618 KiB | 593 KiB | 618 KiB | 593 KiB |
+| Metric                      | Current mobile | Previous mobile | Current desktop | Previous desktop |
+| --------------------------- | -------------- | --------------- | --------------- | ---------------- |
+| Performance                 | 100            | 100             | 100             | 100              |
+| Accessibility               | 100            | 100             | 100             | 100              |
+| Best practices              | 100            | 100             | 100             | 100              |
+| SEO                         | 100            | 100             | 100             | 100              |
+| LCP                         | 1.5 s          | 1.4 s           | 0.3 s           | 0.3 s            |
+| Total blocking time         | 0 ms           | 0 ms            | 0 ms            | 0 ms             |
+| Cumulative layout shift     | 0              | 0               | 0               | 0                |
+| Speed index                 | 1.5 s          | 1.4 s           | 0.3 s           | 0.3 s            |
+| Local uncompressed transfer | 618 KiB        | 593 KiB         | 618 KiB         | 593 KiB          |
 
 The expanded explorer/cinema adds approximately 25 KiB of local uncompressed transfer. The measured mobile LCP is 0.1s higher in this run; scores, desktop LCP, CLS and TBT remain unchanged. These are local simulated measurements with normal run-to-run variance, not field guarantees. The local preview’s existing no-store/no-compression diagnostics remain. No large dependency or remote graphics/font request was introduced.
 
@@ -243,16 +243,16 @@ The resume source/content blocker is resolved. Optional live demos/screenshots, 
 
 After the actual CI sizing/settling fixes, the complete local Chrome/WebKit matrix passed again: **180 passed (2.1m)**. Release guard tests remain **9/9**, static generation **10/10**, export verification **5 routes / 52 files**, and actionlint/lint/strict types all pass. No assertion thresholds, retries or browser exclusions were added to obtain that result. The final candidate is pushed for the complete three-engine PR rerun; the PR checks link above provides its live source-of-truth status, and the completion report must report the observed outcome rather than infer it.
 
-| Final local Lighthouse metric | Mobile | Desktop |
-| --- | --- | --- |
-| Performance | 100 | 100 |
-| Accessibility | 100 | 100 |
-| Best practices | 100 | 100 |
-| SEO | 100 | 100 |
-| Largest contentful paint | 1.5 s | 0.3 s |
-| Total blocking time | 10 ms | 0 ms |
-| Cumulative layout shift | 0 | 0 |
-| Local uncompressed transfer | 633 KiB | 633 KiB |
+| Final local Lighthouse metric | Mobile  | Desktop |
+| ----------------------------- | ------- | ------- |
+| Performance                   | 100     | 100     |
+| Accessibility                 | 100     | 100     |
+| Best practices                | 100     | 100     |
+| SEO                           | 100     | 100     |
+| Largest contentful paint      | 1.5 s   | 0.3 s   |
+| Total blocking time           | 10 ms   | 0 ms    |
+| Cumulative layout shift       | 0       | 0       |
+| Local uncompressed transfer   | 633 KiB | 633 KiB |
 
 Compared with the prior cinematic baseline: scores and LCP are unchanged; transfer is about 15 KiB higher for expanded verified content. Mobile blocking time measured 10ms rather than 0ms in this final run; this is lab data with normal variance, not a claim of production field equivalence. Both audits exited 0 on the final corrected export.
 
@@ -273,6 +273,7 @@ The owner requested publication to the existing root URL. Rechecked PR #2 head `
 Release run 42412024196, **attempt 2**, completed successfully for exact main SHA `975d0ebb061c9ccbd9b1d858614f393bd31441d2`: the complete unchanged browser suite passed **270/270 (9.3m)**, all earlier source/guard/build/export stages passed, and official Pages artifact/deployment jobs succeeded. No tests were bypassed.
 
 Post-deployment installed Chrome checks against the public HTTPS site exited 0:
+
 - Homepage plus all four project-note routes returned HTTP 200, each with one H1 and the correct canonical URL. Referenced scripts/styles, robots, sitemap and social image returned HTTP 200.
 - A missing public path returned HTTP 404 and the custom portfolio recovery link.
 - No document horizontal overflow at 320, 375, 768, 1024, 1440 and 2560 CSS px (900px height). Live 375/1440 screenshots were visually reviewed outside Git.
@@ -293,16 +294,16 @@ The unchanged baseline in installed Chrome restored a hashless reload at y=3559 
 
 The same six compatible cubic ring paths morph into straight trails, rotating/thinning as the planet fades. A shared sky/gradient and vertically dissolving copy scrim span hero/explorer. Fixed-coordinate SVG gradients keep straight, zero-height paths visible. Enhanced decoration waits for measured initialization; text/links and the uniquely identified no-JavaScript illustration remain available. No graphics library or React frame updates were added.
 
-| Executed command | Actual final result |
-| --- | --- |
-| `npm ci` | Exit 0; locked installation, 369 packages added |
-| `npm run lint` | Exit 0; zero warnings/errors |
-| `npm run typecheck` | Exit 0; route generation and strict TypeScript passed |
-| `npm run build` | Turbopack failed with local CSS-worker port binding EPERM, both sandboxed and escalated; not reported as a pass |
-| `npm run build -- --webpack` | Exit 0; production static export, 10/10 generation entries |
-| `npm run check:export` | Exit 0; 5 canonical routes / 66 webpack-output files, correct root assets, no PDFs/secrets/dependency folders/symlinks |
-| `npm run test:release` | 9 passed; production guards unchanged |
-| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **296 passed (4.6m)**, exit 0, zero retries |
+| Executed command                                                            | Actual final result                                                                                                    |
+| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `npm ci`                                                                    | Exit 0; locked installation, 369 packages added                                                                        |
+| `npm run lint`                                                              | Exit 0; zero warnings/errors                                                                                           |
+| `npm run typecheck`                                                         | Exit 0; route generation and strict TypeScript passed                                                                  |
+| `npm run build`                                                             | Turbopack failed with local CSS-worker port binding EPERM, both sandboxed and escalated; not reported as a pass        |
+| `npm run build -- --webpack`                                                | Exit 0; production static export, 10/10 generation entries                                                             |
+| `npm run check:export`                                                      | Exit 0; 5 canonical routes / 66 webpack-output files, correct root assets, no PDFs/secrets/dependency folders/symlinks |
+| `npm run test:release`                                                      | 9 passed; production guards unchanged                                                                                  |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit` | **296 passed (4.6m)**, exit 0, zero retries                                                                            |
 
 Export verification now decodes encoded `_next` asset URL segments before filesystem lookup: webpack correctly emits `%5Bslug%5D` in URLs for literal `[slug]` directories. Actual project routes/assets also pass browser checks. The supported alternate compiler was necessary because of this environment's pre-existing Turbopack restriction; default build/CI configuration was preserved.
 
@@ -320,16 +321,16 @@ A separate continuous wheel-driven down/up WebM recording reaches scroll 2000 / 
 
 Lighthouse **13.6.0**, installed Chrome, static preview on loopback 3201. Baseline and final both use webpack, default simulated mobile and preset desktop, headless Chrome, sequential runs with no competing browser suite. All four audits exited 0.
 
-| Metric | Baseline mobile | Final mobile | Baseline desktop | Final desktop |
-| --- | --- | --- | --- | --- |
-| Performance | 99 | 99 | 100 | 100 |
-| Accessibility | 100 | 100 | 100 | 100 |
-| Best practices | 100 | 100 | 100 | 100 |
-| SEO | 100 | 100 | 100 | 100 |
-| LCP | 1.5s | 1.7s | 0.3s | 0.4s |
-| Total blocking time | 40ms | 10ms | 0ms | 0ms |
-| CLS | 0 | 0 | 0 | 0 |
-| Local uncompressed transfer | 627KiB | 647KiB | 627KiB | 647KiB |
+| Metric                      | Baseline mobile | Final mobile | Baseline desktop | Final desktop |
+| --------------------------- | --------------- | ------------ | ---------------- | ------------- |
+| Performance                 | 99              | 99           | 100              | 100           |
+| Accessibility               | 100             | 100          | 100              | 100           |
+| Best practices              | 100             | 100          | 100              | 100           |
+| SEO                         | 100             | 100          | 100              | 100           |
+| LCP                         | 1.5s            | 1.7s         | 0.3s             | 0.4s          |
+| Total blocking time         | 40ms            | 10ms         | 0ms              | 0ms           |
+| CLS                         | 0               | 0            | 0                | 0             |
+| Local uncompressed transfer | 627KiB          | 647KiB       | 627KiB           | 647KiB        |
 
 The added geometry/controller, CSS and static fallback cost about 20KiB. Scores remain unchanged; LCP measured +0.2s mobile/+0.1s desktop and mobile blocking time decreased by 30ms. These are simulated local lab measurements with normal variance, not field or low-powered-device guarantees. No dependency or remote imagery/font request was added.
 
@@ -387,13 +388,13 @@ After the final star-only placement correction, lint/types/webpack build/export 
 
 Branch `feature/project-showcase` (worktree separate from the rocket-experience worktree). Local commands and results:
 
-| Command | Result |
-| --- | --- |
-| `npm run lint` | exit 0, zero warnings |
-| `npm run typecheck` | exit 0 |
-| `npm run build` (default Turbopack) | succeeded; 11 static pages including the noindex `/showcase-preview/` |
-| `npm run check:export` | 5 canonical routes, 71 files verified |
-| `npm run test:release` | 9/9 passed |
+| Command                                                                             | Result                                                                                                                                                                                                                                                                                       |
+| ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run lint`                                                                      | exit 0, zero warnings                                                                                                                                                                                                                                                                        |
+| `npm run typecheck`                                                                 | exit 0                                                                                                                                                                                                                                                                                       |
+| `npm run build` (default Turbopack)                                                 | succeeded; 11 static pages including the noindex `/showcase-preview/`                                                                                                                                                                                                                        |
+| `npm run check:export`                                                              | 5 canonical routes, 71 files verified                                                                                                                                                                                                                                                        |
+| `npm run test:release`                                                              | 9/9 passed                                                                                                                                                                                                                                                                                   |
 | `PLAYWRIGHT_CHANNEL=chrome npx playwright test --project=chromium --project=webkit` | **324/324 passed**: 296 existing tests plus 28 new `tests/showcase.spec.ts` checks. Because another worktree's server held port 3100, the full run used a local, uncommitted port-3101 override, and the four port-pinned `resume.spec.ts` checks were rerun on 3100 once it was free (4/4). |
 
 The showcase spec covers 7 widths (320–1920) with no overflow and ≥44px targets, zero axe violations in `main` with every disclosure open, H.264 excerpt playback and dimensions (1280×758, 30 s) in Chrome and WebKit, correct MIME types, `preload="none"`, thumbnail switching, labelled placeholders, keyboard toggling of "Yes" with no unverified launch link, external links limited to verified destinations with `noopener noreferrer`, and the preview route kept out of the sitemap.
@@ -404,15 +405,15 @@ Measured in Chrome (unthrottled, local): CLS 0. The initial load fetches only th
 
 Dedicated worktree `/private/tmp/stellar-stage-integration`, branch `feature/integrate-stage-separation`, from fetched development `c9bf5c90caf24e50b3cb389e9dee293af88d9142`. Both remote feature heads matched the requested SHAs: rocket `48e35c7ff3877a283a6a51ecafdf541a38f04a36`, showcase `5a0c68ff16b3dd21a51bf078ab84decb18840295`. Normal merge commits retain both histories; three append-only documentation conflicts were resolved by preserving both records. The source worktrees were not edited.
 
-| Executed command | Result |
-| --- | --- |
-| `npm ci` | Passed, 369 packages installed in the isolated checkout; lockfile unchanged |
-| `npm run lint` | Passed, zero warnings/errors |
-| `npm run typecheck` | Passed, strict TypeScript and route types |
-| `npm run build` | Default Turbopack production static export passed, 10/10 generation entries, with expanded local sandbox access |
-| `npm run check:export` | Passed: 5 canonical routes / 64 files, root assets, no hosted PDF/secrets folders/symlinks |
-| `npm run test:release` | 9/9 passed; production guard/workflow unchanged |
-| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2` | **180/180 passed (2.1m)**, 90 cases per engine, zero retries and zero skips |
+| Executed command                                                                        | Result                                                                                                          |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `npm ci`                                                                                | Passed, 369 packages installed in the isolated checkout; lockfile unchanged                                     |
+| `npm run lint`                                                                          | Passed, zero warnings/errors                                                                                    |
+| `npm run typecheck`                                                                     | Passed, strict TypeScript and route types                                                                       |
+| `npm run build`                                                                         | Default Turbopack production static export passed, 10/10 generation entries, with expanded local sandbox access |
+| `npm run check:export`                                                                  | Passed: 5 canonical routes / 64 files, root assets, no hosted PDF/secrets folders/symlinks                      |
+| `npm run test:release`                                                                  | 9/9 passed; production guard/workflow unchanged                                                                 |
+| `PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2` | **180/180 passed (2.1m)**, 90 cases per engine, zero retries and zero skips                                     |
 
 This is an actually executed combined suite, not the sum of the feature branches' reports. The old Saturn cases remain superseded by rocket tests; the showcase spec now exercises `/`, not a preview-only route. Shared route, metadata, restoration, resume, keyboard/touch and responsive checks remain. Layouts cover all 13 requested widths at 430/1000px heights; showcase/game checks use the same 13 widths. Automated axe and label/name scans pass on the covered homepage, open-disclosure and project-note cases.
 
@@ -430,16 +431,16 @@ The integration branch/PR is for review only. No main change, automatic merge, d
 
 Lighthouse **13.6.0** ran sequentially against the same default-Turbopack static export on loopback 3111, using installed headless Chrome with no competing browser suite. A temporary CLI was downloaded outside the repository after the sandboxed registry request failed; no dependency/lockfile was changed. Both audits exited 0 without a runtime error.
 
-| Local simulated lab metric | Mobile | Desktop |
-| --- | --- | --- |
-| Performance | 99 | 100 |
-| Accessibility | 100 | 100 |
-| Best practices | 100 | 100 |
-| SEO | 100 | 100 |
-| LCP | 1.65 s | 0.40 s |
-| Total blocking time | 2.5 ms | 0 ms |
-| CLS | 0 | 0 |
-| Total measured transfer | 899,081 bytes | 899,081 bytes |
+| Local simulated lab metric | Mobile        | Desktop       |
+| -------------------------- | ------------- | ------------- |
+| Performance                | 99            | 100           |
+| Accessibility              | 100           | 100           |
+| Best practices             | 100           | 100           |
+| SEO                        | 100           | 100           |
+| LCP                        | 1.65 s        | 0.40 s        |
+| Total blocking time        | 2.5 ms        | 0 ms          |
+| CLS                        | 0             | 0             |
+| Total measured transfer    | 899,081 bytes | 899,081 bytes |
 
 The mobile audit uses default simulated mobile settings; desktop uses `--preset=desktop`. These are current local lab measurements, not field/device guarantees or a source-branch comparison. Native media tests independently verify that the MP4 is not requested until play. Reports: `/private/tmp/stellar-integration-evidence/lighthouse-mobile.json` and `lighthouse-desktop.json`.
 
@@ -504,7 +505,6 @@ SHA reconciliation explains the interim result: dispatch 45900360770 resolved th
 
 The final branch documentation commit records this verified implementation without changing app or test source. Main and the public website remain unchanged. Remaining TODOs: approved portrait/reference review, real-device NFC/vCard import, screen-reader/browser-toolbar zoom review and pre-release external-link recheck. No deployment was requested or performed.
 
-
 ## 2026-11-26 — Next.js 16.4.5 security upgrade (`feature/nextjs-security-upgrade`)
 
 Run in worktree `/Users/aristonmichael/stellar-next-security` from `origin/development` `fe77fac` after a clean `npm ci`:
@@ -514,7 +514,6 @@ Run in worktree `/Users/aristonmichael/stellar-next-security` from `origin/devel
 - `npm run lint` passed with zero warnings. `npm run typecheck` passed. `npm run test:release` passed 9/9.
 - `npm run build` passed with Next.js 16.4.5 (Turbopack, 10/10 entries); the previous security-advisory stop no longer appears. `npm run check:export` passed (5 canonical routes, 60 files).
 - Full Playwright regression in Chrome and WebKit: **180 passed (1.3m)**, with zero retries, skips or test changes, matching the pre-upgrade baseline count. Firefox still fails to launch on this host and is not counted; hosted CI must run all three engines before merge.
-
 
 ## 2026-11-26 — Ariston OS NFC contact card (`feature/ariston-os-nfc-card`)
 
@@ -530,3 +529,35 @@ Run in worktree `/Users/aristonmichael/stellar-nfc-card` from `origin/developmen
 - Screenshots were reviewed at iPhone SE 320, iPhone 15 393, Pro Max 430, Android 360, tablet 768 and desktop 1440, plus the focus state. They are stored outside the repository.
 
 **Not verified:** physical iPhone/Android NFC tap, actual Contacts import from the `.vcf`, real safe-area insets on notched devices, screen readers, Lighthouse.
+
+## 2026-11-26 — Integrated security, Ariston OS portfolio and dedicated card
+
+Verified source SHAs before merging into isolated `feature/ariston-os-integration` from fetched development `fe77fac7a3dc313b4d2cb67efa439a7eaac1c42a`:
+
+1. Security `f169acbd644970adfb11adaf4ae57999e360bd72`.
+2. Portfolio `00d4cb219730ff0e7ab83a12a37d16d920c2da17`.
+3. Dedicated card `8b96aebd624d2e10a6912676157357aac8737b34`.
+
+Normal merges preserve all three histories. The original workspace was clean and remains separate. Claude’s route/components are selected; shared tokens align the palette and typography with Codex’s portfolio. A visible avatar-placeholder label and real skip-focus target were added. A first **130/130 Chrome/WebKit** pass established the canonical card/vCard implementation worked before deleting the obsolete public vCard and global card CSS. Both agents’ substantive tests remain; selectors/routes were reconciled, card widths extended through 2560px, and the WebKit download skip removed after actual downloads passed.
+
+Final local checks after removal:
+
+- `npm ci`: passed, 370 packages. `next` and `eslint-config-next` stay at **16.4.5**; package/lockfile exactly match the security branch.
+- Fresh `npm audit` (all dependencies) and `npm audit --omit=dev`: **zero vulnerabilities**. No forced or incompatible fix/dependency was introduced.
+- Lint (zero warnings), strict typecheck, **default `npm run build` (Turbopack 16.4.5)**, export verification and all **9 release guards** passed. This updated toolchain successfully runs the default build on this host; earlier 16.4.3 EPERM notes are historical.
+- Export: 12 generation entries, **six canonical content routes / 59 files**, plus the static-generated `/card/ariston-michael.vcf`. Correct card canonical/sitemap, no phone field, CRLF records, no duplicate root vCard and no forbidden wider FireGuard media.
+- Final `PLAYWRIGHT_PORT=3267 PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit`: **130 passed (22.7s), zero retries/skips/failures** against the actual `out/` preview.
+- Coverage includes main homepage, four project notes, dedicated card, approved hrefs/external attributes, download filename/bytes/folding/public fields/no phone, missing routes/assets, strict viewport/element overflow, 320–2560px, short screens, first-screen card actions at 390×844, keyboard/actual skip focus, touch, no-JavaScript, reduced motion and card isolation from portfolio navigation. Axe WCAG A/AA scans pass on home/card/project/404. Desktop and phone screenshots were visually reviewed.
+
+Lighthouse **13.6.0**, sequential runs against the same static export, after the browser suite finished (no competing browser workload):
+
+| Page | Mode    | Performance / Accessibility / Best practices / SEO | LCP   | TBT   | CLS |
+| ---- | ------- | -------------------------------------------------- | ----- | ----- | --- |
+| Home | Mobile  | 100 / 100 / 100 / 100                              | 1.05s | 7.5ms | 0   |
+| Home | Desktop | 100 / 100 / 100 / 100                              | 0.28s | 0ms   | 0   |
+| Card | Mobile  | 100 / 100 / 100 / 100                              | 1.35s | 3ms   | 0   |
+| Card | Desktop | 100 / 100 / 100 / 100                              | 0.32s | 0ms   | 0   |
+
+No significant lab regression is indicated; these are local simulated measurements, not real-device or production results. Reports are `/private/tmp/ariston-os-integration-{home,card}-{mobile,desktop}.json`. Source artifact/tests are reviewable in the integration branch; hosted three-engine PR validation is recorded below when complete.
+
+NFC readiness: the page and one static vCard are build/browser-ready; approved contacts and no private phone number. No photograph is approved, so the original placeholder stays. Physical iOS/Android scanning and native address-book import, live hosting MIME behavior, screen readers/toolbar zoom and final owner visual review remain manual follow-ups after a separately approved publication. No NFC write, main modification, merge, Pages setting change or deployment occurred.

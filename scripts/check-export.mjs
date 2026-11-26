@@ -54,16 +54,30 @@ async function inspect(directory) {
 }
 await inspect(root);
 await access(join(root, "card/index.html"));
-await access(join(root, "ariston-michael.vcf"));
+const vcard = await readFile(join(root, "card/ariston-michael.vcf"), "utf8");
+assert.ok(vcard.startsWith("BEGIN:VCARD\r\nVERSION:3.0\r\n"));
+assert.ok(vcard.endsWith("END:VCARD\r\n"));
+assert.ok(!/^TEL[;:]/im.test(vcard), "No unapproved phone number in vCard.");
+await assert.rejects(
+  access(join(root, "ariston-michael.vcf")),
+  "Only the canonical card vCard may be exported.",
+);
 await access(join(root, "404.html"));
 await access(join(root, "robots.txt"));
 await access(join(root, "social-card.png"));
 
-
 // These wider recording assets include third-party imagery without verified
 // reuse rights. Removing markup alone must not leave downloadable files behind.
-for (const file of ["fireguard-demo-1280.mp4", "fireguard-dashboard-1600.jpg", "fireguard-forecast-analysis-1600.jpg", "fireguard-analytics-1600.jpg"]) {
-  await assert.rejects(access(join(root, "media/projects/fireguard-xr", file)), `Withheld media must not be published: ${file}`);
+for (const file of [
+  "fireguard-demo-1280.mp4",
+  "fireguard-dashboard-1600.jpg",
+  "fireguard-forecast-analysis-1600.jpg",
+  "fireguard-analytics-1600.jpg",
+]) {
+  await assert.rejects(
+    access(join(root, "media/projects/fireguard-xr", file)),
+    `Withheld media must not be published: ${file}`,
+  );
 }
 console.log(
   `Static export verified: ${routes.length} canonical routes, ${files} files, root assets present, no PDFs/secrets folders/symlinks.`,

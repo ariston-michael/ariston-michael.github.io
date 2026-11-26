@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --desktop: #20364e;
-  --grid: #31475d;
-  --ink: #263c50;
-  --muted: #536171;
-  --paper: #f7f2e6;
-  --sage: #c7d2b9;
-  --blue: #c4d4df;
-  --beige: #e9d9b9;
+  --desktop: var(--os-desktop);
+  --grid: var(--os-grid);
+  --ink: var(--os-ink);
+  --muted: var(--os-muted);
+  --paper: var(--os-paper);
+  --sage: var(--os-sage);
+  --blue: var(--os-blue);
+  --beige: var(--os-beige);
   --line: #354759;
-  --display: "Courier New", Courier, monospace;
-  --body: Arial, Helvetica, sans-serif;
+  --display: var(--os-display);
+  --body: var(--os-body);
 }
 * {
   box-sizing: border-box;
@@ -791,112 +791,6 @@ div[id] {
   align-items: center;
   min-height: 45px;
 }
-/* Contact edition: server-rendered, no client component or remote media. */
-.card-site {
-  width: min(448px, calc(100% - 36px));
-  margin: auto;
-  padding: 24px 0 max(24px, env(safe-area-inset-bottom));
-}
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--paper);
-  margin-bottom: 18px;
-}
-.card-brand {
-  display: inline-flex;
-  align-items: center;
-  min-height: 45px;
-  font: 700 18px var(--display);
-  text-decoration: none;
-  letter-spacing: -1px;
-}
-.card-header > span {
-  font: 9px var(--display);
-  letter-spacing: 1px;
-}
-.card-profile {
-  text-align: center;
-  padding: 28px 20px 20px;
-}
-.portrait-placeholder {
-  width: 104px;
-  height: 112px;
-  border: 1px dashed #71816e;
-  background: #e0e5d5;
-  margin: 0 auto 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 11px;
-  box-shadow: 4px 4px 0 #d2d6c7;
-}
-.portrait-placeholder > span:first-child {
-  font: 900 35px var(--display);
-  letter-spacing: -3px;
-}
-.portrait-placeholder > span:last-child {
-  font: 8px var(--display);
-  letter-spacing: 0.6px;
-}
-.card-profile h1 {
-  font-size: clamp(27px, 7vw, 35px);
-  margin: 9px 0 14px;
-  letter-spacing: -2px;
-}
-.card-role {
-  font-size: 14px;
-  line-height: 1.5;
-}
-.card-school {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 8px;
-}
-.card-profile .status-label {
-  justify-content: center;
-  font-size: 10px;
-  margin-top: 18px;
-}
-.card-links {
-  display: grid;
-  gap: 12px;
-  padding: 4px 22px 28px;
-}
-.card-links .button {
-  min-height: 52px;
-  padding: 12px 16px;
-  font-size: 13px;
-}
-.button-note {
-  display: block;
-  font-size: 10px;
-  font-weight: 400;
-  margin-top: 4px;
-  overflow-wrap: anywhere;
-}
-.card-help {
-  color: #cbd6dd;
-  text-align: center;
-  font-size: 11px;
-  margin: 20px auto 0;
-  max-width: 310px;
-}
-.card-footer {
-  text-align: center;
-  margin-top: 8px;
-  color: var(--paper);
-  font: 11px var(--display);
-}
-.card-footer a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 45px;
-  gap: 12px;
-}
 /* Project notes and recovery share the desktop's paper, borders and typography. */
 .case-study {
   background: var(--paper);
@@ -1490,31 +1384,6 @@ div[id] {
   }
   .achievement > span:first-child {
     font-size: 12px;
-  }
-  .card-site {
-    width: calc(100% - 28px);
-    padding-top: 12px;
-  }
-  .card-links {
-    padding-inline: 18px;
-  }
-  .card-profile {
-    padding-inline: 12px;
-  }
-  .card-header > span {
-    font-size: 8px;
-  }
-  .card-brand {
-    font-size: 17px;
-  }
-  .card-profile h1 {
-    font-size: 29px;
-  }
-  .card-links .button {
-    padding-inline: 13px;
-  }
-  .button-note {
-    font-size: 9px;
   }
   .case-study {
     padding: 20px;

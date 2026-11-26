@@ -63,12 +63,15 @@ export function AristonCard({ portraitSrc }: AristonCardProps = {}) {
         <div className={styles.ghostWindow} />
       </div>
 
-      <main id="main" className={styles.window} aria-labelledby="card-name">
+      <main
+        id="main"
+        className={styles.window}
+        aria-labelledby="card-name"
+        tabIndex={-1}
+      >
         <header className={styles.titlebar}>
           <PixelBrand className={styles.brand} />
-          <p className={styles.os}>
-            Ariston&nbsp;OS
-          </p>
+          <p className={styles.os}>Ariston&nbsp;OS</p>
           <span className={styles.stripes} aria-hidden="true" />
           <span className={styles.controls} aria-hidden="true">
             <i />
@@ -112,6 +115,11 @@ export function AristonCard({ portraitSrc }: AristonCardProps = {}) {
               )}
             </div>
 
+            {!portrait && (
+              <p className={styles.portraitLabel}>
+                Portrait placeholder · photo to come
+              </p>
+            )}
             <h1 id="card-name" className={styles.name}>
               {p.fullName}
             </h1>
@@ -142,12 +150,17 @@ export function AristonCard({ portraitSrc }: AristonCardProps = {}) {
                     <span className={styles.actionText}>
                       <span className={styles.actionLabel}>{link.label}</span>
                       <span className={styles.actionDetail}>
-                        {link.id === "email" ? breakAfterAt(link.detail) : link.detail}
+                        {link.id === "email"
+                          ? breakAfterAt(link.detail)
+                          : link.detail}
                       </span>
                     </span>
                     <PixelIcon name="arrow" className={styles.arrow} />
                     {link.external ? (
-                      <span className={styles.srOnly}> (opens in a new tab)</span>
+                      <span className={styles.srOnly}>
+                        {" "}
+                        (opens in a new tab)
+                      </span>
                     ) : null}
                   </a>
                 </li>

@@ -2,6 +2,7 @@ import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { email, githubUrl, linkedInUrl, projects } from "../lib/content";
 import { siteUrl } from "../lib/site";
+import { buildVCard, vCardPath } from "../lib/card";
 
 async function noOverflow(page: Page) {
   expect(
@@ -76,13 +77,13 @@ for (const width of [320, 375, 430, 768, 1440]) {
       "Ariston Michael",
     );
     await expect(
-      page.getByRole("img", { name: /Portrait placeholder/ }),
+      page.getByRole("img", { name: /placeholder for Ariston Michael/ }),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: /^LinkedIn/ })).toHaveAttribute(
       "href",
       linkedInUrl,
     );
-    await expect(page.getByRole("link", { name: "GitHub" })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: /^GitHub/ })).toHaveAttribute(
       "href",
       githubUrl,
     );
@@ -91,14 +92,14 @@ for (const width of [320, 375, 430, 768, 1440]) {
       `mailto:${email}`,
     );
     await expect(
-      page.getByRole("link", { name: "Portfolio website" }),
-    ).toHaveAttribute("href", `${siteUrl}/`);
+      page.getByRole("link", { name: /^Visit Portfolio/ }),
+    ).toHaveAttribute("href", "/");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       `${siteUrl}/card/`,
     );
     await noOverflow(page);
-    for (const link of await page.locator(".card-links a").all()) {
+    for (const link of await page.locator("[data-action]").all()) {
       const box = await link.boundingBox();
       expect(box?.height).toBeGreaterThanOrEqual(48);
       expect(box?.width).toBeGreaterThanOrEqual(240);
@@ -164,15 +165,13 @@ test("vCard downloads only the approved contact fields", async ({
 }) => {
   await page.goto("/card/");
   const downloadPromise = page.waitForEvent("download");
-  await page.getByRole("link", { name: /^Save contact/ }).click();
+  await page.getByRole("link", { name: /^Save Contact/ }).click();
   const download = await downloadPromise;
-  expect(download.suggestedFilename()).toBe("Ariston-Michael.vcf");
+  expect(download.suggestedFilename()).toBe("ariston-michael.vcf");
   expect(await download.failure()).toBeNull();
-  const response = await request.get("/ariston-michael.vcf");
+  const response = await request.get(vCardPath);
   expect(response.ok()).toBe(true);
-  expect(await response.text()).toBe(
-    `BEGIN:VCARD\r\nVERSION:3.0\r\nN:Michael;Ariston;;;\r\nFN:Ariston Michael\r\nEMAIL;TYPE=INTERNET:${email}\r\nURL:${siteUrl}/\r\nEND:VCARD\r\n`,
-  );
+  expect(await response.text()).toBe(buildVCard());
 });
 for (const project of projects) {
   test(`${project.name} notes preserve scope and reflow`, async ({ page }) => {
@@ -221,7 +220,7 @@ test("static content, contact routes and filters fallback work without JavaScrip
     "Seneca Energy",
   );
   await page.goto(`${test.info().project.use.baseURL}/card/`);
-  await expect(page.getByRole("link", { name: /^Save contact/ })).toBeVisible();
+  await expect(page.getByRole("link", { name: /^Save Contact/ })).toBeVisible();
   await noOverflow(page);
   await context.close();
 });

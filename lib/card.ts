@@ -1,3 +1,5 @@
+import { email, githubUrl, linkedInUrl } from "./content";
+import { siteUrl } from "./site";
 // Ariston OS NFC contact card: verified facts and vCard generation.
 // Every value comes from docs/ABOUT_ME.md. Self-contained on purpose so the card
 // survives parallel portfolio refactors; keep it in sync with lib/content.ts.
@@ -20,10 +22,10 @@ export const cardProfile = {
   degree: "Honours Bachelor of Computer Science",
   school: "Sheridan College",
   specialization: "Cloud Computing",
-  email: "ariston.pmichael@gmail.com",
-  linkedIn: "https://www.linkedin.com/in/ariston-michael/",
-  gitHub: "https://github.com/ariston-michael",
-  portfolio: "https://ariston-michael.github.io",
+  email,
+  linkedIn: linkedInUrl,
+  gitHub: githubUrl,
+  portfolio: siteUrl,
 } as const;
 
 export type CardLinkId = "linkedin" | "github" | "portfolio" | "email";
