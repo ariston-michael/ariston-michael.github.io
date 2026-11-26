@@ -20,6 +20,7 @@ const types = {
   ".webm": "video/webm",
   ".ico": "image/x-icon",
   ".txt": "text/plain; charset=utf-8",
+  ".vcf": "text/vcard; charset=utf-8",
   ".xml": "application/xml",
   ".woff2": "font/woff2",
 };

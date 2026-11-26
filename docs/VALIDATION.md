@@ -466,3 +466,18 @@ Current repository rulesets API returns an empty list; the two visible PR checks
 Hosted release-safe run **43671795500** for `92b235485ef5801ece3ba52fd49cc1f4a99eccdb` completed **268 passed / 2 failed (7.1m)** across all three engines. The previous 28 inline-email failures and two recording failures are resolved. Remaining Firefox cases at 600×1000 and 600×430 measured a main-navigation width of 43.999969px against the unchanged 44px minimum. Increase actual header target minimums to 45px rather than adding tolerance, retries, browser skips or weaker assertions; require a fresh hosted pass before merge.
 
 After the 45px header-target correction, lint/types/default production build/export passed again. Targeted tall/short home checks at both 320px and the failing 600px width passed **8/8 Chrome/WebKit (15.4s)** with the strict 44px threshold intact. A new full hosted run is required for the corrected head before merging; the previous 268/270 result is not represented as green.
+
+## 2026-11-26 — Ariston OS NFC contact card (`feature/ariston-os-nfc-card`)
+
+Run in worktree `/Users/aristonmichael/stellar-nfc-card` from `origin/development` `fe77fac`:
+
+- `npm ci` passed. `npm run lint` passed with zero warnings. `npm run typecheck` passed.
+- `npm run build` exported `/card` and `/card/ariston-michael.vcf` (12/12 entries). Next.js 16.4.3 printed a security-advisory notice and stopped on the first invocation; the identical retry built normally. `npm audit` lists moderate Next.js advisories (use cache, Edge runtime, image optimizer, self-hosted proxying), which do not apply to this static Pages export. The Next.js upgrade is left as a separate owner decision.
+- `npm run check:export` passed (5 canonical routes, 68 files). `npm run test:release` passed 9/9.
+- `tests/card.spec.ts` in Chrome and WebKit: **41 passed, 1 skipped**. The skip is the download-event case on desktop WebKit, which opens vCards in place. Coverage includes no horizontal overflow and ≥56px-high targets at 320/360/375/390/414/430/768/1024/1440px; all five actions within the first 390×844 screen; exact link destinations and `target`/`rel`; no `tel:` link; vCard 200 `text/vcard`, CRLF, ≤75-octet lines, required fields and no phone digits; Chrome download filename; portrait placeholder with no failed requests; Tab order (Option+Tab on macOS WebKit) with a visible 3px focus ring; axe WCAG 2.2 A/AA at 320 and 1280px; reduced motion; SEO metadata; no-JavaScript rendering.
+- Full suite in Chrome and WebKit: **221 passed, 1 skipped (1.5m)**, so existing portfolio tests are unchanged. Firefox still cannot launch on this host, as recorded above.
+- Live links: GitHub profile and portfolio returned 200. LinkedIn returned its automation-blocking 999, as before.
+- Local transfer (uncompressed preview): 11 requests, 606 KB, first contentful paint 108 ms in Chrome. Card HTML is 9.4 KB gzipped. Scripts are the shared Next/React runtime from the root layout (~195 KB gzipped in total, with global CSS). The card itself needs no JavaScript.
+- Screenshots were reviewed at iPhone SE 320, iPhone 15 393, Pro Max 430, Android 360, tablet 768 and desktop 1440, plus the focus state. They are stored outside the repository.
+
+**Not verified:** physical iPhone/Android NFC tap, actual Contacts import from the `.vcf`, real safe-area insets on notched devices, screen readers, Lighthouse.

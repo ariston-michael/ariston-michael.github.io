@@ -157,3 +157,13 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Pass final local and hosted validation for the new PR head.
 - [ ] Merge integration to development, reconcile main normally, open/review production PR and dispatch the exact-SHA Pages workflow through authorised permissions.
 - [ ] Verify the actual deployed HTTPS site and record release SHA/run and outstanding issues.
+
+## 2026-11-26 — Ariston OS NFC contact card
+
+- [x] Isolated worktree/branch `feature/ariston-os-nfc-card` from latest `origin/development`; no edits to Codex-owned portfolio files.
+- [x] `/card/` retro OS card with portrait slot, identity, LinkedIn/GitHub/Portfolio/Email actions and a static vCard download.
+- [x] Responsive 320–1440px, safe areas, ≥56px targets, keyboard/axe/reduced-motion/no-JS checks in Chrome and WebKit.
+- [ ] Owner portrait at `public/images/ariston-profile.webp`.
+- [ ] Physical iPhone/Android checks: NFC tap opens `/card/`, Save Contact imports correctly.
+- [ ] Integration into the Ariston OS portfolio (optional sitemap entry, own route-group layout if desired) and hosted three-engine CI.
+- [ ] Write the NFC tag with `https://ariston-michael.github.io/card/` after the card is published.

@@ -42,3 +42,9 @@ These missing extras do not justify fake destinations or fabricated claims. Curr
 This supersedes the earlier review-only boundary: the owner authorises the Stage Separation production release and owner-created FireGuard media. Third-party map/photo rights remain unverified. To remove that release blocker, publication now retains only the inspected owner-created 3D simulation crop and removes all four wider screenshots/video from public/ and out/. MEDIA_MANIFEST records the exact crop checksum and withheld files; the export/browser checks enforce their absence. Wider media can return only after a separate rights review or replacement.
 
 Missing AirControl/Seneca screenshots, event photos, genuine Chicken Shooter footage/public URL and independent benchmarks remain optional content TODOs. No substitute resume PDF or separate phone link is introduced.
+
+## NFC contact card — 2026-11-26
+
+- **Portrait:** `public/images/ariston-profile.webp` is not supplied (square, ~640px, WebP). The card shows an original pixel-art placeholder until it is added and the site is rebuilt. Do not use the NFC keychain photo.
+- **Phone number:** deliberately omitted from the card and vCard; add only with explicit owner approval.
+- **Reference images:** the owner's style reference images were not available to this task; the design follows the AI Workplace repository only.

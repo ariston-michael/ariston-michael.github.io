@@ -146,3 +146,11 @@ Hosted PR #4 run 43669724358 had 240 passes / 30 failures. The 28 Firefox layout
 ## 2026-11-14 — Give navigation targets a real rounding margin
 
 Hosted Firefox measured 43.999969px for nominally 44px navigation links at 600px. Set header targets to 45px in both dimensions so actual painted/layout bounds satisfy the 44px requirement. Keep assertions strict and rerun the complete hosted matrix; no retry or browser exclusion.
+
+## 2026-11-26 — Ariston OS NFC contact card as an isolated route
+
+**Decision:** Build the NFC business card at `/card/` on `feature/ariston-os-nfc-card` (from `origin/development` `fe77fac`) in its own worktree. It is a server-rendered route with CSS Modules, its own `lib/card.ts` data source, and a static `ariston-michael.vcf` route handler. It does not edit the root layout, global CSS, homepage or sitemap.
+**Rationale:** Codex is redesigning the main portfolio in parallel, so additive files with a documented integration point (docs/CARD_INTEGRATION.md) minimise conflicts. A tap from an NFC tag needs to show links immediately: the card needs no client JavaScript, and all five actions fit within the first screen of a 390×844 phone. Education details sit below the actions for that reason.
+**Design:** Original artwork in the visual language of the AI Workplace retro office (`office-retro-gemini`/`ai-workplace-pixel-logo` branches): navy tile grid, cream window, sage ink, hard offset shadows, stepped pixel corners, rust focus ring. System monospace replaces Geist to avoid remote fonts. Icons and the avatar are original pixel grids, not brand logos or copied sprites. The owner's reference images were not available to this task.
+**Portrait:** At build time, use `public/images/ariston-profile.webp` if present; otherwise show an original pixel-art placeholder, so a missing asset never produces a broken request.
+**vCard:** Version 3.0 for iOS/Android import, CRLF line endings, 75-octet folding, verified name/email/education/public URLs only, and no phone number. GitHub Pages provides `text/vcard` from the extension; the local preview server gains the same MIME mapping.
