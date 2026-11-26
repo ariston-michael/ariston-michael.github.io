@@ -24,7 +24,15 @@ async function noOverflow(page: Page) {
                 (element as HTMLElement).clientWidth + 1)
           );
         })
-        .map((element) => element.textContent?.slice(0, 60)),
+        .map((element) => ({
+          tag: element.tagName,
+          text: element.textContent?.slice(0, 60),
+          display: getComputedStyle(element).display,
+          client: (element as HTMLElement).clientWidth,
+          scroll: (element as HTMLElement).scrollWidth,
+          left: element.getBoundingClientRect().left,
+          right: element.getBoundingClientRect().right,
+        })),
     );
   expect(clipped).toEqual([]);
 }
