@@ -157,3 +157,16 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Pass final local and hosted validation for the new PR head.
 - [ ] Merge integration to development, reconcile main normally, open/review production PR and dispatch the exact-SHA Pages workflow through authorised permissions.
 - [ ] Verify the actual deployed HTTPS site and record release SHA/run and outstanding issues.
+
+## 2026-11-26 — Ariston OS redesign and NFC contact card
+
+- [x] Branch `feat/ariston-os` from freshly fetched development `fe77fac7a3dc313b4d2cb67efa439a7eaac1c42a`; preserve clean starting worktree.
+- [x] Replace Stage Separation with an original retro workspace, shared cream windows, navy grid, muted accents and code-drawn pixel companion.
+- [x] Include welcome, filterable projects, verified experience, complete skills, education/achievements, about and contact; retain four factual case studies.
+- [x] Add mobile-first `/card/`, clear portrait placeholder, approved contact links and downloadable name/email/website vCard.
+- [x] Update metadata, favicon, original sharing artwork, sitemap, export checks and current design/architecture/content docs.
+- [x] Run npm ci, lint, strict types, supported webpack export, six-route artifact check and nine unchanged release guards. Default Turbopack remains blocked by host worker-port EPERM.
+- [x] Record final local 78/78 Chrome/WebKit checks and successful Linux 117/117 Chromium/Firefox/WebKit checks, default Turbopack build and six-route export: validation-only run 45900926649.
+- [ ] Optional owner-approved portrait and comparison with reference attachments/AI Workplace source when available.
+- [ ] Physical phone/NFC scan, native contact import, assistive technology and actual browser zoom review.
+- No merge, production workflow, Pages setting change or deployment is authorized by this redesign. The existing public site remains unchanged.

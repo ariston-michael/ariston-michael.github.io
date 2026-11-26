@@ -467,6 +467,44 @@ Hosted release-safe run **43671795500** for `92b235485ef5801ece3ba52fd49cc1f4a99
 
 After the 45px header-target correction, lint/types/default production build/export passed again. Targeted tall/short home checks at both 320px and the failing 600px width passed **8/8 Chrome/WebKit (15.4s)** with the strict 44px threshold intact. A new full hosted run is required for the corrected head before merging; the previous 268/270 result is not represented as green.
 
+## 2026-11-26 — Ariston OS feature validation
+
+Current UI supersedes the historical cosmic/rocket interfaces and their interaction suites. This branch implements a retro workspace, project filters and standalone NFC card while retaining all four verified project notes and media exclusions.
+
+Executed locally:
+
+- `npm ci`: passed (369 packages installed); lockfile/dependency declarations unchanged.
+- `npm run lint`: passed, zero warnings; `npm run typecheck`: passed.
+- `npm run build`: attempted normally and with escalation; both failed because this host denies Turbopack's CSS-worker port binding (EPERM). This is not reported as a default-build pass.
+- `npm run build -- --webpack`: passed; 11 static generation entries, six canonical content routes including `/card/`.
+- `npm run check:export`: passed, six canonical routes / 69 files, card/vCard/root assets present and forbidden wider FireGuard media absent.
+- `npm run test:release`: all nine unchanged release-policy checks passed.
+- Final `PLAYWRIGHT_PORT=3217 PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit`: **78 passed, zero failures/retries (17.5s)**.
+- Full local three-engine run was attempted: Firefox cannot launch ("Could not find profile folder"), also reproduced using an explicit writable temporary directory. No Firefox application result is claimed locally. The first full run had 77 passes, 39 Firefox launch failures and one WebKit keyboard-test failure; use macOS Option-Tab for native link navigation as in the prior suite. The final two-engine run above includes the corrected input.
+
+Coverage: homepage 320/360/375/390/430/600/768/820/1024/1280/1440/1920/2560px with 430/900/1100px heights; card 320/375/430/768/1440px; all four notes at 320/768/1440px. Strict element/document overflow and primary-target size assertions pass. Project filtering (including keyboard activation and result announcement), skip link, navigation, case-study return, mobile touch, no-JavaScript, reduced-motion, original media and missing-route recovery pass. vCard downloads with the expected filename and exact approved CRLF content. Contact hrefs match approved LinkedIn/GitHub/email/portfolio constants; resume popup tests intercept Drive to isolate navigation from external uptime. This does not reverify current third-party availability or native phone contact import.
+
+Axe WCAG 2/2.1/2.2 A/AA scans report zero violations for homepage, card, FireGuard notes and 404 at 375/1440px in both runnable engines. Initial Chrome tests caught real 320/360px hero typography overflow; responsive sizing fixed it without hiding overflow or weakening assertions. Desktop and mobile screenshots were inspected and retained in ignored test-results. New SVG/PNG sharing art and icon use original code-drawn graphics. No reference attachments or portrait were available in this checkout.
+
+Hosted Linux three-engine/default-build validation is recorded below. No deployment, main merge, Pages change, production scan or NFC tag write was performed. Physical iOS/Android scanning and native vCard import, screen readers, actual browser-toolbar zoom, final owner visual/portrait approval, external resume recheck and any future publication remain separate tasks. No Lighthouse score is claimed for this redesign.
+
+The first Linux validation-only run [45899772607](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/45899772607) passed npm ci/lint/types/release guards/default Turbopack build/export and **103/117 browser checks**. Four inline project-title links and the FireGuard evidence link have zero clientWidth in Firefox, triggering the strict element overflow checks; card/contact/vCard and all accessibility scans passed. Give these links explicit inline-block boxes (project titles also receive 44px target height), retain all overflow assertions, and rerun the full matrix.
+
+After the explicit link-box fix, lint, strict types, webpack build, six-route export and the full **78-case Chrome/WebKit suite passed again (17.9s)**. The approved FireGuard image was separately scrolled into view and confirmed decoded at its expected 1120px intrinsic width; full-page capture alone does not trigger offscreen lazy media. vCard CRLF is preserved in Git by `.gitattributes` and verified from the committed blob.
+
+### Final Linux result — passed
+
+[Validation-only run 45900926649](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/45900926649) completed successfully for exact implementation/test SHA `ab659819609c5e655bc11062a638dc2f97c75ddd`:
+
+- npm ci, lint, strict typecheck, all nine release guards, **default `npm run build` (Turbopack)** and export checks passed.
+- **117/117 Chromium/Firefox/WebKit checks passed (1.6m), zero retries/exclusions.** All strict document/element overflow checks, card layouts/contact targets/vCard, keyboard/touch, no-JavaScript/reduced-motion and WCAG scans pass.
+- Default CI artifact: **six canonical routes / 58 files** (the local webpack artifact has 69 files). Successful static output is retained by the validation workflow for review only; there is no deployment job or Pages write permission.
+
+SHA reconciliation explains the interim result: dispatch 45900360770 resolved the previous `2c7329beea1afdb974526f1c6a2d5b310f9fdd96` while the pushed branch ref was updating, so its repeated 103/117 result did **not** test the explicit link-box fix at `7324f54`. The final successful `ab659819…` run includes that CSS fix plus richer element diagnostics; the filter/assertion criteria did not change. The measured fix is therefore validated on all three engines, not accepted on a transient rerun of identical application code. Historical failure notes above retain what actually ran.
+
+The final branch documentation commit records this verified implementation without changing app or test source. Main and the public website remain unchanged. Remaining TODOs: approved portrait/reference review, real-device NFC/vCard import, screen-reader/browser-toolbar zoom review and pre-release external-link recheck. No deployment was requested or performed.
+
+
 ## 2026-11-26 — Next.js 16.4.5 security upgrade (`feature/nextjs-security-upgrade`)
 
 Run in worktree `/Users/aristonmichael/stellar-next-security` from `origin/development` `fe77fac` after a clean `npm ci`:

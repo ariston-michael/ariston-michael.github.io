@@ -1,35 +1,30 @@
-# Stage Separation architecture
+# Ariston OS architecture
 
-## Stack and static export
+## Stack and publication boundary
 
-Next.js 16.4.5 App Router, React 19.3.1, TypeScript 5.9 strict, Tailwind 4.3.3 and custom CSS. npm lockfile; Node 22.13+ (locally 24.14.0). No added runtime dependency, server action, database, API route, secret or remote font.
+Next.js 16.4.5 App Router, React 19.3.1, strict TypeScript 5.9, Tailwind 4.3.3 and custom CSS. No runtime dependency added. System fonts and inline SVG require no remote requests. Keep `output: 'export'`, `trailingSlash: true`, unoptimized images, and `https://ariston-michael.github.io` at the user-site root. `out/` is the production artifact; `npm run preview` serves it locally.
 
-`next.config.ts` preserves `output: 'export'`, `trailingSlash: true`, unoptimized images and the root URL `https://ariston-michael.github.io`. Output is `out/`; preview it with `npm run preview`, never `next start`. Four generated project-note routes, sitemap, robots, sharing card and custom 404 remain. The temporary showcase-preview route is removed.
+This redesign is a feature branch from fetched development. Main, Pages settings, release workflows and legacy root `index.html` remain unchanged. No merge or deployment is authorized.
 
-## Composition
+## Composition and state
 
-`app/page.tsx` is a server component. `RocketExperience` accepts server-rendered children: introduction, `ProjectShowcase id="projects"`, experience, education/skills, about with `HackathonGallery id="achievements"`, and contact. `GameExperience` is a full-width closing bonus outside the rocket grid. Old FeaturedProjects and the separate achievement summary are not rendered.
+- `app/page.tsx`: semantic server-rendered workspace, intro, experience, skills, about/education/achievements, contact.
+- `components/OSWindow.tsx`: shared decorative window chrome; `PixelCompanion.tsx`: original code-drawn mascot.
+- `components/ProjectExplorer.tsx`: the only application client boundary on the homepage. Local filter state selects records from `lib/content.ts`, exposing pressed buttons and a polite result status. All four projects render initially; no-JavaScript hides filter buttons and keeps links/content.
+- `components/SiteHeader.tsx`, `Footer.tsx`: shared real navigation, no fake app controls.
+- `app/card/page.tsx`: independent server-rendered contact card, canonical metadata, photo placeholder and approved contact links. No custom client component or data fetch.
+- `public/ariston-michael.vcf`: RFC-style vCard 3.0 with CRLF lines, approved name/email/site only; downloaded through a normal anchor. The preview server recognizes its MIME type. Native OS import is outside the site.
+- `app/globals.css`: shared palette, layout, window chrome, card and case-study styles, responsive rules, reduced-motion and forced-colors handling.
+- Four `app/projects/[slug]` routes remain statically generated with verified scope and evidence boundaries. Sitemap adds `/card/`; custom 404, icon and sharing artwork match Ariston OS.
 
-- `lib/content.ts`: typed, verified personal/project facts and contact/resume destinations.
-- `lib/rocket.ts`: shared original six-module SVG geometry.
-- `components/RocketExperience.tsx`: small client controller; one scroll-scheduled RAF measures section positions and writes bounded CSS transforms. Cumulative joint gaps keep modules ordered. No wheel/touch interception or per-frame React state updates. Mouse and keyboard offsets are ephemeral; Home/Escape reconnect one module, Reassemble resets all until subsequent scroll.
-- `components/RocketSketch.tsx`: static recovery drawing using the same geometry.
-- `app/rocket.css`: editorial composition, responsive diagram, shared integration slots and note/recovery theming.
-- `components/showcase/`: server-rendered showcase, gallery and native game disclosure, with CSS Modules and actual-column container queries. MediaViewer is the only client boundary within these components.
-- `components/showcase/data.ts`: source-recording media, hackathon records and honest empty Chicken Shooter recording/launch fields. `MEDIA_MANIFEST.md` owns provenance/rights status.
+Legacy rocket/cosmic/showcase modules remain unused historical source, not homepage imports. Their dedicated interaction suites are replaced by OS tests because those interfaces have been removed. The homepage no longer injects the cinematic scroll-restoration script; standard browser anchors/history now apply. Historical integration docs are explicitly marked superseded.
 
-The desktop rocket lives in its reserved sticky column. At ≤900px the content wrapper uses `display: contents`, allowing the introduction, complete diagram and remaining sections to stay in normal flow without absolute phone spacers. Short desktop drawings scale geometry and expansion together. Existing global styles remain for shared project-note utilities; legacy solar/cinema modules are unused by the homepage.
+## Content and media
 
-## Progressive enhancement and media
+`lib/content.ts` and `docs/ABOUT_ME.md` retain the approved content/contacts. `MEDIA_MANIFEST.md` still governs original concepts and the owner-approved 1120×640 FireGuard simulation crop. Wider recording/map/photo assets remain forbidden in export. No portrait was found. No project URL, role, result or media is invented.
 
-Static HTML contains every section and link. No-JavaScript disables the rocket buttons and hides enhancement-only controls; native stage links, project/game disclosures and video remain. Static FireGuard still links replace inactive thumbnail selectors. Reduced motion and shared MotionToggle are honoured live. The original `lib/home-entry.ts` policy is retained: fresh hashless reload starts at the introduction; explicit fragments and back/forward traversal preserve their intended targets; deferred hydration must not discard early user scrolling.
+## Verification
 
-The release includes one unchanged 1120×640 owner-approved FireGuard simulation crop with native lazy loading. Four wider screenshots/video are deleted from public/ and forbidden in out/ because third-party imagery rights are unresolved. The generic viewer retains its video/thumbnail capability for a future rights-reviewed asset, but this release serves no recording. No game video or public launch URL is supplied. Resume always opens the existing external Drive viewer securely; no PDF or separate phone contact is hosted.
+Run `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm run check:export`, `npm run test:release`, and `npm test`. The default build uses Turbopack; this host’s CSS worker may fail with port EPERM even with escalation. Report that failure and run the supported `npm run build -- --webpack` for local static/browser validation; do not silently call it a default-build pass.
 
-## Verification and release boundary
-
-`playwright.config.ts` retains Chromium/Firefox/WebKit projects, zero retries and static preview on loopback 3100. Tests exercise the integrated homepage (the preview-only route is gone), all requested widths, notes, rocket interactions, native links/disclosures, media playback/lazy loading, no-JavaScript, reduced motion, accessibility and restoration. The local server provides media MIME types and byte ranges. `check-export.mjs` validates canonical content routes, root assets and forbidden artifact types.
-
-Run `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm run check:export`, `npm run test:release`, then `npm test`. On this host Chrome can be selected with `PLAYWRIGHT_CHANNEL=chrome`; unavailable browsers must be reported. Current actual results and Lighthouse metrics are in `VALIDATION.md`.
-
-Normal merge commits preserve both source feature histories. The integration branch targets development via PR. Read-only validation now includes development-targeted PRs, with no Pages write permission or deploy job. The manual main-only release workflow, production settings and legacy root `index.html` are unchanged. Publishing requires a separate approved release, including media-rights confirmation; no merge or deployment is part of this integration.
+Playwright uses static preview on loopback 3100, Chromium/Firefox/WebKit projects and zero retries. Select installed Chrome with `PLAYWRIGHT_CHANNEL=chrome` locally. OS regressions cover thirteen widths, short layouts, navigation/filtering, all case studies, card/vCard, keyboard/touch, no-JavaScript, reduced motion, WCAG scans and media exclusion. The export checker requires six canonical routes, the card and vCard. Release guards remain unchanged. See `VALIDATION.md` for actual executed results and limitations.

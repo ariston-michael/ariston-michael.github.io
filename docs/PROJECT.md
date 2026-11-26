@@ -1,4 +1,4 @@
-# Project brief
+# Ariston OS — project brief
 
 ## Purpose
 Build a memorable yet professional personal portfolio that helps software engineering recruiters quickly assess Ariston Michael's projects, strengths, achievements, and contact options.
@@ -10,11 +10,11 @@ Software engineering and adjacent technical internship recruiters, engineers, ha
 - Communicate identity, role, and technical strengths above the fold.
 - Showcase engineering decisions and measurable impact where verified.
 - Offer clear paths to resume, GitHub, live demos, and contact.
-- Deliver the owner-requested Stage Separation rocket experience: restrained monochrome technical linework, six reversible content stages, and premium editorial clarity without compromising legibility or performance.
+- Deliver an original retro operating-system workspace: cream software windows, navy grid desktop, muted accents, readable typography, accessible project exploration, and a matching mobile-first NFC contact card at `/card/`.
 - Serve reliably at the existing GitHub Pages user-site URL.
 
 ## Proposed sections
-Hero, featured work, individual project case studies, experience/leadership, skills, achievements, about, contact.
+Welcome workspace, filterable projects, individual project case studies, experience, skills, education, achievements, about, contact, and a dedicated `/card/` NFC page with a downloadable vCard.
 
 ## Non-goals for initial launch
 Accounts, database, server-side APIs, content management system, heavy 3D scenes, or fabricated testimonials/metrics.

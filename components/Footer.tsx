@@ -1,16 +1,14 @@
-import { MotionToggle } from "./MotionToggle";
 export function Footer({ home = true }: { home?: boolean }) {
-  const top = home ? "#top" : "/#top";
   return (
     <footer className="shell footer">
-      <a className="wordmark" href={top}>
-        AM<span className="text-cyan-200">.</span>
-      </a>
       <p>
-        Ariston Michael <span aria-hidden="true">/</span> Made with curiosity.
+        Ariston OS <span aria-hidden="true">/</span> A workspace by Ariston
+        Michael.
       </p>
-      <MotionToggle />
-      <a href="#top">Back to top ↑</a>
+      <div>
+        <a href="/card/">Digital contact card ↗</a>
+        <a href={home ? "#top" : "/#top"}>Back to top ↑</a>
+      </div>
     </footer>
   );
 }
