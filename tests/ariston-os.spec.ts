@@ -76,9 +76,27 @@ for (const width of [320, 375, 430, 768, 1440]) {
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       "Ariston Michael",
     );
-    await expect(
-      page.getByRole("img", { name: /placeholder for Ariston Michael/ }),
-    ).toBeVisible();
+    const portrait = page.locator("[data-portrait]");
+    await expect(portrait).toBeVisible();
+    if ((await portrait.getAttribute("data-portrait")) === "photo") {
+      await expect(portrait).toHaveAttribute(
+        "alt",
+        "Portrait of Ariston Michael",
+      );
+      await expect(portrait).toHaveAttribute(
+        "src",
+        "/images/ariston-profile.webp",
+      );
+      await expect
+        .poll(() =>
+          portrait.evaluate((img: HTMLImageElement) => img.naturalWidth),
+        )
+        .toBeGreaterThan(0);
+    } else {
+      await expect(portrait).toHaveAccessibleName(
+        /placeholder for Ariston Michael/,
+      );
+    }
     await expect(page.getByRole("link", { name: /^LinkedIn/ })).toHaveAttribute(
       "href",
       linkedInUrl,

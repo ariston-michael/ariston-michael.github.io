@@ -54,6 +54,22 @@ async function inspect(directory) {
 }
 await inspect(root);
 await access(join(root, "card/index.html"));
+// Production approval covers the supplied portrait, not a placeholder release.
+if (process.env.REQUIRE_PORTRAIT === "1") {
+  const photo = await readFile(join(root, "images/ariston-profile.webp"));
+  assert.ok(
+    photo.length > 12 &&
+      photo.toString("ascii", 0, 4) === "RIFF" &&
+      photo.toString("ascii", 8, 12) === "WEBP",
+    "Production requires a valid WebP portrait.",
+  );
+  const card = await readFile(join(root, "card/index.html"), "utf8");
+  assert.ok(
+    card.includes('data-portrait="photo"') &&
+      card.includes('src="/images/ariston-profile.webp"'),
+    "Production card must render the approved portrait.",
+  );
+}
 const vcard = await readFile(join(root, "card/ariston-michael.vcf"), "utf8");
 assert.ok(vcard.startsWith("BEGIN:VCARD\r\nVERSION:3.0\r\n"));
 assert.ok(vcard.endsWith("END:VCARD\r\n"));

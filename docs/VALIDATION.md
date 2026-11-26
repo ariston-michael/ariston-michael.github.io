@@ -575,3 +575,17 @@ Public destination HEAD checks using system curl/TLS verification returned HTTP 
 - GitGuardian passed; PR #8 targets development and is mergeable. Validated static output is retained as a review artifact, not deployed.
 
 The final follow-up changes only documentation/PR evidence; application, dependency, test and workflow source remain identical to the passing implementation above. No source branch was deleted or force-pushed, and neither development nor main was merged or published.
+
+## 2026-11-26 — Authorized portrait release preflight (not deployed)
+
+Reverified PR #8 at exact head `5b38385f8080a6655b86c0be04bc0d495f506c58`: validation/GitGuardian successful, mergeable. Owner explicitly authorizes development/main merges and publication with the supplied portrait. PR #8 was normally merged into development at `005dad8067b39ca9e85bf9408f190132de8d809e`. Release preparation is isolated in `/private/tmp/ariston-os-release` on `release/ariston-os-portrait`; the root checkout’s untracked source folder is preserved.
+
+`assests/portraits/my-photo.png` exists but is **0 bytes** (`file`: empty; image decoder cannot open it). Repeated inspections found no other supplied portrait. No photo has been substituted, fabricated, optimized or committed. Final portrait/crop/image-loading approval and production release remain blocked on actual image data.
+
+Clean preflight: npm ci (370 packages), npm audit (zero vulnerabilities), lint, strict typecheck, default Next.js 16.4.5 build, six-route/59-file static export and all nine release guards passed. After updating OS card tests to verify either a decoded real photo or the existing accessible placeholder, full local Chrome/WebKit tests passed **130/130 (29.3s)** against out/, zero skips/retries. The production-only `REQUIRE_PORTRAIT=1` export check correctly refuses the missing WebP; that is an expected safety gate, not a production-ready pass. The manual release workflow retains its exact-main-SHA approval and now performs fresh npm audit plus the portrait guard before packaging.
+
+Authenticated Pages inspection: `build_type=workflow`, root URL preserved, HTTPS enforced, no custom domain. Current production/rollback candidate is `d8c0fb799f884d0774bc5fbeeaf9d46be308717a`; approved release runs 45532539835 and 45532448129 succeeded. Main history was normally merged into the release-preparation branch; its tree stayed `7a2e3c11d5b42107acc0d3eea24180c9da85cffb` before/after, so no production-only code was lost. No Pages setting change was necessary.
+
+Fresh signed-out Chrome resume verification returned HTTP 200, title `Ariston_Michael.pdf - Google Drive`, readable correct-name one-page resume and a Sign in option (no access requirement). No PDF, phone number or sharing change was copied into the site. System-TLS HEAD requests returned 200 for production home, GitHub profile and resume viewer; LinkedIn returned automated-access HTTP 999 and its approved URL remains unchanged. Browser tests verify email/portfolio destinations and public-only vCard contents; no email was sent.
+
+Draft production PR #9 is development → main, held for the actual portrait and final checks. The development-push validation run was superseded/cancelled by this PR’s same-head validation under the existing concurrency policy; this is not represented as a passing run. Final portrait screenshots, three-engine portrait validation, exact-SHA production merge/dispatch and live card/vCard checks are pending. No main merge, production dispatch, deployment or NFC write occurred in this preflight.
