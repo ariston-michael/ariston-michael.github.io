@@ -21,6 +21,7 @@ const types = {
   ".ico": "image/x-icon",
   ".vcf": "text/vcard; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
+  ".vcf": "text/vcard; charset=utf-8",
   ".xml": "application/xml",
   ".woff2": "font/woff2",
 };

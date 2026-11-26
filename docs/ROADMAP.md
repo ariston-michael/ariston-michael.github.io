@@ -170,3 +170,14 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Optional owner-approved portrait and comparison with reference attachments/AI Workplace source when available.
 - [ ] Physical phone/NFC scan, native contact import, assistive technology and actual browser zoom review.
 - No merge, production workflow, Pages setting change or deployment is authorized by this redesign. The existing public site remains unchanged.
+
+
+## 2026-11-26 — Ariston OS NFC contact card
+
+- [x] Isolated worktree/branch `feature/ariston-os-nfc-card` from latest `origin/development`; no edits to Codex-owned portfolio files.
+- [x] `/card/` retro OS card with portrait slot, identity, LinkedIn/GitHub/Portfolio/Email actions and a static vCard download.
+- [x] Responsive 320–1440px, safe areas, ≥56px targets, keyboard/axe/reduced-motion/no-JS checks in Chrome and WebKit.
+- [ ] Owner portrait at `public/images/ariston-profile.webp`.
+- [ ] Physical iPhone/Android checks: NFC tap opens `/card/`, Save Contact imports correctly.
+- [ ] Integration into the Ariston OS portfolio (optional sitemap entry, own route-group layout if desired) and hosted three-engine CI.
+- [ ] Write the NFC tag with `https://ariston-michael.github.io/card/` after the card is published.

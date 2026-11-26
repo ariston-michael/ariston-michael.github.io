@@ -48,3 +48,10 @@ Missing AirControl/Seneca screenshots, event photos, genuine Chicken Shooter foo
 - Portrait not supplied: `/card/` deliberately shows a labeled placeholder. Replace only with an owner-approved photo.
 - AI Workplace source and reference-image attachments were not available in this checkout; implemented the owner’s written visual direction with original code artwork. Optional follow-up: compare supplied visuals with the implementation.
 - Test NFC scanning and native vCard import on physical iOS/Android devices after a separately approved deployment. The production `/card/` address is not published by this branch.
+
+
+## NFC contact card — 2026-11-26
+
+- **Portrait:** `public/images/ariston-profile.webp` is not supplied (square, ~640px, WebP). The card shows an original pixel-art placeholder until it is added and the site is rebuilt. Do not use the NFC keychain photo.
+- **Phone number:** deliberately omitted from the card and vCard; add only with explicit owner approval.
+- **Reference images:** the owner's style reference images were not available to this task; the design follows the AI Workplace repository only.
