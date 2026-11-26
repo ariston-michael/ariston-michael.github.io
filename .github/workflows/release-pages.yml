@@ -49,11 +49,14 @@ jobs:
         with:
           enablement: false
       - run: npm ci
+      - run: npm audit
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run test:release
       - run: npm run build
       - run: npm run check:export
+        env:
+          REQUIRE_PORTRAIT: "1"
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm test
       - name: Preserve browser diagnostics

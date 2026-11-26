@@ -4,7 +4,7 @@
 
 Next.js 16.4.5 App Router, React 19.3.1, strict TypeScript 5.9, Tailwind 4.3.3 and custom CSS. No runtime dependency added. System fonts and inline SVG require no remote requests. Keep `output: 'export'`, `trailingSlash: true`, unoptimized images, and `https://ariston-michael.github.io` at the user-site root. `out/` is the production artifact; `npm run preview` serves it locally.
 
-The integration branch is `feature/ariston-os-integration`, isolated in `/private/tmp/ariston-os-integration` from fetched development `fe77fac`. Main, Pages settings, release workflows and legacy root `index.html` remain unchanged. No merge or deployment is authorized.
+The integration branch is `feature/ariston-os-integration`, isolated in `/private/tmp/ariston-os-integration` from fetched development `fe77fac`. The owner subsequently authorized the portrait release, normal main merge and exact-SHA deployment. See RELEASE.md for current authorization, release status and rollback procedure. The root URL and legacy `index.html` remain unchanged.
 
 ## Composition and state
 
@@ -23,7 +23,7 @@ Legacy rocket/cosmic/showcase modules remain unused historical source, not homep
 
 ## Content and media
 
-`lib/content.ts` and `docs/ABOUT_ME.md` retain the approved content/contacts. `MEDIA_MANIFEST.md` still governs original concepts and the owner-approved 1120×640 FireGuard simulation crop. Wider recording/map/photo assets remain forbidden in export. No portrait was found. No project URL, role, result or media is invented.
+`lib/content.ts` and `docs/ABOUT_ME.md` retain the approved content/contacts. `MEDIA_MANIFEST.md` still governs original concepts and the owner-approved 1120×640 FireGuard simulation crop. Wider recording/map/photo assets remain forbidden in export. The owner-approved portrait is encoded as a 640×640, 29,492-byte WebP with stripped metadata; the high-resolution PNG stays outside Git. No project URL, role, result or media is invented.
 
 ## Verification
 

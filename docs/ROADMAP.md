@@ -197,3 +197,12 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Push integration branch and open review PR #8 targeting development; no automatic merge.
 - [ ] Physical NFC/vCard import, approved portrait, assistive-technology/zoom and final owner review remain manual follow-ups.
 - No main change, Pages setting change or deployment is authorized.
+
+## 2026-11-26 — Authorized portrait release
+
+- [x] Reverify PR #8 checks and normally merge it into development (`005dad8`).
+- [x] Create isolated release worktree; reconcile main history with identical pre/post source trees.
+- [x] Confirm Actions-based Pages, HTTPS and previous successful release/rollback candidate.
+- [x] Clean install, audit (zero vulnerabilities), lint, types, default build, static export and nine release guards pass before portrait integration.
+- [x] Verify the actual nonempty 1254×1254 source, inspect and optimize it to a metadata-free 640×640 / 29,492-byte WebP; keep the original local.
+- [ ] Final portrait/browser/CI checks, production PR merge, exact-SHA Pages dispatch and live verification.

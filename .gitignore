@@ -7,3 +7,6 @@ test-results/
 *.tsbuildinfo
 .env*
 .DS_Store
+# Owner-supplied high-resolution portrait sources stay local.
+/assests/portraits/
+/assets/portraits/

@@ -61,3 +61,7 @@ Missing AirControl/Seneca screenshots, event photos, genuine Chicken Shooter foo
 Claude’s `components/card` implementation is the selected `/card/` page. No approved portrait exists, so the original avatar is explicitly labeled as a placeholder. The sole download is `/card/ariston-michael.vcf`; verified name/email/education/public URLs only, no private phone number. The earlier root-level file is removed after browser verification.
 
 Before a separately approved publication: owner visual/portrait review, actual iOS/Android NFC scan and native contact import, screen-reader/browser-toolbar zoom review, and external resume/contact reachability recheck. Local browser tests verify the approved hrefs and static vCard bytes; they do not establish availability of external services or actual phone import.
+
+## Approved portrait — resolved
+
+The owner supplied a valid 1254×1254 PNG at `assests/portraits/my-photo.png`. It was inspected and optimized to `public/images/ariston-profile.webp` (640×640, 29,492 bytes). Original aspect ratio/composition are preserved, no generated facial changes, EXIF stripped, and the source is not committed. Current portrait-placeholder TODOs above are historical. Physical NFC/Contacts import and assistive-technology/toolbar-zoom review remain manual follow-ups.

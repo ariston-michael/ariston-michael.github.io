@@ -9,7 +9,7 @@ Ariston OS is an original retro digital workspace for Ariston Michael’s portfo
 - Muted sage `#c7d2b9`, blue `#c4d4df`, and beige `#e9d9b9` title bars; squared borders and small solid offset shadows.
 - Heavy system monospace display headings evoke retro software; Arial body text keeps paragraphs readable. No font download or graphics dependency.
 - `OSWindow`/`WindowBar` provide consistent app chrome. Window marks are decorative, never pretend close/minimize buttons.
-- `PixelCompanion` is an original SVG pixel computer with a seedling, not a portrait or third-party character. There is no supplied portrait; `/card/` clearly labels its placeholder.
+- `PixelCompanion` is an original SVG pixel computer with a seedling, not a portrait or third-party character. The NFC card uses the owner-approved optimized portrait; the original pixel avatar remains a clearly labeled fallback.
 
 ## Workspace
 
@@ -17,7 +17,7 @@ Persistent document navigation, welcome window, desk-buddy/about panel, pinned i
 
 ## Contact edition
 
-`/card/` is a narrow, mobile-first standalone window with name, truthful student role, portrait placeholder, LinkedIn, GitHub, portfolio and email. Claude’s dedicated card keeps its original pixel avatar/stepped portrait frame, contact icons and five actions. Its blue title bar and cream surface share the portfolio’s tokens; decorations remain static. The avatar is visibly and accessibly labeled as a placeholder, not a likeness. All five actions fit a 390×844 phone before the education panel. Save Contact downloads one generated vCard with verified name, email, education/student title and Portfolio/LinkedIn/GitHub URLs. Importing into an address book remains the phone’s native action. No phone number, fabricated portrait, tracking or remote media.
+`/card/` is a narrow, mobile-first standalone window with name, truthful student role, approved portrait, LinkedIn, GitHub, portfolio and email. Claude’s dedicated card keeps its original pixel avatar/stepped portrait frame, contact icons and five actions. Its blue title bar and cream surface share the portfolio’s tokens; decorations remain static. The avatar is visibly and accessibly labeled as a placeholder, not a likeness. All five actions fit a 390×844 phone before the education panel. Save Contact downloads one generated vCard with verified name, email, education/student title and Portfolio/LinkedIn/GitHub URLs. Importing into an address book remains the phone’s native action. No phone number, fabricated portrait, tracking or remote media.
 
 ## Accessibility and responsiveness
 
