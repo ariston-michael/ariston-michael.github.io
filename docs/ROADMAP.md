@@ -166,7 +166,7 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Add mobile-first `/card/`, clear portrait placeholder, approved contact links and downloadable name/email/website vCard.
 - [x] Update metadata, favicon, original sharing artwork, sitemap, export checks and current design/architecture/content docs.
 - [x] Run npm ci, lint, strict types, supported webpack export, six-route artifact check and nine unchanged release guards. Default Turbopack remains blocked by host worker-port EPERM.
-- [x] Record final local browser evidence: 78 Chrome/WebKit checks pass; Linux three-engine/default-build validation follows on the feature branch.
+- [x] Record final local 78/78 Chrome/WebKit checks and successful Linux 117/117 Chromium/Firefox/WebKit checks, default Turbopack build and six-route export: validation-only run 45900926649.
 - [ ] Optional owner-approved portrait and comparison with reference attachments/AI Workplace source when available.
 - [ ] Physical phone/NFC scan, native contact import, assistive technology and actual browser zoom review.
 - No merge, production workflow, Pages setting change or deployment is authorized by this redesign. The existing public site remains unchanged.

@@ -486,6 +486,20 @@ Coverage: homepage 320/360/375/390/430/600/768/820/1024/1280/1440/1920/2560px wi
 
 Axe WCAG 2/2.1/2.2 A/AA scans report zero violations for homepage, card, FireGuard notes and 404 at 375/1440px in both runnable engines. Initial Chrome tests caught real 320/360px hero typography overflow; responsive sizing fixed it without hiding overflow or weakening assertions. Desktop and mobile screenshots were inspected and retained in ignored test-results. New SVG/PNG sharing art and icon use original code-drawn graphics. No reference attachments or portrait were available in this checkout.
 
-Hosted Linux three-engine/default-build validation will be recorded below after the feature branch is pushed. No deployment, main merge, Pages change, production scan or NFC tag write was performed. Physical iOS/Android scanning and native vCard import, screen readers, actual browser-toolbar zoom, final owner visual/portrait approval, external resume recheck and any future publication remain separate tasks. No Lighthouse score is claimed for this redesign.
+Hosted Linux three-engine/default-build validation is recorded below. No deployment, main merge, Pages change, production scan or NFC tag write was performed. Physical iOS/Android scanning and native vCard import, screen readers, actual browser-toolbar zoom, final owner visual/portrait approval, external resume recheck and any future publication remain separate tasks. No Lighthouse score is claimed for this redesign.
 
 The first Linux validation-only run [45899772607](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/45899772607) passed npm ci/lint/types/release guards/default Turbopack build/export and **103/117 browser checks**. Four inline project-title links and the FireGuard evidence link have zero clientWidth in Firefox, triggering the strict element overflow checks; card/contact/vCard and all accessibility scans passed. Give these links explicit inline-block boxes (project titles also receive 44px target height), retain all overflow assertions, and rerun the full matrix.
+
+After the explicit link-box fix, lint, strict types, webpack build, six-route export and the full **78-case Chrome/WebKit suite passed again (17.9s)**. The approved FireGuard image was separately scrolled into view and confirmed decoded at its expected 1120px intrinsic width; full-page capture alone does not trigger offscreen lazy media. vCard CRLF is preserved in Git by `.gitattributes` and verified from the committed blob.
+
+### Final Linux result — passed
+
+[Validation-only run 45900926649](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/45900926649) completed successfully for exact implementation/test SHA `ab659819609c5e655bc11062a638dc2f97c75ddd`:
+
+- npm ci, lint, strict typecheck, all nine release guards, **default `npm run build` (Turbopack)** and export checks passed.
+- **117/117 Chromium/Firefox/WebKit checks passed (1.6m), zero retries/exclusions.** All strict document/element overflow checks, card layouts/contact targets/vCard, keyboard/touch, no-JavaScript/reduced-motion and WCAG scans pass.
+- Default CI artifact: **six canonical routes / 58 files** (the local webpack artifact has 69 files). Successful static output is retained by the validation workflow for review only; there is no deployment job or Pages write permission.
+
+SHA reconciliation explains the interim result: dispatch 45900360770 resolved the previous `2c7329beea1afdb974526f1c6a2d5b310f9fdd96` while the pushed branch ref was updating, so its repeated 103/117 result did **not** test the explicit link-box fix at `7324f54`. The final successful `ab659819…` run includes that CSS fix plus richer element diagnostics; the filter/assertion criteria did not change. The measured fix is therefore validated on all three engines, not accepted on a transient rerun of identical application code. Historical failure notes above retain what actually ran.
+
+The final branch documentation commit records this verified implementation without changing app or test source. Main and the public website remain unchanged. Remaining TODOs: approved portrait/reference review, real-device NFC/vCard import, screen-reader/browser-toolbar zoom review and pre-release external-link recheck. No deployment was requested or performed.
