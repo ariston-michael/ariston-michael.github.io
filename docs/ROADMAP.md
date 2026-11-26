@@ -1,22 +1,26 @@
 # Roadmap
 
 ## Phase 0 — Repository foundation
+
 - [x] Create `development` branch from latest `origin/main`.
 - [x] Commit project context docs on `development`.
 - [x] Verify local `main` and legacy production source unchanged by this work; inspect remote history separately.
 - [x] Revalidate the live Pages website during an approved release.
 
 ## Phase 1 — App scaffold
+
 - [x] Initialize Next.js + TypeScript + Tailwind with static export.
 - [x] Add lint/type checks and verify local build.
 - [x] Implement accessibility, metadata, and mobile-first global layout.
 
 ## Phase 2 — Cosmic visual identity
+
 - [x] Design responsive hero and original Saturn-inspired SVG illustration.
 - [x] Add accessible, performant seeded star field and restrained CSS motion.
 - [x] Build navigation, content sections, and footer.
 
 ## Phase 3 — Real content
+
 - [x] Add owner-verified GitHub, LinkedIn, and email links.
 - [x] Verify the actual external Drive resume and expose secure-new-tab CTAs without a hosted PDF.
 - [x] Build four factual project cards and four verified-scope project-note pages.
@@ -26,6 +30,7 @@
 - [x] Ground experience/achievement claims in reviewed owner facts and the verified resume.
 
 ## Phase 4 — Review and launch
+
 - [x] Implement local responsive/accessibility/SEO/link tests and performance review.
 - [ ] Complete real-device, assistive-technology, browser-zoom and final publication review.
 - [x] Prepare guarded Pages workflow and release/rollback instructions.
@@ -157,3 +162,47 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [ ] Pass final local and hosted validation for the new PR head.
 - [ ] Merge integration to development, reconcile main normally, open/review production PR and dispatch the exact-SHA Pages workflow through authorised permissions.
 - [ ] Verify the actual deployed HTTPS site and record release SHA/run and outstanding issues.
+
+## 2026-11-26 — Ariston OS redesign and NFC contact card
+
+- [x] Branch `feat/ariston-os` from freshly fetched development `fe77fac7a3dc313b4d2cb67efa439a7eaac1c42a`; preserve clean starting worktree.
+- [x] Replace Stage Separation with an original retro workspace, shared cream windows, navy grid, muted accents and code-drawn pixel companion.
+- [x] Include welcome, filterable projects, verified experience, complete skills, education/achievements, about and contact; retain four factual case studies.
+- [x] Add mobile-first `/card/`, clear portrait placeholder, approved contact links and downloadable name/email/website vCard.
+- [x] Update metadata, favicon, original sharing artwork, sitemap, export checks and current design/architecture/content docs.
+- [x] Run npm ci, lint, strict types, supported webpack export, six-route artifact check and nine unchanged release guards. Default Turbopack remains blocked by host worker-port EPERM.
+- [x] Record final local 78/78 Chrome/WebKit checks and successful Linux 117/117 Chromium/Firefox/WebKit checks, default Turbopack build and six-route export: validation-only run 45900926649.
+- [ ] Optional owner-approved portrait and comparison with reference attachments/AI Workplace source when available.
+- [ ] Physical phone/NFC scan, native contact import, assistive technology and actual browser zoom review.
+- No merge, production workflow, Pages setting change or deployment is authorized by this redesign. The existing public site remains unchanged.
+
+## 2026-11-26 — Ariston OS NFC contact card
+
+- [x] Isolated worktree/branch `feature/ariston-os-nfc-card` from latest `origin/development`; no edits to Codex-owned portfolio files.
+- [x] `/card/` retro OS card with portrait slot, identity, LinkedIn/GitHub/Portfolio/Email actions and a static vCard download.
+- [x] Responsive 320–1440px, safe areas, ≥56px targets, keyboard/axe/reduced-motion/no-JS checks in Chrome and WebKit.
+- [ ] Owner portrait at `public/images/ariston-profile.webp`.
+- [ ] Physical iPhone/Android checks: NFC tap opens `/card/`, Save Contact imports correctly.
+- [ ] Integration into the Ariston OS portfolio (optional sitemap entry, own route-group layout if desired) and hosted three-engine CI.
+- [ ] Write the NFC tag with `https://ariston-michael.github.io/card/` after the card is published.
+
+## 2026-11-26 — Ariston OS integration
+
+- [x] Verify source SHAs and create isolated integration worktree from latest development.
+- [x] Merge security update, portfolio redesign and dedicated card in order, preserving useful history/docs.
+- [x] Retain Next.js/eslint-config-next 16.4.5; fresh full and production audits report zero vulnerabilities.
+- [x] Share visual tokens; keep dedicated card layout, visible placeholder, approved contacts, one static-generated vCard and no private phone number.
+- [x] Confirm selected implementation passes combined local tests before removing duplicate card file/styles; preserve sitemap, verified projects/media and static root URL.
+- [x] Finish validation: 130 local Chrome/WebKit checks, 195 hosted three-engine checks, all source/export/release/audit checks; Lighthouse home/card mobile/desktop 100/100/100/100. Evidence: run 45907524646.
+- [x] Push integration branch and open review PR #8 targeting development; no automatic merge.
+- [ ] Physical NFC/vCard import, approved portrait, assistive-technology/zoom and final owner review remain manual follow-ups.
+- No main change, Pages setting change or deployment is authorized.
+
+## 2026-11-26 — Authorized portrait release
+
+- [x] Reverify PR #8 checks and normally merge it into development (`005dad8`).
+- [x] Create isolated release worktree; reconcile main history with identical pre/post source trees.
+- [x] Confirm Actions-based Pages, HTTPS and previous successful release/rollback candidate.
+- [x] Clean install, audit (zero vulnerabilities), lint, types, default build, static export and nine release guards pass before portrait integration.
+- [x] Verify the actual nonempty 1254×1254 source, inspect and optimize it to a metadata-free 640×640 / 29,492-byte WebP; keep the original local.
+- [ ] Final portrait/browser/CI checks, production PR merge, exact-SHA Pages dispatch and live verification.

@@ -8,8 +8,8 @@ const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   (match) => new URL(match[1]),
 );
 assert.ok(
-  routes.length >= 5,
-  "Homepage and four project pages must be exported.",
+  routes.length >= 6,
+  "Homepage, contact card and four project pages must be exported.",
 );
 for (const route of routes) {
   assert.equal(route.origin, origin);
@@ -53,15 +53,47 @@ async function inspect(directory) {
   }
 }
 await inspect(root);
+await access(join(root, "card/index.html"));
+// Production approval covers the supplied portrait, not a placeholder release.
+if (process.env.REQUIRE_PORTRAIT === "1") {
+  const photo = await readFile(join(root, "images/ariston-profile.webp"));
+  assert.ok(
+    photo.length > 12 &&
+      photo.toString("ascii", 0, 4) === "RIFF" &&
+      photo.toString("ascii", 8, 12) === "WEBP",
+    "Production requires a valid WebP portrait.",
+  );
+  const card = await readFile(join(root, "card/index.html"), "utf8");
+  assert.ok(
+    card.includes('data-portrait="photo"') &&
+      card.includes('src="/images/ariston-profile.webp"'),
+    "Production card must render the approved portrait.",
+  );
+}
+const vcard = await readFile(join(root, "card/ariston-michael.vcf"), "utf8");
+assert.ok(vcard.startsWith("BEGIN:VCARD\r\nVERSION:3.0\r\n"));
+assert.ok(vcard.endsWith("END:VCARD\r\n"));
+assert.ok(!/^TEL[;:]/im.test(vcard), "No unapproved phone number in vCard.");
+await assert.rejects(
+  access(join(root, "ariston-michael.vcf")),
+  "Only the canonical card vCard may be exported.",
+);
 await access(join(root, "404.html"));
 await access(join(root, "robots.txt"));
 await access(join(root, "social-card.png"));
 
-
 // These wider recording assets include third-party imagery without verified
 // reuse rights. Removing markup alone must not leave downloadable files behind.
-for (const file of ["fireguard-demo-1280.mp4", "fireguard-dashboard-1600.jpg", "fireguard-forecast-analysis-1600.jpg", "fireguard-analytics-1600.jpg"]) {
-  await assert.rejects(access(join(root, "media/projects/fireguard-xr", file)), `Withheld media must not be published: ${file}`);
+for (const file of [
+  "fireguard-demo-1280.mp4",
+  "fireguard-dashboard-1600.jpg",
+  "fireguard-forecast-analysis-1600.jpg",
+  "fireguard-analytics-1600.jpg",
+]) {
+  await assert.rejects(
+    access(join(root, "media/projects/fireguard-xr", file)),
+    `Withheld media must not be published: ${file}`,
+  );
 }
 console.log(
   `Static export verified: ${routes.length} canonical routes, ${files} files, root assets present, no PDFs/secrets folders/symlinks.`,

@@ -1,3 +1,29 @@
+# Ariston OS portrait release — authorized, portrait integrated; validation in progress
+
+The owner authorizes the verified Ariston OS release, including PR #8 → development, a production PR → main, exact-SHA publication and live verification. No further routine confirmation is needed. Authentication/security controls remain mandatory.
+
+- PR #8 was green (195 three-engine checks and GitGuardian) and merged normally into development at `005dad8` on 2026-11-26.
+- The source at `/Users/aristonmichael/stellar-portfolio/assests/portraits/my-photo.png` now contains the valid owner-approved 1254×1254 PNG. The inspected 640×640 WebP derivative is 29,492 bytes; the original remains local. The earlier zero-byte blocker is resolved.
+- Release preparation worktree: `/private/tmp/ariston-os-release`, branch `release/ariston-os-portrait`. Current main history was normally reconciled there without changing the source tree.
+- Authenticated Pages preflight: `build_type: workflow`, HTTPS enforced, root URL `https://ariston-michael.github.io/`, no custom domain. No settings change is needed.
+- Current rollback candidate: main `d8c0fb799f884d0774bc5fbeeaf9d46be308717a`, successful approved release runs `45532539835` and `45532448129`. Record live status again immediately before dispatch.
+
+## Complete the authorized release
+
+1. Once actual photo bytes are present, inspect the supplied portrait; encode an optimized `public/images/ariston-profile.webp` without stretching or committing the high-resolution original. Preserve source aspect ratio in encoding and use inspected `object-fit: cover` positioning for the card frame. Record source provenance, dimensions, optimized size and checksum in MEDIA_MANIFEST.
+2. Validate real portrait decoding and phone/tablet/desktop screenshots, all contact/resume links, approved vCard contents, npm ci/audit/lint/types/build/export/release guards and the full browser matrix. Run `REQUIRE_PORTRAIT=1 npm run check:export`; the production workflow uses this same guard and fresh npm audit. Its exact-main-SHA approval gate is unchanged.
+3. Commit/push verified changes through development, prepare/update the production PR from development into main, and require green checks for its actual head. Merge normally after validation; never force push or bypass a security/account approval.
+4. Read the resulting full main SHA. Dispatch `release-pages.yml` on **main** with `approve_release=true` and `expected_sha` equal to that exact SHA. Pages is already Actions-based. The workflow uploads only `out/`, then its dependent deploy job publishes through the Pages environment.
+5. Verify successful Actions deployment and HTTPS home, `/card/`, `/card/ariston-michael.vcf`, actual photo asset/alt/crop, all notes/navigation/assets, responsive behavior, keyboard/no-JavaScript/reduced motion, external destinations, and vCard privacy/MIME/download. Record actual production SHA, PR/run URLs and results only after completion.
+
+## Rollback
+
+The pre-release production SHA above is the known-good candidate to revalidate before publication. If an authorized rollback is needed, rerun an eligible successful Approved Pages release for that exact historical source; never reset/force-push main or upload the source root. GitHub's run-retention/rerun eligibility and media validity must be checked at that time. If no eligible run exists, prepare a reviewed revert/fix PR and obtain the required rollback authorization, then use the normal exact-SHA release workflow. Detailed historical procedure follows.
+
+---
+
+## Historical release records (superseded status)
+
 # Stage Separation production release — authorised, not yet deployed
 
 Owner instruction on 2026-11-14 explicitly authorises merging the validated Stage Separation integration, preparing/merging its production PR and dispatching GitHub Actions publication. This supersedes the historical review-only boundary below; no routine approval is needed. Security and authentication restrictions still apply.

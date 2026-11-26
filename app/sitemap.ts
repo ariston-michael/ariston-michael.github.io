@@ -5,6 +5,7 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteUrl}/` },
+    { url: `${siteUrl}/card/` },
     ...projects
       .filter((project) => project.study)
       .map((project) => ({ url: `${siteUrl}/projects/${project.id}/` })),

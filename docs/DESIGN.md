@@ -1,36 +1,26 @@
-# Stage Separation design
+# Ariston OS design system
 
-The integrated site replaces the Saturn/solar-system presentation with a restrained technical rocket sketch. Personal facts and project scope come from `ABOUT_ME.md`; media provenance and approval status come from `MEDIA_MANIFEST.md`.
+Ariston OS is an original retro digital workspace for Ariston Michael’s portfolio and NFC contact card. This direction supersedes the cosmic and Stage Separation designs. The owner’s described AI Workplace/reference language informs the palette and software-window composition; no reference attachments or AI Workplace source were available in this checkout. No external character is copied.
 
-- Near-black `#0d0f10`, off-white `#eeede7`, muted grey-green text and one sage accent (`#c5ceb6`). Authentic FireGuard media keeps its original colours.
-- System typography, large identity text, fine rules, numbered stage markers and original vector diagrams. No external fonts, WebGL or decorative graphics dependency.
-- One continuous background. Content remains opaque and in normal document flow; no animation reveals are required to read it. No scroll capture or snapping.
+## Foundations
 
-## Six-stage composition
+- Shared foundations live in `app/tokens.css`; the card keeps its own scoped composition and uses the same display/body fonts, palette, squared controls and hard shadows.
+- Navy desktop `#20364e` with a quiet 32px blue grid; warm cream `#f7f2e6` app surfaces and dark ink `#263c50`.
+- Muted sage `#c7d2b9`, blue `#c4d4df`, and beige `#e9d9b9` title bars; squared borders and small solid offset shadows.
+- Heavy system monospace display headings evoke retro software; Arial body text keeps paragraphs readable. No font download or graphics dependency.
+- `OSWindow`/`WindowBar` provide consistent app chrome. Window marks are decorative, never pretend close/minimize buttons.
+- `PixelCompanion` is an original SVG pixel computer with a seedling, not a portrait or third-party character. The NFC card uses the owner-approved optimized portrait; the original pixel avatar remains a clearly labeled fallback.
 
-| Module | Content |
-| --- | --- |
-| Command | Introduction and internship direction |
-| Payload | AirControl, Seneca Energy and FireGuard XR showcase |
-| Upper stage | Professional and community experience |
-| Middle stage | Education and technical skills |
-| Lower stage | About and hackathon gallery |
-| Engine | Contact and final professional call to action |
+## Workspace
 
-The final Ready to Play disclosure is an optional full-width bonus, followed by the footer. It does not advertise a playable game or show unrelated footage.
+Persistent document navigation, welcome window, desk-buddy/about panel, pinned internship note, filterable project explorer, experience log, toolkit, about/education/achievements and contact compose a cohesive desktop. All content follows normal document flow. Project filters use actual buttons with pressed state and a result announcement; no-JavaScript shows every project and hides inactive filters. Case studies and 404 recovery use the same typography and paper surfaces.
 
-Desktop reserves a drawing column beside the content. The initially assembled rocket separates from real section positions; cumulative joint expansion prevents a detached stage crossing an attached neighbour. Pointer catching, magnetic return, keyboard arrows/Home/Escape and Reassemble all use bounded offsets. Reversing scroll reverses the same geometry. Levitation is subtle and confined to the drawing.
+## Contact edition
 
-At 900px and below, the complete drawing appears in normal flow after the introduction. Short desktop viewports use a compact drawing. The full phone experience scrolls naturally rather than shrinking text to fit everything above the fold. Its command stage waits until the complete drawing enters view before separating. Native stage links remain available independently of the enhanced controls.
+`/card/` is a narrow, mobile-first standalone window with name, truthful student role, approved portrait, LinkedIn, GitHub, portfolio and email. Claude’s dedicated card keeps its original pixel avatar/stepped portrait frame, contact icons and five actions. Its blue title bar and cream surface share the portfolio’s tokens; decorations remain static. The avatar is visibly and accessibly labeled as a placeholder, not a likeness. All five actions fit a 390×844 phone before the education panel. Save Contact downloads one generated vCard with verified name, email, education/student title and Portfolio/LinkedIn/GitHub URLs. Importing into an address book remains the phone’s native action. No phone number, fabricated portrait, tracking or remote media.
 
-## Components and media
+## Accessibility and responsiveness
 
-The showcase and gallery use CSS container queries against their actual parent column. They stay stacked beside the rocket and can use wider compositions when space permits. Borders, tags, typography and link states share the rocket palette. Project-note pages and 404 recovery use the same visual language.
+44px minimum primary targets, 48–52px card buttons, visible focus, skip link, landmarks, logical headings, adequate contrast and wrap-safe layouts. Desktop columns collapse on tablets/phones; the project grid becomes one column on narrow phones. Browser tests cover 320–2560px and short screens. Motion is limited to hover press feedback and native smooth anchor scrolling; reduced motion removes both. Content and links work without JavaScript.
 
-AirControl and Seneca use explicitly labelled original line art. Hackathon event photos are not available; their cards use labelled schematic placeholders. The release uses only an authentic owner-approved simulation crop for FireGuard XR. Wider screenshots/video with unresolved map/photo rights are removed from the artifact. No ownership or scientific accuracy claim is inferred from pixels in the recording. See the media manifest before release.
-
-## Accessibility
-
-Semantic headings/sections, a skip link, visible focus and native navigation/disclosures are permanent. Reduced motion removes automatic separation, levitation and disclosure fades; pause controls ambient motion. Touch taps navigate without capturing vertical scrolling. No-JavaScript retains the assembled drawing, all content, case-study disclosures, video controls, direct still links and the game Yes interaction. Inactive enhancement controls are hidden or disabled.
-
-Validate 320–2560px, short/landscape layouts, focus order, target bounds, scroll reversal, media controls, refresh/fragment restoration and contrast after any composition change. Actual browser and visual evidence is in `VALIDATION.md`; physical-device and screen-reader sessions remain separate review tasks.
+Media remains constrained by `MEDIA_MANIFEST.md`: only the approved FireGuard simulation crop is used; other artwork is explicitly labeled original concept art. Physical devices, screen readers and final owner visual approval remain review tasks.

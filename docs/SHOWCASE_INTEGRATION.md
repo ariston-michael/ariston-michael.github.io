@@ -1,3 +1,5 @@
+> Historical integration record. Superseded by Ariston OS on 2026-11-26; see DESIGN.md and ARCHITECTURE.md for the current rendered application.
+
 # Showcase assembly — completed on the integration branch
 
 The supplied exports are integrated through `@/components/showcase`:

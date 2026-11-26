@@ -1,16 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import "./tokens.css";
 import "./globals.css";
-import "./rocket.css";
 import { siteUrl, socialImage } from "@/lib/site";
-import { homeEntryScript } from "@/lib/home-entry";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Ariston Michael | Software Engineering Portfolio",
+  title: "Ariston OS | Ariston Michael — Software Portfolio",
   description:
     "Computer Science student at Sheridan College specializing in Cloud Computing. Explore Ariston Michael’s projects and Summer 2027 internship focus.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Ariston Michael | Software Engineering Portfolio",
+    title: "Ariston OS | Ariston Michael — Software Portfolio",
     description:
       "Software, cloud computing, and a curiosity for what’s next. Seeking Summer 2027 internships.",
     url: "/",
@@ -21,11 +20,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     images: [socialImage.url],
-    title: "Ariston Michael | Software Engineering Portfolio",
+    title: "Ariston OS | Ariston Michael — Software Portfolio",
   },
 };
 export const viewport: Viewport = {
-  themeColor: "#0d0f10",
+  themeColor: "#20364e",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -35,16 +34,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <head>
-        <script
-          id="home-entry"
-          dangerouslySetInnerHTML={{ __html: homeEntryScript }}
-        />
-      </head>
       <body>
-        <noscript>
-          <style>{`*, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } .media-thumbnails, .motion-toggle, .reassemble, .rocket-flight > .drawing-help { display: none !important; } .hero { height: auto !important; } .hero-stage { position: relative !important; top: auto !important; height: auto !important; } .journey-backdrop, .planet-reserve { display: none !important; }`}</style>
-        </noscript>
         <a href="#main" className="skip-link">
           Skip to content
         </a>

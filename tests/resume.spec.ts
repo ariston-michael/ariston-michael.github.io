@@ -14,13 +14,13 @@ for (const width of [375, 1440]) {
       }),
     );
     await page.goto("/");
-    const link = page.locator(".launch-actions a").filter({ hasText: "Resume" });
+    const link = page.locator(".hero-actions a").filter({ hasText: "Resume" });
     const opened = context.waitForEvent("page");
     await link.click();
     const popup = await opened;
     await expect(popup).toHaveURL(resumeUrl);
     await expect(popup).toHaveTitle("Drive target");
-    await expect(page).toHaveURL(/127\.0\.0\.1:3100\/$/);
+    await expect(page).toHaveURL(`${test.info().project.use.baseURL}/`);
     await popup.close();
   });
 }

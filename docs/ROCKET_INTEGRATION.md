@@ -1,3 +1,5 @@
+> Historical integration record. Superseded by Ariston OS on 2026-11-26; see DESIGN.md and ARCHITECTURE.md for the current rendered application.
+
 # Integrated rocket contract
 
 Integration branch/worktree: `feature/integrate-stage-separation`, `/private/tmp/stellar-stage-integration`. It starts from fetched development `c9bf5c90caf24e50b3cb389e9dee293af88d9142` and preserves both requested source histories with normal merge commits:

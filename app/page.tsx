@@ -1,62 +1,256 @@
 import { SiteHeader } from "@/components/SiteHeader";
-import { RocketExperience } from "@/components/RocketExperience";
-import { ProjectShowcase, HackathonGallery, GameExperience } from "@/components/showcase";
-import { ResumeLink } from "@/components/ResumeLink";
 import { Footer } from "@/components/Footer";
-import { email, experience, githubUrl, linkedInUrl, skills } from "@/lib/content";
+import { OSWindow } from "@/components/OSWindow";
+import { PixelCompanion } from "@/components/PixelCompanion";
+import { ProjectExplorer } from "@/components/ProjectExplorer";
+import { ResumeLink } from "@/components/ResumeLink";
+import {
+  achievements,
+  email,
+  experience,
+  githubUrl,
+  linkedInUrl,
+  skills,
+} from "@/lib/content";
 
 export default function Home() {
-  return <div id="top" className="site rocket-site">
-    <SiteHeader />
-    <main id="main" tabIndex={-1}>
-      <RocketExperience>
-        <section id="introduction" className="launch-intro" aria-labelledby="intro-title">
-          <p className="eyebrow"><span className="availability-dot" /> OPEN TO SUMMER 2027 INTERNSHIPS</p>
-          <h1 id="intro-title">Ariston<br />Michael<span className="title-period">.</span></h1>
-          <p className="intro-role">Software engineering.<br /><span>Curiosity at every stage.</span></p>
-          <p className="intro-copy">Computer Science at Sheridan College.<br />Specializing in Cloud Computing.<br />Building things that move ideas forward.</p>
-          <div className="launch-actions"><a className="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a><ResumeLink /></div>
-          <div className="intro-bottom"><span>COMPUTER SCIENCE / CLOUD COMPUTING</span><a href="#projects">BEGIN SEPARATION <span aria-hidden="true">↓</span></a></div>
-        </section>
-        <div className="stage-content payload-content" data-stage="payload">
-          <div className="stage-marker"><span>02 / PAYLOAD</span><span>SELECTED WORK</span></div>
-          <div className="showcase-slot"><ProjectShowcase id="projects" /></div>
+  return (
+    <div id="top" className="site">
+      <SiteHeader />
+      <main id="main" className="shell workspace" tabIndex={-1}>
+        <div className="desktop-label">
+          <p>
+            <span aria-hidden="true">⌘</span> ARISTON’S WORKSPACE
+          </p>
+          <span>Good ideas start with curiosity.</span>
         </div>
-        <section id="experience" className="flight-section" aria-labelledby="experience-title">
-          <div className="stage-marker"><span>03 / UPPER STAGE</span><span>EXPERIENCE</span></div>
-          <h2 id="experience-title">Built with purpose.<br /><span>Shaped by people.</span></h2>
-          <div className="flight-experience">{experience.map(item => <article key={item.organization}>
-            <div className="entry-meta"><span>{item.organization}</span><span>{item.date ?? "Community"}</span></div>
-            <h3>{item.role}</h3>
-            {item.location && <p className="entry-location">{item.location}</p>}
-            {item.details?.map(detail => <p key={detail}>{detail}</p>)}
-            {item.technologies && <ul className="tech-list">{item.technologies.map(tech => <li key={tech}>{tech}</li>)}</ul>}
-          </article>)}</div>
+        <div className="welcome-grid">
+          <OSWindow
+            title="hello.world"
+            meta="WELCOME"
+            className="welcome-window"
+          >
+            <div className="hero-content">
+              <p className="status-label">
+                <span />
+                Open to Summer 2027 internships
+              </p>
+              <p className="eyebrow hero-kicker">
+                SOFTWARE · CLOUD · CURIOSITY
+              </p>
+              <h1>
+                Ariston
+                <br />
+                Michael<span>.</span>
+              </h1>
+              <p className="hero-role">
+                Building useful things.
+                <br />
+                <span>Enjoying the process.</span>
+              </p>
+              <p className="hero-copy">
+                Computer Science student at Sheridan College, specializing in
+                Cloud Computing. Welcome to my little corner of the internet.
+              </p>
+              <div className="hero-actions">
+                <a className="button button-primary" href="#projects">
+                  Explore my work <span aria-hidden="true">↓</span>
+                </a>
+                <ResumeLink />
+              </div>
+              <div className="hero-footnote">
+                <span>SHERIDAN COLLEGE / COMPUTER SCIENCE</span>
+                <span aria-hidden="true">[ HELLO, WORLD! ]</span>
+              </div>
+            </div>
+          </OSWindow>
+          <aside className="welcome-sidebar" aria-label="Workspace notes">
+            <OSWindow title="desk.buddy" className="buddy-window">
+              <div className="buddy-art">
+                <PixelCompanion />
+                <span className="pixel-note">
+                  a little curiosity goes a long way.
+                </span>
+              </div>
+              <div className="buddy-caption">
+                <span className="eyebrow">THE PERSON AT THE KEYBOARD</span>
+                <p>
+                  Software, people,
+                  <br />
+                  and the space between.
+                </p>
+                <a href="#about">
+                  A bit about me <span aria-hidden="true">↘</span>
+                </a>
+              </div>
+            </OSWindow>
+            <OSWindow title="pinned.note" className="pinned-window">
+              <div className="pinned-content">
+                <p className="eyebrow">NEXT CHAPTER</p>
+                <h2>
+                  Let’s build
+                  <br />
+                  something together.
+                </h2>
+                <p>Seeking software engineering internships for Summer 2027.</p>
+                <a href={`mailto:${email}`}>
+                  Get in touch <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </OSWindow>
+          </aside>
+        </div>
+        <ProjectExplorer />
+        <div className="work-grid">
+          <section id="experience" aria-labelledby="experience-title">
+            <OSWindow title="experience.log" meta="02">
+              <div className="panel-content">
+                <p className="eyebrow">02 / EXPERIENCE</p>
+                <h2 id="experience-title">Learning by doing.</h2>
+                <div className="experience-list">
+                  {experience.map((item, index) => (
+                    <article
+                      key={item.organization}
+                      className="experience-entry"
+                    >
+                      <div className="entry-index" aria-hidden="true">
+                        0{index + 1}
+                      </div>
+                      <div>
+                        <p className="entry-date">
+                          {item.date ?? "Community involvement"}
+                        </p>
+                        <h3>{item.role}</h3>
+                        <p className="organization">
+                          {item.organization}
+                          {item.location ? ` · ${item.location}` : ""}
+                        </p>
+                        {item.details?.map((detail) => (
+                          <p className="role-detail" key={detail}>
+                            {detail}
+                          </p>
+                        ))}
+                        {item.technologies && (
+                          <ul className="tech-list">
+                            {item.technologies.map((tech) => (
+                              <li key={tech}>{tech}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </OSWindow>
+          </section>
+          <section id="skills" aria-labelledby="skills-title">
+            <OSWindow title="toolkit.config" meta="03">
+              <div className="panel-content">
+                <p className="eyebrow">03 / SKILLS</p>
+                <h2 id="skills-title">My working toolkit.</h2>
+                <p className="panel-lead">
+                  Tools from my projects and studies. Always room to learn
+                  something new.
+                </p>
+                <div className="skill-groups">
+                  {skills.map((group, index) => (
+                    <div className="skill-group" key={group.title}>
+                      <h3>
+                        <span aria-hidden="true">0{index + 1} / </span>
+                        {group.title}
+                      </h3>
+                      <ul className="tech-list">
+                        {group.items.map((skill) => (
+                          <li key={skill}>{skill}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </OSWindow>
+          </section>
+        </div>
+        <section id="about" aria-labelledby="about-title">
+          <OSWindow title="about.me" meta="04">
+            <div className="about-grid">
+              <div>
+                <p className="eyebrow">04 / A LITTLE CONTEXT</p>
+                <h2 id="about-title">Curious by default.</h2>
+                <p>
+                  From gesture interfaces to wildfire intelligence, I’m
+                  interested in how software turns complex problems into useful
+                  experiences.
+                </p>
+                <div className="education" id="education">
+                  <h3>Honours Bachelor of Computer Science</h3>
+                  <p>Sheridan College · Cloud Computing specialization</p>
+                  <p>Expected graduation · April 2028</p>
+                </div>
+              </div>
+              <div id="achievements">
+                <h3 className="eyebrow">A FEW MILESTONES</h3>
+                {achievements.map((item) => (
+                  <a
+                    className="achievement"
+                    href={item.href}
+                    key={item.context}
+                  >
+                    <span>{item.title}</span>
+                    <div>
+                      <strong>{item.context}</strong>
+                      <p>{item.project}</p>
+                    </div>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </OSWindow>
         </section>
-        <section id="education" className="flight-section" aria-labelledby="education-title">
-          <div className="stage-marker"><span>04 / MIDDLE STAGE</span><span>EDUCATION & SKILLS</span></div>
-          <h2 id="education-title">A strong foundation.<br /><span>An expanding toolkit.</span></h2>
-          <div className="flight-education"><span className="eyebrow">SHERIDAN COLLEGE / OAKVILLE, ON</span><h3>Honours Bachelor of<br />Computer Science</h3><p>Cloud Computing specialization</p><p className="entry-location">Expected graduation · April 2028</p></div>
-          <div id="skills" className="flight-skills">{skills.map(group => <div key={group.title}><h3>{group.title}</h3><p>{group.items.join(" · ")}</p></div>)}</div>
+        <section id="contact" aria-labelledby="contact-title">
+          <OSWindow title="new.connection" meta="05">
+            <div className="contact-layout">
+              <div>
+                <p className="eyebrow">05 / KEEP IN TOUCH</p>
+                <h2 id="contact-title">
+                  A good conversation
+                  <br />
+                  is a great start.
+                </h2>
+                <p>
+                  Have an opportunity, a question, or an idea?
+                  <br />
+                  I’d love to hear from you.
+                </p>
+                <a className="email-address" href={`mailto:${email}`}>
+                  {email} <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <div className="contact-links">
+                <a className="button button-primary" href={`mailto:${email}`}>
+                  Send an email <span aria-hidden="true">↗</span>
+                </a>
+                <a className="button" href={linkedInUrl}>
+                  LinkedIn <span aria-hidden="true">↗</span>
+                </a>
+                <a className="button" href={githubUrl}>
+                  GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <a className="button" href="/card/">
+                  Open contact card <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+            <div className="window-status">
+              <span>Thanks for stopping by. Make yourself at home.</span>
+              <span aria-hidden="true">:)</span>
+            </div>
+          </OSWindow>
         </section>
-        <section id="about" className="flight-section" aria-labelledby="about-title">
-          <div className="stage-marker"><span>05 / LOWER STAGE</span><span>ABOUT & ACHIEVEMENTS</span></div>
-          <h2 id="about-title">Grounded here.<br /><span>Looking further.</span></h2>
-          <p className="flight-lead">From gesture interfaces to wildfire intelligence, I’m interested in how software turns complex problems into useful experiences.</p>
-          <div className="showcase-slot gallery-slot"><HackathonGallery id="achievements" /></div>
-        </section>
-        <section id="contact" className="flight-section flight-contact" aria-labelledby="contact-title">
-          <div className="stage-marker"><span>06 / ENGINE</span><span>WHAT COMES NEXT</span></div>
-          <p className="eyebrow">READY FOR THE NEXT STAGE</p>
-          <h2 id="contact-title">Good things start<br /><span>with a conversation.</span></h2>
-          <p>I’m seeking software engineering internships for Summer 2027. Let’s connect about what we could build together.</p>
-          <a className="contact-email" href={`mailto:${email}`}>Let’s talk <span aria-hidden="true">↗</span></a>
-          <a className="email-address" href={`mailto:${email}`}>{email}</a>
-          <div className="contact-social"><a href={githubUrl}>GitHub ↗</a><a href={linkedInUrl}>LinkedIn ↗</a><ResumeLink /></div>
-        </section>
-      </RocketExperience>
-      <div className="game-slot shell"><GameExperience /></div>
-    </main>
-    <Footer />
-  </div>;
+      </main>
+      <Footer />
+    </div>
+  );
 }
