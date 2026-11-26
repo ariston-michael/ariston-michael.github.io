@@ -146,3 +146,10 @@ Hosted PR #4 run 43669724358 had 240 passes / 30 failures. The 28 Firefox layout
 ## 2026-11-14 — Give navigation targets a real rounding margin
 
 Hosted Firefox measured 43.999969px for nominally 44px navigation links at 600px. Set header targets to 45px in both dimensions so actual painted/layout bounds satisfy the 44px requirement. Keep assertions strict and rerun the complete hosted matrix; no retry or browser exclusion.
+
+## 2026-11-26 — Minimum patched Next.js security upgrade
+
+**Decision:** Upgrade `next` and `eslint-config-next` from 16.4.3 to **16.4.5** on `feature/nextjs-security-upgrade` (from `origin/development` `fe77fac`), and refresh the lockfile's transitive `typescript-eslint` 8.72.1 → 8.74.0 (`minimatch` 10.2.6 → 11.0.9) within the existing `eslint-config-next` range.
+**Rationale:** GitHub's advisory database lists 16.4.5 as the first patched release for all seven moderate Next.js advisories: GHSA-mfr8-8qww-v76h, -vc7v-qv4w-wrv8, -7qx7-33qx-rqx2, -f3mh-rxg3-f5g2, -pc58-hwjq-p385, -rhh4-g77r-r9qj and -vvgp-ww4w-46vf. 16.4.5 is the dedicated security release. 16.4.6 only backports bug fixes, including changed route-handler compression, so it is deferred to a normal update. The dev-only GHSA-g3hv-75wg-m249 (minimatch globparts DoS) is patched in minimatch 11.0.1+.
+**Method:** The official `next upgrade --revision 16.4.5` CLI was run first. Its additional exact pins and `overrides` for `@types/react`, `@types/react-dom` and `eslint` were not security-related and would have replaced existing semver ranges, so the change was reduced to the two Next package pins plus a non-forced `npm audit fix`. Result: `npm audit` reports 0 vulnerabilities. React 19.3.1, Tailwind, TypeScript and all application code are unchanged.
+**Exposure note:** the advisories concern `use cache`, Cache Components, the image optimizer, the Edge runtime and self-hosted response forwarding. This site uses none of these: it is a static export with unoptimized images on GitHub Pages. The upgrade removes the build's security stop and keeps the toolchain on a supported patch.
