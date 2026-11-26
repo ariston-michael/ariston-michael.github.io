@@ -1,0 +1,13 @@
+/* Shared Ariston OS foundations; the card owns its layout and decorations. */
+:root {
+  --os-desktop: #20364e;
+  --os-grid: #31475d;
+  --os-ink: #263c50;
+  --os-muted: #536171;
+  --os-paper: #f7f2e6;
+  --os-sage: #c7d2b9;
+  --os-blue: #c4d4df;
+  --os-beige: #e9d9b9;
+  --os-display: "Courier New", Courier, monospace;
+  --os-body: Arial, Helvetica, sans-serif;
+}

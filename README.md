@@ -1,58 +1,29 @@
-# Stage Separation — Ariston Michael
+# Ariston OS
 
-A statically exported software engineering portfolio built around an original six-stage rocket sketch. Normal scrolling separates modules beside verified introduction, projects, experience, education/skills, about/achievements and contact content. Mouse catching, magnetic reconnection, keyboard controls and Reassemble are optional enhancements.
-
-ProjectShowcase, HackathonGallery and the final Ready to Play disclosure are integrated. AirControl/Seneca/event imagery remain labelled original schematics. FireGuard XR uses an owner-approved crop of its original 3D simulation. Wider screenshots/video are withheld because third-party map/photo rights are unresolved. Chicken Shooter has neither verified footage nor a public launch URL, so Yes reveals an honest project placeholder, not an embedded game.
-
-## Local preview
-
-Node 22.13+ and npm (tested on Node 24.14.0):
+Ariston Michael’s original retro portfolio workspace and mobile-first NFC contact card. Next.js + TypeScript, statically exported for `https://ariston-michael.github.io`.
 
 ```sh
-cd /private/tmp/stellar-stage-integration
 npm ci
-npm run build
-npm run check:export
-npm run preview
+npm run dev
 ```
 
-Open http://127.0.0.1:3000; stop with Ctrl+C. `npm run dev` is available for editing. No secrets, backend or external fonts are required. Preview `out/`, not the legacy root index; do not use `next start`. A sandbox may require expanded access for the compiler/preview worker ports. The supported `npm run build -- --webpack` alternative remains available; current validation used the default Turbopack build successfully with expanded local access.
-
-## Checks
+Production verification:
 
 ```sh
 npm run lint
 npm run typecheck
-npm run test:release
 npm run build
 npm run check:export
-npx playwright install chromium firefox webkit
+npm run test:release
 npm test
 ```
 
-The reconciled suite tests the integrated homepage on all 13 requested widths, short/tall layouts, rocket stages/drag/reset/joints, notes/routes, focus/touch, reduced motion, no-JavaScript, restoration/deferred hydration, galleries, native game disclosure, genuine video playback, lazy media loading and automated accessibility. It does not add the old source-branch counts together. Tests serve the export on loopback 3100 with zero retries.
+Use `npm run preview` to serve `out/`. On hosts with Turbopack CSS-worker port restrictions, `npm run build -- --webpack` is the supported local fallback; report the default-build failure accurately. Local browser runs can select installed Chrome with `PLAYWRIGHT_CHANNEL=chrome`.
 
-Installed Chrome/WebKit command on this Mac:
+The homepage is an accessible workspace with a filterable project explorer, verified experience, skills and contact links. `/card/` offers phone-friendly contacts and a downloadable vCard; Claude’s dedicated pixel portrait remains an explicit placeholder. The canonical vCard is `/card/ariston-michael.vcf`, generated once during static export with approved public details and no phone number. Four project case studies retain verified scope. Personal facts come from [ABOUT_ME](docs/ABOUT_ME.md); approved media from [MEDIA_MANIFEST](docs/MEDIA_MANIFEST.md).
 
-```sh
-PLAYWRIGHT_CHANNEL=chrome npm test -- --project=chromium --project=webkit --workers=2
-```
+Shared colors/fonts live in `app/tokens.css`; the card uses scoped CSS and has no main-portfolio navigation or continuous background animation. Integration preserves Next.js/eslint-config-next 16.4.5.
 
-Firefox is configured but currently fails before launch with `Could not find profile folder`. Read-only CI includes development/main PRs and attempts all three engines on Ubuntu. See [actual validation evidence](docs/VALIDATION.md); no unavailable browser, device or performance check should be inferred from another result.
+See [CARD_INTEGRATION](docs/CARD_INTEGRATION.md), [PROJECT](docs/PROJECT.md), [DESIGN](docs/DESIGN.md), [ARCHITECTURE](docs/ARCHITECTURE.md), [VALIDATION](docs/VALIDATION.md) and [ROADMAP](docs/ROADMAP.md). Legacy design records are historical. Main merges and public deployment require separate owner approval; the manual release guard and root URL remain unchanged.
 
-## Sources and media approval
-
-Personal facts and verified destinations: [ABOUT_ME.md](docs/ABOUT_ME.md). Resume uses the existing [external Google Drive viewer](https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0er_/view), opening securely in a new tab. No substitute PDF or separate phone link is published.
-
-The owner has authorised publication of owner-created FireGuard media. The release includes only the inspected simulation crop; the wider video and screenshots containing unresolved third-party imagery are removed and rejected by the export checker. Before reintroducing them, confirm map attribution and forest-photo reuse rights. No 94% accuracy claim is repeated from the recording. See [MEDIA_MANIFEST.md](docs/MEDIA_MANIFEST.md) and [CONTENT_TODOS.md](docs/CONTENT_TODOS.md). Hackathon event photos and genuine Chicken Shooter footage/URL remain missing.
-
-## Structure and release boundary
-
-- `app/page.tsx`, `app/rocket.css`: integrated server-rendered content and editorial layout.
-- `components/RocketExperience.tsx`, `lib/rocket.ts`: bounded enhancement and shared vector geometry.
-- `components/showcase/`: scoped server components and client media selector; container queries use the actual content column.
-- `lib/content.ts`, `lib/home-entry.ts`: verified content and initial-document restoration policy.
-- `scripts/preview.mjs`, `scripts/check-export.mjs`: static preview with media ranges/MIME types and artifact checks.
-- `docs/ROCKET_INTEGRATION.md`, `docs/SHOWCASE_INTEGRATION.md`: assembly, anchors and source history.
-
-`feature/integrate-stage-separation` preserves both source commits through normal merge commits and targets development by PR. The owner has now authorised the production release; actual validation, merge/deployment status and any permission blocker are recorded in docs/RELEASE.md. Root URL remains https://ariston-michael.github.io. The main-only manual release workflow and legacy root index are unchanged. [RELEASE.md](docs/RELEASE.md) retains the historical production record and future approval procedure.
+After a separately approved release, encode `https://ariston-michael.github.io/card/` as the NFC tag URL. This feature branch does not publish that route. Verify native contact import on real phones before using it as the final physical card.

@@ -9,6 +9,7 @@ Verified viewer: https://drive.google.com/file/d/12eRwVk3GQKjr0FVYOY-IFkmr66rd0e
 The source resolved Spindle Strategy’s Software Developer Intern role (Toronto, April–August 2026), application stack, reporting/review workflow, source-reported impact and UI/UX work. FireGuard XR now has a source-supported case study covering Python/FastAPI, React/TypeScript, Docker, 8+ API integrations and Three.js/React Three Fiber simulation. Skills match the resume without proficiency ratings. AirControl gesture counts/calibration and Seneca Energy ranking factors were expanded accurately.
 
 PDF annotations supplied these links, each confirmed public by repository metadata and signed-out HTTP 200:
+
 - https://github.com/ariston-michael/BearHacks-2026
 - https://github.com/ariston-michael/Seneca-Energy-Hackathon
 - https://github.com/ariston-michael/fireguard
@@ -42,3 +43,21 @@ These missing extras do not justify fake destinations or fabricated claims. Curr
 This supersedes the earlier review-only boundary: the owner authorises the Stage Separation production release and owner-created FireGuard media. Third-party map/photo rights remain unverified. To remove that release blocker, publication now retains only the inspected owner-created 3D simulation crop and removes all four wider screenshots/video from public/ and out/. MEDIA_MANIFEST records the exact crop checksum and withheld files; the export/browser checks enforce their absence. Wider media can return only after a separate rights review or replacement.
 
 Missing AirControl/Seneca screenshots, event photos, genuine Chicken Shooter footage/public URL and independent benchmarks remain optional content TODOs. No substitute resume PDF or separate phone link is introduced.
+
+## Ariston OS — 2026-11-26
+
+- Portrait not supplied: `/card/` deliberately shows a labeled placeholder. Replace only with an owner-approved photo.
+- AI Workplace source and reference-image attachments were not available in this checkout; implemented the owner’s written visual direction with original code artwork. Optional follow-up: compare supplied visuals with the implementation.
+- Test NFC scanning and native vCard import on physical iOS/Android devices after a separately approved deployment. The production `/card/` address is not published by this branch.
+
+## NFC contact card — 2026-11-26
+
+- **Portrait:** `public/images/ariston-profile.webp` is not supplied (square, ~640px, WebP). The card shows an original pixel-art placeholder until it is added and the site is rebuilt. Do not use the NFC keychain photo.
+- **Phone number:** deliberately omitted from the card and vCard; add only with explicit owner approval.
+- **Reference images:** the owner's style reference images were not available to this task; the design follows the AI Workplace repository only.
+
+## Integrated Ariston OS card — current
+
+Claude’s `components/card` implementation is the selected `/card/` page. No approved portrait exists, so the original avatar is explicitly labeled as a placeholder. The sole download is `/card/ariston-michael.vcf`; verified name/email/education/public URLs only, no private phone number. The earlier root-level file is removed after browser verification.
+
+Before a separately approved publication: owner visual/portrait review, actual iOS/Android NFC scan and native contact import, screen-reader/browser-toolbar zoom review, and external resume/contact reachability recheck. Local browser tests verify the approved hrefs and static vCard bytes; they do not establish availability of external services or actual phone import.

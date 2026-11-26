@@ -105,7 +105,7 @@ export default async function ProjectPage({ params }: Props) {
             <h2 id="status-title">Scope & evidence.</h2>
             <p>{project.study.boundary}</p>
             <p>
-              {project.id === "fireguard" ? <>An owner-approved simulation crop is available in the <Link href="/#showcase-fireguard" prefetch={false}>portfolio media viewer</Link>. The wider screenshots and recording are withheld while third-party imagery rights are unresolved.</> : "Live demos and screenshots are not yet available."}{" "}
+              {project.id === "fireguard" ? <>An owner-approved simulation crop is available in the <Link href="/#projects" prefetch={false}>project explorer</Link>. The wider screenshots and recording are withheld while third-party imagery rights are unresolved.</> : "Live demos and screenshots are not yet available."}{" "}
               The artwork above is an original concept illustration.
             </p>
             <div className="study-resources">

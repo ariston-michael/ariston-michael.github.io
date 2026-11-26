@@ -1,4 +1,6 @@
 import { defineConfig } from "@playwright/test";
+const previewPort = Number(process.env.PLAYWRIGHT_PORT ?? 3100);
+const previewUrl = `http://127.0.0.1:${previewPort}`;
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
@@ -10,7 +12,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 3,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
-    baseURL: "http://127.0.0.1:3100",
+    baseURL: previewUrl,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
@@ -23,8 +25,8 @@ export default defineConfig({
     { name: "webkit", use: { browserName: "webkit" } },
   ],
   webServer: {
-    command: "node scripts/preview.mjs 3100",
-    url: "http://127.0.0.1:3100",
+    command: `node scripts/preview.mjs ${previewPort}`,
+    url: previewUrl,
     reuseExistingServer: false,
     timeout: 15_000,
     stdout: "ignore",
