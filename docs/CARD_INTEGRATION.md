@@ -1,6 +1,6 @@
 # Integrated Ariston OS NFC contact card
 
-The selected implementation is Claude’s dedicated `components/card` window at **`/card/`**, integrated with Codex’s portfolio and the Next.js 16.4.5 security upgrade on `feature/ariston-os-integration`. This supersedes the parallel-branch integration advice. The future NFC URI remains `https://ariston-michael.github.io/card/` (trailing slash), encoded as an NDEF URI record only after a separately approved release.
+The selected implementation is Claude’s dedicated `components/card` window at **`/card/`**, integrated with Codex’s portfolio and the Next.js 16.4.5 security upgrade on `feature/ariston-os-integration`. This supersedes the parallel-branch integration advice. The published NFC URI is `https://ariston-michael.github.io/card/` (trailing slash), encoded as an NDEF URI record. The authorized portrait release is now live; see RELEASE.md for its exact SHA/run.
 
 ## Source and layout
 
@@ -25,7 +25,7 @@ The owner-approved portrait is present as `public/images/ariston-profile.webp` (
 - Labeled Portfolio, LinkedIn and GitHub URLs.
 - No phone number or photo.
 
-The Save Contact anchor uses `download="ariston-michael.vcf"` and `type="text/vcard"`. The preview server serves the `.vcf` extension as `text/vcard`; build-time handler headers do not configure the hosting provider. Browser downloads and static file contents are tested, but live MIME behavior/native iOS or Android address-book import remain physical-device checks after separate publication approval.
+The Save Contact anchor uses `download="ariston-michael.vcf"` and `type="text/vcard"`. The preview server serves the `.vcf` extension as `text/vcard`; build-time handler headers do not configure the hosting provider. Browser downloads and static file contents are tested, and the live server returns `text/x-vcard`. Native iOS/Android address-book import remains a physical-device check.
 
 The superseded `public/ariston-michael.vcf`, its Git line-ending attribute and unused global card CSS were removed only after the combined local suite passed. Export and browser guards require the old `/ariston-michael.vcf` endpoint to be absent. The sitemap includes `/card/`.
 

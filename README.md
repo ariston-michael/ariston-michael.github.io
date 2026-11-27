@@ -26,4 +26,4 @@ Shared colors/fonts live in `app/tokens.css`; the card uses scoped CSS and has n
 
 See [CARD_INTEGRATION](docs/CARD_INTEGRATION.md), [PROJECT](docs/PROJECT.md), [DESIGN](docs/DESIGN.md), [ARCHITECTURE](docs/ARCHITECTURE.md), [VALIDATION](docs/VALIDATION.md) and [ROADMAP](docs/ROADMAP.md). Legacy design records are historical. Main merges and public deployment require separate owner approval; the manual release guard and root URL remain unchanged.
 
-After a separately approved release, encode `https://ariston-michael.github.io/card/` as the NFC tag URL. This feature branch does not publish that route. Verify native contact import on real phones before using it as the final physical card.
+Live portfolio: [ariston-michael.github.io](https://ariston-michael.github.io/). NFC card: [ariston-michael.github.io/card/](https://ariston-michael.github.io/card/). Encode the card URL with its trailing slash as an NDEF URI record; verify native vCard import on real iOS/Android phones. The approved portrait release is published; see RELEASE.md for the exact SHA/run and rollback procedure.

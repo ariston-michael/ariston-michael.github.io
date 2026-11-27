@@ -65,3 +65,7 @@ Before a separately approved publication: owner visual/portrait review, actual i
 ## Approved portrait — resolved
 
 The owner supplied a valid 1254×1254 PNG at `assests/portraits/my-photo.png`. It was inspected and optimized to `public/images/ariston-profile.webp` (640×640, 29,492 bytes). Original aspect ratio/composition are preserved, no generated facial changes, EXIF stripped, and the source is not committed. Current portrait-placeholder TODOs above are historical. Physical NFC/Contacts import and assistive-technology/toolbar-zoom review remain manual follow-ups.
+
+## Published portrait release — complete
+
+Ariston OS and the approved portrait are live at the original HTTPS root, `/card/` and the canonical `/card/ariston-michael.vcf` endpoint (production `7951ddd4…`, successful run 45914031719). Earlier publication/portrait-source blockers above are historical. Remaining manual checks: physical NFC tap/native Contacts import, real-device safe areas, screen readers/toolbar zoom and LinkedIn normal-browser reachability. No private phone number was added.

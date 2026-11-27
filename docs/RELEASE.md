@@ -1,24 +1,30 @@
-# Ariston OS portrait release — authorized, portrait integrated; validation in progress
+# Ariston OS — published 2026-11-26 (America/Toronto)
 
-The owner authorizes the verified Ariston OS release, including PR #8 → development, a production PR → main, exact-SHA publication and live verification. No further routine confirmation is needed. Authentication/security controls remain mandatory.
+The owner explicitly authorized the portrait integration, normal development/main merges and exact-SHA GitHub Pages publication. The release completed successfully; no authentication/security control was bypassed.
 
-- PR #8 was green (195 three-engine checks and GitGuardian) and merged normally into development at `005dad8` on 2026-11-26.
-- The source at `/Users/aristonmichael/stellar-portfolio/assests/portraits/my-photo.png` now contains the valid owner-approved 1254×1254 PNG. The inspected 640×640 WebP derivative is 29,492 bytes; the original remains local. The earlier zero-byte blocker is resolved.
-- Release preparation worktree: `/private/tmp/ariston-os-release`, branch `release/ariston-os-portrait`. Current main history was normally reconciled there without changing the source tree.
-- Authenticated Pages preflight: `build_type: workflow`, HTTPS enforced, root URL `https://ariston-michael.github.io/`, no custom domain. No settings change is needed.
-- Current rollback candidate: main `d8c0fb799f884d0774bc5fbeeaf9d46be308717a`, successful approved release runs `45532539835` and `45532448129`. Record live status again immediately before dispatch.
+- Production SHA: `7951ddd4d4ba929ec6fd0e8fe58f417bb28fed65`, normal merge of [PR #9](https://github.com/ariston-michael/ariston-michael.github.io/pull/9). Its tree exactly matches reviewed portrait source `d04839679d70cd1e8aa7d4fe190eef1e130e2358`: `c826aa651e7f456e49cd9b66ea9d0fabfa37515d`.
+- Integration PR #8 and portrait/release PR #10 were merged into development first. Source CI 45913065191 and production PR CI 45913566905 each passed all 195 three-engine checks before merge.
+- [Approved Pages release 45914031719](https://github.com/ariston-michael/ariston-michael.github.io/actions/runs/45914031719), attempt 1, passed exact-SHA approval, Pages checks, npm ci/audit (zero vulnerabilities), lint/types, nine release guards, default build, portrait-required six-route/60-file export and **195 browser checks (2.7m)**. Build succeeded in 4m6s; official out/-only deployment succeeded in 8s.
+- Live [portfolio](https://ariston-michael.github.io/), [NFC card](https://ariston-michael.github.io/card/) and [vCard](https://ariston-michael.github.io/card/ariston-michael.vcf) returned 200 and passed independent public smoke verification. Pages remains Actions-based, HTTPS enforced, same root URL, no custom domain or settings change.
+- Approved photo: actual source `/Users/aristonmichael/stellar-portfolio/assests/portraits/my-photo.png` (1254×1254, 1,931,193 bytes). Only the proportional 640×640 / 29,492-byte metadata-free WebP is published. Live SHA-256 matches `d88c4fe46c1df1e45b8400bcca253660cad66d2a69bf8c3391e85b7c9e3030af`.
+- Live vCard MIME is `text/x-vcard`; its CRLF/public-only fields, no phone number and Chrome download were verified. Native Contacts import and physical NFC scanning remain device checks. See VALIDATION.md for exact public-test scope.
 
-## Complete the authorized release
+## Future release procedure
 
-1. Once actual photo bytes are present, inspect the supplied portrait; encode an optimized `public/images/ariston-profile.webp` without stretching or committing the high-resolution original. Preserve source aspect ratio in encoding and use inspected `object-fit: cover` positioning for the card frame. Record source provenance, dimensions, optimized size and checksum in MEDIA_MANIFEST.
-2. Validate real portrait decoding and phone/tablet/desktop screenshots, all contact/resume links, approved vCard contents, npm ci/audit/lint/types/build/export/release guards and the full browser matrix. Run `REQUIRE_PORTRAIT=1 npm run check:export`; the production workflow uses this same guard and fresh npm audit. Its exact-main-SHA approval gate is unchanged.
-3. Commit/push verified changes through development, prepare/update the production PR from development into main, and require green checks for its actual head. Merge normally after validation; never force push or bypass a security/account approval.
-4. Read the resulting full main SHA. Dispatch `release-pages.yml` on **main** with `approve_release=true` and `expected_sha` equal to that exact SHA. Pages is already Actions-based. The workflow uploads only `out/`, then its dependent deploy job publishes through the Pages environment.
-5. Verify successful Actions deployment and HTTPS home, `/card/`, `/card/ariston-michael.vcf`, actual photo asset/alt/crop, all notes/navigation/assets, responsive behavior, keyboard/no-JavaScript/reduced motion, external destinations, and vCard privacy/MIME/download. Record actual production SHA, PR/run URLs and results only after completion.
+Future publication still requires owner authorization for the reviewed change. Work on development/task branches, validate the actual static export and normal PR checks, then normally merge the reviewed production PR. Read the full resulting main SHA and dispatch `release-pages.yml` on **main** with `approve_release=true` and `expected_sha` equal to that exact SHA. The existing workflow independently verifies approval/source/portrait/audit/build/browser checks before uploading only `out/` and deploying through Pages. Preserve authentication, permissions, root URL and HTTPS; do not disable guards or upload source root. Verify public routes/assets/photo/vCard and record the actual run/SHA after success.
 
 ## Rollback
 
-The pre-release production SHA above is the known-good candidate to revalidate before publication. If an authorized rollback is needed, rerun an eligible successful Approved Pages release for that exact historical source; never reset/force-push main or upload the source root. GitHub's run-retention/rerun eligibility and media validity must be checked at that time. If no eligible run exists, prepare a reviewed revert/fix PR and obtain the required rollback authorization, then use the normal exact-SHA release workflow. Detailed historical procedure follows.
+Current known-good release: `7951ddd4d4ba929ec6fd0e8fe58f417bb28fed65`, run 45914031719. Previous known-good production: `d8c0fb799f884d0774bc5fbeeaf9d46be308717a`, successful approved runs 45532539835 and 45532448129. No rollback was performed.
+
+For an authorized rollback, first verify the intended historical SHA/run, eligibility and retained media. Use **Re-run all jobs** on an eligible successful Approved Pages release so it builds that exact historical source under its original approval context; never reset/force-push main or upload the source root. If no eligible run can be rebuilt, prepare a reviewed revert/fix PR and obtain the required rollback authorization, then use the normal exact-SHA workflow. Verify the live result and record it. Detailed historical instructions follow.
+
+## Physical NFC checklist
+
+1. Write `https://ariston-michael.github.io/card/` (trailing slash) as an NDEF URL/URI record on the rewritable tag.
+2. Scan using an iPhone and an Android phone; confirm HTTPS, correct portrait and all contact actions.
+3. Tap Save Contact, open/import the vCard in Contacts and verify name, email, education and public URLs, with no phone number. Confirm no duplicate contact is unintentionally created during repeated testing.
+4. Keep the tag rewritable. Native phone import, real screen-reader/toolbar-zoom sessions and normal-browser LinkedIn reachability remain manual follow-ups; automated LinkedIn access returned 999.
 
 ---
 

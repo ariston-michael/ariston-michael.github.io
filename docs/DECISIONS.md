@@ -211,3 +211,7 @@ The owner authorizes development/main merges and publication with the supplied p
 ## 2026-11-26 — Use supplied portrait without reshaping
 
 Both requested folders were checked. The actual valid source is in the existing misspelled `assests/portraits` directory; `assets/portraits` is absent. Decode and inspect the 1254×1254 PNG, preserve its square composition, proportionally resize to 640×640 and encode WebP (quality 82) without EXIF. Commit only the 29,492-byte derivative. Both source-folder spellings are ignored to prevent accidental original-image publication. The card already detects the approved derivative at build time, uses descriptive alt text and a square cover frame; no runtime photo service or new dependency is required.
+
+## 2026-11-26 — Publish the verified portrait-backed release
+
+After the owner’s explicit authorization and green portrait/production PR CI (195 checks each), normally merge PR #9 and publish exact main `7951ddd4d4ba929ec6fd0e8fe58f417bb28fed65` using the existing manual exact-SHA workflow. Its fresh audit, portrait-required export and all 195 browser checks passed before official out/-only deployment (run 45914031719). Keep Actions-based Pages, HTTPS/root URL and permissions unchanged. Independently verify public card/photo checksum/vCard/native download, routes/assets and browser accessibility; retain actual native phone/NFC import as manual work. Synchronize post-release evidence through development without changing the published main SHA or rewriting history.

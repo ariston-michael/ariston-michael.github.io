@@ -205,4 +205,6 @@ Final local pre-release results: **180 Chrome/WebKit checks**, **9 release guard
 - [x] Confirm Actions-based Pages, HTTPS and previous successful release/rollback candidate.
 - [x] Clean install, audit (zero vulnerabilities), lint, types, default build, static export and nine release guards pass before portrait integration.
 - [x] Verify the actual nonempty 1254×1254 source, inspect and optimize it to a metadata-free 640×640 / 29,492-byte WebP; keep the original local.
-- [ ] Final portrait/browser/CI checks, production PR merge, exact-SHA Pages dispatch and live verification.
+- [x] Complete actual-portrait local/three-engine CI checks, merge production PR #9, publish exact main SHA `7951ddd4d4ba929ec6fd0e8fe58f417bb28fed65` via successful run 45914031719, and verify live HTTPS home/card/vCard/photo/routes/accessibility.
+
+Physical NFC/Contacts import and assistive-technology/toolbar-zoom checks remain manual follow-ups. Ariston OS is published; future releases require separate authorization.

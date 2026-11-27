@@ -4,7 +4,7 @@
 
 Next.js 16.4.5 App Router, React 19.3.1, strict TypeScript 5.9, Tailwind 4.3.3 and custom CSS. No runtime dependency added. System fonts and inline SVG require no remote requests. Keep `output: 'export'`, `trailingSlash: true`, unoptimized images, and `https://ariston-michael.github.io` at the user-site root. `out/` is the production artifact; `npm run preview` serves it locally.
 
-The integration branch is `feature/ariston-os-integration`, isolated in `/private/tmp/ariston-os-integration` from fetched development `fe77fac`. The owner subsequently authorized the portrait release, normal main merge and exact-SHA deployment. See RELEASE.md for current authorization, release status and rollback procedure. The root URL and legacy `index.html` remain unchanged.
+The integration branch is `feature/ariston-os-integration`, isolated in `/private/tmp/ariston-os-integration` from fetched development `fe77fac`. The owner subsequently authorized the portrait release, normal main merge and exact-SHA deployment. Ariston OS is now published at main SHA `7951ddd4d4ba929ec6fd0e8fe58f417bb28fed65`; see RELEASE.md for current release status and rollback procedure. The root URL and legacy `index.html` remain unchanged.
 
 ## Composition and state
 
